@@ -9,6 +9,11 @@
 	"right_page":{
 		"number_people":"Participants Now",
 		"text_foot1":"You are holding the advantage.",
-		"text_foot2":"The price you place is the lowest and only one now."
+		"text_foot2":"The price you place is the lowest and only one now.",
+		"bid_report":"Bid report",
+		"the_last":"The last",
+		"the_first":"The first",
+		"bid_price":"Bid price"
+		
 	}
 }

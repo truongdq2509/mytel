@@ -4,11 +4,10 @@
 
 .main-layout {
 	&-body {
-		margin-top: 155px;
 		display: flex;
 		gap: 13px;
 		align-items: flex-start;
-		padding: 0 15px;
+		padding: 155px 15px 0;
 
 		&-page {
 			flex: 1;
