@@ -1,0 +1,187 @@
+.header-page {
+	position: fixed;
+	top: 0;
+	right: 0;
+	left: 0;
+	height: 144px;
+	background-color: $background-color-title;
+
+	&-container {
+		display: flex;
+		justify-content: space-between;
+		padding: 17px 15px 0;
+
+		.box-logo {
+			display: flex;
+			flex-direction: column;
+			gap: 10px;
+
+			.logo {
+				width: 229px;
+				height: 73px;
+				display: block;
+			}
+
+			.box-menu {
+				display: flex;
+				align-items: center;
+				justify-content: flex-start;
+
+				&-item {
+					padding: 12px 71px 7px;
+					background-color: transparent;
+
+					border-top-left-radius: 20px;
+					border-top-right-radius: 20px;
+
+					a {
+						color: #fff;
+						font-size: 20px;
+						font-weight: 600;
+						line-height: 24px;
+						text-transform: uppercase;
+					}
+
+					&.active {
+						background-color: #fff;
+
+						a {
+							color: $background-color-title;
+
+						}
+					}
+				}
+			}
+		}
+
+		.box-user {
+			display: flex;
+			flex-direction: column;
+			gap: 10px;
+			align-items: flex-end;
+
+			&-action {
+				display: flex;
+				align-items: center;
+				gap: 8px;
+
+				&-cart {
+					width: 68px;
+					height: 68px;
+					background-image: url("../../images/iconCart.svg");
+					background-repeat: no-repeat;
+					background-size: cover;
+				}
+
+				&-line {
+					height: 64.3%;
+					width: 1px;
+					background-color: #fff;
+					margin: 0 10px;
+				}
+
+				&-info {
+					.name {
+						color: #fff;
+						font-size: 18px;
+						font-weight: 600;
+						line-height: 27.83px;
+						max-width: 110px;
+					}
+
+					.number-bid {
+						width: 85px;
+						height: 31px;
+						background-image: url("../../images/iconNumberBid.svg");
+						background-repeat: no-repeat;
+						background-size: cover;
+						display: flex;
+						justify-content: center;
+
+						span {
+							font-size: 20px;
+							font-weight: 700;
+							line-height: 24.2px;
+							color: $color-text-price;
+							margin-left: 25px;
+						}
+					}
+				}
+
+				&-avt {
+					width: 73px;
+					height: 73px;
+					border-radius: 50%;
+					background-color: #fff;
+				}
+			}
+
+			&-date {
+				margin-top: 12px;
+
+				span {
+					color: #fff;
+					font-size: 16px;
+					font-weight: 500;
+					line-height: 24.42px;
+				}
+
+				.line {
+					height: 64.6%;
+					width: 1px;
+					background-color: #fff;
+					margin: 0 10px;
+				}
+			}
+		}
+	}
+}
+
+@media (max-width: 1350px) {
+	.header-page {
+
+		&-container {
+
+			.box-logo {
+
+				.box-menu {
+
+					&-item {
+						padding: 12px 51px 7px;
+
+						a {
+							font-size: 18px;
+							line-height: 25px;
+						}
+					}
+				}
+			}
+
+			.box-user {
+				&-action {
+					&-info {
+						.name {
+							font-size: 16px;
+							max-width: 200px;
+						}
+
+						.number-bid {
+							span {
+								font-size: 20px;
+							}
+						}
+					}
+				}
+
+				&-date {
+					span {
+						font-size: 14px;
+
+					}
+
+
+				}
+			}
+		}
+	}
+}

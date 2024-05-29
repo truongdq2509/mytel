@@ -1,0 +1,17 @@
+@import "./Header.scss";
+@import "./RightHistory.scss";
+
+
+.main-layout {
+	&-body {
+		margin-top: 155px;
+		display: flex;
+		gap: 13px;
+		align-items: flex-start;
+		padding: 0 15px;
+
+		&-page {
+			flex: 1;
+		}
+	}
+}

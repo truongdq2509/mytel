@@ -1,0 +1,14 @@
+{
+	"header":{
+		"home":"Home",
+		"bid":"Bid",
+		"result":"Result",
+		"rule":"Rule",
+		"account":"Account"
+	},
+	"right_page":{
+		"number_people":"Participants Now",
+		"text_foot1":"You are holding the advantage.",
+		"text_foot2":"The price you place is the lowest and only one now."
+	}
+}
