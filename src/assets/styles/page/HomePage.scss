@@ -4,10 +4,30 @@
 	gap: 18px;
 
 	&-banner {
-		// width: 300px;
 		display: block;
 		max-width: calc(1577px - 393px - 13px);
 		overflow: hidden;
+
+		.ant-carousel {
+			.slick-dots {
+				.slick-active {
+					button {
+						width: 100%;
+						background-color: #AFAFAF;
+						border-radius: 5px;
+					}
+				}
+
+				button {
+					width: 9px;
+					height: 9px;
+					background-color: #D9D9D9;
+					border-radius: 50%;
+					opacity: 1;
+
+				}
+			}
+		}
 
 
 		&-item {

@@ -6,7 +6,7 @@ function HomePage() {
 		<div className="container-home">
 			<div className="container-home-banner">
 				<div>
-					<Carousel infinite={false}>
+					<Carousel autoplay={true} infinite={true}>
 						<div className="container-home-banner-item" />
 						<div className="container-home-banner-item" />
 						<div className="container-home-banner-item" />
