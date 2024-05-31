@@ -1,5 +1,9 @@
 .right-page {
 	width: 393px;
+	position: absolute;
+	right: 15px;
+	top: 155px;
+	z-index: 1;
 
 	&-head {
 		margin-bottom: 18px;

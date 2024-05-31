@@ -4,13 +4,12 @@
 
 .main-layout {
 	&-body {
-		display: flex;
-		gap: 13px;
-		align-items: flex-start;
 		padding: 155px 15px 0;
 
+		position: relative;
+
 		&-page {
-			flex: 1;
+			margin-right: 406px;
 		}
 	}
 }

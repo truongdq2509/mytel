@@ -20,7 +20,6 @@ export const mediaQueryPoint = {
 	xs: 399.98,
 	sm: 575.98,
 	md: 767.98,
-	mdx: 991.98,
 	lg: 991.98,
 	xl: 1199.98,
 	xxl: 1349.98,

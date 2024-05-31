@@ -1,0 +1,20 @@
+.container-home {
+	display: flex;
+	flex-direction: column;
+	gap: 18px;
+
+	&-banner {
+		// width: 300px;
+		display: block;
+		max-width: calc(1577px - 393px - 13px);
+		overflow: hidden;
+
+
+		&-item {
+			// padding-top: 25.53%;
+			height: 229px;
+			background: #5A5A5A;
+
+		}
+	}
+}

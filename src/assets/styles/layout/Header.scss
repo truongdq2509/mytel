@@ -5,6 +5,7 @@
 	left: 0;
 	height: 144px;
 	background-color: $background-color-title;
+	z-index: 100;
 
 	&-container {
 		display: flex;
