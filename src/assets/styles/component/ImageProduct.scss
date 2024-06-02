@@ -1,0 +1,57 @@
+.container-image-product {
+	&-slide {
+		&-item {
+			position: relative;
+
+			.image {
+				padding-top: 89.69%;
+				background-position: center;
+				background-repeat: no-repeat;
+				background-size: cover;
+				border-radius: 12px;
+			}
+
+			.icon-gift {
+				position: absolute;
+				top: 8px;
+				left: 8px;
+				background-image: url(../../images/iconGift.svg);
+				width: 34px;
+				height: 34px;
+				background-position: center;
+				background-repeat: no-repeat;
+			}
+		}
+	}
+
+	&-dot-slide {
+		.ant-carousel {
+			width: 80%;
+			margin: 0 auto;
+			margin-top: 12px;
+
+			.slick-slider {
+				.slick-list {
+					.slick-track {
+						display: flex;
+						align-items: center;
+						justify-content: center;
+						gap: 8px;
+
+						.container-image-product-slide-item {
+							.image {
+								border-radius: 4px;
+								cursor: pointer;
+
+								&:hover {
+									border: 2px solid #F97A1C !important;
+								}
+							}
+						}
+					}
+				}
+
+			}
+		}
+	}
+}

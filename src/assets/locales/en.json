@@ -14,6 +14,12 @@
 		"the_last":"The last",
 		"the_first":"The first",
 		"bid_price":"Bid price"
-		
+	},
+	"home_page":{
+		"current_action":"Current Auction",
+		"upcoming_action":"Upcoming Auctions",
+		"detail":"Detail",
+		"code":"Item code number: _CODE_",
+		"time_end":"The auction will end after:"
 	}
 }
