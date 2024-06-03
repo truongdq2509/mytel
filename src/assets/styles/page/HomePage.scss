@@ -44,6 +44,10 @@
 		border-radius: 12px;
 		box-shadow: 0px 4px 10px 0px rgba(8, 19, 74, 0.1);
 
+		&:last-child {
+			margin-bottom: 50px;
+		}
+
 		&-head {
 			display: flex;
 			justify-content: space-between;
@@ -119,7 +123,7 @@
 		}
 
 		&-content-upcoming {
-			padding-bottom: 38px;
+			padding-bottom: 30px;
 
 			.box-slide {
 				.slick-slider {
@@ -129,6 +133,123 @@
 							align-items: center;
 							justify-content: center;
 							gap: 13px;
+						}
+					}
+
+					.slick-arrow {
+						width: auto;
+						height: auto;
+						opacity: 1;
+
+						&.slick-disabled {
+							opacity: 0;
+						}
+
+						&.slick-next {
+							right: -15px;
+						}
+
+						&.slick-prev {
+							left: -15px;
+						}
+
+						&::after {
+							display: none;
+						}
+
+						.slide-btn {
+							width: 45px;
+							height: 45px;
+							background-position: center;
+							background-repeat: no-repeat;
+							background-size: cover;
+							border-radius: 50%;
+
+							&.next-icon {
+								background-image: url(../../images/nextSlide.svg);
+							}
+
+							&.prev-icon {
+								background-image: url(../../images/prevSlide.svg);
+							}
+						}
+					}
+				}
+
+				.box-item {
+					border-radius: 12px;
+					box-shadow: 0px 0px 5px 0px rgba(8, 11, 78, 0.5);
+					margin-bottom: 8px;
+
+					overflow: hidden;
+
+					&-image {
+						padding-top: 69.11%;
+						background-position: center;
+						background-repeat: no-repeat;
+						background-size: cover;
+					}
+
+					&-info-product {
+						padding: 3px 6px 18px;
+
+						&-name {
+							font-size: 20px;
+							font-weight: 600;
+							line-height: 24.2px;
+						}
+
+						&-code {
+							font-size: 16px;
+							font-weight: 400;
+							line-height: 19.36px;
+							color: #444444;
+							margin-top: 4px;
+						}
+
+						&-price {
+							font-size: 20px;
+							font-weight: 600;
+							line-height: 24.2px;
+							color: $color-text-price;
+							margin-top: 14px;
+						}
+
+						&-box-foot {
+							display: flex;
+							justify-content: space-between;
+							align-items: center;
+							margin: 14px 0 10px;
+
+							&-date {
+								display: flex;
+								align-items: center;
+								gap: 4px;
+
+								.icon-date {
+									width: 19px;
+									height: 19px;
+									background-image: url(../../images/iconDateItem.svg);
+									background-position: center;
+									background-repeat: no-repeat;
+								}
+
+								span {
+									font-size: 16px;
+									font-weight: 400;
+									line-height: 19.36px;
+									color: #444444;
+								}
+							}
+
+							&-icon {
+								width: 27px;
+								height: 24px;
+								background-image: url(../../images/iconBidItem.svg);
+								background-position: center;
+								background-repeat: no-repeat;
+								background-size: cover;
+							}
 						}
 					}
 				}

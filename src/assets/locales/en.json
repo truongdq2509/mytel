@@ -20,6 +20,7 @@
 		"upcoming_action":"Upcoming Auctions",
 		"detail":"Detail",
 		"code":"Item code number: _CODE_",
-		"time_end":"The auction will end after:"
+		"time_end":"The auction will end after:",
+		"product_code":"Product code: _CODE_"
 	}
 }
