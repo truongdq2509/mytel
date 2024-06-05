@@ -138,6 +138,42 @@
 	}
 }
 
+.header-mobile-page {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 17px;
+	position: fixed;
+	top: 0;
+	right: 0;
+	left: 0;
+	background-color: $background-color-title;
+	z-index: 100;
+
+	.logo-mobile {
+		display: block;
+		width: 144px;
+		height: 46px;
+		background-image: url(../../images/logoMobile.svg);
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: cover;
+	}
+
+	.button-login {
+		background-color: #fff;
+		border: none;
+		outline: none;
+		padding: 5px 16px;
+		border-radius: 20px;
+		font-size: 16px;
+		font-weight: 700;
+		line-height: 19.36px;
+		color: $background-color-title;
+	}
+
+}
+
 @media (max-width: 1350px) {
 	.header-page {
 

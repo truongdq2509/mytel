@@ -4,7 +4,8 @@
 		"bid":"Bid",
 		"result":"Result",
 		"rule":"Rule",
-		"account":"Account"
+		"account":"Account",
+		"login":"Login"
 	},
 	"right_page":{
 		"number_people":"Participants Now",
@@ -21,6 +22,7 @@
 		"detail":"Detail",
 		"code":"Item code number: _CODE_",
 		"time_end":"The auction will end after:",
-		"product_code":"Product code: _CODE_"
+		"product_code":"Product code: _CODE_",
+		"bid_now":"Bid now"
 	}
 }

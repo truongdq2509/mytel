@@ -5,11 +5,15 @@ import imgProduct from "../assets/images/imgProduct.png";
 import ImageProduct from "../component/ImageProduct";
 import Countdown from "react-countdown";
 import { mediaQueryPoint, useMediaQuery } from "../utils/hooks";
+import BannerHomeMobile from "../component/BannerHomeMobile";
 
 function HomePage() {
 	const { t } = useTranslation();
 	const isPcMin = useMediaQuery(`(max-width: ${mediaQueryPoint.xxl}px)`);
 	const isTablet = useMediaQuery(`(max-width: ${mediaQueryPoint.lg}px)`);
+	const isMobile = useMediaQuery(`(max-width: ${mediaQueryPoint.md}px)`);
+	const isMobileMin = useMediaQuery(`(max-width: ${mediaQueryPoint.xs}px)`);
+	console.log(isPcMin, isMobile, isTablet);
 	const products = [
 		{
 			image: imgProduct,
@@ -28,11 +32,15 @@ function HomePage() {
 	return (
 		<div className="container-home">
 			<div className="container-home-banner">
-				<Carousel autoplay={true} infinite={true}>
-					<div className="container-home-banner-item" />
-					<div className="container-home-banner-item" />
-					<div className="container-home-banner-item" />
-				</Carousel>
+				{isMobile ? (
+					<BannerHomeMobile />
+				) : (
+					<Carousel autoplay={true} infinite={true}>
+						<div className="container-home-banner-item" />
+						<div className="container-home-banner-item" />
+						<div className="container-home-banner-item" />
+					</Carousel>
+				)}
 			</div>
 			<div className="container-home-current-product">
 				<div className="container-home-current-product-head">
@@ -56,6 +64,10 @@ function HomePage() {
 						<div className="time-count-down">
 							<Countdown date={"2024-06-10T10:29:59.000Z"} />
 						</div>
+						<div className='button-bid'>
+							<div className='button-bid-icon' />
+							<span className="button-bid-text">{t("home_page.bid_now")}</span>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -68,13 +80,21 @@ function HomePage() {
 					<div className="box-slide">
 						<Carousel
 							autoplaySpeed={5000}
-							slidesToShow={isPcMin ? 3 : isTablet ? 2 : 4}
+							slidesToShow={isMobileMin ? 2 : (isTablet || isMobile) ? 2.5 : isPcMin ? 3 : 4}
 							autoplay={false}
 							dots={false}
 							infinite={false}
-							arrows={true}
-							nextArrow={<div ><div className='slide-btn next-icon' /></div>}
-							prevArrow={<div ><div className='slide-btn prev-icon' /></div>}
+							arrows={isMobile ? false : true}
+							nextArrow={
+								<div>
+									<div className="slide-btn next-icon" />
+								</div>
+							}
+							prevArrow={
+								<div>
+									<div className="slide-btn prev-icon" />
+								</div>
+							}
 							slidesToScroll={1}
 						>
 							{upcomingProducts.map((product, index) => (

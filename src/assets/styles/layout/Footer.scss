@@ -1,0 +1,61 @@
+.footer-mobile {
+	padding: 17px 27px;
+	background-color: rgba(30, 22, 25, 1);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	z-index: 100;
+
+	&-item {
+		display: block;
+		width: 35px;
+		height: 35px;
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: cover;
+
+		&.icon-bid {
+			background-image: url(../../images/iconFooterBid.svg);
+
+			&.active {
+				background-image: url(../../images/iconFooterBidActive.svg);
+			}
+		}
+
+		&.icon-result {
+			background-image: url(../../images/iconFooterHistory.svg);
+
+			&.active {
+				background-image: url(../../images/iconFooterHistoryActive.svg);
+			}
+		}
+
+		&.icon-home {
+			background-image: url(../../images/iconFooterHome.svg);
+
+			&.active {
+				background-image: url(../../images/iconFooterHomeActive.svg);
+			}
+		}
+
+		&.icon-rule {
+			background-image: url(../../images/iconFooterRule.svg);
+
+			&.active {
+				background-image: url(../../images/iconFooterRuleActive.svg);
+			}
+		}
+
+		&.icon-account {
+			background-image: url(../../images/iconFooterUser.svg);
+
+			&.active {
+				background-image: url(../../images/iconFooterUserActive.svg);
+			}
+		}
+	}
+}

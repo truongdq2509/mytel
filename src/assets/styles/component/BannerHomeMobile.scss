@@ -1,0 +1,23 @@
+.banner-mobile {
+	padding-top: 28.19%;
+	margin: 0 -15px;
+	background-color: $background-color-title ;
+	position: relative;
+	margin-bottom: 30%;
+
+	&-box-slide {
+		position: absolute;
+		top: 20px;
+		right: 18px;
+		left: 18px;
+
+		&-item {
+			padding-top: 54.33%;
+			border-radius: 28px;
+			background-image: url(../../images/imgBanner.png);
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: cover;
+		}
+	}
+}

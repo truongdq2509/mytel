@@ -1,7 +1,9 @@
 import { Carousel } from "antd";
 import { useEffect, useRef, useState } from "react";
+import { mediaQueryPoint, useMediaQuery } from '../utils/hooks';
 
 function ImageProduct({ data }) {
+	const isMobile = useMediaQuery(`(max-width: ${mediaQueryPoint.md}px)`);
 	const [slider, setSlider] = useState(null);
 	const [sliderDot, setSliderDot] = useState(null);
 	const sliderTop = useRef(null);
@@ -10,7 +12,6 @@ function ImageProduct({ data }) {
 	const [prevAutoImageActive, setPrevAutoImageActive] = useState(null);
 	let prevImageActive;
 	function handleActiveImage(event, index) {
-		console.log(event);
 		if (prevImageActive && typeof prevImageActive === 'object') {
 			prevImageActive.style.border = 'none';
 		}
@@ -37,7 +38,6 @@ function ImageProduct({ data }) {
 			el.style.border = '2px solid #F97A1C';
 		});
 	}, [activeImage, id, prevAutoImageActive]);
-	console.log(activeImage, prevAutoImageActive);
 	return (
 		<div className="container-image-product">
 			<div className="container-image-product-slide">
@@ -63,7 +63,7 @@ function ImageProduct({ data }) {
 					))}
 				</Carousel>
 			</div>
-			<div id={`block_preview`} className="container-image-product-dot-slide">
+			{!isMobile && <div id={`block_preview`} className="container-image-product-dot-slide">
 				<Carousel
 					autoplaySpeed={5000}
 					asNavFor={slider}
@@ -84,7 +84,7 @@ function ImageProduct({ data }) {
 						</div>
 					))}
 				</Carousel>
-			</div>
+			</div>}
 		</div>
 	);
 }

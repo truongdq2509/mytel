@@ -1,15 +1,29 @@
 @import "./Header.scss";
 @import "./RightHistory.scss";
+@import "./Footer.scss";
 
 
 .main-layout {
 	&-body {
 		padding: 155px 15px 0;
-
 		position: relative;
 
 		&-page {
 			margin-right: 406px;
 		}
+	}
+}
+
+@media (max-width: 768px) {
+	.main-layout {
+		&-body {
+			padding-top: 80px;
+
+			&-page {
+				margin-right: 0;
+			}
+		}
+
+
 	}
 }
