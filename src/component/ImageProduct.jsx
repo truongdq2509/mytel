@@ -56,7 +56,7 @@ function ImageProduct({ data }) {
 							<div
 								key={index}
 								className="image"
-								style={{ backgroundImage: `url(${product.image})` }}
+								style={{ backgroundImage: `url(${product})` }}
 							/>
 							<div className="icon-gift" />
 						</div>
@@ -79,7 +79,7 @@ function ImageProduct({ data }) {
 								key={index}
 								className="image"
 								onClick={(event) => handleActiveImage(event, index)}
-								style={{ backgroundImage: `url(${product.image})` }}
+								style={{ backgroundImage: `url(${product})` }}
 							/>
 						</div>
 					))}
