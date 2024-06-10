@@ -74,7 +74,7 @@ function ImageProduct({ data }) {
 					ref={sliderBottom}
 				>
 					{data.map((product, index) => (
-						<div className="container-image-product-slide-item">
+						<div className="container-image-product-slide-item item-btn-slide">
 							<div
 								key={index}
 								className="image"

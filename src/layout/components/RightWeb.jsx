@@ -1,136 +1,59 @@
 import { useTranslation } from "react-i18next";
 import avtDefaults from "../../assets/images/avtRight.png";
 import { Pagination, Select } from "antd";
+import { useDispatch, useSelector } from 'react-redux';
+import { curStateRightWeb } from '../../Redux/selector';
+import { useEffect, useState } from 'react';
+import { getHistoryBid, getHistoryBidAll } from '../../Redux/futures/rightWeb/actions';
+import moment from 'moment';
 function RightWeb() {
 	const { t } = useTranslation();
-	const dataTable = [
-		{
-			avt: avtDefaults,
-			price: "***",
-			fullname: "098****337",
-			msisdn: "098****337",
-			date: "Mar 25, 2024, 5:27 PM",
-		},
-		{
-			avt: avtDefaults,
-			price: "***",
-			fullname: "098****337",
-			msisdn: "098****337",
-			date: "Mar 25, 2024, 5:27 PM",
-		},
-		{
-			avt: avtDefaults,
-			price: "***",
-			fullname: "098****337",
-			msisdn: "098****337",
-			date: "Mar 25, 2024, 5:27 PM",
-		},
-		{
-			avt: avtDefaults,
-			price: "***",
-			fullname: "098****337",
-			msisdn: "098****337",
-			date: "Mar 25, 2024, 5:27 PM",
-		},
-		{
-			avt: avtDefaults,
-			price: "***",
-			fullname: "098****337",
-			msisdn: "098****337",
-			date: "Mar 25, 2024, 5:27 PM",
-		},
-		{
-			avt: avtDefaults,
-			price: "***",
-			fullname: "098****337",
-			msisdn: "098****337",
-			date: "Mar 25, 2024, 5:27 PM",
-		},
-		{
-			avt: avtDefaults,
-			price: "***",
-			fullname: "098****337",
-			msisdn: "098****337",
-			date: "Mar 25, 2024, 5:27 PM",
-		},
-		{
-			avt: avtDefaults,
-			price: "***",
-			fullname: "098****337",
-			msisdn: "098****337",
-			date: "Mar 25, 2024, 5:27 PM",
-		},
-		{
-			avt: avtDefaults,
-			price: "***",
-			fullname: "098****337",
-			msisdn: "098****337",
-			date: "Mar 25, 2024, 5:27 PM",
-		},
-		{
-			avt: avtDefaults,
-			price: "***",
-			fullname: "098****337",
-			msisdn: "098****337",
-			date: "Mar 25, 2024, 5:27 PM",
-		},
-		{
-			avt: avtDefaults,
-			price: "***",
-			fullname: "098****337",
-			msisdn: "098****337",
-			date: "Mar 25, 2024, 5:27 PM",
-		},
-		{
-			avt: avtDefaults,
-			price: "***",
-			fullname: "098****337",
-			msisdn: "098****337",
-			date: "Mar 25, 2024, 5:27 PM",
-		},
-		{
-			avt: avtDefaults,
-			price: "***",
-			fullname: "098****337",
-			msisdn: "098****337",
-			date: "Mar 25, 2024, 5:27 PM",
-		},
-		{
-			avt: avtDefaults,
-			price: "***",
-			fullname: "098****337",
-			msisdn: "098****337",
-			date: "Mar 25, 2024, 5:27 PM",
-		},
-		{
-			avt: avtDefaults,
-			price: "***",
-			fullname: "098****337",
-			msisdn: "098****337",
-			date: "Mar 25, 2024, 5:27 PM",
-		},
-		{
-			avt: avtDefaults,
-			price: "***",
-			fullname: "098****337",
-			msisdn: "098****337",
-			date: "Mar 25, 2024, 5:27 PM",
-		},
-		{
-			avt: avtDefaults,
-			price: "***",
-			fullname: "098****337",
-			msisdn: "098****337",
-			date: "Mar 25, 2024, 5:27 PM",
-		},
-		{
-			avt: avtDefaults,
-			price: "***",
-			fullname: "098****337",
-			msisdn: "098****337",
-			date: "Mar 25, 2024, 5:27 PM",
-		},
-	];
+	const [sort, setSort] = useState('desc')
+	const [page, setPage] = useState(1)
+	const [total, setTotal] = useState(0)
+	const [listBidHistory, setListBidHistory] = useState([])
+	const selectorRightWeb = useSelector(curStateRightWeb)
+	const dispatch = useDispatch()
+	useEffect(() => {
+		let query = {
+			current: page,
+			pageSize: 10,
+			sort: sort
+		}
+		if (selectorRightWeb.idCurrentProduct) {
+			query.cp_ids = selectorRightWeb.idCurrentProduct
+			dispatch(getHistoryBid({ query }))
+		} else {
+			delete query.cp_ids
+			dispatch(getHistoryBidAll({ query }))
+		}
+
+	}, [selectorRightWeb.idCurrentProduct, sort, page])
+	useEffect(() => {
+		if (selectorRightWeb.idCurrentProduct) {
+			if (selectorRightWeb?.bidHistory?.data?.length > 0) {
+				setPage(+selectorRightWeb?.bidHistory?.current)
+				setTotal(+selectorRightWeb?.bidHistory?.total)
+				setListBidHistory(selectorRightWeb?.bidHistory?.data);
+			} else {
+				setPage(1)
+				setTotal(0)
+				setListBidHistory([])
+			}
+		} else {
+			if (selectorRightWeb?.bidHistoryAll?.data?.length > 0) {
+				setPage(+selectorRightWeb?.bidHistoryAll?.current)
+				setTotal(+selectorRightWeb?.bidHistoryAll?.total)
+				setListBidHistory(selectorRightWeb?.bidHistoryAll.data);
+			} else {
+				setPage(1)
+				setTotal(0)
+				setListBidHistory([])
+			}
+		}
+
+
+	}, [selectorRightWeb.bidHistory, selectorRightWeb.bidHistoryAll, selectorRightWeb.idCurrentProduct])
 	return (
 		<div className="right-page">
 			<div className="right-page-head">
@@ -152,25 +75,28 @@ function RightWeb() {
 					<Select
 						defaultValue={t("right_page.the_last")}
 						style={{ width: 125, height: 36 }}
+						onChange={(value) => { setSort(value) }}
 						options={[
 							{ value: "desc", label: t("right_page.the_last") },
 							{ value: "asc", label: t("right_page.the_first") },
 						]}
 					/>
 				</div>
+
 				<div className="right-page-content-body">
-					{dataTable.map((it, index) => {
+					{listBidHistory.length > 0 ? listBidHistory.map((it, index) => {
+						let dateFomat = moment(it.auction_time).format('MMM D, YYYY, h:mm A')
 						return (
-							<div key={`item_right_${index}`} className="item-body">
+							<div key={`item_right_${it.key}_${index}`} className="item-body">
 								<div className="box-user">
 									<div
-										style={{ backgroundImage: `url(${it.avt})` }}
+										style={{ backgroundImage: `url(${it.image})` }}
 										className="avatar"
 									/>
 									<div className="box-info">
-										<div className="name one-line">{it.fullname}</div>
-										<div className="phone-number">{it.msisdn}</div>
-										<div className="date">{it.date}</div>
+										<div className="name one-line">{it.name || it.isdn}</div>
+										<div className="phone-number">{it.isdn}</div>
+										<div className="date">{dateFomat}</div>
 									</div>
 								</div>
 								<div className="box-price">
@@ -179,7 +105,7 @@ function RightWeb() {
 								</div>
 							</div>
 						);
-					})}
+					}) : null}
 				</div>
 				<div className="box-pagination">
 					<Pagination
@@ -188,8 +114,11 @@ function RightWeb() {
 						showSizeChanger={false}
 						showTitle={false}
 						style={{ width: "100%" }}
+						onChange={(page, pageSize) => { setPage(page) }}
+						current={page}
+						pageSize={10}
 						defaultCurrent={1}
-						total={5000}
+						total={total}
 					/>
 				</div>
 			</div>

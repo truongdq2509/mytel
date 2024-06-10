@@ -1,15 +1,25 @@
-import { Carousel } from 'antd';
+import { Carousel } from "antd";
 
-function BannerHomeMobile() {
-	return (<div className='banner-mobile'>
-		<div className='banner-mobile-box-slide'>
-			<Carousel autoplay={true} infinite={true}>
-				<div className="banner-mobile-box-slide-item" />
-				<div className="banner-mobile-box-slide-item" />
-				<div className="banner-mobile-box-slide-item" />
-			</Carousel>
+function BannerHomeMobile({ data = [] }) {
+	return (
+		<div className="banner-mobile">
+			<div className="banner-mobile-box-slide">
+				<Carousel autoplaySpeed={5000} autoplay={true} infinite={true}>
+					{data.map((it, index) => {
+						return (
+							<div>
+								<div
+									key={`banner_item_${it.id}_${index}`}
+									className="banner-mobile-box-slide-item"
+									style={{ backgroundImage: `url(${it.path})` }}
+								/>
+							</div>
+						);
+					})}
+				</Carousel>
+			</div>
 		</div>
-	</div>);
+	);
 }
 
 export default BannerHomeMobile;

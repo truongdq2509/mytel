@@ -3,6 +3,10 @@
 		&-item {
 			position: relative;
 
+			&.item-btn-slide {
+				max-width: 50px;
+			}
+
 			.image {
 				padding-top: 89.69%;
 				background-position: center;
