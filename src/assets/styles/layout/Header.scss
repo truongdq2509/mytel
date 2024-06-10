@@ -6,6 +6,7 @@
 	height: 144px;
 	background-color: $background-color-title;
 	z-index: 100;
+	overflow: hidden;
 
 	&-container {
 		display: flex;
@@ -92,19 +93,22 @@
 
 					.number-bid {
 						width: 85px;
-						height: 31px;
+						height: 32px;
 						background-image: url("../../images/iconNumberBid.svg");
 						background-repeat: no-repeat;
 						background-size: cover;
 						display: flex;
 						justify-content: center;
+						align-items: center;
 
 						span {
-							font-size: 20px;
+							font-size: 12px;
 							font-weight: 700;
-							line-height: 24.2px;
+							line-height: 1.25;
 							color: $color-text-price;
 							margin-left: 25px;
+							text-shadow: 2px 0 #fff, -2px 0 #fff, 0 2px #fff, 0 -2px #fff,
+								1px 1px #fff, -1px -1px #fff, 1px -1px #fff, -1px 1px #fff;
 						}
 					}
 				}
@@ -204,7 +208,7 @@
 
 						.number-bid {
 							span {
-								font-size: 20px;
+								font-size: 12px;
 							}
 						}
 					}
