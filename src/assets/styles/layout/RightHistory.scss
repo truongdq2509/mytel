@@ -3,6 +3,7 @@
 	position: absolute;
 	right: 15px;
 	top: 155px;
+	bottom: 20px;
 	z-index: 1;
 
 	&-head {
@@ -49,6 +50,15 @@
 	}
 
 	&-content {
+		background-color: #fff;
+		min-height: calc(100% - 338px);
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		border-radius: 0 0 12px 12px;
+		box-shadow: 0px 4px 10px 0px rgba(8, 19, 74, 0.1);
+		margin-bottom: 20px;
+
 		&-head {
 			padding: 8px;
 			background-color: #E6E6E6;
@@ -58,12 +68,6 @@
 		}
 
 		&-body {
-			height: calc(100vh - 387px);
-			min-height: 566px;
-			overflow-y: auto;
-			// height: calc(100vh - 387px);
-			// overflow-y: auto;
-
 			.item-body {
 				padding: 17px 7px;
 				display: flex;
@@ -137,6 +141,7 @@
 			padding: 12px 12px 32px;
 			display: flex;
 			justify-content: center;
+			width: 100%;
 
 			.ant-pagination {
 				padding: 5px 7px;
@@ -145,7 +150,10 @@
 				display: flex;
 				justify-content: space-between;
 				align-items: center;
-				width: 100%;
+				gap: 10px;
+				width: fit-content;
+				max-width: 100%;
+				overflow-x: hidden;
 
 				&::after {
 					display: none;
@@ -180,10 +188,10 @@
 		}
 	}
 
-	@media screen and (min-width: 992px) and (max-width: 1200px){
+	@media screen and (min-width: 992px) and (max-width: 1200px) {
 		width: 293px;
 
-		
+
 	}
 
 }
