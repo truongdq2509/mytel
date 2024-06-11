@@ -6,6 +6,7 @@ import { curStateRightWeb } from '../../Redux/selector';
 import { useEffect, useState } from 'react';
 import { getHistoryBid, getHistoryBidAll } from '../../Redux/futures/rightWeb/actions';
 import moment from 'moment';
+import { getTotalUserBid } from '../../Redux/futures/home/actions';
 function RightWeb() {
 	const { t } = useTranslation();
 	const [sort, setSort] = useState('desc')
@@ -14,6 +15,12 @@ function RightWeb() {
 	const [listBidHistory, setListBidHistory] = useState([])
 	const selectorRightWeb = useSelector(curStateRightWeb)
 	const dispatch = useDispatch()
+	const afterGetUserBid = (data, isLoading) => {
+		console.log(data, isLoading);
+	}
+	useEffect(() => {
+		dispatch(getTotalUserBid({ callback: afterGetUserBid }))
+	}, [])
 	useEffect(() => {
 		let query = {
 			current: page,
@@ -68,44 +75,46 @@ function RightWeb() {
 				</div>
 			</div>
 			<div className="right-page-content">
-				<div className="right-page-content-head">
-					<div className="right-page-content-head-title">
-						{t("right_page.bid_report")}
+				<div>
+					<div className="right-page-content-head">
+						<div className="right-page-content-head-title">
+							{t("right_page.bid_report")}
+						</div>
+						<Select
+							defaultValue={t("right_page.the_last")}
+							style={{ width: 125, height: 36 }}
+							onChange={(value) => { setSort(value) }}
+							options={[
+								{ value: "desc", label: t("right_page.the_last") },
+								{ value: "asc", label: t("right_page.the_first") },
+							]}
+						/>
 					</div>
-					<Select
-						defaultValue={t("right_page.the_last")}
-						style={{ width: 125, height: 36 }}
-						onChange={(value) => { setSort(value) }}
-						options={[
-							{ value: "desc", label: t("right_page.the_last") },
-							{ value: "asc", label: t("right_page.the_first") },
-						]}
-					/>
-				</div>
 
-				<div className="right-page-content-body">
-					{listBidHistory.length > 0 ? listBidHistory.map((it, index) => {
-						let dateFomat = moment(it.auction_time).format('MMM D, YYYY, h:mm A')
-						return (
-							<div key={`item_right_${it.key}_${index}`} className="item-body">
-								<div className="box-user">
-									<div
-										style={{ backgroundImage: `url(${it.image})` }}
-										className="avatar"
-									/>
-									<div className="box-info">
-										<div className="name one-line">{it.name || it.isdn}</div>
-										<div className="phone-number">{it.isdn}</div>
-										<div className="date">{dateFomat}</div>
+					<div className="right-page-content-body">
+						{listBidHistory.length > 0 ? listBidHistory.map((it, index) => {
+							let dateFomat = moment(it.auction_time).format('MMM D, YYYY, h:mm A')
+							return (
+								<div key={`item_right_${it.key}_${index}`} className="item-body">
+									<div className="box-user">
+										<div
+											style={{ backgroundImage: `url(${it.image})` }}
+											className="avatar"
+										/>
+										<div className="box-info">
+											<div className="name one-line">{it.name || it.isdn}</div>
+											<div className="phone-number">{it.isdn}</div>
+											<div className="date">{dateFomat}</div>
+										</div>
+									</div>
+									<div className="box-price">
+										<div className="text">{t("right_page.bid_price")}</div>
+										<div className="price">{it.price}</div>
 									</div>
 								</div>
-								<div className="box-price">
-									<div className="text">{t("right_page.bid_price")}</div>
-									<div className="price">{it.price}</div>
-								</div>
-							</div>
-						);
-					}) : null}
+							);
+						}) : null}
+					</div>
 				</div>
 				<div className="box-pagination">
 					<Pagination
@@ -113,11 +122,12 @@ function RightWeb() {
 						hideOnSinglePage={true}
 						showSizeChanger={false}
 						showTitle={false}
-						style={{ width: "100%" }}
+						style={{ maxWidth: '100%' }}
 						onChange={(page, pageSize) => { setPage(page) }}
 						current={page}
 						pageSize={10}
 						defaultCurrent={1}
+						showLessItems
 						total={total}
 					/>
 				</div>

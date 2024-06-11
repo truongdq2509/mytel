@@ -1,5 +1,5 @@
 import API_PATH from '../../../config/API_PATH'
-import { GET_BANNER_HOME, GET_BID_PRODUCT, GET_UP_NEXT_PRODUCT } from './contants'
+import { GET_BANNER_HOME, GET_BID_PRODUCT, GET_TOTAL_USER_BID, GET_UP_NEXT_PRODUCT } from './contants'
 
 
 export const getBidProduct = data => {
@@ -35,6 +35,18 @@ export const getBannerHome = data => {
 			url: API_PATH.banner,
 			query: data.query || {},
 
+		},
+	}
+}
+export const getTotalUserBid = data => {
+	return {
+		type: GET_TOTAL_USER_BID,
+		data,
+		meta: {
+			method: 'GET',
+			url: API_PATH.getUser,
+			query: data.query || {},
+			callback: data.callback || null
 		},
 	}
 }

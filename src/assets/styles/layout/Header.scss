@@ -123,6 +123,9 @@
 
 			&-date {
 				margin-top: 12px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
 
 				span {
 					color: #fff;
@@ -134,6 +137,7 @@
 				.line {
 					height: 64.6%;
 					width: 1px;
+					display: inline-block;
 					background-color: #fff;
 					margin: 0 10px;
 				}
