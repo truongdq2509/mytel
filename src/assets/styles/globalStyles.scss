@@ -35,3 +35,11 @@ html {
 	-webkit-box-orient: vertical;
 	text-overflow: ellipsis;
 }
+
+.two-line {
+	-webkit-line-clamp: 2;
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	text-overflow: ellipsis;
+}

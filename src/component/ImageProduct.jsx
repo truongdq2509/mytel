@@ -2,7 +2,7 @@ import { Carousel } from "antd";
 import { useEffect, useRef, useState } from "react";
 import { mediaQueryPoint, useMediaQuery } from '../utils/hooks';
 
-function ImageProduct({ data }) {
+function ImageProduct({ product, data }) {
 	const isMobile = useMediaQuery(`(max-width: ${mediaQueryPoint.md}px)`);
 	const [slider, setSlider] = useState(null);
 	const [sliderDot, setSliderDot] = useState(null);
@@ -25,7 +25,7 @@ function ImageProduct({ data }) {
 		setSlider(sliderTop.current);
 		setSliderDot(sliderBottom.current);
 	}, []);
-	let id = 'block_preview';
+	let id = 'block_preview_' + product?.product_code;
 	useEffect(() => {
 		const bottomSlideEl = document.querySelectorAll(
 			`#${id} .slick-slide:nth-child(${activeImage + 1}) .container-image-product-slide-item .image`
@@ -51,19 +51,19 @@ function ImageProduct({ data }) {
 						setActiveImage(next);
 					}}
 				>
-					{data.map((product, index) => (
+					{data.map((item, index) => (
 						<div className="container-image-product-slide-item">
 							<div
 								key={index}
 								className="image"
-								style={{ backgroundImage: `url(${product})` }}
+								style={{ backgroundImage: `url(${item})` }}
 							/>
 							<div className="icon-gift" />
 						</div>
 					))}
 				</Carousel>
 			</div>
-			{!isMobile && <div id={`block_preview`} className="container-image-product-dot-slide">
+			{!isMobile && <div id={`block_preview_${product?.product_code}`} className="container-image-product-dot-slide">
 				<Carousel
 					autoplaySpeed={5000}
 					asNavFor={slider}
@@ -73,13 +73,13 @@ function ImageProduct({ data }) {
 					infinite={false}
 					ref={sliderBottom}
 				>
-					{data.map((product, index) => (
+					{data.map((item, index) => (
 						<div className="container-image-product-slide-item item-btn-slide">
 							<div
 								key={index}
 								className="image"
 								onClick={(event) => handleActiveImage(event, index)}
-								style={{ backgroundImage: `url(${product})` }}
+								style={{ backgroundImage: `url(${item})` }}
 							/>
 						</div>
 					))}

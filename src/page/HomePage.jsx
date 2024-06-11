@@ -58,6 +58,10 @@ function HomePage() {
 			setBanner([])
 		}
 	}, [selectorHome])
+	const handleClickBanner = (data) => {
+		if (data.href) window.location.href = data.href;
+		return;
+	}
 	return (
 		<div className="container-home">
 			{banner.length > 0 ? <div className="container-home-banner">
@@ -66,7 +70,7 @@ function HomePage() {
 				) : (
 					<Carousel autoplaySpeed={5000} autoplay={true} infinite={true}>
 						{banner.map((it, index) => {
-							return <div><div key={`banner_item_${it.id}_${index}`} className="container-home-banner-item" style={{ backgroundImage: `url(${it.path})` }} /></div>
+							return <div><div onClick={() => handleClickBanner(it)} key={`banner_item_${it.id}_${index}`} className="container-home-banner-item" style={{ backgroundImage: `url(${it.path})` }} /></div>
 						})}
 					</Carousel>
 				)}
@@ -81,10 +85,10 @@ function HomePage() {
 					</div>
 					<div className="container-home-current-product-content">
 						<div className="container-home-current-product-content-slide-product">
-							<ImageProduct data={listImageProduct} />
+							<ImageProduct product={item} data={listImageProduct} />
 						</div>
 						<div className="container-home-current-product-content-info-product">
-							<h3 className="name-product">
+							<h3 className="name-product" >
 								{item?.product_name}
 							</h3>
 							<p className="code-product">
@@ -141,14 +145,16 @@ function HomePage() {
 											style={{ backgroundImage: `url(${listImageProduct[0]})` }}
 										/>
 										<div className="box-item-info-product">
-											<div className="box-item-info-product-name">
-												{item?.product_name}
-											</div>
-											<p className="box-item-info-product-code">
-												{t("home_page.product_code").replace("_CODE_", item?.product_code)}
-											</p>
-											<div className="box-item-info-product-price">
-												{`${item?.product_price.toLocaleString('de-DE')} MMK`}
+											<div className="box-item-info-product-info">
+												<div className="box-item-info-product-info-name two-line">
+													{item?.product_name}
+												</div>
+												<p className="box-item-info-product-info-code one-line">
+													{t("home_page.product_code").replace("_CODE_", item?.product_code)}
+												</p>
+												<div className="box-item-info-product-info-price one-line">
+													{`${item?.product_price.toLocaleString('de-DE')} MMK`}
+												</div>
 											</div>
 											<div className="box-item-info-product-box-foot">
 												<div className="box-item-info-product-box-foot-date">

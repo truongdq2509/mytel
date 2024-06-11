@@ -2,10 +2,15 @@
 	display: flex;
 	flex-direction: column;
 	gap: 18px;
+	margin-top: -11px;
 
 	&-banner {
 		display: block;
 		max-width: calc(1577px - 393px - 13px);
+
+		&:hover {
+			cursor: pointer;
+		}
 
 		.ant-carousel {
 			.slick-dots {
@@ -134,6 +139,10 @@
 					border: none;
 					outline: none;
 
+					&:hover {
+						cursor: pointer;
+					}
+
 					&-icon {
 						width: 40px;
 						height: 35px;
@@ -160,10 +169,18 @@
 				.slick-slider {
 					.slick-list {
 						.slick-track {
-							display: flex;
-							align-items: center;
-							justify-content: center;
-							gap: 13px;
+							// display: flex;
+							// justify-content: center;
+							// gap: 13px;
+
+							.slick-slide {
+								padding: 0 6px;
+
+
+								>div {
+									width: 100%;
+								}
+							}
 						}
 					}
 
@@ -208,42 +225,51 @@
 				}
 
 				.box-item {
+					width: 100%;
 					border-radius: 12px;
+					display: block;
+					height: 100%;
 					box-shadow: 0px 0px 5px 0px rgba(8, 11, 78, 0.5);
 					margin: 8px 0;
 
-					overflow: hidden;
-
 					&-image {
 						padding-top: 69.11%;
+						border-radius: 12px 12px 0 0;
 						background-position: center;
 						background-repeat: no-repeat;
-						background-size: cover;
+						background-size: contain;
 					}
 
 					&-info-product {
 						padding: 3px 6px 18px;
+						min-height: 179px;
+						width: 100%;
+						display: flex;
+						flex-direction: column;
+						justify-content: space-between;
 
-						&-name {
-							font-size: 20px;
-							font-weight: 600;
-							line-height: 24.2px;
-						}
+						&-info {
+							&-name {
+								font-size: 20px;
+								font-weight: 600;
+								line-height: 24.2px;
+							}
 
-						&-code {
-							font-size: 16px;
-							font-weight: 400;
-							line-height: 19.36px;
-							color: #444444;
-							margin-top: 4px;
-						}
+							&-code {
+								font-size: 16px;
+								font-weight: 400;
+								line-height: 19.36px;
+								color: #444444;
+								margin-top: 4px;
+							}
 
-						&-price {
-							font-size: 20px;
-							font-weight: 600;
-							line-height: 24.2px;
-							color: $color-text-price;
-							margin-top: 14px;
+							&-price {
+								font-size: 20px;
+								font-weight: 600;
+								line-height: 24.2px;
+								color: $color-text-price;
+								margin-top: 14px;
+							}
 						}
 
 						&-box-foot {
@@ -374,6 +400,8 @@
 						border: none;
 						outline: none;
 
+
+
 						&-icon {
 							width: 27px;
 							height: 23px;
@@ -460,22 +488,24 @@
 							padding: 0;
 							margin-top: 8px;
 
-							&-name {
-								font-size: 12px;
-								line-height: 14px;
-							}
+							&-info {
+								&-name {
+									font-size: 12px;
+									line-height: 14px;
+								}
 
-							&-code {
-								font-size: 10px;
-								line-height: 12px;
-								margin-top: 4px;
-							}
+								&-code {
+									font-size: 10px;
+									line-height: 12px;
+									margin-top: 4px;
+								}
 
-							&-price {
-								font-size: 12px;
-								line-height: 14px;
-								color: $color-text-price;
-								margin-top: 2px;
+								&-price {
+									font-size: 12px;
+									line-height: 14px;
+									color: $color-text-price;
+									margin-top: 2px;
+								}
 							}
 
 							&-box-foot {
