@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import CountdownComponents from "../../../component/CountdownComponents";
 import ImageProduct from "../../../component/ImageProduct";
 import iconBit from "../../../assets/images/icon-bit.svg";
@@ -14,17 +14,22 @@ const TabRunning = ({ currentProduct = [] }) => {
   const [openModal, setOpenModal] = useState(false);
   const [openModalDetail, setOpenModalDetail] = useState(false);
   const [isShowDetail, setIsShowDetail] = useState(false);
-  const [dataDetailGift, setDataDetailGift] = useState([])
+  const [dataDetailActive, setDataDetailActive] = useState([]);
 
   const handleInputChange = (event) => {
     const value = event.target.value;
     setValueInput(value);
   };
 
-const handleGift = (data) => {
-  setDataDetailGift([data])
-  setIsShowDetail(true)
-}
+  const handleGift = (data) => {
+    setDataDetailActive([data]);
+    setIsShowDetail(true);
+  };
+
+  const handleBit = (data) => {
+    setOpenModal(true);
+    setDataDetailActive([data]);
+  };
 
   const onChange = (currentSlide) => {
     // console.log(currentSlide);
@@ -35,14 +40,10 @@ const handleGift = (data) => {
       <ModalGirfBid
         isShowDetail={isShowDetail}
         setIsShowDetail={setIsShowDetail}
-        data={dataDetailGift}
+        data={dataDetailActive}
       />
       <div className="header-main">
         <div className="main-container">
-          <div className="bid-banner-mobile">
-            <SliderBid />
-          </div>
-
           {currentProduct.length > 0 ? (
             currentProduct.map((item, index) => {
               let listImageProduct = item?.product_image?.split(",");
@@ -53,92 +54,101 @@ const handleGift = (data) => {
                 start_time = "",
                 end_time = "",
               } = item;
+
+              let classFlex = "";
+              if (index !== 0) {
+                classFlex = "first-flex";
+              }
+
+              console.log(item);
               return (
-                <div
-                  className="d-flex"
-                  key={`curren_product_${item.product_id}_${index}`}
-                >
-                  <ModalDescriptionBid
-                    openModal={openModalDetail}
-                    setOpenModal={setOpenModalDetail}
-                    data={item}
-                  />
-                  <div className="container-product">
-                    <ImageProduct data={listImageProduct} />{" "}
+                <Fragment key={`curren_product_${item.product_id}_${index}`}>
+                  <div className={`bid-banner-mobile ${classFlex}`}>
+                    <SliderBid listImageProduct = {listImageProduct}/>
                   </div>
-                  <div className="header-content">
-                    <div className="title-product__container">
-                      <div className="title-product">
-                        <span>{product_name}</span>{" "}
-                        <div
-                          className="link-detail"
-                          onClick={() => setOpenModalDetail(true)}
-                        >
-                          Detail
-                        </div>
-                      </div>
-                      <div className="product-code">
-                        Item code number: ${product_code}
-                      </div>
-                      <div className="product-money">{product_price} MMK</div>
-                      <div className="line" />
-                      <div className="auction-code pb-12">Auction Code</div>
-                      <div className="auction-code pb-12">Quantity: 01</div>
-                      <div className="container-count__down">
-                        <div className="time-countdownt">
-                          <div className="auction-code pb-5">Start Time:</div>
-                          <div className="start-time__detail">
-                            <CountdownComponents
-                              targetDate={new Date(start_time)}
-                            />
-                          </div>
-                        </div>
-                        <div className="light-top" />
-                        <div className="time-countdownt">
-                          <div className="auction-code pb-5">End Time:</div>
-                          <div className="start-time__detail">
-                            <CountdownComponents
-                              targetDate={new Date(end_time)}
-                            />
-                          </div>
-                        </div>
-                      </div>
+                  <div className={`d-flex`}>
+                    <ModalDescriptionBid
+                      openModal={openModalDetail}
+                      setOpenModal={setOpenModalDetail}
+                      data={item}
+                    />
+                    <div className="container-product">
+                      <ImageProduct data={listImageProduct} />{" "}
                     </div>
-                    <div className="bit-container">
-                      <div className="position-relative">
-                        <input
-                          className="input-bit__now"
-                          placeholder=""
-                          value={valueInput}
-                          // type="number"
-                          onChange={handleInputChange}
-                        />
-                        <div className="currency-bit">MMK</div>
-                        <div
-                          className="btn-bit"
-                          onClick={() => setOpenModal(true)}
-                        >
-                          <img
-                            src={iconBit}
-                            alt="icon-bit"
-                            className="icon-bit"
+                    <div className="header-content">
+                      <div className="title-product__container">
+                        <div className="title-product">
+                          <span>{product_name}</span>{" "}
+                          <div
+                            className="link-detail"
+                            onClick={() => setOpenModalDetail(true)}
+                          >
+                            Detail
+                          </div>
+                        </div>
+                        <div className="product-code">
+                          Item code number: {product_code}
+                        </div>
+                        <div className="product-money">{product_price} MMK</div>
+                        <div className="line" />
+                        <div className="auction-code pb-12">Auction Code</div>
+                        <div className="auction-code pb-12">Quantity: 01</div>
+                        <div className="container-count__down">
+                          <div className="time-countdownt">
+                            <div className="auction-code pb-5">Start Time:</div>
+                            <div className="start-time__detail">
+                              <CountdownComponents
+                                targetDate={new Date(start_time)}
+                              />
+                            </div>
+                          </div>
+                          <div className="light-top" />
+                          <div className="time-countdownt">
+                            <div className="auction-code pb-5">End Time:</div>
+                            <div className="start-time__detail">
+                              <CountdownComponents
+                                targetDate={new Date(end_time)}
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="bit-container">
+                        <div className="position-relative">
+                          <input
+                            className="input-bit__now"
+                            placeholder=""
+                            value={valueInput}
+                            // type="number"
+                            onChange={handleInputChange}
                           />
-                          <span className="btn-title__bit">BIT NOW</span>
+                          <div className="currency-bit">MMK</div>
+                          <div
+                            className="btn-bit"
+                            onClick={() => handleBit(item)}
+                          >
+                            <img
+                              src={iconBit}
+                              alt="icon-bit"
+                              className="icon-bit"
+                            />
+                            <span className="btn-title__bit">BIT NOW</span>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    <div
-                      className="girf-container"
-                      onClick={() => handleGift(item)}
-                    >
-                      <img
-                        src={iconGirf}
-                        alt="icon-girf"
-                        className="icon-girf"
-                      />
+                      <div
+                        className="girf-container"
+                        onClick={() => handleGift(item)}
+                      >
+                        <img
+                          src={iconGirf}
+                          alt="icon-girf"
+                          className="icon-girf"
+                        />
+                      </div>
                     </div>
                   </div>
-                </div>
+                </Fragment>
               );
             })
           ) : (
@@ -181,7 +191,7 @@ const handleGift = (data) => {
         setOpenModal={setOpenModal}
         openModal={openModal}
         valueInput={+valueInput}
-        data={currentProduct}
+        data={dataDetailActive}
       />
 
       {/* <ModalSuccessfullBid setOpenModal={setOpenModal} openModal={openModal} /> */}

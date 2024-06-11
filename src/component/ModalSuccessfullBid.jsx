@@ -81,7 +81,6 @@ const Container = styled(Modal)`
       font-weight: 400;
       line-height: 19.36px;
       border-radius: 50px;
-      padding: 8px 18px 8px 18px;
       background-color: #dedede;
       display: none;
 

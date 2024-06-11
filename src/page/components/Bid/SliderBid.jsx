@@ -17,7 +17,7 @@ const SliderBid = ({ listImageProduct = [] }) => {
       >
         {listImageProduct.map((img, index) => {
           return (
-            <div className="text-center abc" key={`slider_${index}`}>
+            <div className="text-center text-main__content-bid" key={`slider_${index}`}>
               <img src={img} alt="" className="img-gift" />
             </div>
           );
@@ -88,6 +88,19 @@ const Container = styled.div`
     justify-content: center;
     align-items: center;
     display: flex;
+  }
+
+  @media (max-width: 767px){
+    .text-main__content-bid{
+      img{
+        height: 286px;
+      }
+    }
+
+
+    .detail-body__bid{
+      padding: 12px 12px;
+    }
   }
 `;
 

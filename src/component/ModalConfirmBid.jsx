@@ -2,6 +2,8 @@ import { Modal } from "antd";
 import React from "react";
 import styled from "styled-components";
 import { formatDataNumberToen } from "../utils/helper";
+import { useDispatch, useSelector } from 'react-redux';
+import { postBidProduct } from "../Redux/futures/Bid/action";
 
 const ModalConfirmBid = ({
   setOpenModal,
@@ -10,8 +12,19 @@ const ModalConfirmBid = ({
   data = [],
 }) => {
   const title = data[0]?.product_name || "";
-  const handleOke = () => {
+  const dispatch = useDispatch()
 
+  const handleBid = () => {
+    const dataAPi = {
+      price : valueInput,
+      productCode: data[0]?.product_code
+    }
+    dispatch(postBidProduct( dataAPi))
+  }
+  
+  const handleOke = () => {
+    setOpenModal(false)
+    handleBid()
   }
   
   return (
@@ -19,7 +32,7 @@ const ModalConfirmBid = ({
       title="Confirmation"
       centered
       open={openModal}
-      onOk={() => setOpenModal(false)}
+      onOk={handleOke}
       onCancel={() => setOpenModal(false)}
       width={"middle"}
     >
@@ -71,14 +84,13 @@ const Container = styled(Modal)`
     gap: 40px;
 
     button {
-      width: 230px;
+      width: 35%;
       height: 42px;
       color: #575757;
       font-size: 16px;
       font-weight: 400;
       line-height: 19.36px;
       border-radius: 50px;
-      padding: 8px 18px 8px 18px;
       background-color: #dedede;
 
       &:hover {

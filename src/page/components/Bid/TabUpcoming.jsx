@@ -53,7 +53,7 @@ const TabUpcoming = ({ upNextProduct = [] }) => {
               <span className="timer-detail">
                 {formattedDate}&nbsp;&nbsp;{formatHours}
               </span>
-              <img src={iconBid} alt="icon-iconBid" />
+              <img src={iconBid} alt="icon-iconBid" className="icon-bid__upcoming"/>
             </div>
           </div>
         </div>

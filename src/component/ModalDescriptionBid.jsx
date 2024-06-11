@@ -7,7 +7,7 @@ const ModalDescriptionBid = ({ setOpenModal, openModal, data = {} }) => {
 
   return (
     <Container
-      title="Confirmation"
+      title="Detail Description"
       centered
       open={openModal}
       onOk={() => setOpenModal(false)}
@@ -83,6 +83,13 @@ const Container = styled(Modal)`
   }
 
   @media (max-width: 768px) {
+
+    .product-title__modal, .body-title__content{
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 14.52px;
+    }
+
     .ant-modal-content {
       padding: 16px 24px;
     }
@@ -99,6 +106,9 @@ const Container = styled(Modal)`
       font-size: 12px;
       font-weight: 400;
       line-height: 14.52px;
+      div{
+        font-size: 11px;
+      }
     }
 
     .ant-modal-footer button {
@@ -109,9 +119,22 @@ const Container = styled(Modal)`
     .body-modal {
       margin: 0;
     }
+
+    .ant-modal-content{
+      padding: 16px !important;
+    }
+
+    .content-body{
+      padding: 10px 11px;
+    }
+
+    .product-title__modal{
+      margin: 0;
+      padding-bottom: 15px;
+    }
   }
 
-  @media (max-width: 576px) {
+  /* @media (max-width: 576px) {
     .ant-modal-footer {
       display: flex;
       justify-content: space-between;
@@ -126,7 +149,7 @@ const Container = styled(Modal)`
       font-weight: 500;
       line-height: 14.52px;
     }
-  }
+  } */
 `;
 
 export default ModalDescriptionBid;

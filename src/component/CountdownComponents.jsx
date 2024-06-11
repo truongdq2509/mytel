@@ -58,6 +58,13 @@ const Container = styled.div`
     width: 165px;
     display: inline-block;
   }
+
+  @media screen and (max-width: 1450px) and (min-width: 992px){
+    .count-down__minutes {
+   
+    display: block;
+  }
+  }
 `;
 
 export default CountdownComponents;

@@ -176,7 +176,7 @@ const Container = styled(Modal)`
     }
 
     .detail-body__bid {
-      padding: 12px 24px;
+      padding: 12px 16px;
     }
 
     .gift-title {
