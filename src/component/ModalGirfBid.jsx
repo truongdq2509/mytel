@@ -3,7 +3,7 @@ import React from "react";
 import styled from "styled-components";
 import SliderBid from "../page/components/Bid/SliderBid";
 
-const ModalDetailBid = ({ data = [], isShowDetail, setIsShowDetail }) => {
+const ModalGirfBid = ({ data = [], isShowDetail, setIsShowDetail }) => {
   const onChange = (currentSlide) => {
     // console.log(currentSlide);
   };
@@ -205,4 +205,4 @@ const Container = styled(Modal)`
     }
   }
 `;
-export default ModalDetailBid;
+export default ModalGirfBid;

@@ -4,7 +4,7 @@ import ImageProduct from "../../../component/ImageProduct";
 import iconBit from "../../../assets/images/icon-bit.svg";
 import iconGirf from "../../../assets/images/icon-girf.svg";
 import ModalConfirmBid from "../../../component/ModalConfirmBid";
-import ModalDetailBid from "../../../component/ModalDetailBid";
+import ModalGirfBid from "../../../component/ModalGirfBid";
 import SliderBid from "./SliderBid";
 import RightWebMobile from "../../../layout/components/RightMobile";
 import ModalDescriptionBid from "../../../component/ModalDescriptionBid";
@@ -14,21 +14,28 @@ const TabRunning = ({ currentProduct = [] }) => {
   const [openModal, setOpenModal] = useState(false);
   const [openModalDetail, setOpenModalDetail] = useState(false);
   const [isShowDetail, setIsShowDetail] = useState(false);
+  const [dataDetailGift, setDataDetailGift] = useState([])
 
   const handleInputChange = (event) => {
     const value = event.target.value;
     setValueInput(value);
   };
+
+const handleGift = (data) => {
+  setDataDetailGift([data])
+  setIsShowDetail(true)
+}
+
   const onChange = (currentSlide) => {
     // console.log(currentSlide);
   };
 
   return (
     <>
-      <ModalDetailBid
+      <ModalGirfBid
         isShowDetail={isShowDetail}
         setIsShowDetail={setIsShowDetail}
-        data={currentProduct}
+        data={dataDetailGift}
       />
       <div className="header-main">
         <div className="main-container">
@@ -122,7 +129,7 @@ const TabRunning = ({ currentProduct = [] }) => {
                     </div>
                     <div
                       className="girf-container"
-                      onClick={() => setIsShowDetail(true)}
+                      onClick={() => handleGift(item)}
                     >
                       <img
                         src={iconGirf}
