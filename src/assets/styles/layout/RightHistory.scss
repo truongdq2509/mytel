@@ -68,12 +68,6 @@
 		}
 
 		&-body {
-			height: calc(100vh - 387px);
-			min-height: 566px;
-			overflow-y: auto;
-			// height: calc(100vh - 387px);
-			// overflow-y: auto;
-
 			.item-body {
 				padding: 17px 7px;
 				display: flex;
@@ -194,10 +188,10 @@
 		}
 	}
 
-	@media screen and (min-width: 992px) and (max-width: 1200px){
+	@media screen and (min-width: 992px) and (max-width: 1200px) {
 		width: 293px;
 
-		
+
 	}
 
 }
