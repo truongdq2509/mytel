@@ -59,6 +59,7 @@
 
 		&-body {
 			height: calc(100vh - 387px);
+			min-height: 566px;
 			overflow-y: auto;
 
 			.item-body {
@@ -175,6 +176,12 @@
 
 			}
 		}
+	}
+
+	@media screen and (min-width: 992px) and (max-width: 1200px){
+		width: 293px;
+
+		
 	}
 
 }
