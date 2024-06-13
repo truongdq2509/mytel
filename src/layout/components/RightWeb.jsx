@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import { getHistoryBid, getHistoryBidAll } from '../../Redux/futures/rightWeb/actions';
 import moment from 'moment';
 import { getTotalUserBid } from '../../Redux/futures/home/actions';
+import { getCurrentUser } from '../../Redux/futures/account/actions';
 function RightWeb() {
 	const { t } = useTranslation();
 	const [sort, setSort] = useState('desc')
@@ -20,11 +21,12 @@ function RightWeb() {
 	}
 	useEffect(() => {
 		dispatch(getTotalUserBid({ callback: afterGetUserBid }))
+		dispatch(getCurrentUser({}))
 	}, [])
 	useEffect(() => {
 		let query = {
 			current: page,
-			pageSize: 10,
+			pageSize: 7,
 			sort: sort
 		}
 		if (selectorRightWeb.idCurrentProduct) {
@@ -125,7 +127,7 @@ function RightWeb() {
 						style={{ maxWidth: '100%' }}
 						onChange={(page, pageSize) => { setPage(page) }}
 						current={page}
-						pageSize={10}
+						pageSize={7}
 						defaultCurrent={1}
 						showLessItems
 						total={total}

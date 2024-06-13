@@ -8,8 +8,10 @@ import ModalGirfBid from "../../../component/ModalGirfBid";
 import SliderBid from "./SliderBid";
 import RightWebMobile from "../../../layout/components/RightMobile";
 import ModalDescriptionBid from "../../../component/ModalDescriptionBid";
+import { useTranslation } from 'react-i18next';
 
 const TabRunning = ({ currentProduct = [] }) => {
+  const { t } = useTranslation()
   const [valueInput, setValueInput] = useState("");
   const [openModal, setOpenModal] = useState(false);
   const [openModalDetail, setOpenModalDetail] = useState(false);
@@ -64,7 +66,7 @@ const TabRunning = ({ currentProduct = [] }) => {
               return (
                 <Fragment key={`curren_product_${item.product_id}_${index}`}>
                   <div className={`bid-banner-mobile ${classFlex}`}>
-                    <SliderBid listImageProduct = {listImageProduct}/>
+                    <SliderBid listImageProduct={listImageProduct} />
                   </div>
                   <div className={`d-flex`}>
                     <ModalDescriptionBid
@@ -83,19 +85,19 @@ const TabRunning = ({ currentProduct = [] }) => {
                             className="link-detail"
                             onClick={() => setOpenModalDetail(true)}
                           >
-                            Detail
+                            {t("home_page.detail")}
                           </div>
                         </div>
                         <div className="product-code">
-                          Item code number: {product_code}
+                          {t("home_page.code").replace("_CODE_", product_code)}
                         </div>
-                        <div className="product-money">{product_price} MMK</div>
+                        <div className="product-money">{`${product_price} MMK`}</div>
                         <div className="line" />
-                        <div className="auction-code pb-12">Auction Code</div>
-                        <div className="auction-code pb-12">Quantity: 01</div>
+                        <div className="auction-code pb-12"> {t("bid_page.auction_code")}</div>
+                        <div className="auction-code pb-12">{`${t("bid_page.quantity")}: 01`}</div>
                         <div className="container-count__down">
                           <div className="time-countdownt">
-                            <div className="auction-code pb-5">Start Time:</div>
+                            <div className="auction-code pb-5">{`${t("bid_page.start_time")}:`}</div>
                             <div className="start-time__detail">
                               <CountdownComponents
                                 targetDate={new Date(start_time)}
@@ -104,7 +106,7 @@ const TabRunning = ({ currentProduct = [] }) => {
                           </div>
                           <div className="light-top" />
                           <div className="time-countdownt">
-                            <div className="auction-code pb-5">End Time:</div>
+                            <div className="auction-code pb-5">{`${t("bid_page.end_time")}:`}</div>
                             <div className="start-time__detail">
                               <CountdownComponents
                                 targetDate={new Date(end_time)}
@@ -132,7 +134,7 @@ const TabRunning = ({ currentProduct = [] }) => {
                               alt="icon-bit"
                               className="icon-bit"
                             />
-                            <span className="btn-title__bit">BIT NOW</span>
+                            <span className="btn-title__bit"> {t("home_page.bid_now")}</span>
                           </div>
                         </div>
                       </div>
@@ -159,7 +161,7 @@ const TabRunning = ({ currentProduct = [] }) => {
 
       <div className="header-main header-main__content mt-13">
         <div className="tips-container">
-          <div className="tips">Tips to win:</div>
+          <div className="tips">{`${t("bid_page.tip_to_win")}:`}</div>
           <div className="content-container">
             <div className="content-item">
               - You can bid multiple times, the more you bid, the higher your

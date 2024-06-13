@@ -24,5 +24,17 @@
 		"time_end":"The auction will end after:",
 		"product_code":"Product code: _CODE_",
 		"bid_now":"Bid now"
+	},
+	"bid_page":{
+		"auction_code":"Account code",
+		"quantity":"Quantity",
+		"start_time":"Start time",
+		"end_time":"End time",
+		"tip_to_win": "Tips to win",
+		"confirm_bid":"Confirm to place the price _PRICE_ MMK for the _NAME_ ?",
+		"code_number":"Code Number: _CODE_",
+		"title_description":"Material Information",
+		"gift":"Gift",
+		"description":"Description"
 	}
 }
