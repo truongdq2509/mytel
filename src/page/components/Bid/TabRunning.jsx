@@ -60,7 +60,6 @@ const TabRunning = ({ currentProduct = [] }) => {
                 classFlex = "first-flex";
               }
 
-              console.log(item);
               return (
                 <Fragment key={`curren_product_${item.product_id}_${index}`}>
                   <div className={`bid-banner-mobile ${classFlex}`}>

@@ -7,8 +7,7 @@ const ModalGirfBid = ({ data = [], isShowDetail, setIsShowDetail }) => {
   const onChange = (currentSlide) => {
     // console.log(currentSlide);
   };
-  console.log(data);
-  console.log("isShowDetailisShowDetailisShowDetailisShowDetail", isShowDetail);
+
   return (
     <Container
       title=""

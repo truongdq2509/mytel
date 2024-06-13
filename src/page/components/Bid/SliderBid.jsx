@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 const SliderBid = ({ listImageProduct = [] }) => {
   const onChange = (currentSlide) => {
-    console.log(currentSlide);
+    // console.log(currentSlide);
   };
   return (
     <Container>
