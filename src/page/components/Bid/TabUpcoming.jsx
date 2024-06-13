@@ -6,6 +6,7 @@ import ModalDescriptionBid from "../../../component/ModalDescriptionBid";
 import TabRunning from "./TabRunning";
 import { format, parseISO } from "date-fns";
 import { useTranslation } from 'react-i18next';
+import { formatDataNumberToen } from "../../../utils/helper";
 
 const TabUpcoming = ({ upNextProduct = [] }) => {
   const { t } = useTranslation()
@@ -23,6 +24,7 @@ const TabUpcoming = ({ upNextProduct = [] }) => {
   const handleViewProduct = (data) => {
     setIsShowProduct(true);
     setData(data);
+    window.scrollTo(0, 0);
   };
 
   const getItemProduct = (data) => {
@@ -49,7 +51,7 @@ const TabUpcoming = ({ upNextProduct = [] }) => {
           <div className="product-detail">
             <div className="product-title">{product_name}</div>
             <div className="product-code">{t("home_page.product_code").replace("_CODE_", product_code)}</div>
-            <div className="product-price">{product_price} MMK</div>
+            <div className="product-price">{formatDataNumberToen(product_price)} MMK</div>
             <div className="product-timer">
               <img src={iconCalendar} alt="icon-calendar" />
               <span className="timer-detail">

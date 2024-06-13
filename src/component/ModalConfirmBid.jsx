@@ -2,9 +2,9 @@ import { Modal } from "antd";
 import React from "react";
 import styled from "styled-components";
 import { formatDataNumberToen } from "../utils/helper";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 import { postBidProduct } from "../Redux/futures/Bid/action";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 
 const ModalConfirmBid = ({
   setOpenModal,
@@ -12,22 +12,22 @@ const ModalConfirmBid = ({
   valueInput = 0,
   data = [],
 }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
   const title = data[0]?.product_name || "";
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const handleBid = () => {
     const dataAPi = {
       price: valueInput,
-      productCode: data[0]?.product_code
-    }
-    dispatch(postBidProduct(dataAPi))
-  }
+      productCode: data[0]?.product_code,
+    };
+    dispatch(postBidProduct(dataAPi));
+  };
 
   const handleOke = () => {
-    setOpenModal(false)
-    handleBid()
-  }
+    setOpenModal(false);
+    handleBid();
+  };
 
   return (
     <Container
@@ -40,7 +40,9 @@ const ModalConfirmBid = ({
     >
       <div className="body-modal">
         <div className="content-body">
-          {t("bid_page.confirm_bid").replace('_PRICE_', formatDataNumberToen(+valueInput)).replace('_NAME_', `[${title}]`)}
+          {t("bid_page.confirm_bid")
+            .replace("_PRICE_", formatDataNumberToen(+valueInput))
+            .replace("_NAME_", title)}
         </div>
       </div>
     </Container>

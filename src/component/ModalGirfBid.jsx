@@ -2,10 +2,10 @@ import { Modal } from "antd";
 import React from "react";
 import styled from "styled-components";
 import SliderBid from "../page/components/Bid/SliderBid";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 
 const ModalGirfBid = ({ data = [], isShowDetail, setIsShowDetail }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
   const onChange = (currentSlide) => {
     // console.log(currentSlide);
   };
@@ -29,23 +29,37 @@ const ModalGirfBid = ({ data = [], isShowDetail, setIsShowDetail }) => {
             product_code = "",
             description = "",
           } = item;
+
+          let dataFormatDes = [description];
+          if (description && description.includes("\n")) {
+            dataFormatDes = description.split("\n");
+          }
+
           return (
             <div key={index} className="detail-body__bid">
               <SliderBid listImageProduct={listImageProduct} />
 
-              <div className="gift-title">{product_name}</div>
-              <div className="commodity text-content">
+              {/* <div className="gift-title">{product_name}</div> */}
+              {/* <div className="commodity text-content">
                 {t("home_page.code").replace("_CODE_", product_code)}
-              </div>
-              <div className="price">{product_price} MMK</div>
-              <div className="quantity text-content">{`${t("bid_page.quantity")}: 01`}</div>
+              </div> */}
+              {/* <div className="price">{product_price} MMK</div> */}
+              {/* <div className="quantity text-content">{`${t("bid_page.quantity")}: 01`}</div> */}
 
               <div className="description">
-                <div className="description-title">{`${t("bid_page.description")}:`}</div>
+                <div className="description-title">{`${t(
+                  "bid_page.description"
+                )}:`}</div>
                 <div className="description-content">
                   <div className="text-content">{product_name}</div>
-                  <div className="text-content">{t("home_page.code").replace("_CODE_", product_code)}</div>
-                  <div className="content text-content">{description}</div>
+                  <div className="text-content">
+                    {t("home_page.code").replace("_CODE_", product_code)}
+                  </div>
+                  {dataFormatDes.map((des) => (
+                    <div key={des} className="content text-content">
+                      {des || ""}
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
@@ -77,6 +91,10 @@ const Container = styled(Modal)`
   .quantity {
     padding-top: 5px;
     padding-bottom: 42px;
+  }
+
+  .description {
+    padding-top: 60px;
   }
 
   .description-title {
@@ -144,9 +162,6 @@ const Container = styled(Modal)`
   }
 
   .ant-modal-close {
-    top: 0;
-    right: 0;
-
     svg {
       color: white;
     }
@@ -166,6 +181,15 @@ const Container = styled(Modal)`
   }
 
   @media (max-width: 768px) {
+    .ant-modal-close {
+      top: 0px;
+      right: 0px;
+
+      svg {
+        color: white;
+      }
+    }
+
     .detail-bid {
       font-weight: 500;
       font-size: 20px;

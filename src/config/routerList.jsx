@@ -10,7 +10,7 @@ export const routerList = [
 		layout: LayoutApp
 	},
 	{
-		path: PATH.BID,
+		path: `${PATH.BID}/:id`,
 		component: BidPage,
 		layout: LayoutApp
 	},

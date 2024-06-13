@@ -55,8 +55,8 @@
     display: grid;
     grid-template-columns: 312px auto;
     gap: 28px;
-    margin-top: 30px;
-    box-shadow: 0px 4px 10px 0px rgba(8, 19, 74, 0.1);
+    // margin-top: 30px;
+    // box-shadow: 0px 4px 10px 0px rgba(8, 19, 74, 0.1);
     padding: 10px 0px;
     padding-right: 20px;
     padding-left: 20px;
@@ -280,7 +280,7 @@
   // upcoming
   #bid-upcoming {
     border-radius: 12px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 
     .upcoming-container {
       box-shadow: 0px 4px 10px 0px rgba(8, 19, 74, 0.1);
@@ -290,6 +290,7 @@
       margin-bottom: 15px;
       cursor: pointer;
       border-radius: 12px;
+      background-color: white;
     }
 
     .img-product {
@@ -359,6 +360,11 @@
     .tab-hover:hover {
       background-color: #f5b78a;
       transition: 0.3s ease-in-out;
+    }
+
+    .bg-white {
+      background-color: white;
+      box-shadow: 0px 4px 10px 0px rgba(8, 19, 74, 0.1);
     }
   }
 
@@ -512,8 +518,25 @@
       margin-right: 12px;
     }
   }
+  
+  .header-main__content.mt-13 {
+    background-color: white;
+  }
 
   @media screen and (max-width: 992px) {
+    #bid-upcoming {
+      margin-bottom: 150px;
+    }
+
+    .header-main__content {
+      box-shadow: inherit;
+      padding: 0px !important;
+    }
+
+    .header-content {
+      background-color: white;
+    }
+
     .header-tab__container {
       margin-top: 10px;
       margin-bottom: 10px;
@@ -618,7 +641,8 @@
       padding-bottom: 7px;
     }
 
-    .tips-container {}
+    .tips-container {
+    }
 
     .right-page-content-body {
       height: auto;
@@ -644,7 +668,6 @@
     }
 
     #bid-upcoming {
-
       .product-title,
       .product-price {
         font-size: 12px;
@@ -692,6 +715,7 @@
 
       .upcoming-container {
         margin-bottom: 10px;
+        background-color: white;
       }
     }
 
@@ -874,7 +898,7 @@
       min-width: 280px;
     }
 
-    .right-page-content .box-pagination .ant-pagination>li {
+    .right-page-content .box-pagination .ant-pagination > li {
       font-size: 14px !important;
     }
 
@@ -960,6 +984,10 @@
       font-weight: 400;
       line-height: 9.68px;
       text-align: left;
+    }
+
+    .right-page-content .box-pagination .ant-pagination {
+      min-width: 180px;
     }
   }
 }
