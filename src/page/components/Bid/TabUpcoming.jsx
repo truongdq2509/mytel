@@ -5,8 +5,10 @@ import iconBid from "../../../assets/images/icon-bid.svg";
 import ModalDescriptionBid from "../../../component/ModalDescriptionBid";
 import TabRunning from "./TabRunning";
 import { format, parseISO } from "date-fns";
+import { useTranslation } from 'react-i18next';
 
 const TabUpcoming = ({ upNextProduct = [] }) => {
+  const { t } = useTranslation()
   const [openModal, setOpenModal] = useState(false);
   const [isShowProduct, setIsShowProduct] = useState(false);
   const [dataPopup, setDataPopup] = useState([]);
@@ -46,14 +48,14 @@ const TabUpcoming = ({ upNextProduct = [] }) => {
           <img src={listImageProduct[0]} alt="" className="img-product" />
           <div className="product-detail">
             <div className="product-title">{product_name}</div>
-            <div className="product-code">Product Code: {product_code}</div>
+            <div className="product-code">{t("home_page.product_code").replace("_CODE_", product_code)}</div>
             <div className="product-price">{product_price} MMK</div>
             <div className="product-timer">
               <img src={iconCalendar} alt="icon-calendar" />
               <span className="timer-detail">
                 {formattedDate}&nbsp;&nbsp;{formatHours}
               </span>
-              <img src={iconBid} alt="icon-iconBid" className="icon-bid__upcoming"/>
+              <img src={iconBid} alt="icon-iconBid" className="icon-bid__upcoming" />
             </div>
           </div>
         </div>
@@ -64,7 +66,7 @@ const TabUpcoming = ({ upNextProduct = [] }) => {
             className="link-detail"
             onClick={(e) => handleShowDetail(e, data)}
           >
-            Detail
+            {t("home_page.detail")}
           </div>
         </div>
       </div>

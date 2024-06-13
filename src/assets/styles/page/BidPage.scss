@@ -1,5 +1,6 @@
 .bid-container {
   margin-bottom: 20px;
+
   .icon-gift {
     display: none !important;
   }
@@ -18,6 +19,7 @@
     margin-top: 25px;
     margin-bottom: 25px;
   }
+
   .header-tab {
     padding: 8px 18px 8px 18px;
     border-radius: 50px;
@@ -173,7 +175,8 @@
   }
 
   input:focus {
-    outline: none; /* Loại bỏ border màu đen khi focus */
+    outline: none;
+    /* Loại bỏ border màu đen khi focus */
   }
 
   .bit-container {
@@ -226,6 +229,7 @@
     line-height: 20px;
     font-weight: 700;
     color: white;
+    text-transform: uppercase;
   }
 
   .girf-container {
@@ -421,10 +425,12 @@
 
     .bit-container {
       position: relative;
+
       .input-bit__now {
         width: 200px;
       }
     }
+
     .light-top {
       height: auto !important;
     }
@@ -612,8 +618,7 @@
       padding-bottom: 7px;
     }
 
-    .tips-container {
-    }
+    .tips-container {}
 
     .right-page-content-body {
       height: auto;
@@ -637,50 +642,55 @@
       line-height: 14.52px;
       font-weight: 500;
     }
+
     #bid-upcoming {
-      .product-title, .product-price {
+
+      .product-title,
+      .product-price {
         font-size: 12px;
         font-weight: 600;
         line-height: 14.52px;
       }
 
-      .product-code, .timer-detail{
+      .product-code,
+      .timer-detail {
         font-size: 10px;
         font-weight: 300;
         line-height: 12.1px;
       }
 
-      .product-price{
+      .product-price {
         font-weight: 700;
       }
 
-      .img-product{
+      .img-product {
         height: 113px;
         width: auto;
       }
 
-      .product-timer{
-        img{
+      .product-timer {
+        img {
           width: 16px;
           height: 16px;
         }
-        .icon-bid__upcoming{
+
+        .icon-bid__upcoming {
           width: 18.6px;
           height: 18.6px;
         }
       }
 
-      .product-price{
+      .product-price {
         padding-bottom: 41px;
       }
 
-      .link-detail{
+      .link-detail {
         font-size: 12px;
         font-weight: 300;
         line-height: 14.52px;
       }
 
-      .upcoming-container{
+      .upcoming-container {
         margin-bottom: 10px;
       }
     }
@@ -700,6 +710,7 @@
 
     .girf-container {
       top: -30px;
+
       &::after {
         content: "Gift";
         padding-left: 3px;
@@ -863,7 +874,7 @@
       min-width: 280px;
     }
 
-    .right-page-content .box-pagination .ant-pagination > li {
+    .right-page-content .box-pagination .ant-pagination>li {
       font-size: 14px !important;
     }
 
@@ -952,6 +963,7 @@
     }
   }
 }
+
 .header-main__content {
   border-bottom-left-radius: 12px;
   border-bottom-right-radius: 12px;

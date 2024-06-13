@@ -2,8 +2,10 @@ import { Modal } from "antd";
 import React from "react";
 import styled from "styled-components";
 import SliderBid from "../page/components/Bid/SliderBid";
+import { useTranslation } from 'react-i18next';
 
 const ModalGirfBid = ({ data = [], isShowDetail, setIsShowDetail }) => {
+  const { t } = useTranslation()
   const onChange = (currentSlide) => {
     // console.log(currentSlide);
   };
@@ -18,7 +20,7 @@ const ModalGirfBid = ({ data = [], isShowDetail, setIsShowDetail }) => {
       width={"middle"}
     >
       <div className="modal-detail__container">
-        <div className="detail-bid">Gift</div>
+        <div className="detail-bid">{t("bid_page.gift")}</div>
         {data.map((item, index) => {
           const listImageProduct = item?.product_image?.split(",");
           const {
@@ -33,16 +35,16 @@ const ModalGirfBid = ({ data = [], isShowDetail, setIsShowDetail }) => {
 
               <div className="gift-title">{product_name}</div>
               <div className="commodity text-content">
-                Mã hàng: {product_code}
+                {t("home_page.code").replace("_CODE_", product_code)}
               </div>
               <div className="price">{product_price} MMK</div>
-              <div className="quantity text-content">Số lượng: 01</div>
+              <div className="quantity text-content">{`${t("bid_page.quantity")}: 01`}</div>
 
               <div className="description">
-                <div className="description-title">Description:</div>
+                <div className="description-title">{`${t("bid_page.description")}:`}</div>
                 <div className="description-content">
                   <div className="text-content">{product_name}</div>
-                  <div className="text-content">Iteam Code: {product_code}</div>
+                  <div className="text-content">{t("home_page.code").replace("_CODE_", product_code)}</div>
                   <div className="content text-content">{description}</div>
                 </div>
               </div>

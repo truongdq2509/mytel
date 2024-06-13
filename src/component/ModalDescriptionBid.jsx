@@ -1,9 +1,11 @@
 import { Modal } from "antd";
 import React from "react";
+import { useTranslation } from 'react-i18next';
 import styled from "styled-components";
 
 const ModalDescriptionBid = ({ setOpenModal, openModal, data = {} }) => {
   const { product_name = "", product_code = "", description = "" } = data;
+  const { t } = useTranslation()
 
   return (
     <Container
@@ -17,9 +19,9 @@ const ModalDescriptionBid = ({ setOpenModal, openModal, data = {} }) => {
       <div className="product-title__modal">{product_name}</div>
       <div className="body-modal">
         <div className="content-body">
-          <div className="body-title__content">Material Information</div>
+          <div className="body-title__content">{t("bid_page.title_description")}</div>
           <div>{product_name}</div>
-          <div>Code Number: {product_code}</div>
+          <div>{t('bid_page.code_number').replace('_CODE_', product_code)}</div>
           <div>{description}</div>
         </div>
       </div>

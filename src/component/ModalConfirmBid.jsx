@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { formatDataNumberToen } from "../utils/helper";
 import { useDispatch, useSelector } from 'react-redux';
 import { postBidProduct } from "../Redux/futures/Bid/action";
+import { useTranslation } from 'react-i18next';
 
 const ModalConfirmBid = ({
   setOpenModal,
@@ -11,22 +12,23 @@ const ModalConfirmBid = ({
   valueInput = 0,
   data = [],
 }) => {
+  const { t } = useTranslation()
   const title = data[0]?.product_name || "";
   const dispatch = useDispatch()
 
   const handleBid = () => {
     const dataAPi = {
-      price : valueInput,
+      price: valueInput,
       productCode: data[0]?.product_code
     }
-    dispatch(postBidProduct( dataAPi))
+    dispatch(postBidProduct(dataAPi))
   }
-  
+
   const handleOke = () => {
     setOpenModal(false)
     handleBid()
   }
-  
+
   return (
     <Container
       title="Confirmation"
@@ -38,8 +40,7 @@ const ModalConfirmBid = ({
     >
       <div className="body-modal">
         <div className="content-body">
-          Confirm to place the price {formatDataNumberToen(+valueInput)} MMK for
-          the [{title}] ?
+          {t("bid_page.confirm_bid").replace('_PRICE_', formatDataNumberToen(+valueInput)).replace('_NAME_', `[${title}]`)}
         </div>
       </div>
     </Container>
