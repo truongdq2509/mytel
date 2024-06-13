@@ -2,6 +2,8 @@ import { useTranslation } from "react-i18next";
 import logo from "../../assets/images/logo.svg";
 import PATH from "../../config/PATH";
 import { Link, useLocation } from "react-router-dom";
+import { urlPageBid } from "../../helper/const";
+import _ from "lodash";
 
 function HeaderWeb() {
 	const { t } = useTranslation();
@@ -13,7 +15,8 @@ function HeaderWeb() {
 		},
 		{
 			name: t("header.bid"),
-			link: PATH.BID,
+			link: `${PATH.BID}/${urlPageBid.running}`,
+			linkActive: [`${PATH.BID}/${urlPageBid.running}`, `${PATH.BID}/${urlPageBid.upcoming}`,]
 		},
 		{
 			name: t("header.result"),
@@ -30,9 +33,10 @@ function HeaderWeb() {
 	];
 	const getClassActive = (data) => {
 		let activeClass = ''
-		if (data.link === location.pathname) {
+		if (data.link === location.pathname || _.includes(data.linkActive, location.pathname)) {
 			activeClass = 'active'
 		}
+
 		return activeClass
 	}
 

@@ -11,24 +11,29 @@ import {
 import { currentDate } from "../helper/const";
 import { curStateHome } from "../Redux/selector";
 import { setIdCurrentProduct } from "../Redux/futures/rightWeb/actions";
+import { urlPageBid } from "../helper/const";
+import { useParams } from "react-router";
+import { useNavigate } from "react-router";
+import PATH from "../config/PATH";
 
 const tabBid = [
   {
-    id: 1,
+    id: urlPageBid.running,
     content: "Running",
   },
   {
-    id: 2,
+    id: urlPageBid.upcoming,
     content: "Upcoming",
   },
 ];
 export default function BidPage() {
-  const [tabActive, setTabActive] = useState(1);
+  const {id} = useParams()
   const [currentProduct, setCurrentProduct] = useState([]);
   const [upNextProduct, setUpNextProduct] = useState([]);
   const [banner, setBanner] = useState([]);
   const dispatch = useDispatch();
   const selectorHome = useSelector(curStateHome);
+  const navigate = useNavigate()
 
   useEffect(() => {
     dispatch(getBidProduct({}));
@@ -65,26 +70,30 @@ export default function BidPage() {
     }
   }, [selectorHome]);
 
+  const handleChangeTabs = (tabId) => {
+    navigate(`${PATH.BID}/${tabId}`)
+  }
+
   const handleTab = useMemo(() => {
     return tabBid.map((tab) => {
       return (
         <div
           key={tab.id}
-          onClick={() => setTabActive(tab.id)}
+          onClick={() => handleChangeTabs(tab.id)}
           className={`header-tab ${
-            tabActive === tab.id ? "active-tab" : "tab-hover"
+            id === tab.id ? "active-tab" : "tab-hover"
           }`}
         >
           {tab.content}
         </div>
       );
     });
-  }, [tabActive]);
+  }, [id]);
 
   return (
     <div className="bid-container">
       <div className="header-tab__container">{handleTab}</div>
-      {tabActive === 1 ? (
+      {id === urlPageBid.running ? (
         <TabRunning currentProduct={currentProduct} />
       ) : (
         <TabUpcoming upNextProduct={upNextProduct} />

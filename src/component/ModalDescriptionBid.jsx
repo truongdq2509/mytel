@@ -1,11 +1,17 @@
 import { Modal } from "antd";
-import React from "react";
-import { useTranslation } from 'react-i18next';
+import React, { useMemo } from "react";
+import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
 const ModalDescriptionBid = ({ setOpenModal, openModal, data = {} }) => {
   const { product_name = "", product_code = "", description = "" } = data;
-  const { t } = useTranslation()
+  const { t } = useTranslation();
+  const dataFormatDes = useMemo(() => {
+    if (description && description.includes("\n")) {
+      return description.split("\n");
+    }
+    return [description];
+  }, [data]);
 
   return (
     <Container
@@ -19,10 +25,14 @@ const ModalDescriptionBid = ({ setOpenModal, openModal, data = {} }) => {
       <div className="product-title__modal">{product_name}</div>
       <div className="body-modal">
         <div className="content-body">
-          <div className="body-title__content">{t("bid_page.title_description")}</div>
+          <div className="body-title__content">
+            {t("bid_page.title_description")}
+          </div>
           <div>{product_name}</div>
-          <div>{t('bid_page.code_number').replace('_CODE_', product_code)}</div>
-          <div>{description}</div>
+          <div>{t("bid_page.code_number").replace("_CODE_", product_code)}</div>
+          {dataFormatDes.map((des) => (
+            <div key={des}>{des}</div>
+          ))}
         </div>
       </div>
     </Container>
@@ -85,8 +95,8 @@ const Container = styled(Modal)`
   }
 
   @media (max-width: 768px) {
-
-    .product-title__modal, .body-title__content{
+    .product-title__modal,
+    .body-title__content {
       font-size: 12px;
       font-weight: 700;
       line-height: 14.52px;
@@ -108,7 +118,7 @@ const Container = styled(Modal)`
       font-size: 12px;
       font-weight: 400;
       line-height: 14.52px;
-      div{
+      div {
         font-size: 11px;
       }
     }
@@ -122,15 +132,15 @@ const Container = styled(Modal)`
       margin: 0;
     }
 
-    .ant-modal-content{
+    .ant-modal-content {
       padding: 16px !important;
     }
 
-    .content-body{
+    .content-body {
       padding: 10px 11px;
     }
 
-    .product-title__modal{
+    .product-title__modal {
       margin: 0;
       padding-bottom: 15px;
     }

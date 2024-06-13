@@ -9,6 +9,7 @@ import SliderBid from "./SliderBid";
 import RightWebMobile from "../../../layout/components/RightMobile";
 import ModalDescriptionBid from "../../../component/ModalDescriptionBid";
 import { useTranslation } from 'react-i18next';
+import { formatDataNumberToen } from "../../../utils/helper";
 
 const TabRunning = ({ currentProduct = [] }) => {
   const { t } = useTranslation()
@@ -44,7 +45,7 @@ const TabRunning = ({ currentProduct = [] }) => {
         setIsShowDetail={setIsShowDetail}
         data={dataDetailActive}
       />
-      <div className="header-main">
+      <div className="header-main bg-white">
         <div className="main-container">
           {currentProduct.length > 0 ? (
             currentProduct.map((item, index) => {
@@ -90,7 +91,7 @@ const TabRunning = ({ currentProduct = [] }) => {
                         <div className="product-code">
                           {t("home_page.code").replace("_CODE_", product_code)}
                         </div>
-                        <div className="product-money">{`${product_price} MMK`}</div>
+                        <div className="product-money">{`${formatDataNumberToen(+product_price)} MMK`}</div>
                         <div className="line" />
                         <div className="auction-code pb-12"> {t("bid_page.auction_code")}</div>
                         <div className="auction-code pb-12">{`${t("bid_page.quantity")}: 01`}</div>
@@ -167,11 +168,11 @@ const TabRunning = ({ currentProduct = [] }) => {
               chances of winning
             </div>
             <div className="content-item">
-              &nbsp;&nbsp;&nbsp;- You do not have to pay for the product at the
+              - You do not have to pay for the product at the
               price you place. You just need to pay fee for bidding times
             </div>
             <div className="content-item">
-              &nbsp;&nbsp;&nbsp;- Auction is a game where many users participate
+              - Auction is a game where many users participate
               in bidding for a product. With Reverse Auction game, you bid as
               low as possible. However, there can be many users offering the
               same price while there is only 1 product. Therefore, Mytelbid
