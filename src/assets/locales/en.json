@@ -35,6 +35,13 @@
 		"code_number":"Code Number: _CODE_",
 		"title_description":"Material Information",
 		"gift":"Gift",
-		"description":"Description"
+		"description":"Description",
+		"running":"Running",
+		"upcoming": "Upcoming"
+	},
+	"result_page":{
+		"all": "All",
+		"the_winner": "The winner",
+		"no_winner": "No winner"
 	}
 }
