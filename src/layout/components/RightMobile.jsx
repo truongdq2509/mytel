@@ -9,6 +9,7 @@ import {
   getHistoryBidAll,
 } from "../../Redux/futures/rightWeb/actions";
 import moment from "moment";
+import { getItemCookie } from '../../utils/cookie';
 import { getTotalUserBid } from "../../Redux/futures/home/actions";
 import { getCurrentUser } from "../../Redux/futures/account/actions";
 
@@ -20,13 +21,6 @@ function RightWebMobile() {
   const [listBidHistory, setListBidHistory] = useState([]);
   const selectorRightWeb = useSelector(curStateRightWeb);
   const dispatch = useDispatch();
-  const afterGetUserBid = (data, isLoading) => {
-    console.log(data, isLoading);
-  };
-  useEffect(() => {
-    dispatch(getTotalUserBid({ callback: afterGetUserBid }));
-    dispatch(getCurrentUser({}));
-  }, []);
   useEffect(() => {
     let query = {
       current: page,
@@ -69,7 +63,7 @@ function RightWebMobile() {
     selectorRightWeb.idCurrentProduct,
   ]);
   return (
-    <div className="right-page">
+    <div className="right-page right-page__bid">
       <div className="right-page-content">
         <div className="right-page-content-head">
           <div className="right-page-content-head-title">
@@ -91,34 +85,34 @@ function RightWebMobile() {
         <div className="right-page-content-body">
           {listBidHistory.length > 0
             ? listBidHistory.map((it, index) => {
-                let dateFomat = moment(it.auction_time).format(
-                  "MMM D, YYYY, h:mm A"
-                );
-                return (
-                  <div
-                    key={`item_right_${it.key}_${index}`}
-                    className="item-body"
-                  >
-                    <div className="box-user">
-                      <div
-                        style={{ backgroundImage: `url(${it.image})` }}
-                        className="avatar"
-                      />
-                      <div className="box-info">
-                        <div className="name one-line">
-                          {it.name || it.isdn}
-                        </div>
-                        <div className="phone-number">{it.isdn}</div>
-                        <div className="date">{dateFomat}</div>
+              let dateFomat = moment(it.auction_time).format(
+                "MMM D, YYYY, h:mm A"
+              );
+              return (
+                <div
+                  key={`item_right_${it.key}_${index}`}
+                  className="item-body"
+                >
+                  <div className="box-user">
+                    <div
+                      style={{ backgroundImage: `url(${it.image})` }}
+                      className="avatar"
+                    />
+                    <div className="box-info">
+                      <div className="name one-line">
+                        {it.name || it.isdn}
                       </div>
-                    </div>
-                    <div className="box-price">
-                      <div className="text">{t("right_page.bid_price")}</div>
-                      <div className="price">{it.price}</div>
+                      <div className="phone-number">{it.isdn}</div>
+                      <div className="date">{dateFomat}</div>
                     </div>
                   </div>
-                );
-              })
+                  <div className="box-price">
+                    <div className="text">{t("right_page.bid_price")}</div>
+                    <div className="price">{it.price}</div>
+                  </div>
+                </div>
+              );
+            })
             : null}
         </div>
         <div className="box-pagination">

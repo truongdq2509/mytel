@@ -11,6 +11,7 @@ import { curStateHome } from '../Redux/selector';
 import { currentDate } from '../helper/const';
 import moment from 'moment';
 import { setIdCurrentProduct } from '../Redux/futures/rightWeb/actions';
+import ModalDescriptionBid from '../component/ModalDescriptionBid';
 
 function HomePage() {
 	const { t } = useTranslation();
@@ -24,6 +25,8 @@ function HomePage() {
 	const [currentProduct, setCurrentProduct] = useState([])
 	const [upNextProduct, setUpNextProduct] = useState([])
 	const [banner, setBanner] = useState([])
+	const [openModalDetail, setOpenModalDetail] = useState(false)
+	const [selectedProduct, setSelectedProduct] = useState(null)
 
 	useEffect(() => {
 		dispatch(getBidProduct({}))
@@ -62,6 +65,11 @@ function HomePage() {
 		if (data.href) window.location.href = data.href;
 		return;
 	}
+	const handleCurrentProduct = (data) => {
+		setOpenModalDetail(true);
+		setSelectedProduct(data)
+	}
+	console.log(isMobile);
 	return (
 		<div className="container-home">
 			{banner.length > 0 ? <div className="container-home-banner">
@@ -81,7 +89,7 @@ function HomePage() {
 				return <div key={`curren_product_${item.product_id}_${index}`} className="container-home-current-product">
 					<div className="container-home-current-product-head">
 						<div className="title">{t("home_page.current_action")}</div>
-						<div className="detail">{t("home_page.detail")}</div>
+						<div className="detail" onClick={() => { handleCurrentProduct(item) }}>{t("home_page.detail")}</div>
 					</div>
 					<div className="container-home-current-product-content">
 						<div className="container-home-current-product-content-slide-product">
@@ -171,6 +179,11 @@ function HomePage() {
 					</div>
 				</div>
 			</div> : null}
+			<ModalDescriptionBid
+				openModal={openModalDetail}
+				setOpenModal={setOpenModalDetail}
+				data={selectedProduct}
+			/>
 		</div>
 	);
 }

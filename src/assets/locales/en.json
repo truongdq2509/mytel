@@ -39,6 +39,19 @@
 		"running":"Running",
 		"upcoming": "Upcoming"
 	},
+	"modal":{
+		"modal_login": {
+			"title":"welcome to MytelBid",
+			"title_otp":"Login with OTP",
+			"phone_number":"Phone Number",
+			"password":"Password",
+			"phone_number_placeholder":"Enter Mytel Phone Number",
+			"password_placeholder":"Enter your password",
+			"login_with_otp":"or Login with OTP",
+			"login_with_password":"or Login with a password",
+			"login_otp":"Enter with SMS"
+		}
+	},
 	"result_page":{
 		"all": "All",
 		"the_winner": "The winner",

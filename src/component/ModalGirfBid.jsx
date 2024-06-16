@@ -9,6 +9,7 @@ const ModalGirfBid = ({ data = [], isShowDetail, setIsShowDetail }) => {
   const onChange = (currentSlide) => {
     // console.log(currentSlide);
   };
+  const listImageProduct = data?.gift_image?.split(',')
 
   return (
     <Container
@@ -21,59 +22,41 @@ const ModalGirfBid = ({ data = [], isShowDetail, setIsShowDetail }) => {
     >
       <div className="modal-detail__container">
         <div className="detail-bid">{t("bid_page.gift")}</div>
-        {data.map((item, index) => {
-          const listImageProduct = item?.product_image?.split(",");
-          const {
-            product_name = "",
-            product_price = 0,
-            product_code = "",
-            description = "",
-          } = item;
+        <div className="detail-body__bid">
+          <SliderBid listImageProduct={listImageProduct} />
 
-          let dataFormatDes = [description];
-          if (description && description.includes("\n")) {
-            dataFormatDes = description.split("\n");
-          }
-
-          return (
-            <div key={index} className="detail-body__bid">
-              <SliderBid listImageProduct={listImageProduct} />
-
-              {/* <div className="gift-title">{product_name}</div> */}
-              {/* <div className="commodity text-content">
+          {/* <div className="gift-title">{product_name}</div> */}
+          {/* <div className="commodity text-content">
                 {t("home_page.code").replace("_CODE_", product_code)}
               </div> */}
-              {/* <div className="price">{product_price} MMK</div> */}
-              {/* <div className="quantity text-content">{`${t("bid_page.quantity")}: 01`}</div> */}
+          {/* <div className="price">{product_price} MMK</div> */}
+          {/* <div className="quantity text-content">{`${t("bid_page.quantity")}: 01`}</div> */}
 
-              <div className="description">
-                <div className="description-title">{`${t(
-                  "bid_page.description"
-                )}:`}</div>
-                <div className="description-content">
-                  <div className="text-content">{product_name}</div>
-                  <div className="text-content">
-                    {t("home_page.code").replace("_CODE_", product_code)}
-                  </div>
-                  {dataFormatDes.map((des) => (
-                    <div key={des} className="content text-content">
-                      {des || ""}
-                    </div>
-                  ))}
-                </div>
-              </div>
+          <div className="description">
+            <div className="description-title">{`${t(
+              "bid_page.description"
+            )}:`}</div>
+            <div className="description-content">
+              {/* <div className="text-content">{product_name}</div>
+              <div className="text-content">
+                {t("home_page.code").replace("_CODE_", product_code)}
+              </div> */}
+              <div className='content-des'>{data.gift_desc}</div>
             </div>
-          );
-        })}
+          </div>
+        </div>
       </div>
     </Container>
   );
 };
 const Container = styled(Modal)`
-  max-width: 700px;
+  max-width: 688px;
 
   .ant-modal-content {
     background-color: inherit !important;
+  }
+  .content-des{
+    white-space: break-spaces;
   }
 
   .gift-title {
@@ -122,7 +105,7 @@ const Container = styled(Modal)`
   .img-gift {
     border-radius: 28px;
     width: auto;
-    height: 375px;
+    height: 357px;
     margin: 0 auto;
   }
   .ant-carousel .slick-dots li button,
@@ -149,6 +132,8 @@ const Container = styled(Modal)`
     padding: 15px 45px;
     padding-bottom: 45px;
     background-color: white;
+    max-height: 470px;
+    overflow-y: auto;
   }
 
   .ant-modal-footer {

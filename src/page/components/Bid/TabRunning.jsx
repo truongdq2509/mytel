@@ -74,6 +74,11 @@ const TabRunning = ({ currentProduct = [] }) => {
                       setOpenModal={setOpenModalDetail}
                       data={item}
                     />
+                    {item?.gift_name && <ModalGirfBid
+                      isShowDetail={isShowDetail}
+                      setIsShowDetail={setIsShowDetail}
+                      data={item}
+                    />}
                     <div className="container-product">
                       <ImageProduct data={listImageProduct} />{" "}
                     </div>
@@ -138,7 +143,7 @@ const TabRunning = ({ currentProduct = [] }) => {
                           </div>
                         </div>
                       </div>
-                      <div
+                      {item?.gift_name ? <div
                         className="girf-container"
                         onClick={() => handleGift(item)}
                       >
@@ -147,7 +152,7 @@ const TabRunning = ({ currentProduct = [] }) => {
                           alt="icon-girf"
                           className="icon-girf"
                         />
-                      </div>
+                      </div> : null}
                     </div>
                   </div>
                 </Fragment>

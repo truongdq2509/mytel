@@ -227,6 +227,10 @@
     }
   }
 
+  @media(max-width: 768px){
+    margin-bottom: 150px;
+  }
+
   @media (max-width: 576px) {
     .result-detail__main{
       margin-top: 0;

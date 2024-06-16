@@ -38,15 +38,3 @@ export const getBannerHome = data => {
 		},
 	}
 }
-export const getTotalUserBid = data => {
-	return {
-		type: GET_TOTAL_USER_BID,
-		data,
-		meta: {
-			method: 'GET',
-			url: API_PATH.getUser,
-			query: data.query || {},
-			callback: data.callback || null
-		},
-	}
-}

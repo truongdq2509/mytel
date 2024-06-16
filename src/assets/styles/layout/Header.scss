@@ -32,7 +32,7 @@
 				&-item {
 					padding: 12px 71px 9px;
 					background-color: transparent;
-
+					transition: all 0.3s;
 					border-top-left-radius: 20px;
 					border-top-right-radius: 20px;
 
@@ -44,14 +44,24 @@
 						text-transform: uppercase;
 					}
 
+					&:hover {
+						background-color: #ddd;
+						cursor: pointer;
+
+						a {
+							color: $background-color-title;
+						}
+					}
+
 					&.active {
 						background-color: #fff;
 
 						a {
 							color: $background-color-title;
-
 						}
 					}
+
+
 				}
 			}
 		}
@@ -140,6 +150,22 @@
 					display: inline-block;
 					background-color: #fff;
 					margin: 0 10px;
+				}
+			}
+
+			&-btn-login {
+				padding: 7px 32px;
+				background-color: #fff;
+				border-radius: 20px;
+				color: $background-color-title;
+				font-size: 22px;
+				font-weight: 700;
+				line-height: 26.63px;
+				cursor: pointer;
+
+				&:hover {
+					background-color: #ddd;
+					transition: all 0.3s;
 				}
 			}
 		}

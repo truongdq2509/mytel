@@ -6,7 +6,6 @@
 
 	&-banner {
 		display: block;
-		max-width: calc(1577px - 393px - 13px);
 
 		&:hover {
 			cursor: pointer;
@@ -35,7 +34,8 @@
 
 
 		&-item {
-			padding-top: 25.53%;
+			height: 301px;
+			width: 100%;
 			background-position: center;
 			background-repeat: no-repeat;
 			background-size: cover;
@@ -48,10 +48,6 @@
 		background-color: #fff;
 		border-radius: 12px;
 		box-shadow: 0px 4px 10px 0px rgba(8, 19, 74, 0.1);
-
-		&:last-child {
-			margin-bottom: 50px;
-		}
 
 		&-head {
 			display: flex;
@@ -169,12 +165,12 @@
 				.slick-slider {
 					.slick-list {
 						.slick-track {
-							// display: flex;
-							// justify-content: center;
-							// gap: 13px;
+							display: flex;
+							justify-content: center;
+							gap: 13px;
 
 							.slick-slide {
-								padding: 0 6px;
+								// padding: 0 6px;
 
 
 								>div {
@@ -276,7 +272,7 @@
 							display: flex;
 							justify-content: space-between;
 							align-items: center;
-							margin: 14px 0 10px;
+							height: 48px;
 
 							&-date {
 								display: flex;
