@@ -40,7 +40,11 @@ const TabRunning = ({ currentProduct = [] }) => {
 
   return (
     <>
-
+      <ModalGirfBid
+        isShowDetail={isShowDetail}
+        setIsShowDetail={setIsShowDetail}
+        data={dataDetailActive}
+      />
       <div className="header-main bg-white">
         <div className="main-container">
           {currentProduct.length > 0 ? (

@@ -9,8 +9,9 @@ import {
   getHistoryBidAll,
 } from "../../Redux/futures/rightWeb/actions";
 import moment from "moment";
-import { getCurrentUser } from "../../Redux/futures/account/actions";
 import { getItemCookie } from '../../utils/cookie';
+import { getTotalUserBid } from "../../Redux/futures/home/actions";
+import { getCurrentUser } from "../../Redux/futures/account/actions";
 
 function RightWebMobile() {
   const { t } = useTranslation();
@@ -20,7 +21,6 @@ function RightWebMobile() {
   const [listBidHistory, setListBidHistory] = useState([]);
   const selectorRightWeb = useSelector(curStateRightWeb);
   const dispatch = useDispatch();
-
   useEffect(() => {
     let query = {
       current: page,

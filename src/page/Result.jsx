@@ -4,11 +4,10 @@ import TabRunning from "./components/Bid/TabRunning";
 import TabUpcoming from "./components/Bid/TabUpcoming";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  getBannerHome,
   getBidProduct,
   getUpNextProduct,
 } from "../Redux/futures/home/actions";
-import { currentDate } from "../helper/const";
+import { currentDate, urlPageResult } from "../helper/const";
 import { curStateHome } from "../Redux/selector";
 import { setIdCurrentProduct } from "../Redux/futures/rightWeb/actions";
 import { urlPageBid } from "../helper/const";
@@ -16,32 +15,39 @@ import { useParams } from "react-router";
 import { useNavigate } from "react-router";
 import PATH from "../config/PATH";
 import { useTranslation } from "react-i18next";
+import { getResultProduct } from "../Redux/futures/result/action";
 
-export default function BidPage() {
+export default function Result() {
+  const { t } = useTranslation();
   const { id } = useParams();
   const [currentProduct, setCurrentProduct] = useState([]);
   const [upNextProduct, setUpNextProduct] = useState([]);
   const [banner, setBanner] = useState([]);
   const dispatch = useDispatch();
   const selectorHome = useSelector(curStateHome);
+  const [dataResult, setDataResult] = useState([]);
+console.log(12345);
   const navigate = useNavigate();
-  const { t } = useTranslation();
 
-  const tabBid = [
+  const tabResult = [
     {
-      id: urlPageBid.running,
-      content: t("bid_page.running"),
+      id: urlPageResult.all,
+      content: t("result_page.all"),
     },
     {
-      id: urlPageBid.upcoming,
-      content: t("bid_page.upcoming"),
+      id: urlPageResult.the_winner,
+      content: t("result_page.the_winner"),
+    },
+    {
+      id: urlPageResult.no_winner,
+      content: t("result_page.no_winner"),
     },
   ];
 
   useEffect(() => {
-    dispatch(getBidProduct({}));
-    dispatch(getUpNextProduct({}));
-    dispatch(getBannerHome({}));
+      dispatch(getResultProduct({}));
+    // dispatch(getBidProduct({}));
+    // dispatch(getUpNextProduct({}));
   }, []);
 
   useEffect(() => {
@@ -78,7 +84,7 @@ export default function BidPage() {
   };
 
   const handleTab = useMemo(() => {
-    return tabBid.map((tab) => {
+    return tabResult.map((tab) => {
       return (
         <div
           key={tab.id}

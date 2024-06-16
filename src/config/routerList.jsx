@@ -2,8 +2,14 @@ import LayoutApp from '../layout/LayoutApp';
 import HomePage from '../page/HomePage';
 import PATH from './PATH';
 import BidPage from '../page/BidPage';
+import Result from '../page/Result';
 
 export const routerList = [
+	{
+		path: `${PATH.RESULT}/:id`,
+		component: Result,
+		layout: LayoutApp
+	},
 	{
 		path: PATH.HOME,
 		component: HomePage,

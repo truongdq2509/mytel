@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import logo from "../../assets/images/logo.svg";
 import PATH from "../../config/PATH";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { urlPageBid } from "../../helper/const";
+import { urlPageBid, urlPageResult } from "../../helper/const";
 import _ from "lodash";
 import CurrentTime from '../../component/CurrentTime';
 import ModalLogin from '../../component/ModalLogin';
@@ -25,7 +25,8 @@ function HeaderWeb({ user }) {
 		},
 		{
 			name: t("header.result"),
-			link: PATH.RESULT,
+			link: `${PATH.RESULT}/${urlPageResult.all}`,
+			linkActive: [`${PATH.BID}/${urlPageResult.all}`, `${PATH.BID}/${urlPageResult.the_winner}`, `${PATH.BID}/${urlPageResult.no_winner}`]
 		},
 		{
 			name: t("header.rule"),
