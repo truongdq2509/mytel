@@ -11,6 +11,11 @@ export const routerList = [
 		layout: LayoutApp
 	},
 	{
+		path: `${PATH.RESULT}/:id/:idResult`,
+		component: Result,
+		layout: LayoutApp
+	},
+	{
 		path: PATH.HOME,
 		component: HomePage,
 		layout: LayoutApp

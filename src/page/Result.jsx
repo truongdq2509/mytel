@@ -1,32 +1,1115 @@
 import React, { useEffect } from "react";
 import { useState, useMemo } from "react";
-import TabRunning from "./components/Bid/TabRunning";
-import TabUpcoming from "./components/Bid/TabUpcoming";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getBidProduct,
-  getUpNextProduct,
-} from "../Redux/futures/home/actions";
-import { currentDate, urlPageResult } from "../helper/const";
-import { curStateHome } from "../Redux/selector";
-import { setIdCurrentProduct } from "../Redux/futures/rightWeb/actions";
-import { urlPageBid } from "../helper/const";
+import { urlPageResult } from "../helper/const";
 import { useParams } from "react-router";
 import { useNavigate } from "react-router";
 import PATH from "../config/PATH";
 import { useTranslation } from "react-i18next";
-import { getResultProduct } from "../Redux/futures/result/action";
+import {
+  getResultDetailProduct,
+  getResultProduct,
+} from "../Redux/futures/result/action";
+import ResultComponent from "./components/Result/ResultComponent";
+import _ from "lodash";
+import { curStateResult } from "../Redux/selector";
+
+const selectorResult = [
+  {
+    key: 0,
+    cp_id: 5118,
+    product_code: "HW04",
+    product_name: "Huawei Watch GT 4 White (41mm)",
+    product_price: 639000,
+    product_image:
+      "http://reverseauction.com.mm/api/src/uploads/20240423/1713855070323_c3.jpg,http://reverseauction.com.mm/api/src/uploads/20240423/1713855079697_c2.png,http://reverseauction.com.mm/api/src/uploads/20240423/1713855087496_c1.png",
+    end_time: "2024-05-20T10:29:59.000Z",
+    start_time: "2024-05-13T10:30:00.000Z",
+    status: 3,
+    isdn: "969****673",
+    name: "969****673",
+    image: null,
+    auction_price: 20250,
+    id: 4310880,
+  },
+  {
+    key: 1,
+    cp_id: 5117,
+    product_code: "JE01",
+    product_name: "  Jumper EZ Pad M10SE Android Tablet (8/128GB)",
+    product_price: 480000,
+    product_image:
+      "http://reverseauction.com.mm/api/src/uploads/20240423/1713854878002_b1.jpg,http://reverseauction.com.mm/api/src/uploads/20240423/1713854884283_b2.jpg,http://reverseauction.com.mm/api/src/uploads/20240423/1713854888768_b3.jpg",
+    end_time: "2024-05-13T10:29:59.000Z",
+    start_time: "2024-05-06T10:30:00.000Z",
+    status: 3,
+    isdn: "969****337",
+    name: "969****337",
+    image: "/static/media/ava.d5d29ba0.svg",
+    auction_price: 1200,
+    id: 3582427,
+  },
+  {
+    key: 2,
+    cp_id: 5116,
+    product_code: "AB01",
+    product_name: "Anker Power Conf+ Bluetooth Speakerphone",
+    product_price: 450000,
+    product_image:
+      "http://reverseauction.com.mm/api/src/uploads/20240423/1713854414891_a22.jpg,http://reverseauction.com.mm/api/src/uploads/20240423/1713854422475_a33.jpeg,http://reverseauction.com.mm/api/src/uploads/20240423/1713854428089_a11.jpg",
+    end_time: "2024-05-06T10:29:59.000Z",
+    start_time: "2024-04-29T10:30:00.000Z",
+    status: 3,
+    isdn: "969****979",
+    name: "096****979",
+    image: null,
+    auction_price: 156000,
+    id: 1457424,
+  },
+  {
+    key: 3,
+    cp_id: 5016,
+    product_code: "IB10",
+    product_name: "Noah IBOT Smartie (K10) Smart Robot Vacuum Cleaner",
+    product_price: 750000,
+    product_image:
+      "http://reverseauction.com.mm/api/src/uploads/20240327/1711511211430_no1.jpg,http://reverseauction.com.mm/api/src/uploads/20240327/1711511220552_no3.jpg,http://reverseauction.com.mm/api/src/uploads/20240327/1711511229085_no2.jpg",
+    end_time: "2024-04-29T10:29:59.000Z",
+    start_time: "2024-04-22T10:30:00.000Z",
+    status: 3,
+    isdn: "966****959",
+    name: "966****959",
+    image: null,
+    auction_price: 184900,
+    id: 2081075,
+  },
+  {
+    key: 4,
+    cp_id: 4917,
+    product_code: "AGW3",
+    product_name: "Amazfit GTS 3 Smart Watch Global (Black)",
+    product_price: 499000,
+    product_image:
+      "http://reverseauction.com.mm/api/src/uploads/20240326/1711448952357_amazfit-gts-3-smart-watch-global-black-854111.jpg,http://reverseauction.com.mm/api/src/uploads/20240326/1711448975945_dong-ho-amazfit-gts-3-den-thumbnew-600x600_3.jpeg,http://reverseauction.com.mm/api/src/uploads/20240411/1712808176283_uploaded_fc74c8cff690e9b1b02ab4ad371896f8.jpg",
+    end_time: "2024-04-22T10:29:59.000Z",
+    start_time: "2024-04-15T10:30:00.000Z",
+    status: 3,
+    isdn: "966****385",
+    name: "966****385",
+    image: null,
+    auction_price: 67600,
+    id: 4272047,
+  },
+  {
+    key: 5,
+    cp_id: 4916,
+    product_code: "FIS6",
+    product_name: "Fujifilm Instax Square SQ6 Instant Camera (Blush Gold)",
+    product_price: 370000,
+    product_image:
+      "http://reverseauction.com.mm/api/src/uploads/20240326/1711447704271_915Rgs+K1LL_1.jpg,http://reverseauction.com.mm/api/src/uploads/20240326/1711447711498_fujifilm_instax_sq_6_1706582888_3e2cd4f4_progressive_4.jpg",
+    end_time: "2024-04-15T10:29:59.000Z",
+    start_time: "2024-04-08T10:30:00.000Z",
+    status: 3,
+    isdn: "969****998",
+    name: "ခုထိလေလံတစ်ပွဲမှမအောင်တာငါတစ်ယောက်ထဲလာ",
+    image:
+      "http://reverseauction.com.mm/api/src/uploads/20240409/1712673014977_IMG_20230909_091132.jpg",
+    auction_price: 3100,
+    id: 3665801,
+  },
+  {
+    key: 6,
+    cp_id: 4816,
+    product_code: "XRN5",
+    product_name: "Xiaomi Redmi Note 11E Pro 5G (8GB/128GB) Black",
+    product_price: 549000,
+    product_image:
+      "http://reverseauction.com.mm/api/src/uploads/20240326/1711417539037_XiaomiRedmiNote11Pro5G_1.jpeg,http://reverseauction.com.mm/api/src/uploads/20240326/1711417549682_xiaomi-redmi-note-11-pro-5g_3.jpg,http://reverseauction.com.mm/api/src/uploads/20240326/1711417557653_1679988362867-Redmi-Note-12-Pro-Bm_2.jpg",
+    end_time: "2024-04-08T10:29:59.000Z",
+    start_time: "2024-04-01T10:30:00.000Z",
+    status: 3,
+    isdn: "969****337",
+    name: "969****337",
+    image: "/static/media/ava.d5d29ba0.svg",
+    auction_price: 98000,
+    id: 3582427,
+  },
+  {
+    key: 7,
+    cp_id: 4717,
+    product_code: "FI1",
+    product_name: "Fujifilm Instax Square SQ1 Instant Camera (Blue)",
+    product_price: 474000,
+    product_image:
+      "http://reverseauction.com.mm/api/src/uploads/20240318/1710730679589_fuji.png,http://reverseauction.com.mm/api/src/uploads/20240318/1710730834177_fuji5.jpeg,http://reverseauction.com.mm/api/src/uploads/20240330/1711783908048_hợi.jpg",
+    end_time: "2024-04-01T10:29:59.000Z",
+    start_time: "2024-03-25T10:30:00.000Z",
+    status: 3,
+    isdn: "966****641",
+    name: "096****641",
+    image: null,
+    auction_price: 46000,
+    id: 78943,
+  },
+  {
+    key: 8,
+    cp_id: 4716,
+    product_code: "TCL",
+    product_name: "  TCL Full HD LED TV 40-Inch (TCL40D3000)",
+    product_price: 500000,
+    product_image:
+      "http://reverseauction.com.mm/api/src/uploads/20240318/1710730151573_tcl2.png,http://reverseauction.com.mm/api/src/uploads/20240318/1710730155233_tcl1.jpg,http://reverseauction.com.mm/api/src/uploads/20240318/1710730220665_tcl4.jpg",
+    end_time: "2024-03-25T10:29:59.000Z",
+    start_time: "2024-03-18T10:30:00.000Z",
+    status: 3,
+    isdn: "969****733",
+    name: "969****733",
+    image: null,
+    auction_price: 28900,
+    id: 3939312,
+  },
+  {
+    key: 9,
+    cp_id: 4616,
+    product_code: "SGB2",
+    product_name: "Samsung Galaxy Buds 2 Pro (Purple)",
+    product_price: 509000,
+    product_image:
+      "http://reverseauction.com.mm/api/src/uploads/20240311/1710152659558_samsungBud2Pro_1.jpeg,http://reverseauction.com.mm/api/src/uploads/20240311/1710152669023_101b3cb114a2f48f4182898c82634915_3.jpg,http://reverseauction.com.mm/api/src/uploads/20240311/1710152677342_SamsungBud2Pro_2.jfif",
+    end_time: "2024-03-18T10:29:59.000Z",
+    start_time: "2024-03-11T10:30:00.000Z",
+    status: 3,
+    isdn: "966****804",
+    name: "966****804",
+    image: null,
+    auction_price: 10800,
+    id: 3917516,
+  },
+  {
+    key: 10,
+    cp_id: 4516,
+    product_code: "HPX8",
+    product_name: "HONOR Pad X8 4GB, 64GB Blue Hour",
+    product_price: 499900,
+    product_image:
+      "http://reverseauction.com.mm/api/src/uploads/20240304/1709535676728_2064381_R_Z001A_6.jfif,http://reverseauction.com.mm/api/src/uploads/20240304/1709535683868_428_428_1B60A3F835DC_3.png,http://reverseauction.com.mm/api/src/uploads/20240304/1709535711916_71N0zQDSMdL_1.jpg",
+    end_time: "2024-03-11T10:29:59.000Z",
+    start_time: "2024-03-04T10:30:00.000Z",
+    status: 3,
+    isdn: "968****168",
+    name: "Luffy",
+    image: "/static/media/ava.d5d29ba0.svg",
+    auction_price: 17000,
+    id: 3927092,
+  },
+  {
+    key: 11,
+    cp_id: 4416,
+    product_code: "SGA5",
+    product_name: "SAMSUNG Galaxy A05 6GB, 128GB",
+    product_price: 529000,
+    product_image:
+      "http://reverseauction.com.mm/api/src/uploads/20240226/1708930721653_samsunggalaxyA05_1.jpg,http://reverseauction.com.mm/api/src/uploads/20240226/1708931302308_GS.010460_FEATURE_135985_3.jpg,http://reverseauction.com.mm/api/src/uploads/20240226/1708931308687_1696231549289-SSG-A05-Bm7_4.jpg",
+    end_time: "2024-03-04T10:29:59.000Z",
+    start_time: "2024-02-26T10:30:00.000Z",
+    status: 3,
+    isdn: "966****324",
+    name: "Aung Ko Win ",
+    image: "/static/media/ava.d5d29ba0.svg",
+    auction_price: 2400,
+    id: 841390,
+  },
+  {
+    key: 12,
+    cp_id: 4316,
+    product_code: "TS20",
+    product_name: "Tecno SPARK 20 KJ5 8GB, 256GB",
+    product_price: 389800,
+    product_image:
+      "http://reverseauction.com.mm/api/src/uploads/20240219/1708333097560_ts4.jpg,http://reverseauction.com.mm/api/src/uploads/20240219/1708333170900_ts3.jpg,http://reverseauction.com.mm/api/src/uploads/20240219/1708333229753_ts1.jpg",
+    end_time: "2024-02-26T10:29:59.000Z",
+    start_time: "2024-02-19T10:30:00.000Z",
+    status: 3,
+    isdn: "969****896",
+    name: "096****896",
+    image: "/static/media/ava.d5d29ba0.svg",
+    auction_price: 1600,
+    id: 871976,
+  },
+  {
+    key: 13,
+    cp_id: 4216,
+    product_code: "VV17",
+    product_name: "Vivo Y17s 6GB, 128 GB",
+    product_price: 439800,
+    product_image:
+      "http://reverseauction.com.mm/api/src/uploads/20240207/1707276592847_e23dbc325f8e4_1.jpg,http://reverseauction.com.mm/api/src/uploads/20240207/1707276604812_dbe7971a9f834_2.jpg,http://reverseauction.com.mm/api/src/uploads/20240207/1707277677364_my-11134207-7r98s-ln42uwosbymz0e_5.jfif",
+    end_time: "2024-02-19T10:29:59.000Z",
+    start_time: "2024-02-12T10:30:00.000Z",
+    status: 3,
+    isdn: "966****804",
+    name: "966****804",
+    image: null,
+    auction_price: 3700,
+    id: 3917516,
+  },
+  {
+    key: 14,
+    cp_id: 4116,
+    product_code: "PG02",
+    product_name: "Pichu 2 Golden Bracelets",
+    product_price: 1000000,
+    product_image:
+      "http://reverseauction.com.mm/api/src/uploads/20240205/1707106703186_vòng1.jpg,http://reverseauction.com.mm/api/src/uploads/20240205/1707106803037_1234.jpeg",
+    end_time: "2024-02-12T10:29:59.000Z",
+    start_time: "2024-02-05T10:30:00.000Z",
+    status: 3,
+    isdn: "967****343",
+    name: "967****343",
+    image: null,
+    auction_price: 9300,
+    id: 2144092,
+  },
+  {
+    key: 15,
+    cp_id: 4016,
+    product_code: "OP18",
+    product_name: "OPPO A18 4GB, 128GB",
+    product_price: 379900,
+    product_image:
+      "http://reverseauction.com.mm/api/src/uploads/20240129/1706516889328_smartphone-oppo-a18-4go-128go_4.jpg,http://reverseauction.com.mm/api/src/uploads/20240129/1706516898414_ezgif.com-webp-to-jpg-38-247x296_2.jpg,http://reverseauction.com.mm/api/src/uploads/20240129/1706516904849_images_3.jfif",
+    end_time: "2024-02-05T10:29:59.000Z",
+    start_time: "2024-01-29T10:30:00.000Z",
+    status: 3,
+    isdn: "968****659",
+    name: "968****659",
+    image: null,
+    auction_price: 2300,
+    id: 3648749,
+  },
+  {
+    key: 16,
+    cp_id: 3916,
+    product_code: "MI32",
+    product_name: 'Mi P1 32" L32M6-6ARG LED HD Android TV (Global)',
+    product_price: 429000,
+    product_image:
+      "http://reverseauction.com.mm/api/src/uploads/20240122/1705914998636_87548.png,http://reverseauction.com.mm/api/src/uploads/20240122/1705915010687_mi5.jpg,http://reverseauction.com.mm/api/src/uploads/20240122/1705915015965_mi12.jpg",
+    end_time: "2024-01-29T10:29:59.000Z",
+    start_time: "2024-01-22T10:30:00.000Z",
+    status: 3,
+    isdn: "969****554",
+    name: "969****554",
+    image: null,
+    auction_price: 1650,
+    id: 3582041,
+  },
+  {
+    key: 17,
+    cp_id: 3816,
+    product_code: "SG26",
+    product_name: "Glacier Air Cooler 260 W ( GAC-842 )",
+    product_price: 355000,
+    product_image:
+      "http://reverseauction.com.mm/api/src/uploads/20240115/1705283643043_y11.png,http://reverseauction.com.mm/api/src/uploads/20240115/1705303626130_glacier-gac-842-air-cooler-552593.jpg,http://reverseauction.com.mm/api/src/uploads/20240115/1705303630516_GlacierGAC-AirCooler.jpg",
+    end_time: "2024-01-22T10:29:59.000Z",
+    start_time: "2024-01-15T10:30:00.000Z",
+    status: 3,
+    isdn: "966****685",
+    name: "096****685",
+    image: "/static/media/ava.d5d29ba0.svg",
+    auction_price: 31000,
+    id: 3559847,
+  },
+  {
+    key: 18,
+    cp_id: 3716,
+    product_code: "RM12",
+    product_name: "Redmi Note 12 6 GB/128 GB",
+    product_price: 519000,
+    product_image:
+      "http://reverseauction.com.mm/api/src/uploads/20240108/1704685464842_rt3.png,http://reverseauction.com.mm/api/src/uploads/20240108/1704685475334_rt1.jpg,http://reverseauction.com.mm/api/src/uploads/20240108/1704688708502_rt5.png",
+    end_time: "2024-01-15T10:29:59.000Z",
+    start_time: "2024-01-08T10:30:00.000Z",
+    status: 3,
+    isdn: "967****502",
+    name: "096****502",
+    image: null,
+    auction_price: 91500,
+    id: 1802663,
+  },
+  {
+    key: 19,
+    cp_id: 3616,
+    product_code: "OP38",
+    product_name: "OPPO A38 4GB, 128GB",
+    product_price: 499900,
+    product_image:
+      "http://reverseauction.com.mm/api/src/uploads/20231229/1703846136339_64fac534cca04_1.jpg,http://reverseauction.com.mm/api/src/uploads/20231229/1703846283376_thong-so-ky-thuat-oppo-a38-110102288_5.jpg,http://reverseauction.com.mm/api/src/uploads/20231229/1703846410101_20231018_1697615634_161960_4.jpeg",
+    end_time: "2024-01-08T10:29:59.000Z",
+    start_time: "2024-01-01T10:30:00.000Z",
+    status: 3,
+    isdn: "967****484",
+    name: "967****484",
+    image: null,
+    auction_price: 22750,
+    id: 3554341,
+  },
+  {
+    key: 20,
+    cp_id: 3516,
+    product_code: "SSA5",
+    product_name: "SAMSUNG Galaxy A05 4GB, 128GB",
+    product_price: 449000,
+    product_image:
+      "http://reverseauction.com.mm/api/src/uploads/20231225/1703474637402_ảnh1.png,http://reverseauction.com.mm/api/src/uploads/20231225/1703474637019_ảnh2.jpg,http://reverseauction.com.mm/api/src/uploads/20231225/1703474637037_ảnh3.jpg",
+    end_time: "2024-01-01T10:29:59.000Z",
+    start_time: "2023-12-25T10:30:00.000Z",
+    status: 3,
+    isdn: "968****227",
+    name: "968****227",
+    image: null,
+    auction_price: 64000,
+    id: 3492742,
+  },
+  {
+    key: 21,
+    cp_id: 3416,
+    product_code: "HMP8",
+    product_name: 'HUAWEI MATE PAD T8" (3/32G)',
+    product_price: 439000,
+    product_image:
+      "http://reverseauction.com.mm/api/src/uploads/20231218/1702888781611_main23Jun201649.2.jpg,http://reverseauction.com.mm/api/src/uploads/20231218/1702888798662_huawei-matepad-t8-tgdd3.4.jpg,http://reverseauction.com.mm/api/src/uploads/20231218/1702888808305_huawei-matepad-t8-2plus32-gb-deep-blue.3.jpg",
+    end_time: "2023-12-25T10:29:59.000Z",
+    start_time: "2023-12-18T10:30:00.000Z",
+    status: 3,
+    isdn: "968****227",
+    name: "968****227",
+    image: null,
+    auction_price: 13450,
+    id: 3492742,
+  },
+  {
+    key: 22,
+    cp_id: 3316,
+    product_code: "RM13",
+    product_name: "Redmi 13C 6 GB/128 GB",
+    product_price: 390000,
+    product_image:
+      "http://reverseauction.com.mm/api/src/uploads/20231215/1702660529455_xiaomi-redmi-13c_14__1.jpg,http://reverseauction.com.mm/api/src/uploads/20231215/1702660721354_1700208045753-Redmi-13C-Ge.jpg,http://reverseauction.com.mm/api/src/uploads/20231215/1702660738424_Redmi13C3.jpeg",
+    end_time: "2023-12-18T10:29:59.000Z",
+    start_time: "2023-12-11T10:30:00.000Z",
+    status: 3,
+    isdn: "968****858",
+    name: "hyz",
+    image: "/static/media/ava.d5d29ba0.svg",
+    auction_price: 16700,
+    id: 165456,
+  },
+  {
+    key: 23,
+    cp_id: 3216,
+    product_code: "AG02",
+    product_name:
+      "Amazfit GTS 2 mini_1.55 inches_Smart Fitness Watch_(Global Version)",
+    product_price: 232000,
+    product_image:
+      "http://reverseauction.com.mm/api/src/uploads/20231222/1703228830172_amazfit_gts_2.jpg,http://reverseauction.com.mm/api/src/uploads/20231222/1703234850843_61ca21e6-_3.jpg,http://reverseauction.com.mm/api/src/uploads/20231222/1703235133508_mivietnam-1.jpg",
+    end_time: "2023-12-11T10:29:59.000Z",
+    start_time: "2023-12-04T10:30:00.000Z",
+    status: 3,
+    isdn: "966****103",
+    name: "966****103",
+    image: null,
+    auction_price: 9150,
+    id: 3378253,
+  },
+  {
+    key: 24,
+    cp_id: 3116,
+    product_code: "VVY2",
+    product_name: "VIVO Y02t 4GB, 64GB",
+    product_price: 379800,
+    product_image:
+      "http://reverseauction.com.mm/api/src/uploads/20231124/1700810123501_vivo1.jpg,http://reverseauction.com.mm/api/src/uploads/20231124/1700811425595_vivo6.jpg,http://reverseauction.com.mm/api/src/uploads/20231124/1700812968907_vivo0.jpg",
+    end_time: "2023-12-04T10:29:59.000Z",
+    start_time: "2023-11-27T10:30:00.000Z",
+    status: 3,
+    isdn: "969****761",
+    name: "969****761",
+    image: null,
+    auction_price: 50950,
+    id: 3378327,
+  },
+  {
+    key: 25,
+    cp_id: 3016,
+    product_code: "TS09",
+    product_name: "TECNO SPARK 10C KI5k 8GB, 128GB",
+    product_price: 329900,
+    product_image:
+      "http://reverseauction.com.mm/api/src/uploads/20231218/1702863589052_q3.jpeg,http://reverseauction.com.mm/api/src/uploads/20231218/1702864850743_q24.jpg,http://reverseauction.com.mm/api/src/uploads/20231218/1702864857937_q25.jpg",
+    end_time: "2023-11-27T10:29:59.000Z",
+    start_time: "2023-11-20T10:30:00.000Z",
+    status: 3,
+    isdn: "968****523",
+    name: "968****523",
+    image: null,
+    auction_price: 34950,
+    id: 3090188,
+  },
+  {
+    key: 26,
+    cp_id: 2916,
+    product_code: "LTM8",
+    product_name:
+      "Lenovo Tab M8 (3rd Gen) 8” (3/32GB) (Sim+WiFi) 100% Brand New",
+    product_price: 399000,
+    product_image:
+      "http://reverseauction.com.mm/api/src/uploads/20231218/1702863804902_w1.jpg,http://reverseauction.com.mm/api/src/uploads/20231218/1702863823624_w3.jpg,http://reverseauction.com.mm/api/src/uploads/20231218/1702863860794_w4.jpg",
+    end_time: "2023-11-20T10:29:59.000Z",
+    start_time: "2023-11-13T10:30:00.000Z",
+    status: 3,
+    isdn: "966****741",
+    name: "096****741",
+    image: null,
+    auction_price: 2250,
+    id: 1182219,
+  },
+  {
+    key: 27,
+    cp_id: 2816,
+    product_code: "AS40",
+    product_name: "Soundcore by Anker Space A40 ",
+    product_price: 335000,
+    product_image:
+      "http://reverseauction.com.mm/api/src/uploads/20231218/1702863934724_e2.jpg,http://reverseauction.com.mm/api/src/uploads/20231218/1702863964265_e1.jpg,http://reverseauction.com.mm/api/src/uploads/20231218/1702863970661_e3.jpg",
+    end_time: "2023-11-13T10:29:59.000Z",
+    start_time: "2023-11-06T10:30:00.000Z",
+    status: 3,
+    isdn: "969****341",
+    name: "969****341",
+    image: null,
+    auction_price: 10700,
+    id: 2742059,
+  },
+  {
+    key: 28,
+    cp_id: 2616,
+    product_code: "RN11",
+    product_name: "Redmi Note 11 4G 4GB, 128GB",
+    product_price: 349000,
+    product_image:
+      "http://reverseauction.com.mm/api/src/uploads/20231218/1702864089765_r12.jpg,http://reverseauction.com.mm/api/src/uploads/20231218/1702864096117_r13.png",
+    end_time: "2023-11-06T10:29:59.000Z",
+    start_time: "2023-10-30T10:30:00.000Z",
+    status: 3,
+    isdn: "967****591",
+    name: "967****591",
+    image: null,
+    auction_price: 30350,
+    id: 2742061,
+  },
+  {
+    key: 29,
+    cp_id: 2417,
+    product_code: "TV13",
+    product_name: "OnePlus TV Y1G(32 inches)",
+    product_price: 349000,
+    product_image:
+      "http://reverseauction.com.mm/api/src/uploads/20231218/1702864475361_t1.jpeg,http://reverseauction.com.mm/api/src/uploads/20231218/1702864481774_t2.jpg,http://reverseauction.com.mm/api/src/uploads/20231218/1702864489437_t3.png",
+    end_time: "2023-10-30T10:29:59.000Z",
+    start_time: "2023-10-23T10:30:00.000Z",
+    status: 3,
+    isdn: "966****324",
+    name: "096****324",
+    image: "/static/media/ava.d5d29ba0.svg",
+    auction_price: 21600,
+    id: 841390,
+  },
+  {
+    key: 30,
+    cp_id: 2416,
+    product_code: "RW33",
+    product_name: "Redmi Watch 3 Black (Without Warranty)",
+    product_price: 249000,
+    product_image:
+      "http://reverseauction.com.mm/api/src/uploads/20231218/1702864683207_y1.jpg,http://reverseauction.com.mm/api/src/uploads/20231218/1702864690957_y2.jpeg,http://reverseauction.com.mm/api/src/uploads/20231218/1702864699241_y3.jpg",
+    end_time: "2023-10-23T10:29:59.000Z",
+    start_time: "2023-10-16T10:30:00.000Z",
+    status: 3,
+    isdn: "967****973",
+    name: "096****973",
+    image: null,
+    auction_price: 19900,
+    id: 2375614,
+  },
+  {
+    key: 31,
+    cp_id: 2316,
+    product_code: "IS06",
+    product_name: "Infinix SMART 7 4GB, 64GB",
+    product_price: 249900,
+    product_image:
+      "http://reverseauction.com.mm/api/src/uploads/20231218/1702864995716_u1.jpg,http://reverseauction.com.mm/api/src/uploads/20231218/1702865005044_u2.jpg,http://reverseauction.com.mm/api/src/uploads/20231218/1702865014342_u3.jpeg",
+    end_time: "2023-10-16T10:29:59.000Z",
+    start_time: "2023-10-09T10:30:00.000Z",
+    status: 3,
+    isdn: "967****665",
+    name: "Pyae Sone",
+    image:
+      "http://reverseauction.com.mm/api/src/uploads/20231018/1697599177951_FB_IMG_1697599113628.jpg",
+    auction_price: 3750,
+    id: 2079054,
+  },
+  {
+    key: 32,
+    cp_id: 2216,
+    product_code: "RM13",
+    product_name: "REDMI 12C",
+    product_price: 359000,
+    product_image:
+      "http://reverseauction.com.mm/api/src/uploads/20231218/1702865117359_i1.jpg,http://reverseauction.com.mm/api/src/uploads/20231218/1702865129776_i2.jpg,http://reverseauction.com.mm/api/src/uploads/20231218/1702865138585_i3.jpeg",
+    end_time: "2023-10-09T10:29:00.000Z",
+    start_time: "2023-10-02T10:30:00.000Z",
+    status: 3,
+    isdn: "968****353",
+    name: "968****353",
+    image: null,
+    auction_price: 1800,
+    id: 2469767,
+  },
+  {
+    key: 33,
+    cp_id: 2019,
+    product_code: "TS01",
+    product_name: "TECNO SPARK Go 2023 BF7 4GB, 64GB",
+    product_price: 259900,
+    product_image:
+      "http://reverseauction.com.mm/api/src/uploads/20231218/1702865326091_o1.jpg,http://reverseauction.com.mm/api/src/uploads/20231218/1702865331136_o2.jpeg,http://reverseauction.com.mm/api/src/uploads/20231218/1702865340210_o3.jpg",
+    end_time: "2023-10-02T10:29:59.000Z",
+    start_time: "2023-09-25T10:30:00.000Z",
+    status: 3,
+    isdn: "968****363",
+    name: "968****363",
+    image: null,
+    auction_price: 10200,
+    id: 2469769,
+  },
+  {
+    key: 34,
+    cp_id: 2018,
+    product_code: "SP20",
+    product_name: "Sony PlayStation 2 Console - Black",
+    product_price: 300000,
+    product_image:
+      "http://reverseauction.com.mm/api/src/uploads/20231218/1702865441550_p1.jpg,http://reverseauction.com.mm/api/src/uploads/20231218/1702865448721_p2.jpg,http://reverseauction.com.mm/api/src/uploads/20231218/1702865456312_p3.jpg",
+    end_time: "2023-09-25T10:29:59.000Z",
+    start_time: "2023-09-18T10:30:00.000Z",
+    status: 3,
+    isdn: "969****000",
+    name: "969****000",
+    image: null,
+    auction_price: 2600,
+    id: 2144095,
+  },
+  {
+    key: 35,
+    cp_id: 2017,
+    product_code: "IH30",
+    product_name: "INZONE H3 Wired Gaming Headset",
+    product_price: 300000,
+    product_image:
+      "http://reverseauction.com.mm/api/src/uploads/20231218/1702866051969_a1.jpg,http://reverseauction.com.mm/api/src/uploads/20231218/1702866056563_a2.jpg,http://reverseauction.com.mm/api/src/uploads/20231218/1702866060431_a4.jpg",
+    end_time: "2023-09-18T10:29:59.000Z",
+    start_time: "2023-09-11T10:30:00.000Z",
+    status: 3,
+    isdn: "967****262",
+    name: "096****262",
+    image: "/static/media/ava.d5d29ba0.svg",
+    auction_price: 5200,
+    id: 2218311,
+  },
+  {
+    key: 36,
+    cp_id: 2016,
+    product_code: "RW30",
+    product_name: "Redmi Watch 3 Black (Without Warranty)",
+    product_price: 249000,
+    product_image:
+      "http://reverseauction.com.mm/api/src/uploads/20231218/1702866123265_s1.jpeg,http://reverseauction.com.mm/api/src/uploads/20231218/1702866132136_s2.jpeg,http://reverseauction.com.mm/api/src/uploads/20231218/1702866140445_s3.jpeg",
+    end_time: "2023-09-11T10:29:59.000Z",
+    start_time: "2023-09-04T10:30:00.000Z",
+    status: 3,
+    isdn: "967****681",
+    name: "967****681",
+    image: null,
+    auction_price: 2900,
+    id: 2386208,
+  },
+  {
+    key: 37,
+    cp_id: 1916,
+    product_code: "IS07",
+    product_name: "Infinix SMART 7 4GB - 64GB",
+    product_price: 249900,
+    product_image:
+      "http://reverseauction.com.mm/api/src/uploads/20231218/1702865170035_u1.jpg,http://reverseauction.com.mm/api/src/uploads/20231218/1702865178161_u2.jpg,http://reverseauction.com.mm/api/src/uploads/20231218/1702865185989_u3.jpeg",
+    end_time: "2023-09-04T10:29:59.000Z",
+    start_time: "2023-08-28T10:30:00.000Z",
+    status: 3,
+    isdn: "969****000",
+    name: "969****000",
+    image: null,
+    auction_price: 3050,
+    id: 2144095,
+  },
+  {
+    key: 38,
+    cp_id: 1717,
+    product_code: "AP03",
+    product_name: "AirPods 3",
+    product_price: 530000,
+    product_image:
+      "http://reverseauction.com.mm/api/src/uploads/20230803/1691033489555_AP03.jfif,http://reverseauction.com.mm/api/src/uploads/20230803/1691033495595_AP03_2.jfif,http://reverseauction.com.mm/api/src/uploads/20230803/1691033501719_AP03_3.jfif",
+    end_time: "2023-08-28T10:29:59.000Z",
+    start_time: "2023-08-21T10:30:00.000Z",
+    status: 3,
+    isdn: "967****143",
+    name: "096****143",
+    image: null,
+    auction_price: 24500,
+    id: 40376,
+  },
+  {
+    key: 39,
+    cp_id: 1816,
+    product_code: "RM12",
+    product_name: "Redmi 12 (4G) (8/256GB) - Midnight Black (Global Version)",
+    product_price: 449000,
+    product_image:
+      "http://reverseauction.com.mm/api/src/uploads/20230814/1691977633829_RM12_1.jfif,http://reverseauction.com.mm/api/src/uploads/20230814/1691977652943_RM12_2.jpg,http://reverseauction.com.mm/api/src/uploads/20230814/1691977881269_RM12_3.jpg",
+    end_time: "2023-08-21T10:29:59.000Z",
+    start_time: "2023-08-14T10:30:00.000Z",
+    status: 3,
+    isdn: "968****946",
+    name: "968****946",
+    image: null,
+    auction_price: 21150,
+    id: 2253730,
+  },
+  {
+    key: 40,
+    cp_id: 1716,
+    product_code: "TV40",
+    product_name: "Mi TV EA40 2022 (40 inches)",
+    product_price: 449000,
+    product_image:
+      "http://reverseauction.com.mm/api/src/uploads/20230803/1691032578727_TV40_4.jpg,http://reverseauction.com.mm/api/src/uploads/20230803/1691032585819_TV40_2.jpg,http://reverseauction.com.mm/api/src/uploads/20230803/1691032593681_TV40_1.jpg",
+    end_time: "2023-08-14T10:29:59.000Z",
+    start_time: "2023-08-07T10:30:00.000Z",
+    status: 3,
+    isdn: "969****762",
+    name: "969****762",
+    image: null,
+    auction_price: 31250,
+    id: 2078047,
+  },
+  {
+    key: 41,
+    cp_id: 1616,
+    product_code: "HW20",
+    product_name: "HUAWEI WATCH FIT 2 - Isle Blue",
+    product_price: 389000,
+    product_image:
+      "http://reverseauction.com.mm/api/src/uploads/20230731/1690774845957_HW20.jpg,http://reverseauction.com.mm/api/src/uploads/20230731/1690774852913_HW20_1.jpg,http://reverseauction.com.mm/api/src/uploads/20230731/1690775365261_HW20.jfif",
+    end_time: "2023-08-07T10:29:59.000Z",
+    start_time: "2023-07-31T10:30:00.000Z",
+    status: 3,
+    isdn: "966****931",
+    name: "966****931",
+    image: null,
+    auction_price: 20350,
+    id: 2081077,
+  },
+  {
+    key: 42,
+    cp_id: 1518,
+    product_code: "HN70",
+    product_name: "Huawei Nova Y70 Crystal Blue",
+    product_price: 419000,
+    product_image:
+      "http://reverseauction.com.mm/api/src/uploads/20230724/1690190508745_hn70_1.jpg,http://reverseauction.com.mm/api/src/uploads/20230724/1690190515993_hn70_3.jpg,http://reverseauction.com.mm/api/src/uploads/20230724/1690190522321_HN70_2.jpg",
+    end_time: "2023-07-31T10:29:59.000Z",
+    start_time: "2023-07-24T10:30:00.000Z",
+    status: 3,
+    isdn: "966****931",
+    name: "966****931",
+    image: null,
+    auction_price: 64000,
+    id: 2081077,
+  },
+  {
+    key: 43,
+    cp_id: 1519,
+    product_code: "IH03",
+    product_name: "Infinix Hot 30i Mirror Black (8/128 GB)",
+    product_price: 299900,
+    product_image:
+      "http://reverseauction.com.mm/api/src/uploads/20230701/1688203345378_IH1.jpg,http://reverseauction.com.mm/api/src/uploads/20230701/1688203349245_IH2.jpg,http://reverseauction.com.mm/api/src/uploads/20230701/1688203398608_IH3.jpg",
+    end_time: "2023-07-24T10:29:59.000Z",
+    start_time: "2023-07-17T10:30:00.000Z",
+    status: 3,
+    isdn: "967****197",
+    name: "967****197",
+    image: null,
+    auction_price: 10900,
+    id: 2078159,
+  },
+  {
+    key: 44,
+    cp_id: 1517,
+    product_code: "RP01",
+    product_name: "Redmi Pad 6/128GB Wifi - Moonlight Silver (Global Version)",
+    product_price: 599000,
+    product_image:
+      "http://reverseauction.com.mm/api/src/uploads/20230701/1688202059231_RP1.1.jpeg,http://reverseauction.com.mm/api/src/uploads/20230701/1688202063681_RP1.jpeg,http://reverseauction.com.mm/api/src/uploads/20230701/1688202129672_RP2.jpg",
+    end_time: "2023-07-17T10:29:59.000Z",
+    start_time: "2023-07-10T10:30:00.000Z",
+    status: 3,
+    isdn: "967****857",
+    name: "967****857",
+    image: null,
+    auction_price: 12400,
+    id: 2077775,
+  },
+  {
+    key: 45,
+    cp_id: 1516,
+    product_code: "BS02",
+    product_name: "Beats Studio Buds - White",
+    product_price: 400000,
+    product_image:
+      "http://reverseauction.com.mm/api/src/uploads/20230701/1688201660894_bsb1.jpg,http://reverseauction.com.mm/api/src/uploads/20230701/1688201665946_bsb2.jfif,http://reverseauction.com.mm/api/src/uploads/20230701/1688201695433_bsb4.jfif",
+    end_time: "2023-07-10T10:29:59.000Z",
+    start_time: "2023-07-03T10:30:00.000Z",
+    status: 3,
+    isdn: "967****387",
+    name: "967****387",
+    image: null,
+    auction_price: 8250,
+    id: 2018747,
+  },
+  {
+    key: 46,
+    cp_id: 1419,
+    product_code: "TV32",
+    product_name: "OnePlus TV Y1G (32 inches)",
+    product_price: 349000,
+    product_image:
+      "http://reverseauction.com.mm/api/src/uploads/20230603/1685778623598_TV32_1.jpg,http://reverseauction.com.mm/api/src/uploads/20230603/1685778798435_TV32_5.jpg,http://reverseauction.com.mm/api/src/uploads/20230603/1685778803886_TV32_4.jpg",
+    end_time: "2023-07-03T10:29:59.000Z",
+    start_time: "2023-06-26T10:30:00.000Z",
+    status: 3,
+    isdn: "967****318",
+    name: "967****318",
+    image: null,
+    auction_price: 6000,
+    id: 1894808,
+  },
+  {
+    key: 47,
+    cp_id: 1418,
+    product_code: "LT10",
+    product_name: "Lenovo Tab K10 4/64GB",
+    product_price: 399000,
+    product_image:
+      "http://reverseauction.com.mm/api/src/uploads/20230603/1685776772012_LT10_1.jpg,http://reverseauction.com.mm/api/src/uploads/20230603/1685776786045_LT10_2.jpg,http://reverseauction.com.mm/api/src/uploads/20230603/1685777053984_LT10_5.jpg",
+    end_time: "2023-06-26T10:29:59.000Z",
+    start_time: "2023-06-19T10:30:00.000Z",
+    status: 3,
+    isdn: "969****805",
+    name: "969****805",
+    image: null,
+    auction_price: 29050,
+    id: 189,
+  },
+  {
+    key: 48,
+    cp_id: 1417,
+    product_code: "TT45",
+    product_name:
+      "Tronsmart T6 Pro 45w Portable Bluetooth Speaker With Ipxs Waterproof",
+    product_price: 195000,
+    product_image:
+      "http://reverseauction.com.mm/api/src/uploads/20230603/1685775791877_TT06_2.jpg,http://reverseauction.com.mm/api/src/uploads/20230603/1685775799867_TT06_1.jpg,http://reverseauction.com.mm/api/src/uploads/20230603/1685775812088_TT06_3.jpg",
+    end_time: "2023-06-19T10:29:59.000Z",
+    start_time: "2023-06-12T10:30:00.000Z",
+    status: 3,
+    isdn: "966****324",
+    name: "096****324",
+    image: "/static/media/ava.d5d29ba0.svg",
+    auction_price: 1550,
+    id: 841390,
+  },
+  {
+    key: 49,
+    cp_id: 1416,
+    product_code: "OP17",
+    product_name: "OPPO A17k 3GB RAM + 64GB",
+    product_price: 319900,
+    product_image:
+      "http://reverseauction.com.mm/api/src/uploads/20230603/1685774546925_OP17.jpg,http://reverseauction.com.mm/api/src/uploads/20230603/1685774899345_OP17_3.jpg,http://reverseauction.com.mm/api/src/uploads/20230603/1685774918022_OP17_2.jpg",
+    end_time: "2023-06-12T10:29:59.000Z",
+    start_time: "2023-06-05T10:30:00.000Z",
+    status: 3,
+    isdn: "966****666",
+    name: "096****666",
+    image: null,
+    auction_price: 1400,
+    id: 1631818,
+  },
+  {
+    key: 50,
+    cp_id: 1319,
+    product_code: "SW01",
+    product_name: "SAMSUNG Galaxy Watch Active (SM-R500) Black",
+    product_price: 299000,
+    product_image:
+      "http://reverseauction.com.mm/api/src/uploads/20230505/1683283651322_SW1.png,http://reverseauction.com.mm/api/src/uploads/20230505/1683283656215_SW2.png,http://reverseauction.com.mm/api/src/uploads/20230505/1683283660660_SW3.png",
+    end_time: "2023-06-05T10:29:59.000Z",
+    start_time: "2023-05-29T10:30:00.000Z",
+    status: 3,
+    isdn: "969****291",
+    name: "096****291",
+    image: null,
+    auction_price: 12000,
+    id: 1647805,
+  },
+  {
+    key: 51,
+    cp_id: 1318,
+    product_code: "RT01",
+    product_name:
+      "Razer Raiju Tournament Edition - Wireless and Wired Gaming Controller for PS4_KMD",
+    product_price: 345000,
+    product_image:
+      "http://reverseauction.com.mm/api/src/uploads/20230505/1683283139991_rt1.jpg,http://reverseauction.com.mm/api/src/uploads/20230505/1683283379557_rt2.jpg,http://reverseauction.com.mm/api/src/uploads/20230505/1683283394878_rt3.jpg",
+    end_time: "2023-05-29T10:29:59.000Z",
+    start_time: "2023-05-22T10:30:00.000Z",
+    status: 3,
+    isdn: "968****229",
+    name: ">.<",
+    image: "/static/media/ava.d5d29ba0.svg",
+    auction_price: 1300,
+    id: 185280,
+  },
+  {
+    key: 52,
+    cp_id: 1317,
+    product_code: "SG01",
+    product_name: "Samsung Galaxy A13 (4/64GB)",
+    product_price: 470000,
+    product_image:
+      "http://reverseauction.com.mm/api/src/uploads/20230505/1683283926078_ss01.jpeg,http://reverseauction.com.mm/api/src/uploads/20230505/1683284047948_ss01.png,http://reverseauction.com.mm/api/src/uploads/20230505/1683284054468_ss3.png",
+    end_time: "2023-05-22T10:29:59.000Z",
+    start_time: "2023-05-15T10:30:00.000Z",
+    status: 3,
+    isdn: "969****417",
+    name: "096****417",
+    image: null,
+    auction_price: 9050,
+    id: 1383417,
+  },
+  {
+    key: 53,
+    cp_id: 1316,
+    product_code: "HC01",
+    product_name: "HyperX Cloud II -Pro Gaming Headset",
+    product_price: 295182,
+    product_image:
+      "http://reverseauction.com.mm/api/src/uploads/20230505/1683281161970_HP_02.jpg,http://reverseauction.com.mm/api/src/uploads/20230505/1683281166794_HP_01.jpg,http://reverseauction.com.mm/api/src/uploads/20230505/1683281171264_HPH04.jpg",
+    end_time: "2023-05-15T10:29:59.000Z",
+    start_time: "2023-05-08T10:30:00.000Z",
+    status: 3,
+    isdn: "969****417",
+    name: "096****417",
+    image: null,
+    auction_price: 12000,
+    id: 1383417,
+  },
+  {
+    key: 54,
+    cp_id: 1003,
+    product_code: "BS01",
+    product_name: "Beats Studio Buds - True Wireless Noise Cancelling Earbuds",
+    product_price: 135440,
+    product_image:
+      "http://reverseauction.com.mm/api/src/uploads/20230421/1682047947588_hsgdA.jpg,http://reverseauction.com.mm/api/src/uploads/20230421/1682047960342_MJ4Y3_AV3_v4.jfif,http://reverseauction.com.mm/api/src/uploads/20230421/1682047969314_hsgdA1.jpg",
+    end_time: "2023-05-08T10:29:59.000Z",
+    start_time: "2023-05-01T10:30:00.000Z",
+    status: 3,
+    isdn: "969****782",
+    name: "096****782",
+    image: null,
+    auction_price: 31500,
+    id: 56557,
+  },
+  {
+    key: 55,
+    cp_id: 1004,
+    product_code: "SG81",
+    product_name: 'SAMSUNG Galaxy Tab A8 10.5" 32GB Android Tablet',
+    product_price: 375057,
+    product_image:
+      "http://reverseauction.com.mm/api/src/uploads/20230421/1682047842397_ed88ea76d9f5e9bb45b44081e4f86ea2.jpg,http://reverseauction.com.mm/api/src/uploads/20230421/1682047848401_138a3e259039d1f676f344fc4eec0396.jpg,http://reverseauction.com.mm/api/src/uploads/20230421/1682047856115_deb5b2e671544ba95ead2cc9e0bc99ca.jpg",
+    end_time: "2023-05-01T10:29:59.000Z",
+    start_time: "2023-04-24T10:30:00.000Z",
+    status: 3,
+    isdn: "968****229",
+    name: ">.<",
+    image: "/static/media/ava.d5d29ba0.svg",
+    auction_price: 51900,
+    id: 185280,
+  },
+  {
+    key: 56,
+    cp_id: 1002,
+    product_code: "MG51",
+    product_name: "Motorola Moto G Stylus 5G 2021",
+    product_price: 377132,
+    product_image:
+      "http://reverseauction.com.mm/api/src/uploads/20230310/1678436264783_61ACu5xcNpL.jpg,http://reverseauction.com.mm/api/src/uploads/20230310/1678438379874_z4171342603374_e23536d3196a17b50a196e8c78296cf1.jpg,http://reverseauction.com.mm/api/src/uploads/20230310/1678438462355_hsgd.jpg",
+    end_time: "2023-03-26T17:29:59.000Z",
+    start_time: "2023-03-19T17:30:00.000Z",
+    status: 3,
+    isdn: "968****229",
+    name: ">.<",
+    image: "/static/media/ava.d5d29ba0.svg",
+    auction_price: 2650,
+    id: 185280,
+  },
+  {
+    key: 57,
+    cp_id: 1001,
+    product_code: "FM11",
+    product_name: "Fujifilm Instax Mini 11 Instant Camera",
+    product_price: 146566,
+    product_image:
+      "http://reverseauction.com.mm/api/src/uploads/20230310/1678434496243_fm_11_8.jpg,http://reverseauction.com.mm/api/src/uploads/20230310/1678435290283_z4171196986240_f1fca51c4eb9ef400a1e2f9aef1866c8.jpg,http://reverseauction.com.mm/api/src/uploads/20230310/1678435296879_z4171201695772_13b0beac395388f9f5c958605fb44827.jpg",
+    end_time: "2023-03-19T17:29:59.000Z",
+    start_time: "2023-03-12T17:30:00.000Z",
+    status: 3,
+    isdn: "968****229",
+    name: ">.<",
+    image: "/static/media/ava.d5d29ba0.svg",
+    auction_price: 11150,
+    id: 185280,
+  },
+  {
+    key: 58,
+    cp_id: 902,
+    product_code: "SW40",
+    product_name: "SAMSUNG Galaxy Watch 4 40mm Smartwatch",
+    product_price: 355945,
+    product_image:
+      "http://reverseauction.com.mm/api/src/uploads/20230213/1676283331944_samsung-galaxy-watch-4-40mm(3).jpg,http://reverseauction.com.mm/api/src/uploads/20230213/1676283336033_32179728.jpeg,http://reverseauction.com.mm/api/src/uploads/20230213/1676283340938_Nowy-PL-Samsung-Galaxy-Watch-Active-2-40mm-Skora-EAN-GTIN-8806090081989.jfif",
+    end_time: "2023-03-12T17:29:00.000Z",
+    start_time: "2023-03-05T17:30:00.000Z",
+    status: 3,
+    isdn: "968****229",
+    name: ">.<",
+    image: "/static/media/ava.d5d29ba0.svg",
+    auction_price: 4950,
+    id: 185280,
+  },
+  {
+    key: 59,
+    cp_id: 901,
+    product_code: "AS10",
+    product_name: "ASUS Vivobook Intel 10th Gen I3-1005G1",
+    product_price: 484302,
+    product_image:
+      "http://reverseauction.com.mm/api/src/uploads/20230213/1676283210867_Asus-Laptop-AMD-Ryzen-5-1400-8GB-and-512GB-SSD-X512DA-BTS2020RL.jpg,http://reverseauction.com.mm/api/src/uploads/20230213/1676283216694_techzones-asus-vivobook-15-m513.jfif,http://reverseauction.com.mm/api/src/uploads/20230213/1676283221596_laptopasusvivobook8830.png",
+    end_time: "2023-03-05T17:29:00.000Z",
+    start_time: "2023-02-26T17:30:00.000Z",
+    status: 3,
+    isdn: "968****229",
+    name: ">.<",
+    image: "/static/media/ava.d5d29ba0.svg",
+    auction_price: 45100,
+    id: 185280,
+  },
+  {
+    key: 60,
+    cp_id: 802,
+    product_code: "LT31",
+    product_name: "Lenovo Tab M10 Plus (3rd Gen)",
+    product_price: 280044,
+    product_image:
+      "http://reverseauction.com.mm/api/src/uploads/20230210/1676026583003_LT31_3.jpg,http://reverseauction.com.mm/api/src/uploads/20230210/1676027219044_LT31_6.jpg,http://reverseauction.com.mm/api/src/uploads/20230210/1676027374442_LT31_5.jpg",
+    end_time: "2023-02-26T17:29:00.000Z",
+    start_time: "2023-02-19T17:30:00.000Z",
+    status: 3,
+    isdn: "968****229",
+    name: "968****229",
+    image: null,
+    auction_price: 3650,
+    id: 185280,
+  },
+  {
+    key: 61,
+    cp_id: 801,
+    product_code: "XR51",
+    product_name: "Xiaomi Redmi Note 11 Pro 5G",
+    product_price: 504328,
+    product_image:
+      "http://reverseauction.com.mm/api/src/uploads/20230210/1676025851153_XR51_3.jpg,http://reverseauction.com.mm/api/src/uploads/20230210/1676025866748_XR51_2.jpg,http://reverseauction.com.mm/api/src/uploads/20231216/1702721696328_image23.png",
+    end_time: "2023-02-19T17:29:00.000Z",
+    start_time: "2023-02-13T02:30:00.000Z",
+    status: 3,
+    isdn: "966****333",
+    name: "096****333",
+    image: null,
+    auction_price: 1700,
+    id: 23651,
+  },
+];
+
+const selectorDetailResult = {
+  key: 0,
+  isdn: "969****673",
+  name: "969****673",
+  location: null,
+  auction_price: 20250,
+  auction_time: "2024-05-20T08:26:36.000Z",
+  ann_time: "2024-05-21T08:26:27.000Z",
+  award_time: null,
+  ceremony_image: null,
+  ceremony_desc: null,
+  product_code: "HW04",
+  product_name: "Huawei Watch GT 4 White (41mm)",
+  product_price: 639000,
+  product_image:
+    "http://reverseauction.com.mm/api/src/uploads/20240423/1713855070323_c3.jpg,http://reverseauction.com.mm/api/src/uploads/20240423/1713855079697_c2.png,http://reverseauction.com.mm/api/src/uploads/20240423/1713855087496_c1.png",
+  start_time: "2024-05-13T10:30:00.000Z",
+  end_time: "2024-05-20T10:29:59.000Z",
+  description:
+    "Huawei Watch GT 4 Brown (46mm)\nDimensions: 41.3 mm × 41.3 mm × 9.8 mm\nWrist Size: 120-190 mm\nSpeaker: Supported\nMicrophone: Supported\nWeight: Approximately 37 g  (strap excluded)\nDisplay\n- Size: 1.32 inches AMOLED color screen\n- Resolution: 466 × 466 pixels, PPI 352",
+  status: 3,
+  price: null,
+};
 
 export default function Result() {
   const { t } = useTranslation();
-  const { id } = useParams();
-  const [currentProduct, setCurrentProduct] = useState([]);
-  const [upNextProduct, setUpNextProduct] = useState([]);
-  const [banner, setBanner] = useState([]);
+  const { id, idResult = null } = useParams();
+
   const dispatch = useDispatch();
-  const selectorHome = useSelector(curStateHome);
+  // const selectorResult = useSelector(curStateResult).data
+  // const selectorDetailResult = useSelector(curStateResult).detail
+
   const [dataResult, setDataResult] = useState([]);
-console.log(12345);
   const navigate = useNavigate();
 
   const tabResult = [
@@ -45,42 +1128,17 @@ console.log(12345);
   ];
 
   useEffect(() => {
-      dispatch(getResultProduct({}));
-    // dispatch(getBidProduct({}));
-    // dispatch(getUpNextProduct({}));
+    dispatch(getResultProduct({}));
   }, []);
 
   useEffect(() => {
-    if (selectorHome?.bidProduct?.length > 0) {
-      let currentProduct = selectorHome.bidProduct.filter(
-        (product) => new Date(product?.start_time).getTime() < currentDate
-      );
-      dispatch(setIdCurrentProduct(currentProduct[0]?.cp_id));
-      setCurrentProduct(currentProduct);
-    } else {
-      dispatch(setIdCurrentProduct(null));
-      setCurrentProduct([]);
+    if (idResult) {
+       dispatch(getResultDetailProduct({}, idResult));
     }
-    if (selectorHome?.upNextProduct?.length > 0) {
-      let newUpNextProduct = selectorHome.upNextProduct?.sort(
-        (a, b) => Date.parse(a?.start_time) - Date.parse(b?.start_time)
-      );
-      setUpNextProduct(newUpNextProduct);
-    } else {
-      setUpNextProduct([]);
-    }
-    if (selectorHome?.banner?.length > 0) {
-      let banner = selectorHome.banner?.sort(
-        (a, b) => a?.position - b?.position
-      );
-      setBanner(banner);
-    } else {
-      setBanner([]);
-    }
-  }, [selectorHome]);
+  }, [idResult]);
 
   const handleChangeTabs = (tabId) => {
-    navigate(`${PATH.BID}/${tabId}`);
+    navigate(`${PATH.RESULT}/${tabId}`);
   };
 
   const handleTab = useMemo(() => {
@@ -98,13 +1156,14 @@ console.log(12345);
   }, [id]);
 
   return (
-    <div className="bid-container">
-      <div className="header-tab__container">{handleTab}</div>
-      {id === urlPageBid.running ? (
-        <TabRunning currentProduct={currentProduct} />
-      ) : (
-        <TabUpcoming upNextProduct={upNextProduct} />
-      )}
+    <div className="bid-container" id="page-result">
+    {!idResult ?  <div className="header-tab__container">{handleTab}</div> : null}
+      <ResultComponent
+        currentProduct={selectorResult || []}
+        dataDetailResult={selectorDetailResult || null}
+        idTab={id}
+        idResult={idResult}
+      />
       <div style={{ height: "20px" }} />
     </div>
   );

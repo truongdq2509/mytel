@@ -42,6 +42,9 @@
 	"result_page":{
 		"all": "All",
 		"the_winner": "The winner",
-		"no_winner": "No winner"
+		"no_winner": "No winner",
+		"winner": "Winner",
+		"market_price": "Market Price",
+		"win_price": "Win Price"
 	}
 }

@@ -4,7 +4,6 @@ import './config/i18n'
 import { routerList } from './config/routerList';
 import { Fragment } from 'react';
 
-
 function App() {
 
   return (

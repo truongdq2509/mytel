@@ -1,7 +1,8 @@
-import { RESULT } from "./const";
+import { RESULT, DETAIL_RESULT } from "./const";
 
 const initState = {
   data: [],
+  detail: []
 };
 
 const reducerResult = (state = initState, actions) => {
@@ -11,6 +12,11 @@ const reducerResult = (state = initState, actions) => {
         ...state,
         data: actions?.payload?.data,
       };
+    case DETAIL_RESULT:
+      return {
+        ...state,
+        detail: actions?.payload?.data,
+      }
     default:
       return state;
   }
