@@ -1,13 +1,18 @@
 import { useTranslation } from "react-i18next";
 import logo from "../../assets/images/logo.svg";
 import PATH from "../../config/PATH";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { urlPageBid } from "../../helper/const";
 import _ from "lodash";
+import CurrentTime from '../../component/CurrentTime';
+import ModalLogin from '../../component/ModalLogin';
+import { useState } from 'react';
 
-function HeaderWeb() {
+function HeaderWeb({ user }) {
 	const { t } = useTranslation();
 	const location = useLocation()
+	const navigate = useNavigate()
+	const [openModalLogin, setOpenModalLogin] = useState(false)
 	const listTab = [
 		{
 			name: t("header.home"),
@@ -52,7 +57,7 @@ function HeaderWeb() {
 						<div className="box-menu">
 							{listTab.map((item, index) => {
 								return (
-									<div className={`box-menu-item ${getClassActive(item)}`} key={`menu_${index}`}>
+									<div className={`box-menu-item ${getClassActive(item)}`} key={`menu_${index}`} onClick={() => { navigate(item.link) }}>
 										<Link to={item.link}>{item.name}</Link>
 									</div>
 								);
@@ -60,7 +65,7 @@ function HeaderWeb() {
 						</div>
 					</div>
 					<div className='box-user'>
-						<div className='box-user-action'>
+						{user ? (<div className='box-user-action'>
 							<div className='box-user-action-cart' />
 							<div className='box-user-action-line' />
 							<div className='box-user-action-info'>
@@ -70,15 +75,15 @@ function HeaderWeb() {
 								</div>
 							</div>
 							<div className='box-user-action-avt' />
-						</div>
-						<div className='box-user-date'>
-							<span>12:02:00</span>
-							<span className='line'></span>
-							<span>Thứ Hai, 25/03/2024</span>
-						</div>
+						</div>) : (
+							<div className='box-user-btn-login' onClick={() => setOpenModalLogin(true)}>{t("header.login")}</div>
+						)}
+
+						<CurrentTime />
 					</div>
 				</div>
 			</div>
+			<ModalLogin open={openModalLogin} setOpenModalLogin={setOpenModalLogin} />
 		</div>
 	);
 }

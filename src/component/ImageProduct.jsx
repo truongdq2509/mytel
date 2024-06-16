@@ -1,6 +1,7 @@
 import { Carousel } from "antd";
 import { useEffect, useRef, useState } from "react";
 import { mediaQueryPoint, useMediaQuery } from '../utils/hooks';
+import ModalGirfBid from './ModalGirfBid';
 
 function ImageProduct({ product, data }) {
 	const isMobile = useMediaQuery(`(max-width: ${mediaQueryPoint.md}px)`);
@@ -10,6 +11,7 @@ function ImageProduct({ product, data }) {
 	const sliderBottom = useRef(null);
 	const [activeImage, setActiveImage] = useState(0);
 	const [prevAutoImageActive, setPrevAutoImageActive] = useState(null);
+	const [isShowDetail, setIsShowDetail] = useState(false)
 	let prevImageActive;
 	function handleActiveImage(event, index) {
 		if (prevImageActive && typeof prevImageActive === 'object') {
@@ -58,7 +60,7 @@ function ImageProduct({ product, data }) {
 								className="image"
 								style={{ backgroundImage: `url(${item})` }}
 							/>
-							<div className="icon-gift" />
+							{product?.gift_name ? <div onClick={() => { setIsShowDetail(true) }} className="icon-gift" /> : null}
 						</div>
 					))}
 				</Carousel>
@@ -85,6 +87,11 @@ function ImageProduct({ product, data }) {
 					))}
 				</Carousel>
 			</div>}
+			{product?.gift_name && <ModalGirfBid
+				isShowDetail={isShowDetail}
+				setIsShowDetail={setIsShowDetail}
+				data={product}
+			/>}
 		</div>
 	);
 }

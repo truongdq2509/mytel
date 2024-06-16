@@ -4,15 +4,11 @@ import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
 const ModalDescriptionBid = ({ setOpenModal, openModal, data = {} }) => {
-  const { product_name = "", product_code = "", description = "" } = data;
   const { t } = useTranslation();
-  const dataFormatDes = useMemo(() => {
-    if (description && description.includes("\n")) {
-      return description.split("\n");
-    }
-    return [description];
-  }, [data]);
+  if (!data) return null;
+  const { product_name = "", product_code = "", description = "" } = data;
 
+  console.log(data);
   return (
     <Container
       title="Detail Description"
@@ -30,9 +26,7 @@ const ModalDescriptionBid = ({ setOpenModal, openModal, data = {} }) => {
           </div>
           <div>{product_name}</div>
           <div>{t("bid_page.code_number").replace("_CODE_", product_code)}</div>
-          {dataFormatDes.map((des) => (
-            <div key={des}>{des}</div>
-          ))}
+          <div className='content-des'>{description}</div>
         </div>
       </div>
     </Container>
@@ -44,6 +38,9 @@ const Container = styled(Modal)`
 
   .ant-modal-content {
     padding-bottom: 38px !important;
+  }
+  .content-des{
+    white-space: break-spaces;
   }
 
   .ant-modal-close {
@@ -66,6 +63,8 @@ const Container = styled(Modal)`
     margin: 0 30px;
     background-color: #f1eff5;
     border-radius: 10px;
+    max-height: 400px;
+    overflow-y: auto;
   }
 
   .product-title__modal,

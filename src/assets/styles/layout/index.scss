@@ -5,14 +5,15 @@
 
 .main-layout {
 	&-body {
-		padding: 155px 15px 0;
-		position: relative;
+		padding: 155px 15px 20px;
+		display: flex;
 
 		&-page {
-			margin-right: 406px;
+			display: inline-block;
+			width: calc(100% - 436px);
 
-			@media (min-width: 992px) and (max-width: 1200px){
-				margin-right: 306px;
+			@media (min-width: 992px) and (max-width: 1200px) {
+				width: calc(100% - 336px);
 			}
 		}
 	}
@@ -24,7 +25,7 @@
 			padding-top: 80px;
 
 			&-page {
-				margin-right: 0;
+				width: calc(100%);
 			}
 		}
 	}

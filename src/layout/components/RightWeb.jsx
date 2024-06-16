@@ -6,8 +6,8 @@ import { curStateRightWeb } from '../../Redux/selector';
 import { useEffect, useState } from 'react';
 import { getHistoryBid, getHistoryBidAll } from '../../Redux/futures/rightWeb/actions';
 import moment from 'moment';
-import { getTotalUserBid } from '../../Redux/futures/home/actions';
 import { getCurrentUser } from '../../Redux/futures/account/actions';
+import { getItemCookie } from '../../utils/cookie';
 function RightWeb() {
 	const { t } = useTranslation();
 	const [sort, setSort] = useState('desc')
@@ -20,8 +20,9 @@ function RightWeb() {
 		console.log(data, isLoading);
 	}
 	useEffect(() => {
-		dispatch(getTotalUserBid({ callback: afterGetUserBid }))
-		dispatch(getCurrentUser({}))
+		if (getItemCookie('token')) {
+			dispatch(getCurrentUser({}))
+		}
 	}, [])
 	useEffect(() => {
 		let query = {

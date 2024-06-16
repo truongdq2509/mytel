@@ -11,6 +11,7 @@ export const getCurrentUser = data => {
 			method: 'GET',
 			url: API_PATH.getUser,
 			query: data.query || {},
+			callback: data.callback || null
 		},
 	}
 }
