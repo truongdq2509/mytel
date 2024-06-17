@@ -15,7 +15,7 @@ import { urlPageResult } from "../../../helper/const";
 
 const ResultComponent = ({
   currentProduct = [],
-  dataDetailResult = null,
+  dataDetailResult = {},
   idTab,
   idResult,
 }) => {
@@ -37,12 +37,12 @@ const ResultComponent = ({
   };
 
   if (idResult || idResult == 0) {
-    const { product_name = "", description } = dataDetailResult;
+    const { product_name = "", description = "" } = dataDetailResult;
     let descriptionFormat = description;
     if (description && description.includes("\n")) {
       descriptionFormat = description.split("\n");
     }
-
+    console.log(typeof descriptionFormat);
     return (
       <div className="result-detail__main">
         <div className="result-title__header">
@@ -59,11 +59,17 @@ const ResultComponent = ({
             <div className="content-main__head">
               {t("bid_page.title_description")}
             </div>
-            {descriptionFormat?.map((des = "") => (
-              <div className="result-des" key={des}>
-                {des}
-              </div>
-            ))}
+            {typeof descriptionFormat === "string" ? (
+              <div className="result-des">{descriptionFormat}</div>
+            ) : (
+              <>
+                {descriptionFormat?.map((des = "") => (
+                  <div className="result-des" key={des}>
+                    {des}
+                  </div>
+                ))}
+              </>
+            )}
           </div>
         </div>
       </div>
@@ -85,6 +91,7 @@ const ResultComponent = ({
               auction_price = 0,
               name = "",
               isdn = "",
+              status,
             } = item;
             let classFlex = "";
             if (index !== 0) {
@@ -105,8 +112,8 @@ const ResultComponent = ({
                       <div className="title-product">
                         <span>{product_name}</span>{" "}
                         <div
-                          className="link-detail"
-                          onClick={() => handleGetDetail(item.id)}
+                          className="link-detail link-detail-result"
+                          onClick={() => handleGetDetail(item.cp_id)}
                         >
                           {t("home_page.detail")}
                         </div>
@@ -179,7 +186,9 @@ const ResultComponent = ({
                           className="result-img__profile"
                         />
                         <div className="result-title__win">
-                          {t("result_page.winner")}
+                          {+status !== 5
+                            ? t("result_page.winner")
+                            : t("result_page.no_winner")}
                         </div>
                       </div>
                       <div>

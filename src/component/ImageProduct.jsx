@@ -54,9 +54,8 @@ function ImageProduct({ product, data }) {
 					}}
 				>
 					{data.map((item, index) => (
-						<div className="container-image-product-slide-item">
+						<div className="container-image-product-slide-item" key={`${item}_${index}`}>
 							<div
-								key={index}
 								className="image"
 								style={{ backgroundImage: `url(${item})` }}
 							/>
@@ -76,9 +75,8 @@ function ImageProduct({ product, data }) {
 					ref={sliderBottom}
 				>
 					{data.map((item, index) => (
-						<div className="container-image-product-slide-item item-btn-slide">
+						<div className="container-image-product-slide-item item-btn-slide" key={`${item}_${index}`}>
 							<div
-								key={index}
 								className="image"
 								onClick={(event) => handleActiveImage(event, index)}
 								style={{ backgroundImage: `url(${item})` }}
