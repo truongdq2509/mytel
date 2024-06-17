@@ -13,6 +13,7 @@ import {
 import ResultComponent from "./components/Result/ResultComponent";
 import _ from "lodash";
 import { curStateResult } from "../Redux/selector";
+import Tab from "../layout/components/Tab";
 
 export default function Result() {
   const { t } = useTranslation();
@@ -54,17 +55,7 @@ export default function Result() {
   };
 
   const handleTab = useMemo(() => {
-    return tabResult.map((tab) => {
-      return (
-        <div
-          key={tab.id}
-          onClick={() => handleChangeTabs(tab.id)}
-          className={`header-tab ${id === tab.id ? "active-tab" : "tab-hover"}`}
-        >
-          {tab.content}
-        </div>
-      );
-    });
+    return <Tab tabs={tabResult} handleChangeTabs={handleChangeTabs} id={id}/>
   }, [id]);
 
   const formatDataResult = useMemo(() => {

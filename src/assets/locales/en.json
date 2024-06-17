@@ -59,5 +59,12 @@
 		"winner": "Winner",
 		"market_price": "Market Price",
 		"win_price": "Win Price"
+	},
+	"rule_page":{
+		"rules": "RULES",
+		"rule": "Rule",
+		"how_to _bid": "HOW TO BID",
+		"frequently_asked_questions": "FREQUENTLY ASKED QUESTIONS",
+		"T&C": "T&C"
 	}
 }

@@ -3,6 +3,7 @@ import HomePage from '../page/HomePage';
 import PATH from './PATH';
 import BidPage from '../page/BidPage';
 import Result from '../page/Result';
+import Rule from '../page/Rule';
 
 export const routerList = [
 	{
@@ -23,6 +24,11 @@ export const routerList = [
 	{
 		path: `${PATH.BID}/:id`,
 		component: BidPage,
+		layout: LayoutApp
+	},
+	{
+		path: PATH.RULE,
+		component: Rule,
 		layout: LayoutApp
 	},
 ]
