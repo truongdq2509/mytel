@@ -8,6 +8,7 @@ import { getItemCookie } from '../utils/cookie';
 import { getCurrentUser } from '../Redux/futures/account/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { curStateAccount } from '../Redux/selector';
+import { useParams } from "react-router";
 
 function LayoutApp({ children }) {
 	const dispatch = useDispatch();
@@ -25,6 +26,9 @@ function LayoutApp({ children }) {
 			dispatch(getCurrentUser({ callback: afterGetUserBid }))
 		}
 	}, [selectorAccount.token]);
+
+	const { id = null, idResult = null } = useParams();
+
 	return (
 		<div className="main-layout">
 			{isMobile ? <HeaderMobile user={userInfo} /> : <HeaderWeb user={userInfo} />}
