@@ -28,7 +28,7 @@ function LayoutApp({ children }) {
 	return (
 		<div className="main-layout">
 			{isMobile ? <HeaderMobile user={userInfo} /> : <HeaderWeb user={userInfo} />}
-			<div className='main-layout-body container'>
+			<div className={`main-layout-body container ${id && idResult ? "main-layout-p-0" : ""}`}>
 				<div className='main-layout-body-page'><div>{children}</div></div>
 				{!isMobile && <RightWeb user={userInfo} />}
 			</div>

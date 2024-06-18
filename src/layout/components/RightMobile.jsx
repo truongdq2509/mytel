@@ -63,7 +63,7 @@ function RightWebMobile() {
     selectorRightWeb.idCurrentProduct,
   ]);
   return (
-    <div className="right-page">
+    <div className="right-page right-page__bid">
       <div className="right-page-content">
         <div className="right-page-content-head">
           <div className="right-page-content-head-title">

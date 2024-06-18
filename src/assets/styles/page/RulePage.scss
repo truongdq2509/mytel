@@ -1,0 +1,30 @@
+#rule-page{
+    .rule-tab__detail{
+        border-radius: 10px 10px 0px 0px;
+        background-color: #DEDEDE;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 19.36px;
+        padding-top: 11px;
+        padding-bottom: 11px;
+        color: #575757;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    .rule-active{
+        background-color: #C7C5CD;
+        color: #000000;
+    }
+
+    .rule-container__tab{
+        justify-content: center;
+    }
+
+    @media (min-width: 992px){
+        .rule-tab__detail:hover{
+            background-color: #C7C5CD;
+            transition: 0.3s ease-in-out;
+        }
+    }
+}

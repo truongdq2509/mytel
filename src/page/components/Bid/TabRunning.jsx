@@ -45,7 +45,7 @@ const TabRunning = ({ currentProduct = [] }) => {
         setIsShowDetail={setIsShowDetail}
         data={dataDetailActive}
       />
-      <div className="header-main bg-white">
+      <div className="header-main">
         <div className="main-container">
           {currentProduct.length > 0 ? (
             currentProduct.map((item, index) => {
@@ -68,7 +68,7 @@ const TabRunning = ({ currentProduct = [] }) => {
                   <div className={`bid-banner-mobile ${classFlex}`}>
                     <SliderBid listImageProduct={listImageProduct} />
                   </div>
-                  <div className={`d-flex`}>
+                  <div className={`d-flex  bg-white`}>
                     <ModalDescriptionBid
                       openModal={openModalDetail}
                       setOpenModal={setOpenModalDetail}

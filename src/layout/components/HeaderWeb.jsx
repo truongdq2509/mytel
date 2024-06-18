@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import logo from "../../assets/images/logo.svg";
 import PATH from "../../config/PATH";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { urlPageBid, urlPageResult } from "../../helper/const";
 import _ from "lodash";
 import CurrentTime from '../../component/CurrentTime';
@@ -13,6 +13,7 @@ function HeaderWeb({ user }) {
 	const location = useLocation()
 	const navigate = useNavigate()
 	const [openModalLogin, setOpenModalLogin] = useState(false)
+	const { id = null, idResult = null } = useParams();
 	const listTab = [
 		{
 			name: t("header.home"),
@@ -26,7 +27,7 @@ function HeaderWeb({ user }) {
 		{
 			name: t("header.result"),
 			link: `${PATH.RESULT}/${urlPageResult.all}`,
-			linkActive: [`${PATH.BID}/${urlPageResult.all}`, `${PATH.BID}/${urlPageResult.the_winner}`, `${PATH.BID}/${urlPageResult.no_winner}`]
+			linkActive: [`${PATH.RESULT}/${urlPageResult.all}`, `${PATH.RESULT}/${urlPageResult.the_winner}`, `${PATH.RESULT}/${urlPageResult.no_winner}`]
 		},
 		{
 			name: t("header.rule"),
@@ -37,9 +38,14 @@ function HeaderWeb({ user }) {
 			link: PATH.ACCOUNT,
 		},
 	];
+
 	const getClassActive = (data) => {
-		let activeClass = ''
-		if (data.link === location.pathname || _.includes(data.linkActive, location.pathname)) {
+		let activeClass = '';
+		let isCheckPageResult = false
+		if(data.link === `${PATH.RESULT}/${urlPageResult.all}` && id && idResult){
+			isCheckPageResult = true;
+		}
+		if (data.link === location.pathname || _.includes(data.linkActive, location.pathname) || isCheckPageResult) {
 			activeClass = 'active'
 		}
 
