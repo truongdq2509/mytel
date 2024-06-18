@@ -95,7 +95,7 @@ export default function BidPage() {
     <div className="bid-container">
       <div className="header-tab__container">{handleTab}</div>
       {id === urlPageBid.running ? (
-        <TabRunning currentProduct={[...currentProduct, ...currentProduct]} />
+        <TabRunning currentProduct={currentProduct || []} />
       ) : (
         <TabUpcoming upNextProduct={upNextProduct} />
       )}
