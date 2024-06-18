@@ -21,7 +21,7 @@ const serviceMiddleware = (store) => (next) => async (action) => {
 			next(action);
 		} else {
 			if (callback && typeof callback === 'function') {
-				callback(null, false, res?.data, res?.message)
+				callback(null, false, res)
 			}
 		}
 		return;

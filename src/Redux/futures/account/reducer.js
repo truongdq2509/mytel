@@ -1,7 +1,8 @@
-import { GET_CURRENT_USER } from './contants'
+import { GET_CURRENT_USER, LOGIN_PASSWORD } from './contants'
 
 const initState = {
-	userInfo: null
+	userInfo: null,
+	token: null,
 }
 const reducerAccount = (state = initState, actions) => {
 	switch (actions.type) {
@@ -9,6 +10,11 @@ const reducerAccount = (state = initState, actions) => {
 			return {
 				...state,
 				userInfo: actions.payload.data
+			}
+		case LOGIN_PASSWORD:
+			return {
+				...state,
+				token: actions.payload.data
 			}
 		default:
 			return state

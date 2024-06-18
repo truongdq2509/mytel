@@ -49,7 +49,15 @@
 			"password_placeholder":"Enter your password",
 			"login_with_otp":"or Login with OTP",
 			"login_with_password":"or Login with a password",
-			"login_otp":"Enter with SMS"
+			"login_otp":"Enter with SMS",
+			"title_confirm_otp":"OTP Confirmation",
+			"text_confirm_otp":"An OTP code has just been sent to your phone number _PHONE_",
+			"enter_otp":"Please enter the OTP code",
+			"resend_otp":"You have not received an OTP code?",
+			"resend":"Resend",
+			"confirm":"Confirm",
+			"ok":"OK"
+
 		}
 	},
 	"result_page":{

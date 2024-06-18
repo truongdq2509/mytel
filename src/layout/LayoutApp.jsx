@@ -6,23 +6,25 @@ import HeaderMobile from './components/HeaderMobile';
 import FooterMobile from './components/FooterMobile';
 import { getItemCookie } from '../utils/cookie';
 import { getCurrentUser } from '../Redux/futures/account/actions';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { curStateAccount } from '../Redux/selector';
 
 function LayoutApp({ children }) {
 	const dispatch = useDispatch();
-	const [userInfo, setUserInfo] = useState()
+	const [userInfo, setUserInfo] = useState(null)
 	const isMobile = useMediaQuery(`(max-width: ${mediaQueryPoint.lg}px)`)
+	const selectorAccount = useSelector(curStateAccount)
 	const afterGetUserBid = (data, isLoading) => {
 		if (data) {
-			console.log(data);
 			setUserInfo(data);
 		}
 	};
 	useEffect(() => {
+		console.log(getItemCookie('token'));
 		if (getItemCookie('token')) {
 			dispatch(getCurrentUser({ callback: afterGetUserBid }))
 		}
-	}, []);
+	}, [selectorAccount.token]);
 	return (
 		<div className="main-layout">
 			{isMobile ? <HeaderMobile user={userInfo} /> : <HeaderWeb user={userInfo} />}
