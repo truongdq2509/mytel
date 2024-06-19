@@ -5,7 +5,7 @@ import { TYPE_LOGIN } from "../helper/const";
 import OTPInput from "react-otp-input";
 import ModalNotifycation from "./ModalNotifycation";
 import { useDispatch } from 'react-redux';
-import { loginWithPassword } from '../Redux/futures/account/actions';
+import { loginWithOtp, loginWithPassword, requestOtp } from '../Redux/futures/account/actions';
 
 function ModalLogin({ open, setOpenModalLogin }) {
 	const { t } = useTranslation();
@@ -23,26 +23,70 @@ function ModalLogin({ open, setOpenModalLogin }) {
 	})
 	const [messageError, setMessageError] = useState("");
 	useEffect(() => {
-		setStatusInput({
-			phoneNumber: '',
-			password: ''
-		})
-		setPassword('')
-		setPhoneNumber('')
-		setOtp('')
+		if (!open && !openModalConfirm) {
+			setStatusInput({
+				phoneNumber: '',
+				password: ''
+			})
+			setPassword('')
+			setPhoneNumber('')
+			setOtp('')
+			setShowPassword(false)
+		}
+
 	}, [open])
 	const afterLoginPassword = (dataSuccess, isLoading, dataError = null) => {
-		console.log(dataSuccess, isLoading, dataError);
+		// console.log(dataSuccess, isLoading, dataError);
 		if (!isLoading) {
 			if (dataError) {
 				setMessageError(dataError.errorMessage);
 				setOpenModalNotification(true);
 				setOpenModalConfirm(false);
 				handleCancel()
+			} else {
+
+				setStatusInput({
+					phoneNumber: '',
+					password: ''
+				})
+				setPassword('')
+				setPhoneNumber('')
+				setOtp('')
+				setShowPassword(false)
+				handleCancel()
 			}
 
 		}
 
+	}
+	const afterLoginOtp = (dataSuccess, isLoading, dataError = null) => {
+		if (!isLoading) {
+			if (dataError) {
+				setMessageError(dataError.errorMessage);
+				setOpenModalNotification(true);
+				setOpenModalConfirm(false);
+				handleCancel()
+			} else {
+				setStatusInput({
+					phoneNumber: '',
+					password: ''
+				})
+				setPassword('')
+				setPhoneNumber('')
+				setOtp('')
+				setShowPassword(false)
+				handleCancel()
+				setOpenModalConfirm(false);
+			}
+
+		}
+	}
+	const afterRequestOtp = (data, isLoading) => {
+		console.log(data);
+		if (data) {
+			setOpenModalLogin(false);
+			setOpenModalConfirm(true);
+		}
 	}
 	const handleOk = () => {
 
@@ -75,13 +119,35 @@ function ModalLogin({ open, setOpenModalLogin }) {
 
 		}
 		if (typeLogin === TYPE_LOGIN.loginOtp) {
-			setOpenModalLogin(false);
-			setOpenModalConfirm(true);
+			if (!phoneNumber || phoneNumber.trim() === '') {
+				setStatusInput({
+					phoneNumber: 'error',
+				})
+				return;
+			}
+			const body = {
+				isdn: phoneNumber,
+				callback: afterRequestOtp
+			}
+			dispatch(requestOtp(body))
 		}
 	};
+	const handleConfirmOtp = () => {
+		if (!otp || otp.trim() === '') {
+			return;
+		}
+		const body = {
+			isdnOtp: phoneNumber,
+			otp: otp,
+			callback: afterLoginOtp
+		}
+		dispatch(loginWithOtp(body))
+
+	}
 	const handleBack = () => {
 		setOpenModalLogin(true);
 		setOpenModalConfirm(false);
+		setOtp('')
 		setTypeLogin(TYPE_LOGIN.loginOtp);
 	};
 	const handleCancel = () => {
@@ -179,8 +245,14 @@ function ModalLogin({ open, setOpenModalLogin }) {
 						<div className="modal-login-body-otp">
 							<Input
 								value={phoneNumber}
-								onChange={(e) => { setPhoneNumber(e.target.value) }}
-								placeholder={t("modal.modal_login.phone_number_placeholder")}
+								status={statusInput.phoneNumber}
+								onChange={(e) => {
+									setStatusInput({ ...statusInput, phoneNumber: '' })
+									setPhoneNumber(e.target.value)
+								}}
+								placeholder={t(
+									"modal.modal_login.phone_number_placeholder"
+								)}
 							/>
 						</div>
 					)}
@@ -194,7 +266,7 @@ function ModalLogin({ open, setOpenModalLogin }) {
 				width={682}
 				footer={
 					<div className="foot-login">
-						<Button onClick={handleOk} className="button-foot-modal">
+						<Button onClick={handleConfirmOtp} className="button-foot-modal">
 							{t("modal.modal_login.confirm")}
 						</Button>
 					</div>
@@ -207,7 +279,7 @@ function ModalLogin({ open, setOpenModalLogin }) {
 					<div className="modal-confirm-otp-body-text-number">
 						{t("modal.modal_login.text_confirm_otp").replace(
 							"_PHONE_",
-							"012345678"
+							phoneNumber
 						)}
 					</div>
 					<div className="box-input">

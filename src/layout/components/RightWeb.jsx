@@ -1,29 +1,59 @@
 import { useTranslation } from "react-i18next";
-import avtDefaults from "../../assets/images/avtRight.png";
 import { Pagination, Select } from "antd";
 import { useDispatch, useSelector } from 'react-redux';
-import { curStateRightWeb } from '../../Redux/selector';
+import { curStateHome, curStateRightWeb, curStateAccount } from '../../Redux/selector';
 import { useEffect, useState } from 'react';
 import { getHistoryBid, getHistoryBidAll } from '../../Redux/futures/rightWeb/actions';
 import moment from 'moment';
 import { getCurrentUser } from '../../Redux/futures/account/actions';
-import { getItemCookie } from '../../utils/cookie';
-function RightWeb() {
+import { currentDate } from '../../helper/const';
+function RightWeb({ user }) {
 	const { t } = useTranslation();
 	const [sort, setSort] = useState('desc')
 	const [page, setPage] = useState(1)
 	const [total, setTotal] = useState(0)
 	const [listBidHistory, setListBidHistory] = useState([])
+	const [currentProduct, setCurrentProduct] = useState([])
+	const [objTextHeader, setObjectTextHeader] = useState({
+		text1: t("right_page.text_foot1"),
+		text2: t("right_page.text_foot2"),
+		text3: null
+	})
 	const selectorRightWeb = useSelector(curStateRightWeb)
+	const selectorHome = useSelector(curStateHome);
+	const selectorAccount = useSelector(curStateAccount);
 	const dispatch = useDispatch()
-	const afterGetUserBid = (data, isLoading) => {
-		console.log(data, isLoading);
-	}
 	useEffect(() => {
-		if (getItemCookie('token')) {
-			dispatch(getCurrentUser({}))
+		if (selectorAccount.userInfo) {
+			if (selectorAccount.userInfo.isAdvantage) {
+				setObjectTextHeader({
+					text1: t("right_page.text_foot1"),
+					text2: t("right_page.text_foot2"),
+					text3: null
+				})
+			} else {
+				if (selectorAccount.userInfo.minPriceOfCurrentUser > 0) {
+					setObjectTextHeader({
+						text1: t("right_page.text_foot5"),
+						text2: t("right_page.text_foot6").replace("_NUMBER_", selectorAccount.userInfo.countSamePrice),
+						text3: t("right_page.text_foot7").replace("_NUMBER_", selectorAccount.userInfo.countLowerPrice)
+					})
+				} else {
+					setObjectTextHeader({
+						text1: t("right_page.text_foot3"),
+						text2: t("right_page.text_foot4"),
+						text3: null
+					})
+				}
+			}
+		} else {
+			setObjectTextHeader({
+				text1: t("right_page.text_foot3"),
+				text2: t("right_page.text_foot4"),
+				text3: null
+			})
 		}
-	}, [])
+	}, [selectorAccount.userInfo]);
 	useEffect(() => {
 		let query = {
 			current: page,
@@ -64,17 +94,29 @@ function RightWeb() {
 
 
 	}, [selectorRightWeb.bidHistory, selectorRightWeb.bidHistoryAll, selectorRightWeb.idCurrentProduct])
+	useEffect(() => {
+		if (selectorHome?.bidProduct?.length > 0) {
+			let currentProduct = selectorHome.bidProduct.filter(
+				(product) => new Date(product?.start_time).getTime() < currentDate
+			);
+			setCurrentProduct(currentProduct);
+		} else {
+			setCurrentProduct([]);
+		}
+
+	}, [selectorHome.bidProduct]);
 	return (
 		<div className="right-page">
 			<div className="right-page-head">
 				<div className="number-people">
-					<span>243</span>
+					<span>{currentProduct[0]?.count_user || 0}</span>
 					<span>{t("right_page.number_people")}</span>
 				</div>
-				<div className="icon-head" />
+				<div className={`icon-head ${objTextHeader.text3 ? 'icon-lose' : ''}`} />
 				<div className="box-text">
-					<div>{t("right_page.text_foot1")}</div>
-					<div>{t("right_page.text_foot2")}</div>
+					<div>{objTextHeader.text1}</div>
+					<div>{objTextHeader.text2}</div>
+					{objTextHeader.text3 ? <div>{objTextHeader.text3}</div> : null}
 				</div>
 			</div>
 			<div className="right-page-content">

@@ -32,10 +32,14 @@
       background-image: url(../../images/iconCupRight.svg);
       background-repeat: no-repeat;
       background-size: cover;
+
+      &.icon-lose {
+        background-image: url(../../images/iconLoseRight.svg);
+      }
     }
 
     .box-text {
-		
+
       div {
         font-size: 16px;
         font-weight: 400;
@@ -156,7 +160,7 @@
           display: none;
         }
 
-        > li {
+        >li {
           width: auto;
           min-width: auto;
           height: auto;
@@ -190,6 +194,7 @@
 
 .right-page__bid {
   margin: 0;
+
   .right-page-content {
     box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
   }

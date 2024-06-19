@@ -11,6 +11,11 @@
 		"number_people":"Participants Now",
 		"text_foot1":"You are holding the advantage.",
 		"text_foot2":"The price you place is the lowest and only one now.",
+		"text_foot3":"Let’s join the auction now and grasp chance",
+		"text_foot4":"to own high - value prizes from Mytelbid.",
+		"text_foot5":"Oops! You've lost your advantage",
+		"text_foot6":"_NUMBER_ people have the same price as you",
+		"text_foot7":"_NUMBER_ people bid a price lower than yours.",
 		"bid_report":"Bid report",
 		"the_last":"The last",
 		"the_first":"The first",
@@ -57,7 +62,6 @@
 			"resend":"Resend",
 			"confirm":"Confirm",
 			"ok":"OK"
-
 		}
 	},
 	"result_page":{
