@@ -69,7 +69,6 @@ function HomePage() {
 		setOpenModalDetail(true);
 		setSelectedProduct(data)
 	}
-	console.log(isMobile);
 	return (
 		<div className="container-home">
 			{banner.length > 0 ? <div className="container-home-banner">

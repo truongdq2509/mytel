@@ -121,6 +121,10 @@
 						font-weight: 400;
 						line-height: 19.36px;
 
+						&:hover {
+							background-color: #F1EFF5;
+						}
+
 						&::placeholder {
 							color: #575757;
 						}
@@ -165,6 +169,10 @@
 				font-size: 16px;
 				font-weight: 400;
 				line-height: 19.36px;
+
+				&:hover {
+					background-color: #F1EFF5;
+				}
 
 				&:focus-within,
 				&:focus {

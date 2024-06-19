@@ -1,2 +1,5 @@
 export const GET_CURRENT_USER = "GET_CURRENT_USER"
+export const GET_TURN_REMAIN = "GET_TURN_REMAIN"
 export const LOGIN_PASSWORD = "LOGIN_PASSWORD"
+export const LOGIN_OTP = "LOGIN_OTP"
+export const REQUEST_OTP = "REQUEST_OTP"

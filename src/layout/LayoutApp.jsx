@@ -12,19 +12,17 @@ import { useParams } from "react-router";
 
 function LayoutApp({ children }) {
 	const dispatch = useDispatch();
-	const [userInfo, setUserInfo] = useState(null)
-	const isMobile = useMediaQuery(`(max-width: ${mediaQueryPoint.lg}px)`)
 	const selectorAccount = useSelector(curStateAccount)
+	const [userInfo, setUserInfo] = useState(selectorAccount.userInfo)
+	const isMobile = useMediaQuery(`(max-width: ${mediaQueryPoint.lg}px)`)
 	const afterGetUserBid = (data, isLoading) => {
 		if (data) {
-			setUserInfo(data);
+			setUserInfo(data.data);
 		}
 	};
 	useEffect(() => {
-		console.log(getItemCookie('token'));
-		if (getItemCookie('token')) {
-			dispatch(getCurrentUser({ callback: afterGetUserBid }))
-		}
+		dispatch(getCurrentUser({ callback: afterGetUserBid }))
+
 	}, [selectorAccount.token]);
 
 	const { id = null, idResult = null } = useParams();

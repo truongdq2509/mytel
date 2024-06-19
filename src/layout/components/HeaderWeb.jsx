@@ -6,13 +6,29 @@ import { urlPageBid, urlPageResult } from "../../helper/const";
 import _ from "lodash";
 import CurrentTime from '../../component/CurrentTime';
 import ModalLogin from '../../component/ModalLogin';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { getTurnRemain } from '../../Redux/futures/account/actions';
 
 function HeaderWeb({ user }) {
 	const { t } = useTranslation();
 	const location = useLocation()
+	const dispatch = useDispatch()
 	const navigate = useNavigate()
+	const [bidTotal, setBidTotal] = useState(0)
+
 	const [openModalLogin, setOpenModalLogin] = useState(false)
+	const afterGetTurnRemain = (data, isLoading) => {
+		if (data) {
+			const bidTotal = data?.data?.reduce((acc, pack) => {
+				return acc + pack?.turn;
+			}, 0);
+			setBidTotal(bidTotal)
+		}
+	}
+	useEffect(() => {
+		dispatch(getTurnRemain({ callback: afterGetTurnRemain }))
+	}, [user])
 	const { id = null, idResult = null } = useParams();
 	const listTab = [
 		{
@@ -42,7 +58,7 @@ function HeaderWeb({ user }) {
 	const getClassActive = (data) => {
 		let activeClass = '';
 		let isCheckPageResult = false
-		if(data.link === `${PATH.RESULT}/${urlPageResult.all}` && id && idResult){
+		if (data.link === `${PATH.RESULT}/${urlPageResult.all}` && id && idResult) {
 			isCheckPageResult = true;
 		}
 		if (data.link === location.pathname || _.includes(data.linkActive, location.pathname) || isCheckPageResult) {
@@ -76,12 +92,12 @@ function HeaderWeb({ user }) {
 							<div className='box-user-action-cart' />
 							<div className='box-user-action-line' />
 							<div className='box-user-action-info'>
-								<div className='name one-line'>0987654321</div>
+								<div className='name one-line'>{user.name || user.msisdn}</div>
 								<div className='number-bid'>
-									<span>20</span>
+									<span>{bidTotal}</span>
 								</div>
 							</div>
-							<div className='box-user-action-avt' />
+							<div style={{ backgroundImage: `url(${user.image})` }} className='box-user-action-avt' />
 						</div>) : (
 							<div className='box-user-btn-login' onClick={() => setOpenModalLogin(true)}>{t("header.login")}</div>
 						)}
