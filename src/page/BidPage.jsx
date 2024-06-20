@@ -99,7 +99,7 @@ export default function BidPage() {
       ) : (
         <TabUpcoming upNextProduct={upNextProduct} />
       )}
-      <div style={{ height: "20px" }} />
+      <div className="mobile_pb__20" />
     </div>
   );
 }

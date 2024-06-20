@@ -7,7 +7,7 @@ export const postBidProduct = (data) => {
         data,
         meta: {
             method: "POST",
-            url: API_PATH.bidProduct,
+            url: API_PATH.bid,
             query: data.query || {},
         }
     }
