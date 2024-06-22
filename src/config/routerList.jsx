@@ -4,6 +4,7 @@ import PATH from './PATH';
 import BidPage from '../page/BidPage';
 import Result from '../page/Result';
 import Rule from '../page/Rule';
+import LoginMobile from '../page/LoginMobile';
 
 export const routerList = [
 	{
@@ -29,6 +30,11 @@ export const routerList = [
 	{
 		path: PATH.RULE,
 		component: Rule,
+		layout: LayoutApp
+	},
+	{
+		path: PATH.LOGIN,
+		component: LoginMobile,
 		layout: LayoutApp
 	},
 ]

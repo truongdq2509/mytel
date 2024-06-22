@@ -308,8 +308,28 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		text-align: center;
 		padding: 30px;
+		background-color: #F3F2F7;
 		border-radius: 15px;
+	}
+
+	@media(max-width: 991.98px) {
+		.ant-modal-content {
+			padding: 24px;
+
+			&-body {
+				min-height: 83px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				font-size: 12px;
+				font-weight: 400;
+				line-height: 14.52px;
+				padding: 25px;
+				border-radius: 15px;
+			}
+		}
 	}
 
 }

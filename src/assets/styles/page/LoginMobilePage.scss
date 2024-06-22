@@ -1,0 +1,259 @@
+.box-login-mobile {
+	padding-top: 40px;
+	padding-bottom: 70px;
+	background-color: #fff;
+	height: 100%;
+	margin: 0 -15px;
+	position: relative;
+
+	&-title {
+		font-size: 25px;
+		font-weight: 700;
+		line-height: 30.26px;
+		text-align: center;
+		text-transform: uppercase;
+		margin: 0 16px 20px;
+	}
+
+	&-body {
+		&-banner {
+			padding-top: 64%;
+			background-image: url(../../images/imgLogin.png);
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: contain;
+			margin: 0 16px;
+		}
+
+		&-pass {
+			margin: 0 16px;
+			display: flex;
+			flex-direction: column;
+			gap: 20px;
+
+			.box-input {
+				&-label {
+					margin-bottom: 14px;
+
+					span {
+						font-size: 12px;
+						font-weight: 400;
+						line-height: 14.52px;
+
+						&:last-child {
+							color: red;
+							margin-left: 5px;
+						}
+					}
+
+				}
+
+				&-input {
+					position: relative;
+
+					input {
+						background-color: #F1EFF5;
+						border: none;
+						outline: none;
+						border-radius: 10px;
+						padding: 11px 21px;
+						font-family: Inter;
+						font-size: 12px;
+						font-weight: 400;
+						line-height: 14.52px;
+
+						&:hover {
+							background-color: #F1EFF5;
+						}
+
+						&::placeholder {
+							color: #575757;
+						}
+					}
+
+					&.pass {
+						input {
+							padding-right: 37px;
+						}
+					}
+
+					.icon-eye {
+						position: absolute;
+						top: 50%;
+						transform: translateY(-50%);
+						right: 8px;
+						width: 24px;
+						height: 24px;
+						background-image: url(../../images/iconEye.svg);
+						background-repeat: no-repeat;
+						background-size: cover;
+						cursor: pointer;
+
+						&.show {
+
+							background-image: url(../../images/iconEyeSlash.svg);
+						}
+					}
+				}
+			}
+		}
+
+		&-otp {
+			margin: 0 16px;
+			margin-top: 44px;
+
+			input {
+				background-color: #F1EFF5;
+				border: none;
+				outline: none;
+				border-radius: 10px;
+				padding: 11px 21px;
+				font-size: 12px;
+				font-weight: 400;
+				line-height: 14.52px;
+
+				&:hover {
+					background-color: #F1EFF5;
+				}
+
+				&:focus-within,
+				&:focus {
+					background-color: #F1EFF5;
+				}
+
+				&::placeholder {
+					color: #575757;
+				}
+			}
+		}
+
+		&-otp-body {
+			.button-back {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 32px;
+				height: 32px;
+				border-radius: 4px;
+				transition: all 0.2s;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+
+				span {
+					background-image: url(../../images/arrowLeft.svg);
+					background-position: center;
+					background-repeat: no-repeat;
+					background-size: contain;
+					display: block;
+					width: 10px;
+					height: 15px;
+				}
+
+				&:hover {
+					color: rgba(0, 0, 0, 0.88);
+					background-color: rgba(0, 0, 0, 0.06);
+					cursor: pointer;
+				}
+			}
+
+			&-text-number {
+				text-align: center;
+				font-size: 12px;
+				font-weight: 400;
+				line-height: 14.52px;
+				color: #000;
+				margin: 15px 40px 50px;
+			}
+
+			.box-input {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				gap: 20px;
+				margin-bottom: 30px;
+
+				.label-input {
+					font-size: 12px;
+					font-weight: 400;
+					line-height: 14.52px;
+
+					span {
+						color: $background-color-title;
+					}
+				}
+
+				&-input {
+
+
+					>div {
+						gap: 5px;
+
+						input {
+							width: 47px !important;
+							height: 47px;
+							background-color: #F1EFF5;
+							color: #000;
+							border-radius: 10px;
+							border: none;
+
+							&:focus,
+							&:focus-within {
+								border: none;
+								outline: none;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	&-foot {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+
+
+		.foot-login {
+			margin-top: 40px;
+
+			.button-foot-modal {
+				padding: 12px 50px;
+				border-radius: 50px;
+				color: #fff;
+				background-color: $background-color-title;
+				font-size: 12px;
+				font-weight: 400;
+				line-height: 14.52px;
+				text-align: center;
+				height: auto;
+				border: none;
+
+				&:hover {
+					background-color: $color-title-hover;
+					color: #fff;
+					border: none;
+				}
+
+				&:focus-visible {
+					outline: 6px solid $color-title-hover;
+					outline-offset: 1px;
+					transition: outline-offset 1s, outline 1s;
+				}
+			}
+
+			.text-login {
+				margin-top: 10px;
+				text-decoration: underline;
+				font-size: 12px;
+				font-weight: 400;
+				line-height: 14.52px;
+				color: $background-color-title;
+				text-align: center;
+				cursor: pointer;
+			}
+		}
+	}
+}

@@ -1,6 +1,6 @@
 
 import API_PATH from '../../../config/API_PATH'
-import { GET_CURRENT_USER, GET_TURN_REMAIN, LOGIN_OTP, LOGIN_PASSWORD, REQUEST_OTP } from './contants'
+import { GET_CURRENT_USER, GET_TURN_REMAIN, LOGIN_OTP, LOGIN_PASSWORD, REQUEST_OTP, VERIFY_OTP } from './contants'
 
 
 export const getCurrentUser = data => {
@@ -58,6 +58,18 @@ export const loginWithOtp = data => {
 		meta: {
 			method: 'POST',
 			url: API_PATH.loginWithSMS,
+			query: data.query || {},
+			callback: data.callback || null
+		},
+	}
+}
+export const verifyOtp = data => {
+	return {
+		type: VERIFY_OTP,
+		data,
+		meta: {
+			method: 'POST',
+			url: API_PATH.verify,
 			query: data.query || {},
 			callback: data.callback || null
 		},

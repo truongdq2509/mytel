@@ -1,14 +1,57 @@
+import { useDispatch } from "react-redux";
+import PATH from "../../config/PATH";
+import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router";
+import { useEffect, useState } from "react";
+import { getTurnRemain } from "../../Redux/futures/account/actions";
+import ModalLogin from "../../component/ModalLogin";
+import CurrentTime from '../../component/CurrentTime';
 
-import PATH from '../../config/PATH';
-import { useTranslation } from 'react-i18next';
-
-
-function HeaderMobile() {
-	const { t } = useTranslation()
-	return (<div className='header-mobile-page'>
-		<a href={PATH.HOME} className='logo-mobile' />
-		<button className='button-login'>{t("header.login")}</button>
-	</div>);
+function HeaderMobile({ user }) {
+	const { t } = useTranslation();
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
+	const [bidTotal, setBidTotal] = useState(0);
+	const afterGetTurnRemain = (data, isLoading) => {
+		if (data) {
+			const bidTotal = data?.data?.reduce((acc, pack) => {
+				return acc + pack?.turn;
+			}, 0);
+			setBidTotal(bidTotal);
+		}
+	};
+	useEffect(() => {
+		dispatch(getTurnRemain({ callback: afterGetTurnRemain }));
+	}, [user]);
+	const [openModalLogin, setOpenModalLogin] = useState(false);
+	return (
+		<>
+			{user ? (
+				<div className="header-mobile-page">
+					<div className='box-logo'>
+						<a href={PATH.HOME} className="logo-mobile is-login" />
+						<div className='box-logo-info'>
+							<div className='box-logo-info-name'>{user.name || user.msisdn}</div>
+							<div className='box-logo-info-number-bid'>
+								<span>{bidTotal}</span>
+							</div>
+						</div>
+					</div>
+					<div className='box-right'>
+						<div className='box-right-time'>
+							<CurrentTime />
+						</div>
+						<div className='box-right-bid' />
+					</div>
+				</div>
+			) : (
+				<div className="header-mobile-page">
+					<a href={PATH.HOME} className="logo-mobile" />
+					<button onClick={() => { navigate(PATH.LOGIN) }} className="button-login">{t("header.login")}</button>
+				</div>
+			)}
+		</>
+	);
 }
 
 export default HeaderMobile;

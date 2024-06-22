@@ -5,7 +5,7 @@ import { TYPE_LOGIN } from "../helper/const";
 import OTPInput from "react-otp-input";
 import ModalNotifycation from "./ModalNotifycation";
 import { useDispatch } from 'react-redux';
-import { loginWithOtp, loginWithPassword, requestOtp } from '../Redux/futures/account/actions';
+import { loginWithOtp, loginWithPassword, requestOtp, verifyOtp } from '../Redux/futures/account/actions';
 
 function ModalLogin({ open, setOpenModalLogin }) {
 	const { t } = useTranslation();
@@ -61,24 +61,32 @@ function ModalLogin({ open, setOpenModalLogin }) {
 	}
 	const afterLoginOtp = (dataSuccess, isLoading, dataError = null) => {
 		if (!isLoading) {
+			setStatusInput({
+				phoneNumber: '',
+				password: ''
+			})
+			setPassword('')
+			setPhoneNumber('')
+			setOtp('')
+			setShowPassword(false)
+			handleCancel()
+			setOpenModalConfirm(false);
+		}
+	}
+	const afterverifyOtp = (data, isLoading, dataError) => {
+		if (!isLoading) {
 			if (dataError) {
 				setMessageError(dataError.errorMessage);
 				setOpenModalNotification(true);
 				setOpenModalConfirm(false);
 				handleCancel()
 			} else {
-				setStatusInput({
-					phoneNumber: '',
-					password: ''
-				})
-				setPassword('')
-				setPhoneNumber('')
-				setOtp('')
-				setShowPassword(false)
-				handleCancel()
-				setOpenModalConfirm(false);
+				const body = {
+					isdnOtp: phoneNumber,
+					callback: afterLoginOtp,
+				};
+				dispatch(loginWithOtp(body));
 			}
-
 		}
 	}
 	const afterRequestOtp = (data, isLoading) => {
@@ -139,9 +147,9 @@ function ModalLogin({ open, setOpenModalLogin }) {
 		const body = {
 			isdnOtp: phoneNumber,
 			otp: otp,
-			callback: afterLoginOtp
-		}
-		dispatch(loginWithOtp(body))
+			callback: afterverifyOtp,
+		};
+		dispatch(verifyOtp(body));
 
 	}
 	const handleBack = () => {

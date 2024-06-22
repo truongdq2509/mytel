@@ -195,6 +195,12 @@
 		background-position: center;
 		background-repeat: no-repeat;
 		background-size: cover;
+
+		&.is-login {
+			width: 48px;
+			height: 48px;
+			background-image: url(../../images/logoMobileUser.svg);
+		}
 	}
 
 	.button-login {
@@ -207,6 +213,77 @@
 		font-weight: 700;
 		line-height: 19.36px;
 		color: $background-color-title;
+	}
+
+	.box-logo {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+
+		&-info {
+			display: flex;
+			flex-direction: column;
+			gap: 5px;
+
+			&-name {
+				color: #fff;
+				font-size: 14px;
+				font-weight: 600;
+				line-height: 16px;
+			}
+
+			&-number-bid {
+				width: 57px;
+				height: 21px;
+				background-image: url("../../images/iconNumberBidMobile.svg");
+				background-repeat: no-repeat;
+				background-size: cover;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+
+				span {
+					font-size: 10px;
+					font-weight: 700;
+					line-height: 1.25;
+					color: $color-text-price;
+					margin-left: 12px;
+					text-shadow: 2px 0 #fff, -2px 0 #fff, 0 2px #fff, 0 -2px #fff,
+						1px 1px #fff, -1px -1px #fff, 1px -1px #fff, -1px 1px #fff;
+				}
+			}
+		}
+	}
+
+	.box-right {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+
+		&-time {
+			.box-user-date-mobile {
+
+				display: flex;
+				flex-direction: column;
+				align-items: flex-end;
+
+				span {
+					font-size: 10px;
+					font-weight: 500;
+					line-height: 12.1px;
+					color: #fff;
+				}
+
+			}
+		}
+
+		&-bid {
+			width: 41px;
+			height: 41px;
+			background-image: url("../../images/iconCartMobile.svg");
+			background-repeat: no-repeat;
+			background-size: cover;
+		}
 	}
 
 }
@@ -252,8 +329,6 @@
 						font-size: 14px;
 
 					}
-
-
 				}
 			}
 		}
