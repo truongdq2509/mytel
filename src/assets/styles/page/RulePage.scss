@@ -1,30 +1,270 @@
-#rule-page{
+#rule-page {
+  .rule-tab__detail {
+    border-radius: 10px 10px 0px 0px;
+    background-color: #dedede;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 19.36px;
+    padding-top: 11px;
+    padding-bottom: 11px;
+    color: #575757;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  .rule-active {
+    background-color: #c7c5cd;
+    color: #000000;
+    padding-top: 21px;
+  }
+
+  .rule-container__tab {
+    justify-content: center;
+    align-items: baseline;
+  }
+
+  .rule-body, .tc_container {
+    background-color: #ffffff;
+    padding: 16px 35px;
+  }
+
+  .body-title,
+  .body-title__condition {
+    padding-bottom: 34px;
+    text-transform: uppercase;
+  }
+
+  .body-title,
+  .body-title__condition,
+  .body-introl {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19.36px;
+    color: #000000;
+  }
+
+  .body-introl, .body-introl, .content-introl {
+    padding-bottom: 34px;
+  }
+
+  .body-content,
+  .how-bid__content, .content-detail {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 28px;
+  }
+
+  .how-bid__content i{
+    font-weight: 400;
+  }
+
+  .body-title.body-title__faq{
+    padding-bottom: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .content-detail{
+    position: relative;
+    // padding-left: 15px;
+    font-weight: 400;
+    line-height: 28px;
+  }
+
+  .content-detail.how-bid__content{
+    line-height: 19.36px;
+    font-weight: 400;
+    padding-left: 15px;
+  }
+
+  .how-bid__content  {
+    line-height: 19.36px;
+
+    &::before {
+      content: ".";
+      position: absolute;
+      top: 0%;
+      //   transform: translateY(9.5px);
+      font-size: 16px;
+      font-weight: bold;
+      left: 0px;
+      top: -4px;
+    }
+  }
+
+  .container-faq .ant-collapse-content-box div{
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+  }
+
+  .pt-2{
+    padding-top: 16px;
+  }
+
+  .body-introl__how-bid{
+    padding-bottom: 20px;
+  }
+
+  .ant-collapse-expand-icon{
+    position: absolute;
+    right: 0;
+  }
+
+  .ant-collapse-header, .ant-collapse-content-box{
+    padding-left: 0 !important;
+  }
+
+  .ant-collapse-header-text{
+    font-weight: 600;
+    padding-right: 12px;
+  }
+
+  .tc_container{
+    background-color: #FFFFFF;
+    min-height: 1054px;
+  }
+
+  .rule-body{
+    min-height: 992px;
+  }
+
+  .pl-2{
+    padding-left: 20px;
+  }
+
+  .tc_container .ant-collapse-content-box div{
+    margin-bottom: 1rem;
+  }
+
+  .tc_container .ant-collapse-item{
+    border-bottom: 0.3px solid #C0BDCB !important;
+  }
+
+  .ant-collapse-item >.ant-collapse-header{
+    padding: 20px 0px !important;
+  }
+
+  .tc_container .ant-collapse-item:last-child{
+    border-bottom: 0px !important;
+  }
+
+  .tc_container .ant-collapse-content-active{
+    font-weight: 500;
+    font-size: 16px;
+    color: #000000;
+  }
+
+.ant-collapse>.ant-collapse-item >.ant-collapse-header .ant-collapse-expand-icon{
+    padding-inline-end: 0px;
+}
+
+  @media (max-width: 1400px){
     .rule-tab__detail{
-        border-radius: 10px 10px 0px 0px;
-        background-color: #DEDEDE;
-        font-size: 16px;
-        font-weight: 500;
-        line-height: 19.36px;
-        padding-top: 11px;
-        padding-bottom: 11px;
-        color: #575757;
-        text-align: center;
-        cursor: pointer;
+        font-size: 14px;
+    }
+  }
+
+  @media (max-width: 1200px){
+    .rule-tab__detail{
+        font-size: 12px;
+    }
+  }
+
+  @media (max-width: 992px){
+    .rule-tab__detail{
+        font-size: 14px;
+    }
+    // .rule-tab__detail{
+    //     width: 100% !important;
+    // }
+  }
+
+  @media (min-width: 992px) {
+    .rule-tab__detail:hover {
+      background-color: #c7c5cd;
+      transition: 0.3s ease-in-out;
+    }
+  }
+
+  @media (max-width: 768px){
+    .rule-tab__detail{
+        font-size: 12px;
+    }
+    .rule-body{
+        padding: 16px 9px;
+        min-height: 80vh;
     }
 
-    .rule-active{
-        background-color: #C7C5CD;
-        color: #000000;
+     .body-title,  .body-title__condition,  .body-introl{
+        font-size: 12px;
+        padding-bottom: 13px;
+     }
+
+     .content-detail, .ant-collapse-header-text{
+        font-size: 12px;
+        line-height: 14.52px;
+     }
+
+     .content-detail{
+        padding-left: 0;
+     }
+     
+     .content-introl{
+        padding-bottom: 25px;
+     }
+
+     .content-detail.how-bid__content{
+        padding-left: 10px;
+     }
+     
+     .ant-collapse-expand-icon{
+        top: 50%;
+        height: max-content;
+        transform: translateY(-50%);
+     }
+
+     .container-faq .ant-collapse-header-text{
+        font-style: italic;
     }
 
-    .rule-container__tab{
-        justify-content: center;
+   .ant-collapse-item > .ant-collapse-header{
+    padding: 13px 0 !important;
+   }
+
+   .container-faq .ant-collapse-content-box div,.container-faq  .ant-collapse-content-box p{
+    font-size: 12px;
+    font-weight: 500;
+    color: #000000;
+    margin-bottom: 0rem;
+   }
+
+   .tc_container{
+    padding: 16px 12px;
+   }
+
+ .tc_container .ant-collapse-content-box div{
+    font-size: 12px;
+    font-weight: 500;
+    color: #000000;
+    margin-bottom: 0.75rem;
+   }
+ .ant-collapse .ant-collapse-content>.ant-collapse-content-box{
+
+ }
+
+ .ant-table-wrapper{
+    min-width: 100%;
+    overflow: auto;
+ }
+
+  }
+
+  @media (max-width: 400px){
+    .rule-tab__detail{
+        font-size: 10px;
     }
 
-    @media (min-width: 992px){
-        .rule-tab__detail:hover{
-            background-color: #C7C5CD;
-            transition: 0.3s ease-in-out;
-        }
-    }
+   
+  }
 }

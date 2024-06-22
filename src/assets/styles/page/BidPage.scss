@@ -64,7 +64,7 @@
     margin-bottom: 17px;
   }
 
-  .d-flex:last-child{
+  .d-flex:last-child {
     margin-bottom: 0;
   }
 
@@ -362,6 +362,10 @@
       border-radius: 12px;
     }
 
+    .header-main__content.mt-13 {
+      min-height: 640px;
+    }
+
     .tab-hover:hover {
       background-color: #f5b78a;
       transition: 0.3s ease-in-out;
@@ -523,7 +527,7 @@
       margin-right: 12px;
     }
   }
-  
+
   .header-main__content.mt-13 {
     background-color: white;
     border-radius: 12px;

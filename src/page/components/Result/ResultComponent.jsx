@@ -191,14 +191,16 @@ const ResultComponent = ({
                             : t("result_page.no_winner")}
                         </div>
                       </div>
-                      <div>
-                        {name ? (
-                          <div className="result-contact__name">{name}</div>
-                        ) : null}
-                        {isdn ? (
-                          <div className="result-contact__isdn">{isdn}</div>
-                        ) : null}
-                      </div>
+                      {+status !== 5 ? (
+                        <div>
+                          {name ? (
+                            <div className="result-contact__name">{name}</div>
+                          ) : null}
+                          {isdn ? (
+                            <div className="result-contact__isdn">{isdn}</div>
+                          ) : null}
+                        </div>
+                      ) : null}
                     </div>
                   </div>
                 </div>

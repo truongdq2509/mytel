@@ -82,7 +82,6 @@ const TabUpcoming = ({ upNextProduct = [] }) => {
           {upNextProduct.map((item, index) => {
             return <div key={`upcoming_${index}`}>{getItemProduct(item)}</div>;
           })}
-          {/* nani */}
           <ModalDescriptionBid
             openModal={openModal}
             setOpenModal={setOpenModal}

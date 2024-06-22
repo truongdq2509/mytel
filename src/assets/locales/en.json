@@ -72,11 +72,126 @@
 		"market_price": "Market Price",
 		"win_price": "Win Price"
 	},
-	"rule_page":{
-		"rules": "RULES",
-		"rule": "Rule",
-		"how_to _bid": "HOW TO BID",
-		"frequently_asked_questions": "FREQUENTLY ASKED QUESTIONS",
-		"T&C": "T&C"
-	}
+	"rule_page": {
+    "rules": "RULES",
+    "rule": "Rule",
+    "how_to _bid": "HOW TO BID?",
+    "frequently_asked_questions": "FREQUENTLY ASKED QUESTIONS",
+    "T&C": "T&C",
+    "body_rules": {
+      "content_rules_title": "Rules and regulations",
+      "content_rules_conditions": "Conditions of a valid bid/offer",
+      "content_rules": "The MMK currency used in the auction cycle refers to the game. Bid currency does not represent actual money./&nPlayers can only bid on single digits. The minimum bid value is 1000 MMK and you can bid in increments of 50. For example: 1000 1050 1100./&nA bid is not equal to any value. A player with a bid can place a bid as long as the auction prize item is between the pre-defined detailed values ​​(between 1000 MMK and 2,000,000 MMK)./&nAfter the player has placed their offer/bid; Players will receive an SMS informing them whether the bid/offer they have made is the absolute minimum./&nThe MMK currency used in the auction cycle refers to the game. Bid currency does not represent actual money./&nPlayers can only bid on single digits. The minimum bid value is 1000 MMK and you can bid in increments of 50. For example: 1000 1050 1100./&nA bid is not equal to any value. A player with a bid can place a bid as long as the auction prize item is between the pre-defined detailed values ​​(between 1000 MMK and 2,000,000 MMK)./&nAfter the player has placed their offer/bid; Players will receive an SMS informing them whether the bid/offer they have made is the absolute minimum./&nThe MMK currency used in the auction cycle refers to the game. Bid currency does not represent actual money./&nPlayers can only bid on single digits. The minimum bid value is 1000 MMK and you can bid in increments of 50. For example: 1000 1050 1100./&nA bid is not equal to any value. A player with a bid can place a bid as long as the auction prize item is between the pre-defined detailed values ​​(between 1000 MMK and 2,000,000 MMK)./&nAfter the player has placed their offer/bid; Players will receive an SMS informing them whether the bid/offer they have made is the absolute minimum."
+    },
+    "body_how_to_bid": {
+      "content_bid_how_to_bid": "HOW TO BID",
+      "content_bid_instruc": "Instruction",
+      "content_instruc": "Register and login with your Mytel number and Mytel PIN./&nSelect and purchase your favorite bidding package./&nGo to the bidding area and enter the bid value./&nWrite the lowest and only value you think someone will pay for the auction prize item. Click 'Place a bid' and you can play.",
+
+      "content_bid_tips": "Tips to win",
+      "content_tips": "You can bid multiple times, the more you bid, the higher your chances of winning./&nYou do not have to pay for the product at the price you place. You just need to pay fee for bidding times/&nAuction is a game where many users participate in bidding for a product. With Reverse Auction game, you bid as low as possible. However, there can be many users offering the same price while there is only 1 product. There fore, Mytelbid offers the following rule for selecting winners: <i>Your price must be the lowest and only price (only you bid at that price). Among those unique prices, the system will filter for the lowest price -> find the winner</i>"
+    },
+
+    "body_FQA": {
+      "what_aution": {
+        "title": "What is an auction?",
+        "content": "The auction service, for example auction programs, offers minimum, To get the prize item at the unique and valid offer/bid price/&nIt is a competitive and interactive game. (*The amount of money an individual is willing to offer to obtain a particular prize)"
+      },
+      "how_register": {
+        "title": "How do I register?",
+        "content": "Subscribe to SMS Channel/&n+ ON1 for daily package (2bids per day) and/&n+ ON7 for weekly package (10bids per week)./&n+ ON30 for monthly package (30bids per month)./&nYou can subscribe by texting 527./&n527 to purchase a single use package or 1 for BID Package and 'B1'. 2 'B2' for BIDS Package and 'B5' for 5 BIDS Package and 'B10' for 10 BIDS Package and 20 BIDS Package can also be sent and purchased as 'B20'./&nFirst, to purchase through the web link <u>(reverseauction.com.mm) ;  A player needs to register or login and can purchase additional packages by clicking 'Buy More Auctions'.<u/>"
+      },
+
+      "what_price": {
+        "title": "What is the price?",
+        "content": {
+          "package": "Package",
+          "price": "Price",
+          "number_of_bids": "Number of bids",
+          "text": "Text",
+          "bidding_times": "Bidding times",
+          "expiry_date": "Expiry date",
+
+          "daily": "Daily",
+          "While_spitting": "While spitting",
+          "monthly": "Monthly",
+          "day": "day",
+          "days": "days"
+        }
+      },
+
+      "how_play": {
+        "title": "How to play?",
+        "content": "To bid on the web, you must first log in to your account. The next step is to set a minimum and maximum bid for the bid. As a final step, click 'Bid'."
+      },
+      "what_prize": {
+        "title": "What will be prize?",
+        "content": "The prize awarded to the winner will be the same as the prize item he/she bid on during the bidding cycle."
+      },
+      "how_won": {
+        "title": "How do you know if you won?",
+        "content": "The winner will be contacted via SMS after the auction. This SMS will say that player is the winner of the auction and will be contacted by 966 (Mytel Customer Service Center)."
+      },
+      "if_prize": {
+        "title": "If I am a winner, how do I claim the prize?",
+        "content": "Winners will be contacted by Mytel Customer Service Center and prizes will be delivered at Mytel headquarters."
+      }
+    },
+    "body_T&C": {
+      "introduction": {
+        "title": "1. Introduction",
+        "content": "Access to and use of this website is governed by the terms and conditions set forth below. The terms and conditions contained in this document will apply and it will be understood that they form part of all actions and contracts through the offer and commercialization systems included on this website. INTERNATIONAL MYANMAR CO., LTD (hereinafter 'Mytel'; 'Company' or 'Provider')./&nThese terms and conditions contain all information related to the 'Auction' service (hereinafter, 'Service' or 'Auction')./&nIn order to use the Service, users are required to read all information in our Terms and Conditions in advance. Similarly, It should be noted that this document is an agreement between Mytel and customers; Therefore, it is important that the user reads and fully understands these terms./&nto use the Service; By accessing and registering, you agree to these terms and conditions. Mytel reserves the right to update or amend the detailed terms and conditions below at any time without prior notice./&nTherefore, it is recommended that you read the terms and conditions whenever playing this bidding service. We will make our best efforts to ensure the uninterrupted availability of the services of this website and the absence of possible reporting errors./&nHow ever, problems caused by the nature of the Internet are not guaranteed./&nSimilarly, Access to the Service may be suspended or restricted to perform repairs or maintenance or to introduce new products or services. The frequency and duration of such suspensions or restrictions will be published./&nService usage depends on data usage (internet usage)."
+      },
+
+      "participant": {
+        "title": "2. Participant",
+        "content": "Participants must meet the following requirements./&nadvance payment; Must be two-way Mytel subscribers with Postpaid or Controlling Mobile lines (ie they can make and receive calls)./&nPlayers must first log into a Mytel Auction account to access the website <a href='https://reverseauction.com.mm/' target='_blank'><span class='focus'>(reverseauction.com.mm)</span></a>./&nUsers must “click” “Create account” to register if they have not yet registered for a MytelBID account. Once registered, you will be able to log in with your Mytel number and Mytel PIN. Finally, Choose to purchase the auction package of your choice."
+      },
+      "description_service": {
+        "title": "3. Description of the Service",
+        "content": "The bidding service is a minimum; A unique and valid offer/bidder is an interactive game designed to emulate auction programs where the highest bidder wins a prize./&nTo play bidding Users must register for the auction service./&nAfter successfully registering for the auction service; Users can participate in the auction of products offered daily as long as they have bid times. The winner will receive the auction item as a prize and there can be a maximum of one winner per auction. Low during the auction cycle; In the absence of a unique and valid bid/offer. There are no winners for that auction item. Bidding hours are from Monday 17:00 each week to the following Monday 16:59. Bidders are not allowed to participate in the auction outside of the specified hours."
+      },
+      "instructions_auction": {
+        "title": "4. Instructions for participating in the auction",
+        "content": "To participate in the auction, you need to register for the auction service and purchase the auction package./&nThere are 2 ways to purchase additional packages for bidding./&n- How to buy by SMS:/&n<ul>+ 'B1' to get 1 bid fee/&n+ 'B2' to get 2 bids/&n+ 'B5' to get 5 bids/&n+ 'B10' to get 10 bids/&n+ 'B20' to get 20 bids/&n+ ON1 to get daily package (2bids per day)./&n+ ON7 to get weekly package (10bids per week)./&n+ ON30 to get monthly package (30bids per month)./&nYou can get it by sending a message to 527.<ol>- Go to the link on the web <a href='https://reverseauction.com.mm/' target='_blank'><span class=focus> (reverseauction.com.mm)</span></a> and follow these instructions to purchase. As the first step, you must first register or login. And then you have to click on 'Buy more auction fee'. Then you will be able to see the various amount of auction packages available for purchase. You can choose the amount you want and buy packages. In the next step, you will receive your purchased bids and start bidding./&n- Bids must be placed within the specified time (date) for auction items./&n- Visit the <a href='https://reverseauction.com.mm/' target='_blank'><span class=focus>(reverseauction.com.mm)</span></a> website to participate in the auction . Please login to your account first. Then enter the lowest and highest bid amount and click Bid'./&n- The minimum bid fee is 1,000 Myanmar kyats, and you can bid in increments of 50 kyats at a time. The currency used for bidding (Myanma Kyat) is only the reference amount used in the game. Bid fees are not real money./&n- You can bid in increments of 50 kyats at a maximum of 1 digit at a time. For example - 1000 kyats or 1050 kyats or 1100 kyats etc. can be bid. 1130 kyats cannot be posted as an auction fee./&n- The auction fee is not predetermined. Bidders may bid on the auction item at their own discretionary bid amount, as long as it falls within the bid criteria of the previous bid./&n- After placing a bid, you will receive an SMS message informing you that the bid amount is the lowest and only bid price (or not the lowest and only bid price).</ol></ul>"
+      },
+      "rates": {
+        "title": "5. Rates",
+        "the_price": "The price of each package is the user's Prepaid, It will be deducted from the basic balance (recharge) of Postpaid.",
+        "content": "The number of bids received when purchasing a daily package expires at the end of a day, regardless of whether the user uses the package's bids or not./&nThe number of bids received when purchasing a weekly package expires at the end of the week, whether or not the user uses the package's bids./&nThe number of bids received when purchasing a monthly package expires at the end of the month regardless of whether the user uses the package's bids or not./&nThe above subscription packages will delete unused bids at the end of the specified time and will not roll over to the next time cycle./&n- For single use package (retail)/&nBid counts have no expiration date/&n<div class=pt-2>Subtract the number of bids</div>/&n- If the user has both a single-use package and a subscription package, after the user successfully bids, the number of bids will be deducted in the following order:/&n- The number of bids received from the subscription package/&n- Number of bids received from a single-use package"
+      },
+      "bid_winner": {
+        "title": "6. Bid Winner",
+        "content": "During the session (date), the winning bidder will be selected by the MySQL system. This system uses hard code to automatically select an auction winner based on the lowest unique bid price. And that offer/bid is valid. the lowest during the auction cycle; As long as there is a unique and valid bidder, there will be a winner./&nIf there is no lower and unique (and valid) bid/offer in the bidding cycle. A winner will not be announced for that auction item. Mytel may use the auction item in future auctions./&nThere can be a maximum of one (1) winner per auction./&nWinner will be contacted after auction. This communication will be done via SMS./&nThe winner will receive an SMS message indicating that they are the winner of the auction and will be notified that Mytel customer service (966) will contact them./&nThe winner will sign the 'Award Ceremony' and one copy will remain with the winner and the other copy will remain in Mytel's possession."
+      },
+
+
+
+      "prize_award": {
+        "title": "7. Prize Selection; communication and the procedure for awarding the award",
+        "content": "The award ceremony was held at the Mytel headquarters. Mytel customer service (966) will contact the winner by phone to request the information below./&nfull names and surnames; National Identity Document (DNI) registration number; e-mail Address and reference. If the winner does not answer the call or their phone is turned off, they will be called back 4 more times (1 call per day, 5 times total). If the winner cannot be contacted thereafter, the prize will be returned to the list and there is no right to claim the prize./&nEach prize will be delivered personally to the owner of the telephone line registered with Mytel and winners must present their personal ID at the time of prize collection. If the owner of the telephone line cannot come to collect the prize; A representative must be appointed so that he or she can withdraw on his or her behalf. In order to do so, the representative must present to the Notary Public the relevant power of attorney and a copy of his ID. Mytel will keep a copy of the power of attorney and a copy of the representative's DNI./&nIf the winner does not attend to receive the prize on the agreed date; From the date of renegotiation, you will have seven (7) working days to go to the office or to the relevant department. In order to do that, Must be negotiated in advance. Only then can it be delivered on the pre-adjusted prize acceptance date. After this period, In the event that the winner has not yet collected the prize; The prize will be returned to inventory and will not be claimed./&nPrizes are non-endorsable and/or refundable. Prizes are non-transferable. The winning customer collects the prize money; negotiation No exchange or other redemption of the prize is possible. Prize roll, No change or substitution or other benefits will be claimed./&nRules of Award/&nAfter the auction ends, the prize will be awarded to the winner of the auction. As the prize distribution plan will be carried out only after the winner has emerged, the goods will be out of stock; There are many price differences and changes. MytelBid has established the following rules for these matters./&nIn the event of a product out of stock in the market, the winner will receive a prize amount equal to the value of the prize product. (Only the amount shown on the MytelBid website is the official amount.)/&nA prize will be awarded if the product in the market at the time of award is less than 10% of the maximum difference from the price listed on the MytelBid website. If the product is 10% more than the price listed on the MytelBid website, the winner will be awarded an amount equal to the value of the prize product (as listed on the MytelBid website)./&nAccording to ReverseAuction's rules, a person can only bid with two validly registered sim cards, and if the sim card information and the winner's registration information do not match, ReverseAuction will judge it as a fraud. If the winner's information and SIM card registration information do not match, he/she will be considered ineligible to receive the prize and ReverseAuction will continue to screen other winners and award the prize. (Sim card registration can be easily done on MyID's eKYC"
+      },
+      "important_point": {
+        "title": "8. Important point",
+        "content": "The product prize to be auctioned in a given cycle is not negotiable./&nImages of prize items are sample images/&nTo contact the Mytel service center, the customer can call 966 from their Mytel number (toll-free) or email to <a href='auction@arabicatech.vn' target='_blank'><span class='focus'>auction@arabicatech.vn</span></a>/&n or <a href='customerservice@reversauction.com.mm' target='_blank'><span class='focus'>customerservice@reversauction.com.mm</span></a>."
+      },
+      "privacy_data": {
+        "title": "9. Privacy Policy and Processing of Personal Data",
+        "content": "MYTEL is legal, Privacy Protection Act; We are a private company that protects the privacy and information of our prospective clients in accordance with the provisions of its Bylaws and Supplemental Regulations, loss, Abuse change The necessary technical and organizational measures are adopted for the purpose of preventing unauthorized access and theft of personal data provided by personal data owners. Similarly, The full name, which is necessary to fulfill the purposes of the MYTEL ARCADE platform. We ensure that measures to collect your personal information, such as emails and identification documents, are continuously improved./&nMYTEL complies with its obligation to make available to the personal data owner all relevant information related to the processing of their personal data./&nIdentity and Address of Owner of Data Banks:/&nName------ Registration------- Address--------/&nPersonal information provided by customers will be stored in the 'CUSTOMERS' database owned by Mytel./&nTechnology necessary to ensure the security and confidentiality of your personal information at MYTEL; All legal and institutional measures are in place./&nValidity of your personal information; permission Proportionality quality protecting security and other personal information; filter them; We will store your personal information in consideration of preventing the dissemination or any activity that endangers your personal information./&nThe owner of the personal information regarding their personal information according to the current law. Information Rights; Access updating; participation repair Can be deleted and contradicted. To do so, you can go to Mytel Service Center and fill and submit the application form./&nIn the same way, You can contact us at <a href='serviciospdp@mytel.com.mm .' target='_blank'><span class='focus'>serviciospdp@mytel.com.mm</span></a>./&nIn both ways, The client must attach the following documents:/&n<div class=pl-2>- Plain and legible copy of National Registration Document./&n<div class=pl-2>- A copy of the special power of attorney, plain and prominent, for power of attorney.<div>/&n<div class=pl-2>- Documents supporting the request, if required.<div></div>/&nMYTEL reserves the right to modify and/or update this privacy policy; adapt it to future regulatory changes; We will continuously develop new options to provide better service quality or other options related to this policy./&nLearn more about our data protection and privacy policy at :<a href='https://reverseauction.com.mm/' target='_blank'><span class='focus'>https://reverseauction.com.mm</span></a>."
+      },
+      "personal_rights": {
+        "title": "10. Personal Data Rights",
+        "content": "If selected as a winner, the winner will provide Mytel with their full name; place of residence You acknowledge that you are given free choice of image for appearance and advertising in advertising media./&nIn general, awarding prizes during or after the Promotion Period; All contest activities, including testimonials, do not make any claim to image or sound rights. It shall be used only for announcing the results of the competition and recognizing the prize recipients./&nTo maintain transparency for the Service and to refrain from using automated tools to bid for users (at the expense of the rights of other users); If any unusual bidding behavior is detected, ReverseAuction will ban that user using the service ban rules./&nSpecifically: Listings exceeding 2 bids per second will be considered a violation of the rules."
+      },
+
+      "exemption_auctions": {
+        "title": "11. Exemption for Use of Content and Service Hosted in 'Auctions'",
+        "content": "Photos, Mytel does not control the content of the auctions for information or other content that users may access. Therefore, Mytel is not responsible for them./&nMytel is not responsible for any misuse by the user of the Service; This is the sole responsibility of any user accessing the Content./&nThe nature of Mytel's improper use and misuse of user access codes for the Service; We are not responsible for their loss or forgetting and their improper use by unauthorized third parties."
+      },
+      "law_professionalism": {
+        "title": "12. Law Enforcement and Professionalism",
+        "content": "Any relationship between the Subscriber and Mytel will be governed in full accordance with the laws of Myanmar and will be handled by Myanmar judges."
+      }
+    }
+  }
 }

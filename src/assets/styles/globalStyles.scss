@@ -44,3 +44,13 @@ html {
 	-webkit-box-orient: vertical;
 	text-overflow: ellipsis;
 }
+
+.focus{
+	color: #F97A1C;
+}
+
+@media (max-width: 992px){
+	.mobile_pb__20{
+		margin-bottom: 20px;
+	}
+}
