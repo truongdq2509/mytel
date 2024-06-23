@@ -1,0 +1,294 @@
+.container-account {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+	height: 100%;
+
+	&-info {
+		padding: 35px;
+		background-color: #fff;
+		border-radius: 12px;
+		box-shadow: 0px 4px 10px 0px rgba(8, 19, 74, 0.1);
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 24px;
+		// height: 100%;
+
+		&-user {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: 15px;
+
+			.avarta {
+				width: 202px;
+				height: 202px;
+				background-color: rgba(223, 220, 233, 1);
+				background-position: center;
+				background-repeat: no-repeat;
+				background-size: cover;
+				border-radius: 50%;
+				position: relative;
+
+				.icon-camera {
+					position: absolute;
+					right: 15px;
+					bottom: 6px;
+					width: 44px;
+					height: 44px;
+					background-image: url(../../images/iconCamera.svg);
+					background-position: center;
+					background-repeat: no-repeat;
+					background-size: cover;
+					cursor: pointer;
+				}
+			}
+
+			.name {
+				color: rgba(87, 87, 87, 1);
+				font-size: 20px;
+				font-weight: 400;
+				line-height: 24.2px;
+			}
+		}
+
+		&-foot {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			gap: 50px;
+
+			.total-bid {
+				position: relative;
+
+				&-icon {
+					position: absolute;
+					top: 50%;
+					left: -26px;
+					transform: translateY(-50%);
+					width: 52px;
+					height: 52px;
+					background-image: url(../../images/iconBidAccount.svg);
+					background-position: center;
+					background-repeat: no-repeat;
+					background-size: cover;
+				}
+
+				&-number {
+					height: 37px;
+					width: 203px;
+					border-radius: 50px;
+					background: rgba(223, 220, 233, 1);
+					display: flex;
+					align-items: center;
+					justify-content: center;
+
+					span {
+						font-size: 16px;
+						font-weight: 500;
+						line-height: 19.36px;
+					}
+				}
+			}
+
+			.buy-more-bid {
+				height: 42px;
+				width: 240px;
+				background-color: $background-color-title;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				gap: 4px;
+				border-radius: 30px;
+
+				&:hover {
+					cursor: pointer;
+					background-color: $color-title-hover;
+				}
+
+				.icon-cart {
+					width: 32px;
+					height: 32px;
+					background-image: url(../../images/iconCart.svg);
+					background-position: center;
+					background-repeat: no-repeat;
+					background-size: cover;
+				}
+
+				.buy-more-text {
+					font-size: 16px;
+					font-weight: 500;
+					line-height: 19.36px;
+					color: #fff;
+				}
+			}
+		}
+	}
+
+	&-link {
+		padding: 30px 50px;
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+		height: 100%;
+		background-color: #fff;
+		box-shadow: 0px 4px 10px 0px rgba(8, 19, 74, 0.1);
+		border-radius: 12px;
+
+		&-item {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			padding-bottom: 20px;
+			border-bottom: 1px solid rgba(87, 87, 87, 1);
+			cursor: pointer;
+
+			.box-link {
+				display: flex;
+				align-items: center;
+				gap: 24px;
+
+				.icon-link {
+					width: 49px;
+					height: 49px;
+					background-repeat: no-repeat;
+					background-size: cover;
+				}
+
+				&-label {
+					color: rgba(87, 87, 87, 1);
+					font-family: Inter;
+					font-size: 16px;
+					font-weight: 500;
+					line-height: 19.36px;
+					text-transform: capitalize;
+				}
+			}
+
+			.icon-next {
+				width: 5px;
+				height: 10px;
+				background-image: url(../../images/arrowRight.svg);
+				background-repeat: no-repeat;
+				background-size: contain;
+			}
+		}
+	}
+}
+
+@media(max-width:991.98px) {
+	.container-account {
+		gap: 0;
+
+		&-info {
+			padding: 0px;
+			margin: 0 -15px;
+			border-radius: 0px;
+			gap: 8px;
+			position: relative;
+			box-shadow: none;
+
+			// height: 100%;
+			&-bgr {
+				height: 80px;
+				background-color: $background-color-title;
+				width: 100%;
+				position: absolute;
+			}
+
+			&-user {
+				gap: 8px;
+				margin-top: 28px;
+
+				.avarta {
+					width: 104px;
+					height: 104px;
+
+					.icon-camera {
+						width: 25px;
+						height: 25px;
+						right: 5px;
+						bottom: 3px;
+					}
+				}
+
+				.name {
+					font-size: 12px;
+					line-height: 14.52px;
+				}
+			}
+
+			&-foot {
+				gap: 14px;
+				width: 100%;
+
+				.total-bid {
+
+					&-icon {
+						left: -5px;
+						width: 36px;
+						height: 36px;
+					}
+
+					&-number {
+						height: 31px;
+						width: 150px;
+						border-radius: 15px;
+
+						span {
+							font-size: 12px;
+							line-height: 14.52px;
+						}
+					}
+				}
+
+				.buy-more-bid {
+					height: 31px;
+					width: 150px;
+					gap: 4px;
+					border-radius: 17px;
+
+					&:hover {
+						background-color: $background-color-title;
+					}
+
+					.icon-cart {
+						width: 32px;
+						height: 32px;
+					}
+
+					.buy-more-text {
+						font-size: 12px;
+						line-height: 14.52px;
+					}
+				}
+			}
+		}
+
+		&-link {
+			padding: 50px 15px 120px;
+			margin: 0 -15px 0;
+			box-shadow: none;
+			border-radius: 0;
+
+			&-item {
+				.box-link {
+					display: flex;
+					align-items: center;
+					gap: 8px;
+
+					.icon-link {
+						width: 35px;
+						height: 35px;
+					}
+
+					&-label {
+						font-size: 12px;
+						line-height: 14.52px;
+					}
+				}
+			}
+		}
+	}
+}

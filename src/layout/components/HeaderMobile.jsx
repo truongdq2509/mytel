@@ -1,29 +1,30 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import PATH from "../../config/PATH";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
 import { useEffect, useState } from "react";
 import { getTurnRemain } from "../../Redux/futures/account/actions";
-import ModalLogin from "../../component/ModalLogin";
 import CurrentTime from '../../component/CurrentTime';
+import { curStateAccount } from '../../Redux/selector';
 
 function HeaderMobile({ user }) {
 	const { t } = useTranslation();
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
+	const selectorAccount = useSelector(curStateAccount);
 	const [bidTotal, setBidTotal] = useState(0);
-	const afterGetTurnRemain = (data, isLoading) => {
-		if (data) {
-			const bidTotal = data?.data?.reduce((acc, pack) => {
+	console.log(user);
+	useEffect(() => {
+		if (selectorAccount.remainTurn) {
+			const bidTotal = selectorAccount.remainTurn?.reduce((acc, pack) => {
 				return acc + pack?.turn;
 			}, 0);
-			setBidTotal(bidTotal);
+			setBidTotal(bidTotal)
 		}
-	};
+	}, [selectorAccount.remainTurn])
 	useEffect(() => {
-		dispatch(getTurnRemain({ callback: afterGetTurnRemain }));
+		dispatch(getTurnRemain({}));
 	}, [user]);
-	const [openModalLogin, setOpenModalLogin] = useState(false);
 	return (
 		<>
 			{user ? (

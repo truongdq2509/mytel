@@ -5,6 +5,11 @@ import BidPage from '../page/BidPage';
 import Result from '../page/Result';
 import Rule from '../page/Rule';
 import LoginMobile from '../page/LoginMobile';
+import AccountPage from '../page/AccountPage';
+import PackagePage from '../page/PackagePage';
+import PackageHistory from '../page/PackageHistory';
+import AuctionRecord from '../page/AuctionRecord';
+import ChangePassword from '../page/ChangePassword';
 
 export const routerList = [
 	{
@@ -35,6 +40,31 @@ export const routerList = [
 	{
 		path: PATH.LOGIN,
 		component: LoginMobile,
+		layout: LayoutApp
+	},
+	{
+		path: PATH.ACCOUNT,
+		component: AccountPage,
+		layout: LayoutApp
+	},
+	{
+		path: PATH.PACKAGE,
+		component: PackagePage,
+		layout: LayoutApp
+	},
+	{
+		path: PATH.PACKAGE_HISTORY,
+		component: PackageHistory,
+		layout: LayoutApp
+	},
+	{
+		path: PATH.AUCTION_RECORD,
+		component: AuctionRecord,
+		layout: LayoutApp
+	},
+	{
+		path: PATH.CHANGE_PASSWORD,
+		component: ChangePassword,
 		layout: LayoutApp
 	},
 ]

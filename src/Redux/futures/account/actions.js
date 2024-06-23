@@ -1,6 +1,6 @@
 
 import API_PATH from '../../../config/API_PATH'
-import { GET_CURRENT_USER, GET_TURN_REMAIN, LOGIN_OTP, LOGIN_PASSWORD, REQUEST_OTP, VERIFY_OTP } from './contants'
+import { GET_AUCTION_RECORD, GET_CURRENT_USER, GET_PACKAGE_HISTORY, GET_TURN_REMAIN, LOGIN_OTP, LOGIN_PASSWORD, LOGOUT_USER, REQUEST_OTP, UPDATE_PASSWORD, VERIFY_OTP, VERIFY_OTP_PASSWORD } from './contants'
 
 
 export const getCurrentUser = data => {
@@ -70,6 +70,66 @@ export const verifyOtp = data => {
 		meta: {
 			method: 'POST',
 			url: API_PATH.verify,
+			query: data.query || {},
+			callback: data.callback || null
+		},
+	}
+}
+export const getPackageHistory = data => {
+	return {
+		type: GET_PACKAGE_HISTORY,
+		data,
+		meta: {
+			method: 'GET',
+			url: API_PATH.getPackageList,
+			query: data.query || {},
+			callback: data.callback || null
+		},
+	}
+}
+export const getAuctionRecord = data => {
+	return {
+		type: GET_AUCTION_RECORD,
+		data,
+		meta: {
+			method: 'GET',
+			url: API_PATH.getBidHistory,
+			query: data.query || {},
+			callback: data.callback || null
+		},
+	}
+}
+export const verifyOtpPassword = data => {
+	return {
+		type: VERIFY_OTP_PASSWORD,
+		data,
+		meta: {
+			method: 'POST',
+			url: API_PATH.verifyChangePass,
+			query: data.query || {},
+			callback: data.callback || null
+		},
+	}
+}
+export const updatePassword = data => {
+	return {
+		type: UPDATE_PASSWORD,
+		data,
+		meta: {
+			method: 'POST',
+			url: API_PATH.updatePassword,
+			query: data.query || {},
+			callback: data.callback || null
+		},
+	}
+}
+export const logoutUser = data => {
+	return {
+		type: LOGOUT_USER,
+		data,
+		meta: {
+			method: 'POST',
+			url: API_PATH.logout,
 			query: data.query || {},
 			callback: data.callback || null
 		},

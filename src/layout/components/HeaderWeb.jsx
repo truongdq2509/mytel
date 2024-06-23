@@ -7,27 +7,28 @@ import _ from "lodash";
 import CurrentTime from '../../component/CurrentTime';
 import ModalLogin from '../../component/ModalLogin';
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getTurnRemain } from '../../Redux/futures/account/actions';
+import { curStateAccount } from '../../Redux/selector';
 
 function HeaderWeb({ user }) {
 	const { t } = useTranslation();
 	const location = useLocation()
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
+	const selectorAccount = useSelector(curStateAccount);
 	const [bidTotal, setBidTotal] = useState(0)
-
 	const [openModalLogin, setOpenModalLogin] = useState(false)
-	const afterGetTurnRemain = (data, isLoading) => {
-		if (data) {
-			const bidTotal = data?.data?.reduce((acc, pack) => {
+	useEffect(() => {
+		if (selectorAccount.remainTurn) {
+			const bidTotal = selectorAccount.remainTurn?.reduce((acc, pack) => {
 				return acc + pack?.turn;
 			}, 0);
 			setBidTotal(bidTotal)
 		}
-	}
+	}, [selectorAccount.remainTurn])
 	useEffect(() => {
-		dispatch(getTurnRemain({ callback: afterGetTurnRemain }))
+		dispatch(getTurnRemain({}))
 	}, [user])
 	const { id = null, idResult = null } = useParams();
 	const listTab = [

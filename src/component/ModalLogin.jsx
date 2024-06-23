@@ -90,7 +90,6 @@ function ModalLogin({ open, setOpenModalLogin }) {
 		}
 	}
 	const afterRequestOtp = (data, isLoading) => {
-		console.log(data);
 		if (data) {
 			setOpenModalLogin(false);
 			setOpenModalConfirm(true);
@@ -305,7 +304,7 @@ function ModalLogin({ open, setOpenModalLogin }) {
 						</div>
 						<div className="label-input">
 							{t("modal.modal_login.resend_otp")}{" "}
-							<span>{t("modal.modal_login.resend")}</span>
+							<span onClick={handleOk}>{t("modal.modal_login.resend")}</span>
 						</div>
 					</div>
 				</div>

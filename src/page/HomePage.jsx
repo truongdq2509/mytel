@@ -12,10 +12,13 @@ import { currentDate } from '../helper/const';
 import moment from 'moment';
 import { setIdCurrentProduct } from '../Redux/futures/rightWeb/actions';
 import ModalDescriptionBid from '../component/ModalDescriptionBid';
+import { useNavigate } from 'react-router';
+import PATH from '../config/PATH';
 
 function HomePage() {
 	const { t } = useTranslation();
 	const dispatch = useDispatch()
+	const navigate = useNavigate()
 	const selectorHome = useSelector(curStateHome)
 	const isPcMin = useMediaQuery(`(max-width: ${mediaQueryPoint.xxl}px)`);
 	const isTablet = useMediaQuery(`(max-width: ${mediaQueryPoint.lg}px)`);
@@ -118,7 +121,7 @@ function HomePage() {
 			{upNextProduct.length > 0 ? <div className="container-home-current-product">
 				<div className="container-home-current-product-head">
 					<div className="title">{t("home_page.upcoming_action")}</div>
-					<div className="detail">{t("home_page.detail")}</div>
+					<div onClick={() => navigate(`${PATH.BID}/upcoming`)} className="detail">{t("home_page.detail")}</div>
 				</div>
 				<div className="container-home-current-product-content-upcoming">
 					<div className="box-slide">

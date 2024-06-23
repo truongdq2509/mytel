@@ -18,6 +18,8 @@ function LayoutApp({ children }) {
 	const afterGetUserBid = (data, isLoading) => {
 		if (data) {
 			setUserInfo(data.data);
+		} else {
+			setUserInfo(null)
 		}
 	};
 	useEffect(() => {

@@ -1,78 +1,79 @@
 {
-	"header":{
-		"home":"Home",
-		"bid":"Bid",
-		"result":"Result",
-		"rule":"Rule",
-		"account":"Account",
-		"login":"Login"
-	},
-	"right_page":{
-		"number_people":"Participants Now",
-		"text_foot1":"You are holding the advantage.",
-		"text_foot2":"The price you place is the lowest and only one now.",
-		"text_foot3":"Let’s join the auction now and grasp chance",
-		"text_foot4":"to own high - value prizes from Mytelbid.",
-		"text_foot5":"Oops! You've lost your advantage",
-		"text_foot6":"_NUMBER_ people have the same price as you",
-		"text_foot7":"_NUMBER_ people bid a price lower than yours.",
-		"bid_report":"Bid report",
-		"the_last":"The last",
-		"the_first":"The first",
-		"bid_price":"Bid price"
-	},
-	"home_page":{
-		"current_action":"Current Auction",
-		"upcoming_action":"Upcoming Auctions",
-		"detail":"Detail",
-		"code":"Item code number: _CODE_",
-		"time_end":"The auction will end after:",
-		"product_code":"Product code: _CODE_",
-		"bid_now":"Bid now"
-	},
-	"bid_page":{
-		"auction_code":"Account code",
-		"quantity":"Quantity",
-		"start_time":"Start time",
-		"end_time":"End time",
-		"tip_to_win": "Tips to win",
-		"confirm_bid":"Confirm to place the price _PRICE_ MMK for the _NAME_ ?",
-		"code_number":"Code Number: _CODE_",
-		"title_description":"Material Information",
-		"gift":"Gift",
-		"description":"Description",
-		"running":"Running",
-		"upcoming": "Upcoming"
-	},
-	"modal":{
-		"modal_login": {
-			"title":"welcome to MytelBid",
-			"title_otp":"Login with OTP",
-			"phone_number":"Phone Number",
-			"password":"Password",
-			"phone_number_placeholder":"Enter Mytel Phone Number",
-			"password_placeholder":"Enter your password",
-			"login_with_otp":"or Login with OTP",
-			"login_with_password":"or Login with a password",
-			"login_otp":"Enter with SMS",
-			"title_confirm_otp":"OTP Confirmation",
-			"text_confirm_otp":"An OTP code has just been sent to your phone number _PHONE_",
-			"enter_otp":"Please enter the OTP code",
-			"resend_otp":"You have not received an OTP code?",
-			"resend":"Resend",
-			"confirm":"Confirm",
-			"ok":"OK"
-		}
-	},
-	"result_page":{
-		"all": "All",
-		"the_winner": "The winner",
-		"no_winner": "No winner",
-		"winner": "Winner",
-		"market_price": "Market Price",
-		"win_price": "Win Price"
-	},
-	"rule_page": {
+  "header": {
+    "home": "Home",
+    "bid": "Bid",
+    "result": "Result",
+    "rule": "Rule",
+    "account": "Account",
+    "login": "Login"
+  },
+  "right_page": {
+    "number_people": "Participants Now",
+    "text_foot1": "You are holding the advantage.",
+    "text_foot2": "The price you place is the lowest and only one now.",
+    "text_foot3": "Let’s join the auction now and grasp chance",
+    "text_foot4": "to own high - value prizes from Mytelbid.",
+    "text_foot5": "Oops! You've lost your advantage",
+    "text_foot6": "_NUMBER_ people have the same price as you",
+    "text_foot7": "_NUMBER_ people bid a price lower than yours.",
+    "bid_report": "Bid report",
+    "the_last": "The last",
+    "the_first": "The first",
+    "bid_price": "Bid price"
+  },
+  "home_page": {
+    "current_action": "Current Auction",
+    "upcoming_action": "Upcoming Auctions",
+    "detail": "Detail",
+    "code": "Item code number: _CODE_",
+    "time_end": "The auction will end after:",
+    "product_code": "Product code: _CODE_",
+    "bid_now": "Bid now"
+  },
+  "bid_page": {
+    "auction_code": "Account code",
+    "quantity": "Quantity",
+    "start_time": "Start time",
+    "end_time": "End time",
+    "tip_to_win": "Tips to win",
+    "confirm_bid": "Confirm to place the price _PRICE_ MMK for the _NAME_ ?",
+    "code_number": "Code Number: _CODE_",
+    "title_description": "Material Information",
+    "gift": "Gift",
+    "description": "Description",
+    "running": "Running",
+    "upcoming": "Upcoming"
+  },
+  "modal": {
+    "logout":"Are you sure you want to sign out?",
+    "modal_login": {
+      "title": "welcome to MytelBid",
+      "title_otp": "Login with OTP",
+      "phone_number": "Phone Number",
+      "password": "Password",
+      "phone_number_placeholder": "Enter Mytel Phone Number",
+      "password_placeholder": "Enter your password",
+      "login_with_otp": "or Login with OTP",
+      "login_with_password": "or Login with a password",
+      "login_otp": "Enter with SMS",
+      "title_confirm_otp": "OTP Confirmation",
+      "text_confirm_otp": "An OTP code has just been sent to your phone number _PHONE_",
+      "enter_otp": "Please enter the OTP code",
+      "resend_otp": "You have not received an OTP code?",
+      "resend": "Resend",
+      "confirm": "Confirm",
+      "ok": "OK"
+    }
+  },
+  "result_page": {
+    "all": "All",
+    "the_winner": "The winner",
+    "no_winner": "No winner",
+    "winner": "Winner",
+    "market_price": "Market Price",
+    "win_price": "Win Price"
+  },
+  "rule_page": {
     "rules": "RULES",
     "rule": "Rule",
     "how_to _bid": "HOW TO BID?",
@@ -165,8 +166,6 @@
         "content": "During the session (date), the winning bidder will be selected by the MySQL system. This system uses hard code to automatically select an auction winner based on the lowest unique bid price. And that offer/bid is valid. the lowest during the auction cycle; As long as there is a unique and valid bidder, there will be a winner./&nIf there is no lower and unique (and valid) bid/offer in the bidding cycle. A winner will not be announced for that auction item. Mytel may use the auction item in future auctions./&nThere can be a maximum of one (1) winner per auction./&nWinner will be contacted after auction. This communication will be done via SMS./&nThe winner will receive an SMS message indicating that they are the winner of the auction and will be notified that Mytel customer service (966) will contact them./&nThe winner will sign the 'Award Ceremony' and one copy will remain with the winner and the other copy will remain in Mytel's possession."
       },
 
-
-
       "prize_award": {
         "title": "7. Prize Selection; communication and the procedure for awarding the award",
         "content": "The award ceremony was held at the Mytel headquarters. Mytel customer service (966) will contact the winner by phone to request the information below./&nfull names and surnames; National Identity Document (DNI) registration number; e-mail Address and reference. If the winner does not answer the call or their phone is turned off, they will be called back 4 more times (1 call per day, 5 times total). If the winner cannot be contacted thereafter, the prize will be returned to the list and there is no right to claim the prize./&nEach prize will be delivered personally to the owner of the telephone line registered with Mytel and winners must present their personal ID at the time of prize collection. If the owner of the telephone line cannot come to collect the prize; A representative must be appointed so that he or she can withdraw on his or her behalf. In order to do so, the representative must present to the Notary Public the relevant power of attorney and a copy of his ID. Mytel will keep a copy of the power of attorney and a copy of the representative's DNI./&nIf the winner does not attend to receive the prize on the agreed date; From the date of renegotiation, you will have seven (7) working days to go to the office or to the relevant department. In order to do that, Must be negotiated in advance. Only then can it be delivered on the pre-adjusted prize acceptance date. After this period, In the event that the winner has not yet collected the prize; The prize will be returned to inventory and will not be claimed./&nPrizes are non-endorsable and/or refundable. Prizes are non-transferable. The winning customer collects the prize money; negotiation No exchange or other redemption of the prize is possible. Prize roll, No change or substitution or other benefits will be claimed./&nRules of Award/&nAfter the auction ends, the prize will be awarded to the winner of the auction. As the prize distribution plan will be carried out only after the winner has emerged, the goods will be out of stock; There are many price differences and changes. MytelBid has established the following rules for these matters./&nIn the event of a product out of stock in the market, the winner will receive a prize amount equal to the value of the prize product. (Only the amount shown on the MytelBid website is the official amount.)/&nA prize will be awarded if the product in the market at the time of award is less than 10% of the maximum difference from the price listed on the MytelBid website. If the product is 10% more than the price listed on the MytelBid website, the winner will be awarded an amount equal to the value of the prize product (as listed on the MytelBid website)./&nAccording to ReverseAuction's rules, a person can only bid with two validly registered sim cards, and if the sim card information and the winner's registration information do not match, ReverseAuction will judge it as a fraud. If the winner's information and SIM card registration information do not match, he/she will be considered ineligible to receive the prize and ReverseAuction will continue to screen other winners and award the prize. (Sim card registration can be easily done on MyID's eKYC"
@@ -193,5 +192,42 @@
         "content": "Any relationship between the Subscriber and Mytel will be governed in full accordance with the laws of Myanmar and will be handled by Myanmar judges."
       }
     }
-  }
+  },
+  "account_page": {
+    "buy_more_bid": "Buy more bids",
+    "package_history": "Package history",
+    "auction_record": "Auction record",
+    "change_password": "Change password",
+    "logout": "Log out",
+    "package_history_page": {
+      "status": "Status",
+      "all": "All",
+      "valid": "Valid",
+      "invalid": "Invalid",
+      "package_name":"Package name",
+      "number_bid":"Number of Bids",
+      "purchase":"Purchase date",
+      "expire":"Expiration",
+      "situation":"Situation"
+    },
+    "auction_record_page": {
+      "name": "Product name",
+      "code": "Product code",
+      "market_price": "Market Price",
+      "product_not_found": "Product is not found or has been deleted"
+    },
+    "change_password_page": {
+      "new_password": "New password",
+      "placeholder_new_password": "Enter a new password",
+      "confirm_new_password": "Confirm new password",
+      "placeholder_confirm_new_password": "Enter the confirm new password again",
+      "note":"Note",
+      "text_note":"Password length is at least 12 characters (maximum: 20 characters). The password must also include alphabet letters, number and special characters like !,@,#,$...",
+      "cancel":"Cancel",
+      "passwordError":"New password and confirm new password must be the same!"
+    }
+  },
+  "error":"Fail",
+  "success":"Successfull",
+  "confirmation":"Confirmation"
 }

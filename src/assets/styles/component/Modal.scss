@@ -296,11 +296,73 @@
 			}
 		}
 	}
+
+	@media(max-width: 991.98px) {
+		.ant-modal-content {
+			padding: 24px;
+		}
+
+		&-body {
+			.button-back {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 32px;
+				height: 32px;
+				border-radius: 4px;
+				transition: all 0.2s;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+
+				span {
+					background-image: url(../../images/arrowLeft.svg);
+					background-position: center;
+					background-repeat: no-repeat;
+					background-size: contain;
+					display: block;
+					width: 10px;
+					height: 15px;
+				}
+
+				&:hover {
+					color: rgba(0, 0, 0, 1);
+					background-color: rgba(0, 0, 0, 1);
+					cursor: pointer;
+				}
+			}
+
+			&-text-number {
+				font-size: 12px;
+				line-height: 14.52px;
+				margin-bottom: 50px;
+			}
+
+			.box-input {
+				margin-bottom: 50px;
+
+				.label-input {
+					font-size: 12px;
+					line-height: 14.52px;
+				}
+
+			}
+		}
+	}
 }
 
 .modal-notifycation {
+	.ant-modal-title {
+		text-transform: capitalize;
+	}
+
+	.ant-modal-header {
+		margin-top: -55px;
+		margin-bottom: 80px;
+	}
+
 	.ant-modal-content {
-		padding: 87px;
+		padding: 80px 87px 25px;
 	}
 
 	&-body {
@@ -314,7 +376,20 @@
 		border-radius: 15px;
 	}
 
+	.ant-modal-footer {
+		margin-top: 80px;
+	}
+
 	@media(max-width: 991.98px) {
+		.ant-modal-header {
+			margin-top: -5px;
+			margin-bottom: 50px;
+		}
+
+		.ant-modal-footer {
+			margin-top: 50px;
+		}
+
 		.ant-modal-content {
 			padding: 24px;
 
