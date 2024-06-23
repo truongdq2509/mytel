@@ -98,7 +98,7 @@ function HeaderWeb({ user }) {
 									<span>{bidTotal}</span>
 								</div>
 							</div>
-							<div style={{ backgroundImage: `url(${user.image})` }} className='box-user-action-avt' />
+							<div onClick={() => navigate(PATH.ACCOUNT)} style={{ backgroundImage: `url(${user.image})` }} className='box-user-action-avt' />
 						</div>) : (
 							<div className='box-user-btn-login' onClick={() => setOpenModalLogin(true)}>{t("header.login")}</div>
 						)}
