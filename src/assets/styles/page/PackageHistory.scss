@@ -310,6 +310,33 @@
 				}
 			}
 		}
+
+		.box-package {
+			&-tab {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				gap: 15px;
+				margin-bottom: 50px;
+
+				&-item {
+					width: 215px;
+					height: 42px;
+					border-radius: 50px;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					background-color: #dedede;
+					cursor: pointer;
+					transition: all 0.3s;
+
+					&.active {
+						background-color: $background-color-title;
+						color: #fff;
+					}
+				}
+			}
+		}
 	}
 }
 
@@ -478,7 +505,7 @@
 					justify-content: center;
 					flex-direction: column-reverse;
 					align-items: center;
-					gap: 25px;
+					gap: 0px;
 
 					&-btn {
 						height: 31px;
@@ -490,6 +517,25 @@
 						&:hover {
 							opacity: 1;
 						}
+
+						&:first-child {
+							margin-top: 25px;
+						}
+					}
+				}
+			}
+
+			.box-package {
+				&-tab {
+					margin-bottom: 30px;
+
+					&-item {
+						width: calc(50% - 7px);
+						height: 31px;
+						border-radius: 18px;
+						font-size: 12px;
+						font-weight: 500;
+						line-height: 14.52px;
 					}
 				}
 			}

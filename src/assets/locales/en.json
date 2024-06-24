@@ -225,6 +225,24 @@
       "text_note":"Password length is at least 12 characters (maximum: 20 characters). The password must also include alphabet letters, number and special characters like !,@,#,$...",
       "cancel":"Cancel",
       "passwordError":"New password and confirm new password must be the same!"
+    },
+    "package":{
+      "package":"PacPurchasing Bids",
+      "sub_Package":"Sub Package",
+      "retail_package":"Retail Package",
+      "buy":"Buy",
+      "cancel":"Cancel",
+      "title_bid_retail" :"_NUMBER_ bidding times per day",
+      "description_retail" :"Valid for 14 days since purchase",
+      "daily":"Daily",
+      "monthly":"Monthly",
+      "weekly":"Weekly",
+      "description_sub":"_NUMBER_ Bids is valid for today only",
+      "description_sub_day" :"Valid until today",
+      "description_sub_week" :"Valid for 7 days",
+      "description_sub_month" :"Valid for 30 days",
+      "title_bid_sub":"_NUMBER_ Bidding times per _CYCLE_",
+      "confirm_buy": "Mytelbid system is about to send an USSD confirmation to your mobile phone.Please check your phone to continue."
     }
   },
   "error":"Fail",

@@ -1,9 +1,10 @@
-import { GET_CURRENT_USER, GET_TURN_REMAIN, LOGIN_OTP, LOGIN_PASSWORD, LOGOUT_USER } from './contants'
+import { GET_CURRENT_USER, GET_LIST_PACKAGE, GET_TURN_REMAIN, LOGIN_OTP, LOGIN_PASSWORD, LOGOUT_USER } from './contants'
 
 const initState = {
 	userInfo: null,
 	token: null,
-	remainTurn: []
+	remainTurn: [],
+	listPackage: []
 }
 const reducerAccount = (state = initState, actions) => {
 	switch (actions.type) {
@@ -32,6 +33,11 @@ const reducerAccount = (state = initState, actions) => {
 				...state,
 				token: null,
 				userInfo: null
+			}
+		case GET_LIST_PACKAGE:
+			return {
+				...state,
+				listPackage: actions.payload.data
 			}
 		default:
 			return state

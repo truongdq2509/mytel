@@ -1,0 +1,141 @@
+.box-item-package {
+	padding: 20px 30px;
+	border-radius: 12px;
+	border: 1px solid rgba(189, 189, 189, 1);
+	position: relative;
+	margin-bottom: 24px;
+
+	.icon-best-sale {
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 80px;
+		height: 80px;
+		background-image: url(../../images/iconBestSales.svg);
+		background-repeat: no-repeat;
+		background-size: contain;
+	}
+
+	&.package-retail {
+		padding-left: 80px;
+	}
+
+	&-title {
+		margin-bottom: 10px;
+
+		span {
+			font-size: 16px;
+			font-weight: 400;
+			line-height: 19.36px;
+
+			&:first-child {
+				text-transform: uppercase;
+			}
+		}
+	}
+
+	&-content {
+		display: flex;
+		align-items: flex-start;
+		justify-content: space-between;
+
+		&-info {
+			.price {
+				font-size: 30px;
+				font-weight: 700;
+				line-height: 48.41px;
+				margin-bottom: 10px;
+				color: $background-color-title;
+			}
+
+			.text {
+				font-size: 16px;
+				font-weight: 400;
+				line-height: 19.36px;
+				color: #575757;
+			}
+		}
+
+		&-button {
+			border: none;
+			outline: none;
+			width: 120px;
+			height: 42px;
+			padding: 0;
+			border-radius: 50px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			background-color: $background-color-title !important;
+			color: #fff !important;
+
+			&:hover,
+			&:active {
+				background-color: $color-title-hover !important;
+				color: #fff !important;
+			}
+
+			&.btn-cancel {
+				background-color: #DEDEDE !important;
+				color: #000 !important;
+			}
+		}
+	}
+}
+
+@media(max-width:991.98px) {
+	.box-item-package {
+		padding: 15px 25px;
+		border-radius: 12px;
+		margin-bottom: 25px;
+
+		.icon-best-sale {
+			width: 70px;
+			height: 70px;
+		}
+
+		&.package-retail {
+			padding-left: 70px;
+		}
+
+		&-title {
+			margin-bottom: 7px;
+
+			span {
+				font-size: 12px;
+				font-weight: 400;
+				line-height: 14.52px;
+			}
+		}
+
+		&-content {
+
+			&-info {
+				.price {
+					font-size: 25px;
+					line-height: 30px;
+					margin-bottom: 10px;
+				}
+
+				.text {
+					font-size: 12px;
+					font-weight: 400;
+					line-height: 14.52px;
+				}
+			}
+
+			&-button {
+				width: 90px;
+				height: 31px;
+				padding: 0;
+				border-radius: 18px;
+
+				&:hover,
+				&:active {
+					background-color: $background-color-title !important;
+					color: #fff !important;
+				}
+			}
+		}
+	}
+}

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
 import PATH from "../config/PATH";

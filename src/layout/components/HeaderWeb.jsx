@@ -90,7 +90,7 @@ function HeaderWeb({ user }) {
 					</div>
 					<div className='box-user'>
 						{user ? (<div className='box-user-action'>
-							<div className='box-user-action-cart' />
+							<div onClick={() => navigate(PATH.PACKAGE)} className='box-user-action-cart' />
 							<div className='box-user-action-line' />
 							<div className='box-user-action-info'>
 								<div className='name one-line'>{user.name || user.msisdn}</div>

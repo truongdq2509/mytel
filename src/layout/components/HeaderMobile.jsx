@@ -13,7 +13,6 @@ function HeaderMobile({ user }) {
 	const navigate = useNavigate();
 	const selectorAccount = useSelector(curStateAccount);
 	const [bidTotal, setBidTotal] = useState(0);
-	console.log(user);
 	useEffect(() => {
 		if (selectorAccount.remainTurn) {
 			const bidTotal = selectorAccount.remainTurn?.reduce((acc, pack) => {
@@ -42,7 +41,7 @@ function HeaderMobile({ user }) {
 						<div className='box-right-time'>
 							<CurrentTime />
 						</div>
-						<div className='box-right-bid' />
+						<div onClick={() => { navigate(PATH.PACKAGE) }} className='box-right-bid' />
 					</div>
 				</div>
 			) : (

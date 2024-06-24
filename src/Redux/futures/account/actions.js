@@ -1,6 +1,6 @@
 
 import API_PATH from '../../../config/API_PATH'
-import { GET_AUCTION_RECORD, GET_CURRENT_USER, GET_PACKAGE_HISTORY, GET_TURN_REMAIN, LOGIN_OTP, LOGIN_PASSWORD, LOGOUT_USER, REQUEST_OTP, UPDATE_PASSWORD, VERIFY_OTP, VERIFY_OTP_PASSWORD } from './contants'
+import { GET_AUCTION_RECORD, GET_CURRENT_USER, GET_LIST_PACKAGE, GET_PACKAGE_HISTORY, GET_TURN_REMAIN, LOGIN_OTP, LOGIN_PASSWORD, LOGOUT_USER, REGISTER_RETAIL_PACKAGE, REGISTER_SUB_PACKAGE, REQUEST_OTP, UPDATE_PASSWORD, VERIFY_OTP, VERIFY_OTP_PASSWORD } from './contants'
 
 
 export const getCurrentUser = data => {
@@ -130,6 +130,42 @@ export const logoutUser = data => {
 		meta: {
 			method: 'POST',
 			url: API_PATH.logout,
+			query: data.query || {},
+			callback: data.callback || null
+		},
+	}
+}
+export const getListPackage = data => {
+	return {
+		type: GET_LIST_PACKAGE,
+		data,
+		meta: {
+			method: 'GET',
+			url: API_PATH.packs,
+			query: data.query || {},
+			callback: data.callback || null
+		},
+	}
+}
+export const registerSubPackage = data => {
+	return {
+		type: REGISTER_SUB_PACKAGE,
+		data,
+		meta: {
+			method: 'POST',
+			url: API_PATH.registerPack,
+			query: data.query || {},
+			callback: data.callback || null
+		},
+	}
+}
+export const registerRetailPackage = data => {
+	return {
+		type: REGISTER_RETAIL_PACKAGE,
+		data,
+		meta: {
+			method: 'POST',
+			url: API_PATH.registerMytelPack,
 			query: data.query || {},
 			callback: data.callback || null
 		},

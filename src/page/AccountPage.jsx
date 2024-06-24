@@ -102,7 +102,7 @@ function AccountPage() {
 								<span>{bidTotal}</span>
 							</div>
 						</div>
-						<div className="buy-more-bid">
+						<div onClick={() => navigate(PATH.PACKAGE)} className="buy-more-bid">
 							<div className="icon-cart" />
 							<div className="buy-more-text">
 								{" "}

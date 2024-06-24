@@ -45,12 +45,25 @@ html {
 	text-overflow: ellipsis;
 }
 
-.focus{
+.focus {
 	color: #F97A1C;
 }
 
-@media (max-width: 992px){
-	.mobile_pb__20{
+@media (max-width: 992px) {
+	.mobile_pb__20 {
 		margin-bottom: 20px;
 	}
+}
+
+.loading {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 10000;
+	background-color: rgba(0, 0, 0, 0.6);
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
