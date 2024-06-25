@@ -68,7 +68,7 @@ const TabRunning = ({ currentProduct = [] }) => {
                   <div className={`bid-banner-mobile ${classFlex}`}>
                     <SliderBid listImageProduct={listImageProduct} />
                   </div>
-                  <div className={`d-flex  bg-white`}>
+                  <div className="d-flex  bg-white pt-30">
                     <ModalDescriptionBid
                       openModal={openModalDetail}
                       setOpenModal={setOpenModalDetail}

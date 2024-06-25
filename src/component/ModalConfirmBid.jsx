@@ -5,6 +5,9 @@ import { formatDataNumberToen } from "../utils/helper";
 import { useDispatch, useSelector } from "react-redux";
 import { postBidProduct } from "../Redux/futures/Bid/action";
 import { useTranslation } from "react-i18next";
+import { postDataApi } from "../config/service";
+import API_PATH from "../config/API_PATH";
+import { useState } from "react";
 
 const ModalConfirmBid = ({
   setOpenModal,
@@ -12,16 +15,17 @@ const ModalConfirmBid = ({
   valueInput = 0,
   data = [],
 }) => {
+  const [dataApi, setDataApi] = useState(null);
   const { t } = useTranslation();
   const title = data[0]?.product_name || "";
-  const dispatch = useDispatch();
 
-  const handleBid = () => {
+  const handleBid = async () => {
     const dataAPi = {
       price: valueInput,
       productCode: data[0]?.product_code,
     };
-    dispatch(postBidProduct(dataAPi));
+    const dataPostApi = await postDataApi(API_PATH.bid, dataAPi, {});
+    setDataApi(dataPostApi);
   };
 
   const handleOke = () => {
@@ -66,6 +70,7 @@ const Container = styled(Modal)`
     text-align: center;
     padding-top: 3px;
     padding-bottom: 20px;
+    text-transform: capitalize !important;
   }
 
   .body-modal {
