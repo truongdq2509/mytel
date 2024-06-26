@@ -80,6 +80,7 @@
         justify-content: space-between;
         gap: 20px;
         border-bottom: 1px solid #9a9a9a;
+        max-width: 100%;
 
         &:last-child {
           border-bottom: 0;
@@ -90,6 +91,7 @@
           display: flex;
           align-items: center;
           gap: 11px;
+          max-width: calc(100% - 86px);
 
           .avatar {
             width: 66px;
@@ -103,6 +105,7 @@
 
           .box-info {
             flex: 1;
+            max-width: calc(100% - 77px);
 
             .name {
               font-size: 18px;

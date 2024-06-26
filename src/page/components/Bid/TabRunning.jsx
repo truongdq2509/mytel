@@ -10,9 +10,11 @@ import RightWebMobile from "../../../layout/components/RightMobile";
 import ModalDescriptionBid from "../../../component/ModalDescriptionBid";
 import { useTranslation } from 'react-i18next';
 import { formatDataNumberToen } from "../../../utils/helper";
+import { mediaQueryPoint, useMediaQuery } from '../../../utils/hooks';
 
 const TabRunning = ({ currentProduct = [] }) => {
   const { t } = useTranslation()
+  const isMobile = useMediaQuery(`(max-width: ${mediaQueryPoint.lg}px)`)
   const [valueInput, setValueInput] = useState("");
   const [openModal, setOpenModal] = useState(false);
   const [openModalDetail, setOpenModalDetail] = useState(false);
@@ -190,9 +192,9 @@ const TabRunning = ({ currentProduct = [] }) => {
             </div>
           </div>
         </div>
-        <div className="is-mobile">
+        {isMobile ? <div className="is-mobile">
           <RightWebMobile />
-        </div>
+        </div> : null}
       </div>
       <ModalConfirmBid
         setOpenModal={setOpenModal}

@@ -7,12 +7,13 @@ import FooterMobile from './components/FooterMobile';
 import { getCurrentUser } from '../Redux/futures/account/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { curStateAccount } from '../Redux/selector';
-import { useParams } from "react-router";
+import { useLocation, useParams } from "react-router";
 
 function LayoutApp({ children }) {
 	const dispatch = useDispatch();
 	const selectorAccount = useSelector(curStateAccount)
 	const [userInfo, setUserInfo] = useState(selectorAccount.userInfo)
+	const location = useLocation()
 	const heightWeb = window.innerHeight
 	const isMobile = useMediaQuery(`(max-width: ${mediaQueryPoint.lg}px)`)
 	const afterGetUserBid = (data, isLoading) => {
@@ -23,9 +24,16 @@ function LayoutApp({ children }) {
 		}
 	};
 	useEffect(() => {
-		dispatch(getCurrentUser({ callback: afterGetUserBid }))
+		if (selectorAccount.userInfo) {
+			setUserInfo(selectorAccount.userInfo);
+		} else {
+			dispatch(getCurrentUser({ callback: afterGetUserBid }))
+		}
 
-	}, [selectorAccount.token]);
+	}, [selectorAccount.userInfo]);
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, [location.pathname])
 
 	const { id = null, idResult = null } = useParams();
 

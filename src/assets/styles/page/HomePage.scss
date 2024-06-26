@@ -136,6 +136,7 @@
 					gap: 8px;
 					border: none;
 					outline: none;
+					text-transform: uppercase;
 
 					&:hover {
 						cursor: pointer;
@@ -330,9 +331,9 @@
 
 		&-current-product {
 			padding: 9px 8px;
-			background-color: #fff;
-			border-radius: 12px;
-			box-shadow: 0px 4px 10px 0px rgba(8, 19, 74, 0.1);
+			background-color: transparent;
+			border-radius: 0px;
+			box-shadow: none;
 
 			&:last-child {
 				margin-bottom: 150px;
@@ -347,10 +348,15 @@
 				.detail {
 					font-size: 12px;
 					line-height: 14px;
+					color: #424242;
 				}
 			}
 
 			&-content {
+				padding: 8px;
+				background-color: #fff;
+				border-radius: 12px;
+				box-shadow: 0px 4px 10px 0px rgba(8, 19, 74, 0.1);
 
 				&-slide-product {
 					width: 50%;

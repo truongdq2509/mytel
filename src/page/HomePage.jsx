@@ -105,12 +105,12 @@ function HomePage() {
 								{t("home_page.code").replace("_CODE_", item?.product_code)}
 							</p>
 							<div className="line" />
-							<div className="price">{`${item?.product_price.toLocaleString('de-DE')} MMK`}</div>
+							<div className="price">{`${item?.product_price.toLocaleString('en-US')} MMK`}</div>
 							<p className="code-product">{t("home_page.time_end")}</p>
 							<div className="time-count-down">
 								<Countdown date={item?.end_time} />
 							</div>
-							<div className='button-bid'>
+							<div onClick={() => navigate(`${PATH.BID}/running`)} className='button-bid'>
 								<div className='button-bid-icon' />
 								<span className="button-bid-text">{t("home_page.bid_now")}</span>
 							</div>
@@ -163,7 +163,7 @@ function HomePage() {
 													{t("home_page.product_code").replace("_CODE_", item?.product_code)}
 												</p>
 												<div className="box-item-info-product-info-price one-line">
-													{`${item?.product_price.toLocaleString('de-DE')} MMK`}
+													{`${item?.product_price.toLocaleString('en-US')} MMK`}
 												</div>
 											</div>
 											<div className="box-item-info-product-box-foot">

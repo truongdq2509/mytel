@@ -13,6 +13,11 @@ const serviceMiddleware = (store) => (next) => async (action) => {
 			res = await postDataApi(url, action.data, query)
 		}
 		const isCheckSuccess = res?.success === true;
+		if (action.type === "UPLOAD_FILE") {
+			if (callback && typeof callback === 'function') {
+				callback(res, false)
+			}
+		}
 		if (isCheckSuccess) {
 			action.payload = res;
 			if (callback && typeof callback === 'function') {

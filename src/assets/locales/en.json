@@ -4,7 +4,7 @@
     "bid": "Bid",
     "result": "Result",
     "rule": "Rule",
-    "account": "Account",
+    "account": "My Account",
     "login": "Login"
   },
   "right_page": {
@@ -198,6 +198,7 @@
     "package_history": "Package history",
     "auction_record": "Auction record",
     "change_password": "Change password",
+    "error_upload_avatar":"The file _FILE_ is invalid. Only allowed to upload image jpeg or png.",
     "logout": "Log out",
     "package_history_page": {
       "status": "Status",
@@ -227,12 +228,13 @@
       "passwordError":"New password and confirm new password must be the same!"
     },
     "package":{
-      "package":"PacPurchasing Bids",
+      "package":"Purchasing Bids",
       "sub_Package":"Sub Package",
       "retail_package":"Retail Package",
       "buy":"Buy",
       "cancel":"Cancel",
-      "title_bid_retail" :"_NUMBER_ bidding times per day",
+      "title_bid_retail_1" :"_NUMBER_  Bidding Time",
+      "title_bid_retail" :"_NUMBER_  Bidding Times",
       "description_retail" :"Valid for 14 days since purchase",
       "daily":"Daily",
       "monthly":"Monthly",

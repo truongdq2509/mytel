@@ -8,6 +8,7 @@ function ModalNotifycation({ open, title = "", handleCancel, handleOk = null, me
 		open={open}
 		onCancel={handleCancel}
 		className="modal-notifycation"
+		centered
 		width={684}
 		footer={
 			<div className="foot-login">

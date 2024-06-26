@@ -1,6 +1,6 @@
 
 import API_PATH from '../../../config/API_PATH'
-import { GET_AUCTION_RECORD, GET_CURRENT_USER, GET_LIST_PACKAGE, GET_PACKAGE_HISTORY, GET_TURN_REMAIN, LOGIN_OTP, LOGIN_PASSWORD, LOGOUT_USER, REGISTER_RETAIL_PACKAGE, REGISTER_SUB_PACKAGE, REQUEST_OTP, UPDATE_PASSWORD, VERIFY_OTP, VERIFY_OTP_PASSWORD } from './contants'
+import { GET_AUCTION_RECORD, GET_CURRENT_USER, GET_LIST_PACKAGE, GET_PACKAGE_HISTORY, GET_TURN_REMAIN, LOGIN_OTP, LOGIN_PASSWORD, LOGOUT_USER, REGISTER_RETAIL_PACKAGE, REGISTER_SUB_PACKAGE, REQUEST_OTP, UPDATE_PASSWORD, UPDATE_USER_INFO, UPLOAD_FILE, VERIFY_OTP, VERIFY_OTP_PASSWORD } from './contants'
 
 
 export const getCurrentUser = data => {
@@ -166,6 +166,31 @@ export const registerRetailPackage = data => {
 		meta: {
 			method: 'POST',
 			url: API_PATH.registerMytelPack,
+			query: data.query || {},
+			callback: data.callback || null
+		},
+	}
+}
+
+export const uploadFile = (data, callback) => {
+	return {
+		type: UPLOAD_FILE,
+		data,
+		meta: {
+			method: 'POST',
+			url: API_PATH.upload,
+			query: data.query || {},
+			callback: callback || null
+		},
+	}
+}
+export const updateUserInfo = (data) => {
+	return {
+		type: UPDATE_USER_INFO,
+		data,
+		meta: {
+			method: 'POST',
+			url: API_PATH.updateInformation,
 			query: data.query || {},
 			callback: data.callback || null
 		},

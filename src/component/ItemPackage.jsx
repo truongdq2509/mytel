@@ -13,6 +13,9 @@ function ItemPackage({ data, type, isRegister = false, handelSelectItem }) {
 		header: t('header.bid'),
 		description: t('account_page.package.title_bid_retail').replace("_NUMBER_", data?.max_turn)
 	}
+	if (type !== "SUB" && data?.pack_id === "BID") {
+		textHeader.description = t('account_page.package.title_bid_retail_1').replace("_NUMBER_", data?.max_turn)
+	}
 	if (type === "SUB") {
 		if (data.pack_id === "REVERSE_DAILY") {
 			textHeader.header = t('account_page.package.daily')

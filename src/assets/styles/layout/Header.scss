@@ -100,6 +100,7 @@
 						font-weight: 600;
 						line-height: 27.83px;
 						max-width: 110px;
+						display: block;
 					}
 
 					.number-bid {
@@ -147,6 +148,10 @@
 					font-size: 16px;
 					font-weight: 500;
 					line-height: 24.42px;
+
+					&:last-child {
+						text-transform: capitalize;
+					}
 				}
 
 				.line {
@@ -274,6 +279,10 @@
 					font-weight: 500;
 					line-height: 12.1px;
 					color: #fff;
+
+					&:last-child {
+						text-transform: capitalize;
+					}
 				}
 
 			}
@@ -290,7 +299,7 @@
 
 }
 
-@media (max-width: 1350px) {
+@media (max-width: 1400px) {
 	.header-page {
 
 		&-container {
@@ -316,6 +325,49 @@
 						.name {
 							font-size: 16px;
 							max-width: 200px;
+						}
+
+						.number-bid {
+							span {
+								font-size: 12px;
+							}
+						}
+					}
+				}
+
+				&-date {
+					span {
+						font-size: 14px;
+
+					}
+				}
+			}
+		}
+	}
+}
+
+@media (max-width: 1150px) {
+	.header-page {
+		&-container {
+			.box-logo {
+				.box-menu {
+					&-item {
+						padding: 12px 38px 8px;
+
+						a {
+							font-size: 17px;
+							line-height: 25px;
+						}
+					}
+				}
+			}
+
+			.box-user {
+				&-action {
+					&-info {
+						.name {
+							font-size: 16px;
+							max-width: 90px;
 						}
 
 						.number-bid {
