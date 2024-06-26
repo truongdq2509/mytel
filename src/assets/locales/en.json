@@ -42,7 +42,15 @@
     "gift": "Gift",
     "description": "Description",
     "running": "Running",
-    "upcoming": "Upcoming"
+    "upcoming": "Upcoming",
+    "please_type_the_number": "Please type the number.",
+    "sorry": "I'm sorry",
+    "warning": "Please enter the correct number. (min 1000, step 50)",
+
+    "content_you_can_bit": "- You can bid multiple times, the more you bid, the higher your chances of winning",
+    "content_you_do_not": "- You do not have to pay for the product at the price you place. You just need to pay fee for bidding times",
+    "content_auction_is_a": "- Auction is a game where many users participate in bidding for a product. With Reverse Auction game, you bid as low as possible. However, there can be many users offering the same price while there is only 1 product. Therefore, Mytelbid offers the following rule for selecting winners: Your price must be the lowest and only price",
+    "content_only_you_bid": "(only you bid at that price). Among those unique prices, the system will filter for the lowest price -> find the winner"
   },
   "modal": {
     "logout":"Are you sure you want to sign out?",

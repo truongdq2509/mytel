@@ -61,7 +61,7 @@ const Container = styled(Modal)`
     margin: 0 30px;
     background-color: #f1eff5;
     border-radius: 10px;
-    max-height: 400px;
+    /* max-height: 400px; */
     overflow-y: auto;
   }
 

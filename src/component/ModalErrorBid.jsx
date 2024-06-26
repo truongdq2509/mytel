@@ -1,62 +1,26 @@
 import { Modal } from "antd";
 import React from "react";
 import styled from "styled-components";
-import { formatDataNumberToen } from "../utils/helper";
-import { useDispatch, useSelector } from "react-redux";
-import { postBidProduct } from "../Redux/futures/Bid/action";
 import { useTranslation } from "react-i18next";
-import { postDataApi } from "../config/service";
-import API_PATH from "../config/API_PATH";
-import { useState } from "react";
 
-const ModalConfirmBid = ({
-  setOpenModal,
-  openModal,
-  valueInput = 0,
-  data = [],
-  setValueInput,
-}) => {
-  const [dataApi, setDataApi] = useState(null);
+const ModalErrorBid = ({ setOpenModalError, openModalError }) => {
   const { t } = useTranslation();
-  const title = data[0]?.product_name || "";
-
-  const handleBid = async () => {
-    const dataAPi = {
-      price: valueInput,
-      productCode: data[0]?.product_code,
-    };
-    const dataPostApi = await postDataApi(API_PATH.bid, dataAPi, {});
-    setDataApi(dataPostApi);
-    setValueInput("");
-  };
-
-  const handleOke = () => {
-    handleBid();
-  };
 
   const handleOkeApi = () => {
-    setOpenModal(false);
+    setOpenModalError(false);
   };
 
   return (
     <Container
-      title={`${dataApi ? "Successful" : "Confirmation"}`}
+      title={t("bid_page.sorry")}
       centered
-      open={openModal}
-      onOk={dataApi ? handleOkeApi : handleOke}
-      onCancel={() => setOpenModal(false)}
+      open={openModalError}
+      onOk={handleOkeApi}
+      onCancel={() => setOpenModalError(false)}
       width={"middle"}
     >
       <div className="body-modal">
-        <div className="content-body">
-          {dataApi?.errorMessage
-            ? dataApi.errorMessage
-            : dataApi?.data?.content
-            ? dataApi?.data?.content
-            : t("bid_page.confirm_bid")
-                .replace("_PRICE_", formatDataNumberToen(+valueInput))
-                .replace("_NAME_", title)}
-        </div>
+        <div className="content-body">{t("bid_page.please_type_the_number")}</div>
       </div>
     </Container>
   );
@@ -93,12 +57,13 @@ const Container = styled(Modal)`
     color: #191919;
     font-size: 16px;
     font-weight: 400;
-    /* line-height: 19.36px; */
+    line-height: 19.36px;
+    text-align: center;
   }
 
   .ant-modal-footer {
     text-align: center;
-    gap: 40px;
+    gap: 10px;
 
     button {
       width: 35%;
@@ -122,7 +87,7 @@ const Container = styled(Modal)`
     button:last-child {
       background-color: #f97a1c;
       color: white;
-      margin-inline-start: 40px !important;
+      margin-inline-start: 10px !important;
 
       &:hover {
         opacity: 0.6;
@@ -135,7 +100,7 @@ const Container = styled(Modal)`
   }
 
   .ant-modal-footer {
-    margin-top: 50px !important;
+    margin-top: 30px !important;
   }
 
   @media (max-width: 768px) {
@@ -185,4 +150,4 @@ const Container = styled(Modal)`
   }
 `;
 
-export default ModalConfirmBid;
+export default ModalErrorBid;
