@@ -30,7 +30,7 @@ function LayoutApp({ children }) {
 			dispatch(getCurrentUser({ callback: afterGetUserBid }))
 		}
 
-	}, [selectorAccount.userInfo]);
+	}, [selectorAccount.userInfo, selectorAccount.token]);
 	useEffect(() => {
 		window.scrollTo(0, 0);
 	}, [location.pathname])
