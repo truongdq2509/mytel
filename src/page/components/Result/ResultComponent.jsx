@@ -24,7 +24,6 @@ const ResultComponent = ({
   const location = useLocation();
 
   const handleGetDetail = (id) => {
-    console.log(id);
     navigate(`${location.pathname}/${id}`);
   };
 
@@ -42,7 +41,7 @@ const ResultComponent = ({
     if (description && description.includes("\n")) {
       descriptionFormat = description.split("\n");
     }
-    console.log(typeof descriptionFormat);
+
     return (
       <div className="result-detail__main">
         <div className="result-title__header">
@@ -105,7 +104,7 @@ const ResultComponent = ({
                 </div>
                 <div className={`d-flex  bg-white`}>
                   <div className="container-product">
-                    <ImageProduct data={listImageProduct} />{" "}
+                    <ImageProduct product={item} data={listImageProduct} />
                   </div>
                   <div className="header-content">
                     <div className="title-product__container">
@@ -166,7 +165,13 @@ const ResultComponent = ({
                               {t("result_page.win_price")}
                             </div>
                             <div className="product-money">
-                              {`${formatDataNumberToen(+auction_price)} MMK`}
+                              {+auction_price == 0 ? (
+                                `N/A`
+                              ) : (
+                                <>{`${formatDataNumberToen(
+                                  +auction_price
+                                )} MMK`}</>
+                              )}
                             </div>
                           </div>
                         </Col>

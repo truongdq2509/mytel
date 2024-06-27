@@ -10,12 +10,15 @@ import RightWebMobile from "../../../layout/components/RightMobile";
 import ModalDescriptionBid from "../../../component/ModalDescriptionBid";
 import { useTranslation } from "react-i18next";
 import { formatDataNumberToen } from "../../../utils/helper";
-import { mediaQueryPoint, useMediaQuery } from '../../../utils/hooks';
+import { mediaQueryPoint, useMediaQuery } from "../../../utils/hooks";
 import ModalErrorBid from "../../../component/ModalErrorBid";
+import { useSelector } from "react-redux";
+import { curStateAccount } from "../../../Redux/selector";
 
-const TabRunning = ({ currentProduct = [] }) => {
-  const { t } = useTranslation()
-  const isMobile = useMediaQuery(`(max-width: ${mediaQueryPoint.lg}px)`)
+const TabRunning = ({ currentProduct = [], setOpenModalLogin }) => {
+  const selectorAccount = useSelector(curStateAccount);
+  const { t } = useTranslation();
+  const isMobile = useMediaQuery(`(max-width: ${mediaQueryPoint.lg}px)`);
   const [valueInput, setValueInput] = useState("");
   const [openModal, setOpenModal] = useState(false);
   const [openModalError, setOpenModalError] = useState(false);
@@ -24,7 +27,7 @@ const TabRunning = ({ currentProduct = [] }) => {
   const [dataDetailActive, setDataDetailActive] = useState([]);
 
   const isBidActiveErr = useMemo(() => {
-    if (+valueInput < 1000 || +valueInput % 50 !== 0) {
+    if (+valueInput < 1000 || +valueInput % 50 !== 0 || +valueInput > 2000000) {
       return true;
     }
     return false;
@@ -41,9 +44,13 @@ const TabRunning = ({ currentProduct = [] }) => {
   };
 
   const handleBit = (data) => {
+    if (!selectorAccount.userInfo) {
+      return setOpenModalLogin(true);
+    }
+
     if (valueInput === "") {
-      setOpenModalError(true)
-      return null
+      setOpenModalError(true);
+      return null;
     }
     if (isBidActiveErr) {
       return null;
@@ -168,8 +175,11 @@ const TabRunning = ({ currentProduct = [] }) => {
                           />
                           <div className="currency-bit">MMK</div>
                           <div
-                            className={`btn-bit ${isBidActiveErr && valueInput !== "" ? "disable-bid" : ""
-                              }`}
+                            className={`btn-bit ${
+                              isBidActiveErr && valueInput !== ""
+                                ? "disable-bid"
+                                : ""
+                            }`}
                             onClick={() => handleBit(item)}
                           >
                             <img
@@ -224,15 +234,15 @@ const TabRunning = ({ currentProduct = [] }) => {
             </div>
             <div className="content-item">
               {t("bid_page.content_auction_is_a")}{" "}
-              <span className="only">
-                {t("bid_page.content_only_you_bid")}
-              </span>
+              <span className="only">{t("bid_page.content_only_you_bid")}</span>
             </div>
           </div>
         </div>
-        {isMobile ? <div className="is-mobile">
-          <RightWebMobile />
-        </div> : null}
+        {isMobile ? (
+          <div className="is-mobile">
+            <RightWebMobile />
+          </div>
+        ) : null}
       </div>
       {openModal ? (
         <ModalConfirmBid

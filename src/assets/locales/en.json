@@ -45,7 +45,7 @@
     "upcoming": "Upcoming",
     "please_type_the_number": "Please type the number.",
     "sorry": "I'm sorry",
-    "warning": "Please enter the correct number. (min 1000, step 50)",
+    "warning": "Please enter the correct number (min: 1,000; max: 2,000,000; step: 50)",
 
     "content_you_can_bit": "- You can bid multiple times, the more you bid, the higher your chances of winning",
     "content_you_do_not": "- You do not have to pay for the product at the price you place. You just need to pay fee for bidding times",
@@ -256,6 +256,6 @@
     }
   },
   "error":"Fail",
-  "success":"Successfull",
+  "success":"Successful",
   "confirmation":"Confirmation"
 }

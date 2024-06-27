@@ -16,12 +16,13 @@ import { useParams } from "react-router";
 import { useNavigate } from "react-router";
 import PATH from "../config/PATH";
 import { useTranslation } from "react-i18next";
+import ModalLogin from "../component/ModalLogin";
 
 export default function BidPage() {
   const { id } = useParams();
   const [currentProduct, setCurrentProduct] = useState([]);
   const [upNextProduct, setUpNextProduct] = useState([]);
-  const [banner, setBanner] = useState([]);
+  const [openModalLogin, setOpenModalLogin] = useState(false);
   const dispatch = useDispatch();
   const selectorHome = useSelector(curStateHome);
   const navigate = useNavigate();
@@ -63,14 +64,7 @@ export default function BidPage() {
     } else {
       setUpNextProduct([]);
     }
-    if (selectorHome?.banner?.length > 0) {
-      let banner = selectorHome.banner?.sort(
-        (a, b) => a?.position - b?.position
-      );
-      setBanner(banner);
-    } else {
-      setBanner([]);
-    }
+   
   }, [selectorHome]);
 
   const handleChangeTabs = (tabId) => {
@@ -95,11 +89,12 @@ export default function BidPage() {
     <div className="bid-container">
       <div className="header-tab__container">{handleTab}</div>
       {id === urlPageBid.running ? (
-        <TabRunning currentProduct={currentProduct || []} />
+        <TabRunning currentProduct={currentProduct || []} setOpenModalLogin={setOpenModalLogin}/>
       ) : (
         <TabUpcoming upNextProduct={upNextProduct} />
       )}
       <div className="mobile_pb__20" />
+      <ModalLogin open={openModalLogin} setOpenModalLogin={setOpenModalLogin}/>
     </div>
   );
 }
