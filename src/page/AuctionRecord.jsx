@@ -103,11 +103,13 @@ function AuctionRecord() {
 			dataIndex: 'product_price',
 			align: 'center',
 			className: 'align-middle',
-			render: (text) => (
-				<Text className='account-product-price'>
-					{text ?? 'null'} {text ? "MMK" : null}
-				</Text>
-			),
+			render: (text) => {
+				return (
+					<Text className='account-product-price'>
+						{text ? text.toLocaleString('en-US') : 'null'} {text ? "MMK" : null}
+					</Text>
+				)
+			},
 			// sorter: (a, b) => a.product_price - b.product_price,
 			width: '25%',
 		},

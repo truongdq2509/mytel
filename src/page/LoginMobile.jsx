@@ -46,6 +46,11 @@ function LoginMobile() {
 			window.location.href = PATH.HOME
 		}
 	}, []);
+	useEffect(() => {
+		if (selectorAccount.userInfo) {
+			window.location.href = PATH.HOME
+		}
+	}, [selectorAccount.userInfo]);
 
 	const afterLoginPassword = (dataSuccess, isLoading, dataError = null) => {
 		if (!isLoading) {
