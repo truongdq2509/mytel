@@ -33,6 +33,9 @@ function ModalLogin({ open, setOpenModalLogin }) {
 			setOtp('')
 			setShowPassword(false)
 		}
+		if (!open) {
+			setTypeLogin(TYPE_LOGIN.loginPassword)
+		}
 
 	}, [open])
 	const afterLoginPassword = (dataSuccess, isLoading, dataError = null) => {
@@ -270,6 +273,7 @@ function ModalLogin({ open, setOpenModalLogin }) {
 				open={openModalConfirm}
 				onCancel={() => setOpenModalConfirm(false)}
 				className="modal-confirm-otp"
+				centered
 				width={682}
 				footer={
 					<div className="foot-login">

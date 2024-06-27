@@ -30,11 +30,9 @@ html {
 }
 
 .one-line {
-	-webkit-line-clamp: 1;
-	overflow: hidden;
-	display: -webkit-box;
-	-webkit-box-orient: vertical;
 	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
 }
 
 .two-line {
