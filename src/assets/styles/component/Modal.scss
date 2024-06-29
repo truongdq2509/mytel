@@ -200,6 +200,43 @@
 			cursor: pointer;
 		}
 	}
+
+	@media (max-width: 768px){
+		.ant-modal-content {
+			padding: 20px 24px;
+		}
+	}
+
+	@media (max-width: 576px){
+		.modal-login-body-pass{
+			margin: 0;
+		}
+
+		.modal-login-body-banner{
+			margin: 0;
+		}
+
+		.ant-modal-title{
+			font-size: 20px !important;
+		}
+
+		.modal-login-body-pass .box-input-label span, .modal-login-body-pass .box-input-input input, .ant-modal-footer .button-foot-modal, .foot-login .text-login{
+			font-size: 13px;
+		}
+
+		.modal-login-body-pass .box-input-label{
+			margin-bottom: 6px;
+		}
+
+		.modal-login-body-pass .box-input-input .icon-eye{
+			width: 20px;
+			height: 20px;
+		}
+
+		.foot-login{
+			margin-top: 8px;
+		}
+	}
 }
 
 .modal-confirm-otp {
