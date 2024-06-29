@@ -38,9 +38,17 @@ const ModalConfirmBid = ({
     setOpenModal(false);
   };
 
+  let dataTitle = t("confirmation");
+  if (dataApi) {
+    if (dataApi?.success == true) {
+      dataTitle = t("success");
+    }
+    dataTitle = t("bid_page.sorry");
+  }
+
   return (
     <Container
-      title={`${dataApi ? "Successful" : "Confirmation"}`}
+      title={dataTitle}
       centered
       open={openModal}
       onOk={dataApi ? handleOkeApi : handleOke}
