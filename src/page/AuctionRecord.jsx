@@ -8,6 +8,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { curStateAccount } from '../Redux/selector';
 import { currentDate } from '../helper/const';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
+import { getResultProduct } from '../Redux/futures/result/action';
 const { Title, Text } = Typography;
 
 function AuctionRecord() {
@@ -16,9 +18,15 @@ function AuctionRecord() {
 	const navigate = useNavigate()
 	const [isLoading, setIsLoading] = useState(false)
 	const [page, setPage] = useState(0);
-	const [listPackages, setBidHistory] = useState([])
+	const [bidHistory, setBidHistory] = useState([])
 	const [dataResApi, setdataResApi] = useState(null)
 	const selectorAccount = useSelector(curStateAccount);
+	const [dataResult, setDataResult] = useState([])
+	const BID_HISTORY_STATUS = {
+		BIDING: t('account_page.auction_record_page.status_success'),
+		FAIL: t('account_page.auction_record_page.status_fail'),
+		DEALED: t('account_page.auction_record_page.status_dealed'),
+	};
 	const afterGetUserInfo = (data, isLoading) => {
 		setIsLoading(isLoading);
 		if (!isLoading) {
@@ -29,6 +37,11 @@ function AuctionRecord() {
 			}
 		}
 	};
+	const afterGetResultProduct = (data, loading) => {
+		if (data) {
+			setDataResult(data.data)
+		}
+	}
 	const afterGetBidHistory = (data, isLoading) => {
 		if (data) {
 			setdataResApi(data)
@@ -52,9 +65,21 @@ function AuctionRecord() {
 			getBidHistoryPage()
 		}
 	}, [page]);
+	useEffect(() => {
+		dispatch(getResultProduct({ callback: afterGetResultProduct }));
+	}, [])
 	const handleTableChange = (pagination, filters, sorter) => {
 		setPage(pagination.current);
 	};
+	const bidHistoriesFilter = bidHistory?.data?.map(
+		(bidHistorie) => bidHistorie
+	);
+	const resultsFilter = dataResult
+		?.filter((result) => result?.id === selectorAccount?.userInfo?.id)
+		?.map((item) => item?.auction_price);
+	const dealedArr = resultsFilter
+		?.map((el) => bidHistoriesFilter?.find((item) => item?.price === el))
+		?.map((item) => item?.key);
 
 	const columns = [
 		{
@@ -85,7 +110,7 @@ function AuctionRecord() {
 					</div>
 				);
 			},
-			width: '40%',
+			width: '25%',
 		},
 		{
 			title: t('account_page.auction_record_page.code'),
@@ -96,7 +121,7 @@ function AuctionRecord() {
 			render: (text) => (
 				<Text className='account-product-product-code'>{text ?? 'null'}</Text>
 			),
-			width: '25%',
+			width: '15%',
 		},
 		{
 			title: t('account_page.auction_record_page.market_price'),
@@ -110,24 +135,48 @@ function AuctionRecord() {
 					</Text>
 				)
 			},
-			// sorter: (a, b) => a.product_price - b.product_price,
-			width: '25%',
+			width: '15%',
 		},
-		// {
-		// 	title: t('account_page.auction_record_page.bid_price'),
-		// 	dataIndex: 'price',
-		// 	align: 'center',
-		// 	className: 'align-middle',
-		// 	render: (text) => {
-		// 		return (
-		// 			<Text className='account-product-price'>
-		// 				{text} {t('currency_sign')}
-		// 			</Text>
-		// 		);
-		// 	},
-		// 	// sorter: (a, b) => a.price - b.price,
-		// 	width: '15%',
-		// }
+		{
+			title: t('account_page.auction_record_page.bid_price'),
+			dataIndex: 'price',
+			align: 'center',
+			className: 'align-middle',
+			render: (text) => {
+				return (
+					<Text className='account-product-price'>
+						{text ? text.toLocaleString('en-US') : 'null'} {text ? "MMK" : null}
+					</Text>
+				)
+			},
+			width: '15%',
+		},
+		{
+			title: t('account_page.auction_record_page.bid_time'),
+			dataIndex: 'auction_time',
+			align: 'center',
+			className: 'align-middle',
+			render: (text) => (
+				<Text className='account-product-time'>
+					{moment(text).format("DD/MM/YYYY HH:mm:ss")}
+				</Text>
+			),
+			width: '20%',
+		},
+		{
+			title: t('account_page.auction_record_page.status'),
+			dataIndex: 'status',
+			align: 'center',
+			className: 'align-middle',
+			render: (text, record, index) => (
+				<Text className='account-product-time'>
+					{dealedArr?.includes(index)
+						? BID_HISTORY_STATUS.DEALED
+						: BID_HISTORY_STATUS.BIDING}
+				</Text>
+			),
+			width: '20%',
+		},
 	];
 	const pagination = {
 		position: 'bottomRight',
@@ -157,7 +206,7 @@ function AuctionRecord() {
 					onChange={handleTableChange}
 					pagination={{ ...pagination, total: dataResApi?.total }}
 					columns={columns}
-					dataSource={listPackages}
+					dataSource={bidHistory}
 					scroll={{ x: true }}
 				/>
 			</div>

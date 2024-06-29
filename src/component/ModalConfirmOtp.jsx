@@ -16,6 +16,7 @@ function ModalConfirmOtp({ openModalConfirm, setOpenModalConfirm, handleConfirmO
 			onCancel={() => setOpenModalConfirm(false)}
 			className="modal-confirm-otp"
 			width={682}
+			centered
 			footer={
 				<div className="foot-login">
 					<Button onClick={() => handleConfirmOtp(otp)} className="button-foot-modal">

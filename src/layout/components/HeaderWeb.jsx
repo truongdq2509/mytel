@@ -35,24 +35,29 @@ function HeaderWeb({ user }) {
 		{
 			name: t("header.home"),
 			link: PATH.HOME,
+			isUser: true
 		},
 		{
 			name: t("header.bid"),
 			link: `${PATH.BID}/${urlPageBid.running}`,
-			linkActive: [`${PATH.BID}/${urlPageBid.running}`, `${PATH.BID}/${urlPageBid.upcoming}`,]
+			linkActive: [`${PATH.BID}/${urlPageBid.running}`, `${PATH.BID}/${urlPageBid.upcoming}`,],
+			isUser: true
 		},
 		{
 			name: t("header.result"),
 			link: `${PATH.RESULT}/${urlPageResult.all}`,
-			linkActive: [`${PATH.RESULT}/${urlPageResult.all}`, `${PATH.RESULT}/${urlPageResult.the_winner}`, `${PATH.RESULT}/${urlPageResult.no_winner}`]
+			linkActive: [`${PATH.RESULT}/${urlPageResult.all}`, `${PATH.RESULT}/${urlPageResult.the_winner}`, `${PATH.RESULT}/${urlPageResult.no_winner}`],
+			isUser: true
 		},
 		{
 			name: t("header.rule"),
 			link: PATH.RULE,
+			isUser: true
 		},
 		{
 			name: t("header.account"),
 			link: PATH.ACCOUNT,
+			isUser: user || false,
 		},
 	];
 
@@ -80,6 +85,7 @@ function HeaderWeb({ user }) {
 
 						<div className="box-menu">
 							{listTab.map((item, index) => {
+								if (!item.isUser) return null;
 								return (
 									<div className={`box-menu-item ${getClassActive(item)}`} key={`menu_${index}`} onClick={() => { navigate(item.link) }}>
 										<Link to={item.link}>{item.name}</Link>

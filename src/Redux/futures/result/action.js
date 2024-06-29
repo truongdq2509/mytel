@@ -1,7 +1,7 @@
 import API_PATH from '../../../config/API_PATH'
 import { RESULT, DETAIL_RESULT } from './const'
 
-export const getResultProduct = (data={}) => {
+export const getResultProduct = (data = {}) => {
     return {
         type: RESULT,
         data,
@@ -9,11 +9,12 @@ export const getResultProduct = (data={}) => {
             method: "GET",
             url: API_PATH.resultsProduct,
             query: data.query || {},
+            callback: data.callback || false
         }
     }
 }
 
-export const getResultDetailProduct = (data={}, id) => {
+export const getResultDetailProduct = (data = {}, id) => {
     return {
         type: DETAIL_RESULT,
         data,
