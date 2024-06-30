@@ -9,6 +9,7 @@ import { postDataApi } from "../config/service";
 import API_PATH from "../config/API_PATH";
 import { useState } from "react";
 
+const idSuccessFull = 0;
 const ModalConfirmBid = ({
   setOpenModal,
   openModal,
@@ -40,10 +41,10 @@ const ModalConfirmBid = ({
 
   let dataTitle = t("confirmation");
   if (dataApi) {
-    if (dataApi?.success == true) {
+    dataTitle = t("bid_page.sorry");
+    if (dataApi?.success == true && dataApi?.data?.errorCode == idSuccessFull) {
       dataTitle = t("success");
     }
-    dataTitle = t("bid_page.sorry");
   }
 
   return (
@@ -87,7 +88,6 @@ const Container = styled(Modal)`
     text-align: center;
     padding-top: 3px;
     padding-bottom: 20px;
-    text-transform: capitalize !important;
   }
 
   .body-modal {
