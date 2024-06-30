@@ -45,6 +45,7 @@ const TabUpcoming = ({ upNextProduct = [] }) => {
       <div
         className="upcoming-container"
         // onClick={() => handleViewProduct(data)}
+        onClick={(e) => handleShowDetail(e, data)}
       >
         <div className="product-main">
           <img src={listImageProduct[0]} alt="" className="img-product" />
