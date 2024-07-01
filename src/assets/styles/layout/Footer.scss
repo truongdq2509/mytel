@@ -52,6 +52,7 @@
 
 		&.icon-account {
 			background-image: url(../../images/iconFooterUser.svg);
+			border-radius: 50%;
 
 			&.active {
 				background-image: url(../../images/iconFooterUserActive.svg);

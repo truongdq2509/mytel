@@ -38,8 +38,7 @@ function ItemPackage({ data, type, isRegister = false, handelSelectItem }) {
 	const isCheckPackRegister = currentpackage?.some(
 		(item) => item?.pack_id === data?.pack_id
 	)
-
-
+	const dataSub = currentpackage?.find(it => it.pack_id === data?.pack_id)
 
 	return (
 		<div className={`box-item-package ${type === "RETAIL" ? 'package-retail' : ''}`}>
@@ -61,7 +60,7 @@ function ItemPackage({ data, type, isRegister = false, handelSelectItem }) {
 
 					{type === "SUB" && data.pack_id === "REVERSE_MONTHLY" && <div className="text">{t("account_page.package.description_sub_month")}</div>}
 
-					{type === "SUB" && isCheckPackRegister && <div className="text">{moment(data.next_charge_time).format("DD/MM/YYYY    HH:mm:ss")}</div>}
+					{type === "SUB" && isCheckPackRegister && dataSub && <div className="text">{moment(dataSub.next_charge_time).format("DD/MM/YYYY    HH:mm:ss")}</div>}
 				</div>
 				<Button onClick={() => handelSelectItem(data, isCheckPackRegister ? true : false)} disabled={isRegister && !isCheckPackRegister} className={`box-item-package-content-button ${isCheckPackRegister ? "btn-cancel" : ""}`}>
 					{isCheckPackRegister ? t("account_page.package.cancel") : t("account_page.package.buy")}

@@ -175,7 +175,7 @@ function AuctionRecord() {
 						: BID_HISTORY_STATUS.BIDING}
 				</Text>
 			),
-			width: '20%',
+			width: '10%',
 		},
 	];
 	const pagination = {

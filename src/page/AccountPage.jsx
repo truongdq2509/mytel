@@ -43,7 +43,16 @@ function AccountPage() {
 
 			if (data) {
 				if (data.file) {
-					dispatch(updateUserInfo({ image: data.file, callback: afterUpdateUserInfo }))
+
+					let body = {
+						image: data.file,
+						displayName: selectorAccount?.userInfo?.name,
+						emailAddress: selectorAccount?.userInfo?.email,
+						isdn: selectorAccount?.userInfo?.isdn,
+						callback: afterUpdateUserInfo
+					}
+					console.log(body);
+					dispatch(updateUserInfo(body))
 
 				} else {
 					setStateModal({

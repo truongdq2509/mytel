@@ -120,7 +120,7 @@ function ChangePassword() {
 			return;
 		}
 		let regex = new RegExp(
-			"^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%#?&])[A-Za-z\\d@$!%*#?&]{12,}$"
+			"^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%#?&])[A-Za-z\\d@$!%*#?&]{12,20}$"
 		);
 		let found = regex.test(password);
 		if (!found) {

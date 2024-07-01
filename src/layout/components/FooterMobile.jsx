@@ -3,7 +3,7 @@ import PATH from "../../config/PATH";
 import { urlPageBid, urlPageResult } from "../../helper/const";
 import _ from "lodash";
 
-function FooterMobile() {
+function FooterMobile({ user }) {
 	const location = useLocation()
 	const { id = null, idResult = null } = useParams();
 	const listFooter = [
@@ -26,7 +26,7 @@ function FooterMobile() {
 			classItem: "icon-rule",
 		},
 		{
-			link: PATH.ACCOUNT,
+			link: user ? PATH.ACCOUNT : PATH.LOGIN,
 			classItem: "icon-account",
 		},
 	];
@@ -34,7 +34,7 @@ function FooterMobile() {
 	const getClassActive = (data) => {
 		let activeClass = '';
 		let isCheckPageResult = false
-		if(data.link === `${PATH.RESULT}/${urlPageResult.all}` && id && idResult){
+		if (data.link === `${PATH.RESULT}/${urlPageResult.all}` && id && idResult) {
 			isCheckPageResult = true;
 		}
 		if (data.link === location.pathname || _.includes(data.linkActive, location.pathname) || isCheckPageResult) {
@@ -47,6 +47,14 @@ function FooterMobile() {
 	return (
 		<div className="footer-mobile">
 			{listFooter.map((item, index) => {
+				if (item.classItem === "icon-account") {
+					return (<Link
+						to={item.link}
+						key={`footer_item_${index}`}
+						style={{ backgroundImage: user && `url(${user?.image})` }}
+						className={`footer-mobile-item ${item.classItem} ${getClassActive(item) ? 'active' : ''}`}
+					/>)
+				}
 				return (
 					<Link
 						to={item.link}
