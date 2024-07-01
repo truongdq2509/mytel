@@ -577,8 +577,8 @@
     }
 
     .header-tab__container {
-      margin-top: 10px;
-      margin-bottom: 10px;
+      margin-top: 12px;
+      margin-bottom: 12px;
       gap: 20px;
     }
 
@@ -804,6 +804,10 @@
       font-weight: 600;
     }
 
+    .title-product-result span{
+      line-height: 18px;
+    }
+
     .product-code {
       padding-bottom: 0;
       padding-top: 4px;
@@ -1027,6 +1031,10 @@
       font-weight: 400;
       line-height: 9.68px;
       text-align: left;
+    }
+
+    .header-tab__bid{
+      height: 31px;
     }
 
     .right-page-content .box-pagination .ant-pagination {
