@@ -165,7 +165,7 @@ const ResultComponent = ({
                               {t("result_page.win_price")}
                             </div>
                             <div className="product-money">
-                              {+auction_price == 0 ? (
+                              {+auction_price == 0 || +status === 5? (
                                 `N/A`
                               ) : (
                                 <>{`${formatDataNumberToen(
