@@ -77,7 +77,7 @@ export default function BidPage() {
         <div
           key={tab.id}
           onClick={() => handleChangeTabs(tab.id)}
-          className={`header-tab ${id === tab.id ? "active-tab" : "tab-hover"}`}
+          className={`header-tab header-tab__bid ${id === tab.id ? "active-tab" : "tab-hover"}`}
         >
           {tab.content}
         </div>

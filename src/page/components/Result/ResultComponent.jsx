@@ -99,7 +99,7 @@ const ResultComponent = ({
 
             return (
               <Fragment key={`curren_product_${item.product_id}_${index}`}>
-                <div className={`bid-banner-mobile ${classFlex}`}>
+                <div className={`bid-banner-mobile mt-10__bid ${classFlex}`}>
                   <SliderBid listImageProduct={listImageProduct} />
                 </div>
                 <div className={`d-flex  bg-white`}>
@@ -108,7 +108,7 @@ const ResultComponent = ({
                   </div>
                   <div className="header-content">
                     <div className="title-product__container">
-                      <div className="title-product">
+                      <div className="title-product title-product-result">
                         <span>{product_name}</span>{" "}
                         <div
                           className="link-detail link-detail-result"
@@ -165,7 +165,7 @@ const ResultComponent = ({
                               {t("result_page.win_price")}
                             </div>
                             <div className="product-money">
-                              {+auction_price == 0 ? (
+                              {+auction_price == 0 || +status === 5? (
                                 `N/A`
                               ) : (
                                 <>{`${formatDataNumberToen(
