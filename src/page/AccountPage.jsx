@@ -162,7 +162,8 @@ function AccountPage() {
 							<div className="icon-camera" />
 							<input value={null} type='file' onChange={handleChangeAvarta} className='avarta-input' />
 						</div>
-						<span className="name">{userInfo?.name || userInfo?.msisdn}</span>
+						{userInfo?.name ? <span className="name">{userInfo?.name}</span> : null}
+						<span className="name">{userInfo?.msisdn}</span>
 					</div>
 					<div className="container-account-info-foot">
 						<div className="total-bid">

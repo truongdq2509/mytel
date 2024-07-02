@@ -25,6 +25,7 @@ function RightWeb({ user }) {
 	const dispatch = useDispatch()
 	useEffect(() => {
 		if (selectorAccount.userInfo) {
+			console.log("run");
 			if (selectorAccount.userInfo.isAdvantage) {
 				setObjectTextHeader({
 					text1: t("right_page.text_foot1"),

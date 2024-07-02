@@ -8,6 +8,7 @@ import { useTranslation } from "react-i18next";
 import { postDataApi } from "../config/service";
 import API_PATH from "../config/API_PATH";
 import { useState } from "react";
+import { getCurrentUser } from '../Redux/futures/account/actions';
 
 const idSuccessFull = 0;
 const ModalConfirmBid = ({
@@ -18,6 +19,7 @@ const ModalConfirmBid = ({
   setValueInput,
 }) => {
   const [dataApi, setDataApi] = useState(null);
+  const dispatch = useDispatch()
   const { t } = useTranslation();
   const title = data[0]?.product_name || "";
 
@@ -44,6 +46,7 @@ const ModalConfirmBid = ({
     dataTitle = t("bid_page.sorry");
     if (dataApi?.success == true && dataApi?.data?.errorCode == idSuccessFull) {
       dataTitle = t("success");
+      dispatch(getCurrentUser({}))
     }
   }
 
@@ -61,8 +64,8 @@ const ModalConfirmBid = ({
           {dataApi?.errorMessage
             ? dataApi.errorMessage
             : dataApi?.data?.content
-            ? dataApi?.data?.content
-            : t("bid_page.confirm_bid")
+              ? dataApi?.data?.content
+              : t("bid_page.confirm_bid")
                 .replace("_PRICE_", formatDataNumberToen(+valueInput))
                 .replace("_NAME_", title)}
         </div>
