@@ -9,6 +9,7 @@ export const postBidProduct = (data) => {
             method: "POST",
             url: API_PATH.bid,
             query: data.query || {},
+            callback: data?.callback || null,
         }
     }
 }

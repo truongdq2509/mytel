@@ -22,15 +22,28 @@ const ModalConfirmBid = ({
   const dispatch = useDispatch()
   const { t } = useTranslation();
   const title = data[0]?.product_name || "";
+  const [dataTitle, setDataTitle] = useState(t("confirmation"))
+
+  const afterbid = (data, isLoading, dataError) => {
+    if (data) {
+      setDataTitle(t("success"));
+      dispatch(getCurrentUser({}))
+      setDataApi(data);
+      setValueInput("");
+    } else if (dataError) {
+      setDataTitle(t("bid_page.sorry"));
+      setDataApi(dataError);
+    }
+  }
 
   const handleBid = async () => {
     const dataAPi = {
       price: valueInput,
       productCode: data[0]?.product_code,
+      callback: afterbid
     };
-    const dataPostApi = await postDataApi(API_PATH.bid, dataAPi, {});
-    setDataApi(dataPostApi);
-    setValueInput("");
+    // const dataPostApi = await postDataApi(API_PATH.bid, dataAPi, {});
+    dispatch(postBidProduct(dataAPi))
   };
 
   const handleOke = () => {
@@ -39,17 +52,8 @@ const ModalConfirmBid = ({
 
   const handleOkeApi = () => {
     setOpenModal(false);
+    setDataTitle(t("confirmation"))
   };
-
-  let dataTitle = t("confirmation");
-  if (dataApi) {
-    dataTitle = t("bid_page.sorry");
-    if (dataApi?.success == true && dataApi?.data?.errorCode == idSuccessFull) {
-      dataTitle = t("success");
-      dispatch(getCurrentUser({}))
-    }
-  }
-
   return (
     <Container
       title={dataTitle}

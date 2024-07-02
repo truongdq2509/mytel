@@ -21,23 +21,21 @@ function RightWeb({ user }) {
 	})
 	const selectorRightWeb = useSelector(curStateRightWeb)
 	const selectorHome = useSelector(curStateHome);
-	const selectorAccount = useSelector(curStateAccount);
 	const dispatch = useDispatch()
 	useEffect(() => {
-		if (selectorAccount.userInfo) {
-			console.log("run");
-			if (selectorAccount.userInfo.isAdvantage) {
+		if (user) {
+			if (user.isAdvantage) {
 				setObjectTextHeader({
 					text1: t("right_page.text_foot1"),
 					text2: t("right_page.text_foot2"),
 					text3: null
 				})
 			} else {
-				if (selectorAccount.userInfo.minPriceOfCurrentUser > 0) {
+				if (user.minPriceOfCurrentUser > 0) {
 					setObjectTextHeader({
 						text1: t("right_page.text_foot5"),
-						text2: t("right_page.text_foot6").replace("_NUMBER_", selectorAccount.userInfo.countSamePrice),
-						text3: t("right_page.text_foot7").replace("_NUMBER_", selectorAccount.userInfo.countLowerPrice)
+						text2: t("right_page.text_foot6").replace("_NUMBER_", user.countSamePrice),
+						text3: t("right_page.text_foot7").replace("_NUMBER_", user.countLowerPrice)
 					})
 				} else {
 					setObjectTextHeader({
@@ -54,7 +52,7 @@ function RightWeb({ user }) {
 				text3: null
 			})
 		}
-	}, [selectorAccount.userInfo]);
+	}, [user]);
 	useEffect(() => {
 		let query = {
 			current: page,
