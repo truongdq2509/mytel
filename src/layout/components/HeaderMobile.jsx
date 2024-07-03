@@ -31,7 +31,7 @@ function HeaderMobile({ user }) {
 					<div className='box-logo'>
 						<a href={PATH.HOME} className="logo-mobile is-login" />
 						<div className='box-logo-info'>
-							<div className='box-logo-info-name'>{user.name || user.msisdn}</div>
+							<div className='box-logo-info-name'>{user.msisdn}</div>
 							<div className='box-logo-info-number-bid'>
 								<span>{bidTotal}</span>
 							</div>

@@ -162,7 +162,6 @@ function AccountPage() {
 							<div className="icon-camera" />
 							<input value={null} type='file' onChange={handleChangeAvarta} className='avarta-input' />
 						</div>
-						{userInfo?.name ? <span className="name">{userInfo?.name}</span> : null}
 						<span className="name">{userInfo?.msisdn}</span>
 					</div>
 					<div className="container-account-info-foot">

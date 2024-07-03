@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import avtDefaults from "../../assets/images/avtRight.png";
 import { Pagination, Select } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { curStateRightWeb } from "../../Redux/selector";
+import { curStateAccount, curStateRightWeb } from "../../Redux/selector";
 import { useEffect, useState } from "react";
 import {
   getHistoryBid,
@@ -20,7 +20,13 @@ function RightWebMobile() {
   const [total, setTotal] = useState(0);
   const [listBidHistory, setListBidHistory] = useState([]);
   const selectorRightWeb = useSelector(curStateRightWeb);
+  const selectorAccount = useSelector(curStateAccount)
   const dispatch = useDispatch();
+  const [objTextHeader, setObjectTextHeader] = useState({
+    text1: t("right_page.text_foot1"),
+    text2: t("right_page.text_foot2"),
+    text3: null
+  })
   useEffect(() => {
     let query = {
       current: page,
@@ -35,6 +41,37 @@ function RightWebMobile() {
       dispatch(getHistoryBidAll({ query }));
     }
   }, [selectorRightWeb.idCurrentProduct, sort, page]);
+  useEffect(() => {
+    if (selectorAccount.userInfo) {
+      if (selectorAccount.userInfo.isAdvantage) {
+        setObjectTextHeader({
+          text1: t("right_page.text_foot1"),
+          text2: t("right_page.text_foot2"),
+          text3: null
+        })
+      } else {
+        if (selectorAccount.userInfo.minPriceOfCurrentUser > 0) {
+          setObjectTextHeader({
+            text1: t("right_page.text_foot5"),
+            text2: t("right_page.text_foot6").replace("_NUMBER_", selectorAccount.userInfo.countSamePrice),
+            text3: t("right_page.text_foot7").replace("_NUMBER_", selectorAccount.userInfo.countLowerPrice)
+          })
+        } else {
+          setObjectTextHeader({
+            text1: t("right_page.text_foot3"),
+            text2: t("right_page.text_foot4"),
+            text3: null
+          })
+        }
+      }
+    } else {
+      setObjectTextHeader({
+        text1: t("right_page.text_foot3"),
+        text2: t("right_page.text_foot4"),
+        text3: null
+      })
+    }
+  }, [selectorAccount.userInfo]);
   useEffect(() => {
     if (selectorRightWeb.idCurrentProduct) {
       if (selectorRightWeb?.bidHistory?.data?.length > 0) {
@@ -100,7 +137,7 @@ function RightWebMobile() {
                     />
                     <div className="box-info">
                       <div className="name one-line">
-                        {it.name || it.isdn}
+                        {it.isdn}
                       </div>
                       <div className="phone-number">{it.isdn}</div>
                       <div className="date">{dateFomat}</div>
@@ -141,14 +178,11 @@ function RightWebMobile() {
         </div>
         <div className="hr-mobile" />
 
-        <div className="icon-head" />
+        <div className={`icon-head ${objTextHeader.text3 ? 'icon-lose' : ''}`} />
         <div className="box-text">
-          <div>You are holding the advantage. </div>
-          <div>The price you place is the lowest and only one now.</div>
-          <div>
-            Let follow up this statistic constantly cause you may easily lose
-            your advantage to others soon
-          </div>
+          <div>{objTextHeader.text1}</div>
+          <div>{objTextHeader.text2}</div>
+          {objTextHeader.text3 ? <div>{objTextHeader.text3}</div> : null}
         </div>
       </div>
     </div>
