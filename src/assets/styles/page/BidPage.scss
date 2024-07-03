@@ -966,6 +966,7 @@
       left: 50%;
       transform: translate(-50%);
       width: calc(100vw - 30px);
+      z-index: 9999;
     }
 
     .right-page-head .number-people span:first-child {
