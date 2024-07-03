@@ -9,6 +9,7 @@ import { postDataApi } from "../config/service";
 import API_PATH from "../config/API_PATH";
 import { useState } from "react";
 import { getCurrentUser } from '../Redux/futures/account/actions';
+import { getTurnRemain } from "../Redux/futures/account/actions";
 
 const idSuccessFull = 0;
 const ModalConfirmBid = ({
@@ -35,6 +36,7 @@ const ModalConfirmBid = ({
       setDataApi(dataError);
     }
   }
+  // const dispatch = useDispatch()
 
   const handleBid = async () => {
     const dataAPi = {
@@ -43,7 +45,11 @@ const ModalConfirmBid = ({
       callback: afterbid
     };
     // const dataPostApi = await postDataApi(API_PATH.bid, dataAPi, {});
-    dispatch(postBidProduct(dataAPi))
+   await dispatch(postBidProduct(dataAPi))
+    // const dataPostApi = await postDataApi(API_PATH.bid, dataAPi, {});
+    // setDataApi(dataPostApi);
+    // setValueInput("");
+    dispatch(getTurnRemain({}));
   };
 
   const handleOke = () => {
