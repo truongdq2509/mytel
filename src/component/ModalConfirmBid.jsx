@@ -27,8 +27,9 @@ const ModalConfirmBid = ({
 
   const afterbid = (data, isLoading, dataError) => {
     if (data) {
-      setDataTitle(t("success"));
       dispatch(getCurrentUser({}))
+
+      setDataTitle(t("success"));
       setDataApi(data);
       setValueInput("");
     } else if (dataError) {
@@ -36,7 +37,6 @@ const ModalConfirmBid = ({
       setDataApi(dataError);
     }
   }
-  // const dispatch = useDispatch()
 
   const handleBid = async () => {
     const dataAPi = {
@@ -44,12 +44,7 @@ const ModalConfirmBid = ({
       productCode: data[0]?.product_code,
       callback: afterbid
     };
-    // const dataPostApi = await postDataApi(API_PATH.bid, dataAPi, {});
-   await dispatch(postBidProduct(dataAPi))
-    // const dataPostApi = await postDataApi(API_PATH.bid, dataAPi, {});
-    // setDataApi(dataPostApi);
-    // setValueInput("");
-    dispatch(getTurnRemain({}));
+    dispatch(postBidProduct(dataAPi))
   };
 
   const handleOke = () => {
