@@ -160,7 +160,7 @@ function HomePage() {
 								let listImageProduct = item?.product_image?.split(',')
 								let dateFormat = moment(item.start_time).format('DD/MM/YYYY HH:mm')
 								return (
-									<div onClick={() => navigate(`${PATH.BID}/upcoming`)} className="box-item" key={`curren_product_${item.product_id}_${index}`}>
+									<div onClick={() => navigate(`${PATH.BID}/upcoming`)} className="box-item hover-page" key={`curren_product_${item.product_id}_${index}`}>
 										<div
 											key={index}
 											className="box-item-image"
