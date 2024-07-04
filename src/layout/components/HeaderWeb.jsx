@@ -10,6 +10,8 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getTurnRemain } from '../../Redux/futures/account/actions';
 import { curStateAccount } from '../../Redux/selector';
+import avatarDefault from "../../assets/images/avatarDefault.svg"
+import { checkImage } from '../../helper/helper';
 
 function HeaderWeb({ user }) {
 	const { t } = useTranslation();
@@ -73,6 +75,13 @@ function HeaderWeb({ user }) {
 
 		return activeClass
 	}
+	let urlImage = avatarDefault
+	if (user) {
+		if (checkImage(user?.image)) {
+			urlImage = user?.image
+		}
+	}
+	console.log(urlImage);
 
 	return (
 		<div className="header-page">
@@ -104,7 +113,7 @@ function HeaderWeb({ user }) {
 									<span>{bidTotal}</span>
 								</div>
 							</div>
-							<div onClick={() => navigate(PATH.ACCOUNT)} style={{ backgroundImage: `url(${user.image})` }} className='box-user-action-avt' />
+							<div onClick={() => navigate(PATH.ACCOUNT)} style={{ backgroundImage: `url(${urlImage})` }} className='box-user-action-avt' />
 						</div>) : (
 							<div className='box-user-btn-login' onClick={() => setOpenModalLogin(true)}>{t("header.login")}</div>
 						)}

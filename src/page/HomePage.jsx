@@ -2,7 +2,7 @@ import { Carousel } from "antd";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import ImageProduct from "../component/ImageProduct";
-import Countdown from "react-countdown";
+import Countdown, { zeroPad } from "react-countdown";
 import { mediaQueryPoint, useMediaQuery } from "../utils/hooks";
 import BannerHomeMobile from "../component/BannerHomeMobile";
 import { useDispatch, useSelector } from 'react-redux';
@@ -30,6 +30,18 @@ function HomePage() {
 	const [banner, setBanner] = useState([])
 	const [openModalDetail, setOpenModalDetail] = useState(false)
 	const [selectedProduct, setSelectedProduct] = useState(null)
+
+	const renderer = ({ days, hours, minutes, seconds, completed }) => {
+		let textDay = t("home_page.day")
+		if (days > 1) {
+			textDay = t("home_page.days")
+		}
+		if (days >= 1) {
+			return <span className='day'>{`${zeroPad(days)} ${textDay.toUpperCase()} ${zeroPad(hours)}:${zeroPad(minutes)}:${zeroPad(seconds)}`}</span>
+		} else {
+			return <span >{`${zeroPad(hours)}:${zeroPad(minutes)}:${zeroPad(seconds)}`}</span>
+		}
+	};
 
 	useEffect(() => {
 		dispatch(getBidProduct({}))
@@ -108,7 +120,7 @@ function HomePage() {
 							<div className="price">{`${item?.product_price.toLocaleString('en-US')} MMK`}</div>
 							<p className="code-product">{t("home_page.time_end")}</p>
 							<div className="time-count-down">
-								<Countdown date={item?.end_time} />
+								<Countdown date={item?.end_time} renderer={renderer} />
 							</div>
 							<div onClick={() => navigate(`${PATH.BID}/running`)} className='button-bid'>
 								<div className='button-bid-icon' />

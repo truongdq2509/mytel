@@ -36,7 +36,7 @@
 
 
 		&-item {
-			height: 301px;
+			height: 317px;
 			width: 100%;
 			background-position: center;
 			background-repeat: no-repeat;
@@ -46,7 +46,7 @@
 	}
 
 	.fake-banner {
-		height: 301px;
+		height: 317px;
 	}
 
 	&-current-product {
@@ -111,7 +111,7 @@
 				}
 
 				.price {
-					color: #FF2222;
+					color: $background-color-title;
 					font-size: 35px;
 					font-weight: 800;
 					line-height: 42.36px;
@@ -125,6 +125,11 @@
 						font-size: 25px;
 						font-weight: 500;
 						line-height: 30.26px;
+						color: $color-text-price;
+
+						&.day {
+							color: #2BA001;
+						}
 					}
 				}
 
@@ -272,7 +277,7 @@
 								font-size: 20px;
 								font-weight: 600;
 								line-height: 24.2px;
-								color: $color-text-price;
+								color: #000;
 								margin-top: 14px;
 							}
 						}

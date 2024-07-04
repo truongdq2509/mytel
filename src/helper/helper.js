@@ -3,3 +3,16 @@ export const getUrlParamsFromJson = (data) => {
 		.map((key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
 		.join("&");
 };
+export function checkImage(url) {
+	var request = new XMLHttpRequest();
+	let status
+	request.open("GET", url, true);
+	request.send();
+	request.onload = function () {
+		if (request.status == 200) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+}

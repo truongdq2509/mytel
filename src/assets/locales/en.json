@@ -28,7 +28,9 @@
     "code": "Item code number: _CODE_",
     "time_end": "The auction will end after:",
     "product_code": "Product code: _CODE_",
-    "bid_now": "Bid now"
+    "bid_now": "Bid now",
+    "day":"Day",
+    "days":"Days"
   },
   "bid_page": {
     "auction_code": "Account code",

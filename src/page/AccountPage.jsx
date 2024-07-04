@@ -13,7 +13,8 @@ import { getItemCookie } from "../utils/cookie";
 import { Link } from "react-router-dom";
 import ModalNotifycation from '../component/ModalNotifycation';
 import { mediaQueryPoint, useMediaQuery } from '../utils/hooks';
-import { message } from 'antd';
+import avatarDefault from "../assets/images/avatarDefault.svg"
+import { checkImage } from '../helper/helper';
 
 function AccountPage() {
 	const dispatch = useDispatch();
@@ -149,6 +150,13 @@ function AccountPage() {
 		data.append('file', newFile)
 		dispatch(uploadFile(data, afterUploadfile))
 	}
+	let urlAvatar = avatarDefault
+	if (userInfo) {
+		if (checkImage(userInfo?.image)) {
+			urlAvatar = userInfo?.image
+		}
+	}
+
 	return (
 		<div className="container-account">
 			{userInfo && (
@@ -156,7 +164,7 @@ function AccountPage() {
 					{isMobile ? <div className="container-account-info-bgr" /> : null}
 					<div className="container-account-info-user">
 						<div
-							style={{ backgroundImage: `url(${userInfo.image})` }}
+							style={{ backgroundImage: `url(${urlAvatar})` }}
 							className="avarta"
 						>
 							<div className="icon-camera" />

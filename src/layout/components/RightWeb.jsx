@@ -5,8 +5,9 @@ import { curStateHome, curStateRightWeb, curStateAccount } from '../../Redux/sel
 import { useEffect, useState } from 'react';
 import { getHistoryBid, getHistoryBidAll } from '../../Redux/futures/rightWeb/actions';
 import moment from 'moment';
-import { getCurrentUser } from '../../Redux/futures/account/actions';
+import avatarDefault from "../../assets/images/avatarDefault.svg"
 import { currentDate } from '../../helper/const';
+import { checkImage } from '../../helper/helper';
 function RightWeb({ user }) {
 	const { t } = useTranslation();
 	const [sort, setSort] = useState('desc')
@@ -107,15 +108,20 @@ function RightWeb({ user }) {
 	return (
 		<div className="right-page">
 			<div className="right-page-head">
-				<div className="number-people">
-					<span>{currentProduct[0]?.count_user || 0}</span>
-					<span>{t("right_page.number_people")}</span>
+				<div className="right-page-head-number-people">
+					<span className='right-page-head-number-people-icon' />
+					<div>
+						<span>{currentProduct[0]?.count_user || 0}</span>
+						<span>{t("right_page.number_people")}</span>
+					</div>
 				</div>
-				<div className={`icon-head ${objTextHeader.text3 ? 'icon-lose' : ''}`} />
-				<div className="box-text">
-					<div>{objTextHeader.text1}</div>
-					<div>{objTextHeader.text2}</div>
-					{objTextHeader.text3 ? <div>{objTextHeader.text3}</div> : null}
+				<div className='right-page-head-content'>
+					<div className={`icon-head ${objTextHeader.text3 ? 'icon-lose' : ''}`} />
+					<div className="box-text">
+						<div>{objTextHeader.text1}</div>
+						<div>{objTextHeader.text2}</div>
+						{objTextHeader.text3 ? <div>{objTextHeader.text3}</div> : null}
+					</div>
 				</div>
 			</div>
 			<div className="right-page-content">
@@ -138,11 +144,17 @@ function RightWeb({ user }) {
 					<div className="right-page-content-body">
 						{listBidHistory.length > 0 ? listBidHistory.map((it, index) => {
 							let dateFomat = moment(it.auction_time).format('MMM D, YYYY, h:mm A')
+							let url = avatarDefault
+							if (it?.image) {
+								if (checkImage(it.image)) {
+									url = it?.image
+								}
+							}
 							return (
 								<div key={`item_right_${it.key}_${index}`} className="item-body">
 									<div className="box-user">
 										<div
-											style={{ backgroundImage: `url(${it.image})` }}
+											style={{ backgroundImage: `url(${url})` }}
 											className="avatar"
 										/>
 										<div className="box-info">
