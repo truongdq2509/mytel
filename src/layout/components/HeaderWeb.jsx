@@ -99,7 +99,7 @@ function HeaderWeb({ user }) {
 							<div onClick={() => navigate(PATH.PACKAGE)} className='box-user-action-cart' />
 							<div className='box-user-action-line' />
 							<div className='box-user-action-info'>
-								<div className='name one-line'>{user.name || user.msisdn}</div>
+								<div className='name one-line'>{user.msisdn}</div>
 								<div className='number-bid'>
 									<span>{bidTotal}</span>
 								</div>

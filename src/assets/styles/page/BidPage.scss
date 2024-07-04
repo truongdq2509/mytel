@@ -1,15 +1,15 @@
 .bid-container {
   margin-bottom: 20px;
 
-  .disable-bid{
-    &:hover{
+  .disable-bid {
+    &:hover {
       cursor: not-allowed;
       background-color: #dab59d !important;
       transition: 0.3s ease-in-out;
     }
   }
 
-  .error-input__bid{
+  .error-input__bid {
     position: absolute;
     bottom: -17px;
     font-size: 13px;
@@ -17,9 +17,9 @@
     color: red;
     width: max-content;
   }
-  
-  @media(max-width: 768px){
-    .error-input__bid{
+
+  @media(max-width: 768px) {
+    .error-input__bid {
       font-size: 10px;
       bottom: -12px;
     }
@@ -88,11 +88,11 @@
     margin-bottom: 17px;
   }
 
-  
-.pt-30{
-	padding-top: 30px;
-  padding-bottom: 30px;
-}
+
+  .pt-30 {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
 
   .d-flex:last-child {
     margin-bottom: 0;
@@ -685,8 +685,7 @@
       padding-bottom: 7px;
     }
 
-    .tips-container {
-    }
+    .tips-container {}
 
     .right-page-content-body {
       height: auto;
@@ -712,6 +711,7 @@
     }
 
     #bid-upcoming {
+
       .product-title,
       .product-price {
         font-size: 12px;
@@ -798,7 +798,7 @@
       padding: 6px 10px;
     }
 
-    .header-content{
+    .header-content {
       padding: 10px 10px;
     }
 
@@ -809,7 +809,7 @@
       font-weight: 600;
     }
 
-    .title-product-result span{
+    .title-product-result span {
       line-height: 18px;
     }
 
@@ -950,7 +950,7 @@
       min-width: 280px;
     }
 
-    .right-page-content .box-pagination .ant-pagination > li {
+    .right-page-content .box-pagination .ant-pagination>li {
       font-size: 14px !important;
     }
 
@@ -1032,14 +1032,21 @@
   }
 
   @media (max-width: 576px) {
+    .right-page-head .box-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
     .right-page-head .box-text div {
       font-size: 8px;
       font-weight: 400;
       line-height: 9.68px;
-      text-align: left;
+      text-align: center;
     }
 
-    .header-tab__bid{
+    .header-tab__bid {
       height: 31px;
     }
 
@@ -1047,9 +1054,9 @@
       min-width: 180px;
     }
 
-     .error-input__bid{
+    .error-input__bid {
       font-size: 8px;
-     }
+    }
   }
 }
 

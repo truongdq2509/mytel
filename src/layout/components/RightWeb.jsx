@@ -146,7 +146,7 @@ function RightWeb({ user }) {
 											className="avatar"
 										/>
 										<div className="box-info">
-											<div className="name one-line">{it.name || it.isdn}</div>
+											<div className="name one-line">{it.isdn}</div>
 											<div className="phone-number">{it.isdn}</div>
 											<div className="date">{dateFomat}</div>
 										</div>

@@ -45,6 +45,10 @@
 		}
 	}
 
+	.fake-banner {
+		height: 301px;
+	}
+
 	&-current-product {
 		padding: 12px 23px;
 		background-color: #fff;
@@ -329,6 +333,10 @@
 					bottom: -15px;
 				}
 			}
+		}
+
+		.fake-banner {
+			height: 20px;
 		}
 
 		&-current-product {

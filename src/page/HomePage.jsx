@@ -74,7 +74,7 @@ function HomePage() {
 	}
 	return (
 		<div className="container-home">
-			{banner.length > 0 ? <div className="container-home-banner">
+			{!banner.length > 0 ? <div className="container-home-banner">
 				{isMobile ? (
 					<BannerHomeMobile data={banner} />
 				) : (
@@ -84,7 +84,7 @@ function HomePage() {
 						})}
 					</Carousel>
 				)}
-			</div> : null}
+			</div> : <div className='fake-banner' />}
 
 			{currentProduct.length > 0 ? currentProduct.map((item, index) => {
 				let listImageProduct = item?.product_image?.split(',')
