@@ -43,7 +43,7 @@ const TabUpcoming = ({ upNextProduct = [] }) => {
 
     return (
       <div
-        className="upcoming-container"
+        className="upcoming-container hover-page"
         // onClick={() => handleViewProduct(data)}
         onClick={(e) => handleShowDetail(e, data)}
       >
@@ -54,7 +54,7 @@ const TabUpcoming = ({ upNextProduct = [] }) => {
             <div className="product-code">
               {t("home_page.product_code").replace("_CODE_", product_code)}
             </div>
-            <div className="product-price">
+            <div className="product-price color-black">
               {formatDataNumberToen(product_price)} MMK
             </div>
             <div className="product-timer">
