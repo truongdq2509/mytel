@@ -86,7 +86,7 @@ function HomePage() {
 	}
 	return (
 		<div className="container-home">
-			{!banner.length > 0 ? <div className="container-home-banner">
+			{banner.length > 0 ? <div className="container-home-banner">
 				{isMobile ? (
 					<BannerHomeMobile data={banner} />
 				) : (
