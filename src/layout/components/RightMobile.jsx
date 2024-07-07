@@ -9,10 +9,9 @@ import {
   getHistoryBidAll,
 } from "../../Redux/futures/rightWeb/actions";
 import moment from "moment";
-import { getItemCookie } from '../../utils/cookie';
-import { getTotalUserBid } from "../../Redux/futures/home/actions";
-import { getCurrentUser } from "../../Redux/futures/account/actions";
+import avatarDefault from "../../assets/images/avatarDefault.svg"
 import { currentDate } from '../../helper/const';
+import { checkImage } from '../../helper/helper';
 
 function RightWebMobile() {
   const { t } = useTranslation();
@@ -139,6 +138,12 @@ function RightWebMobile() {
               let dateFomat = moment(it.auction_time).format(
                 "MMM D, YYYY, h:mm A"
               );
+              let url = avatarDefault
+              if (it?.image) {
+                if (checkImage(it.image)) {
+                  url = it?.image
+                }
+              }
               return (
                 <div
                   key={`item_right_${it.key}_${index}`}
@@ -146,7 +151,7 @@ function RightWebMobile() {
                 >
                   <div className="box-user">
                     <div
-                      style={{ backgroundImage: `url(${it.image})` }}
+                      style={{ backgroundImage: `url(${url})` }}
                       className="avatar"
                     />
                     <div className="box-info">
