@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import avtDefaults from "../../assets/images/avtRight.png";
 import { Pagination, Select } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { curStateAccount, curStateRightWeb } from "../../Redux/selector";
+import { curStateAccount, curStateHome, curStateRightWeb } from "../../Redux/selector";
 import { useEffect, useState } from "react";
 import {
   getHistoryBid,
@@ -12,6 +12,7 @@ import moment from "moment";
 import { getItemCookie } from '../../utils/cookie';
 import { getTotalUserBid } from "../../Redux/futures/home/actions";
 import { getCurrentUser } from "../../Redux/futures/account/actions";
+import { currentDate } from '../../helper/const';
 
 function RightWebMobile() {
   const { t } = useTranslation();
@@ -21,12 +22,25 @@ function RightWebMobile() {
   const [listBidHistory, setListBidHistory] = useState([]);
   const selectorRightWeb = useSelector(curStateRightWeb);
   const selectorAccount = useSelector(curStateAccount)
+  const selectorHome = useSelector(curStateHome);
+  const [currentProduct, setCurrentProduct] = useState([])
   const dispatch = useDispatch();
   const [objTextHeader, setObjectTextHeader] = useState({
     text1: t("right_page.text_foot1"),
     text2: t("right_page.text_foot2"),
     text3: null
   })
+  useEffect(() => {
+    if (selectorHome?.bidProduct?.length > 0) {
+      let currentProduct = selectorHome.bidProduct.filter(
+        (product) => new Date(product?.start_time).getTime() < currentDate
+      );
+      setCurrentProduct(currentProduct);
+    } else {
+      setCurrentProduct([]);
+    }
+
+  }, [selectorHome.bidProduct]);
   useEffect(() => {
     let query = {
       current: page,
@@ -173,7 +187,7 @@ function RightWebMobile() {
 
       <div className="right-page-head">
         <div className="number-people">
-          <span>243</span>
+          <span>{currentProduct[0]?.count_user || 0}</span>
           <span>{t("right_page.number_people")}</span>
         </div>
         <div className="hr-mobile" />

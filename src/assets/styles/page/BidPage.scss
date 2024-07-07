@@ -361,7 +361,7 @@
       padding-bottom: 40px;
     }
 
-    .color-black{
+    .color-black {
       color: #000000;
       font-weight: 600;
     }
@@ -960,6 +960,8 @@
       border-top-left-radius: 28px;
       border-top-right-radius: 28px;
       margin-bottom: 0;
+      background-color: #f97a1c;
+      color: #fff;
     }
 
     .right-page-head {
@@ -967,7 +969,7 @@
       display: grid;
       grid-template-columns: max-content 1px 42.5px auto;
       position: fixed;
-      bottom: 69px;
+      bottom: 98px;
       left: 50%;
       transform: translate(-50%);
       width: calc(100vw - 30px);
@@ -1001,6 +1003,13 @@
       width: 42.5px;
       height: 42.5px;
       position: relative;
+      background-image: url(../../images/iconCupRight.svg);
+      background-repeat: no-repeat;
+      background-size: cover;
+
+      &.icon-lose {
+        background-image: url(../../images/iconLoseRight.svg);
+      }
     }
 
     .hr-mobile {
