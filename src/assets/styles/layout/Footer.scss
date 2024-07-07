@@ -1,5 +1,5 @@
 .footer-mobile {
-	padding: 17px 27px;
+	padding: 14px 5px 35px;
 	background-color: rgba(30, 22, 25, 1);
 	display: flex;
 	justify-content: space-between;
@@ -11,51 +11,85 @@
 	z-index: 100;
 
 	&-item {
-		display: block;
-		width: 35px;
-		height: 35px;
-		background-position: center;
-		background-repeat: no-repeat;
-		background-size: cover;
+		display: flex;
+		flex-direction: column;
+		gap: 2px;
+		justify-content: center;
+		align-items: center;
+		min-width: 60px;
+		position: relative;
 
-		&.icon-bid {
-			background-image: url(../../images/iconFooterBid.svg);
+		.icon-footer {
+			display: block;
+			width: 35px;
+			height: 35px;
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: cover;
 
-			&.active {
-				background-image: url(../../images/iconFooterBidActive.svg);
+			&.icon-bid {
+				background-image: url(../../images/iconFooterBid.svg);
+
+				&.active {
+					background-image: url(../../images/iconFooterBidActive.svg);
+				}
+			}
+
+			&.icon-result {
+				background-image: url(../../images/iconFooterHistory.svg);
+
+				&.active {
+					background-image: url(../../images/iconFooterHistoryActive.svg);
+				}
+			}
+
+			&.icon-home {
+				background-image: url(../../images/iconFooterHome.svg);
+
+				&.active {
+					background-image: url(../../images/iconFooterHomeActive.svg);
+				}
+			}
+
+			&.icon-rule {
+				background-image: url(../../images/iconFooterRule.svg);
+
+				&.active {
+					background-image: url(../../images/iconFooterRuleActive.svg);
+				}
+			}
+
+			&.icon-account {
+				background-image: url(../../images/iconFooterUser.svg);
+				border-radius: 50%;
+
+				&.active {
+					background-image: url(../../images/iconFooterUserActive.svg);
+				}
 			}
 		}
 
-		&.icon-result {
-			background-image: url(../../images/iconFooterHistory.svg);
-
-			&.active {
-				background-image: url(../../images/iconFooterHistoryActive.svg);
-			}
+		.text-footer {
+			font-size: 10px;
+			font-weight: 500;
+			line-height: 12.1px;
+			color: #fff;
 		}
 
-		&.icon-home {
-			background-image: url(../../images/iconFooterHome.svg);
-
-			&.active {
-				background-image: url(../../images/iconFooterHomeActive.svg);
+		&.active {
+			&::before {
+				content: "";
+				width: 75px;
+				height: 3px;
+				background-color: $background-color-title;
+				position: absolute;
+				top: -14px;
+				left: 50%;
+				transform: translateX(-50%);
 			}
-		}
 
-		&.icon-rule {
-			background-image: url(../../images/iconFooterRule.svg);
-
-			&.active {
-				background-image: url(../../images/iconFooterRuleActive.svg);
-			}
-		}
-
-		&.icon-account {
-			background-image: url(../../images/iconFooterUser.svg);
-			border-radius: 50%;
-
-			&.active {
-				background-image: url(../../images/iconFooterUserActive.svg);
+			.text-footer {
+				color: $background-color-title;
 			}
 		}
 	}
