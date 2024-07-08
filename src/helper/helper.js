@@ -5,7 +5,6 @@ export const getUrlParamsFromJson = (data) => {
 };
 export function checkImage(url) {
 	var request = new XMLHttpRequest();
-	let status
 	request.open("GET", url, true);
 	request.send();
 	request.onload = function () {
