@@ -81,7 +81,6 @@ function HeaderWeb({ user }) {
 			urlImage = user?.image
 		}
 	}
-	console.log(urlImage);
 
 	return (
 		<div className="header-page">

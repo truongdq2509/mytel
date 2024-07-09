@@ -57,7 +57,7 @@ function RightWeb({ user }) {
 	useEffect(() => {
 		let query = {
 			current: page,
-			pageSize: 7,
+			pageSize: 6,
 			sort: sort
 		}
 		if (selectorRightWeb.idCurrentProduct) {
@@ -181,7 +181,7 @@ function RightWeb({ user }) {
 						style={{ maxWidth: '100%' }}
 						onChange={(page, pageSize) => { setPage(page) }}
 						current={page}
-						pageSize={7}
+						pageSize={6}
 						defaultCurrent={1}
 						showLessItems
 						total={total}
