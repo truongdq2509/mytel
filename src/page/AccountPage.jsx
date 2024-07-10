@@ -116,9 +116,8 @@ function AccountPage() {
 				}
 				dispatch(updateUserInfo(body))
 			}
-
 		}
-	}, [fileList])
+	}, [fileList[0].status])
 	const handleLogout = () => {
 		setShowModalLogout(true)
 	};
