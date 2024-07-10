@@ -204,6 +204,7 @@
     }
   },
   "account_page": {
+    "edit_image":"Edit image",
     "buy_more_bid": "Buy more bids",
     "package_history": "Package history",
     "auction_record": "Auction record",

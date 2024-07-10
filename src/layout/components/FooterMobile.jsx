@@ -58,7 +58,7 @@ function FooterMobile({ user }) {
 			{listFooter.map((item, index) => {
 				if (item.classItem === "icon-account") {
 					let url = avatarDefault
-					if (user) {
+					if (user && user?.image) {
 						if (checkImage(user?.image)) {
 							url = user?.image
 						}

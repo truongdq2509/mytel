@@ -76,7 +76,7 @@ function HeaderWeb({ user }) {
 		return activeClass
 	}
 	let urlImage = avatarDefault
-	if (user) {
+	if (user && user?.image) {
 		if (checkImage(user?.image)) {
 			urlImage = user?.image
 		}

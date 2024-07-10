@@ -15,6 +15,17 @@ import ModalNotifycation from '../component/ModalNotifycation';
 import { mediaQueryPoint, useMediaQuery } from '../utils/hooks';
 import avatarDefault from "../assets/images/avatarDefault.svg"
 import { checkImage } from '../helper/helper';
+import { Button, Image, Modal, Upload } from 'antd';
+import ImgCrop from 'antd-img-crop';
+import API_PATH from '../config/API_PATH';
+const getBase64 = (file) => {
+	return new Promise((resolve, reject) => {
+		const reader = new FileReader();
+		reader.readAsDataURL(file);
+		reader.onload = () => resolve(reader.result);
+		reader.onerror = (error) => reject(error);
+	});
+};
 
 function AccountPage() {
 	const dispatch = useDispatch();
@@ -29,6 +40,15 @@ function AccountPage() {
 		title: t('error'),
 		message: ''
 	})
+	const [fileList, setFileList] = useState([
+		{
+			uid: '-1',
+			name: 'avatar.svg',
+			status: 'done',
+			url: userInfo?.image || avatarDefault,
+		},
+	]);
+	const [previewVisible, setPreviewVisible] = useState(false)
 	const isMobile = useMediaQuery(`(max-width: ${mediaQueryPoint.lg}px)`)
 	const afterGetUserInfo = (data, isLoading) => {
 		if (!isLoading) {
@@ -39,32 +59,6 @@ function AccountPage() {
 			}
 		}
 	};
-	const afterUploadfile = (data, isUploading) => {
-		if (!isUploading) {
-
-			if (data) {
-				if (data.file) {
-
-					let body = {
-						image: data.file,
-						displayName: selectorAccount?.userInfo?.name,
-						emailAddress: selectorAccount?.userInfo?.email,
-						isdn: selectorAccount?.userInfo?.isdn,
-						callback: afterUpdateUserInfo
-					}
-					console.log(body);
-					dispatch(updateUserInfo(body))
-
-				} else {
-					setStateModal({
-						open: true,
-						title: t('error'),
-						message: data.response.data.errorMessage
-					})
-				}
-			}
-		}
-	}
 	const afterUpdateUserInfo = (data, isLoading) => {
 		if (data) {
 			if (data.success) {
@@ -93,6 +87,13 @@ function AccountPage() {
 	}, [selectorAccount.remainTurn])
 	useEffect(() => {
 		dispatch(getTurnRemain({}))
+		let urlAvatar = avatarDefault
+		if (userInfo) {
+			if (checkImage(userInfo?.image)) {
+				urlAvatar = userInfo?.image
+			}
+		}
+		setFileList([{ ...fileList[0], url: urlAvatar }])
 	}, [])
 	const getUserInfo = () => {
 		dispatch(getCurrentUser({ callback: afterGetUserInfo }));
@@ -102,6 +103,21 @@ function AccountPage() {
 			getUserInfo();
 		}
 	}, []);
+	useEffect(() => {
+		if (fileList.length > 0) {
+			if (fileList[0].status === "done" && fileList[0].response) {
+				let body = {
+					image: fileList[0].response.file,
+					displayName: selectorAccount?.userInfo?.name,
+					emailAddress: selectorAccount?.userInfo?.email,
+					isdn: selectorAccount?.userInfo?.isdn,
+					callback: afterUpdateUserInfo
+				}
+				dispatch(updateUserInfo(body))
+			}
+
+		}
+	}, [fileList])
 	const handleLogout = () => {
 		setShowModalLogout(true)
 	};
@@ -132,30 +148,38 @@ function AccountPage() {
 		setShowModalLogout(false)
 		window.location.href = PATH.HOME
 	}
-	const handleChangeAvarta = (e) => {
-		let file = e.target.files[0]
-		let math = ['image/png', 'image/jpeg', 'image/jpg'];
-		if (math.indexOf(file?.type) === -1) {
-			setStateModal({
-				open: true,
-				title: t('error'),
-				message: t('account_page.error_upload_avatar').replace("_FILE_", `"${file.name}"`)
-			})
-			return;
-		}
-		var blob = file.slice(0, file.size, 'image/png');
-		let newFile = new File([blob], 'arvatar.png', { type: 'image/png' });
+	const handleChangeAvarta = ({ fileList, file }) => {
+		if (fileList.length > 0) {
 
-		const data = new FormData()
-		data.append('file', newFile)
-		dispatch(uploadFile(data, afterUploadfile))
-	}
-	let urlAvatar = avatarDefault
-	if (userInfo) {
-		if (checkImage(userInfo?.image)) {
-			urlAvatar = userInfo?.image
+			setFileList(fileList)
 		}
 	}
+
+
+	const handlePreview = async (file) => {
+		if (!file.url && !file.preview) {
+			file.preview = await getBase64(file.originFileObj);
+		}
+
+		setPreviewVisible(true);
+	};
+	const onRemove = () => {
+		setFileList([{
+			uid: '-1',
+			name: 'avatar.svg',
+			status: 'done',
+			url: avatarDefault,
+		},])
+		let body = {
+			image: "",
+			displayName: selectorAccount?.userInfo?.name,
+			emailAddress: selectorAccount?.userInfo?.email,
+			isdn: selectorAccount?.userInfo?.isdn,
+			callback: afterUpdateUserInfo
+		}
+		dispatch(updateUserInfo(body))
+	}
+	console.log(fileList);
 
 	return (
 		<div className="container-account">
@@ -164,11 +188,38 @@ function AccountPage() {
 					{isMobile ? <div className="container-account-info-bgr" /> : null}
 					<div className="container-account-info-user">
 						<div
-							style={{ backgroundImage: `url(${urlAvatar})` }}
 							className="avarta"
 						>
-							<div className="icon-camera" />
-							<input value={null} type='file' onChange={handleChangeAvarta} className='avarta-input' />
+							<ImgCrop
+								modalTitle={t('account_page.edit_image')}
+								modalOk={t('modal.modal_login.ok')}
+								modalCancel={t('account_page.package.cancel')}>
+								<Upload
+									listType='picture-card'
+									maxCount={1}
+									accept='image/*'
+									fileList={fileList}
+									onChange={handleChangeAvarta}
+									onPreview={handlePreview}
+									onRemove={onRemove}
+									action={API_PATH.upload}>
+									<div className="icon-camera" />
+								</Upload>
+							</ImgCrop>
+							{previewVisible && (
+								<Image
+									className='modal-preview'
+									wrapperStyle={{
+										display: 'none',
+									}}
+									preview={{
+										visible: previewVisible,
+										onVisibleChange: (visible) => setPreviewVisible(visible),
+										afterOpenChange: (visible) => !visible && setPreviewVisible(''),
+									}}
+									src={fileList[0].url}
+								/>
+							)}
 						</div>
 						<span className="name">{userInfo?.msisdn}</span>
 					</div>
