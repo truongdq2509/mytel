@@ -86,7 +86,7 @@ function AccountPage() {
 		}
 	}, [selectorAccount.remainTurn])
 	useEffect(() => {
-		dispatch(getTurnRemain({}))
+
 		let urlAvatar = avatarDefault
 		if (userInfo) {
 			if (checkImage(userInfo?.image)) {
@@ -94,7 +94,7 @@ function AccountPage() {
 			}
 		}
 		setFileList([{ ...fileList[0], url: urlAvatar }])
-	}, [])
+	}, [userInfo])
 	const getUserInfo = () => {
 		dispatch(getCurrentUser({ callback: afterGetUserInfo }));
 	};
@@ -102,6 +102,7 @@ function AccountPage() {
 		if (!userInfo) {
 			getUserInfo();
 		}
+		dispatch(getTurnRemain({}))
 	}, []);
 	useEffect(() => {
 		if (fileList.length > 0) {
@@ -179,7 +180,6 @@ function AccountPage() {
 		}
 		dispatch(updateUserInfo(body))
 	}
-	console.log(fileList);
 
 	return (
 		<div className="container-account">
