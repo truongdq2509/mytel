@@ -88,7 +88,7 @@ function AccountPage() {
 	useEffect(() => {
 
 		let urlAvatar = avatarDefault
-		if (userInfo) {
+		if (userInfo && userInfo?.image) {
 			if (checkImage(userInfo?.image)) {
 				urlAvatar = userInfo?.image
 			}
@@ -150,7 +150,6 @@ function AccountPage() {
 	}
 	const handleChangeAvarta = ({ fileList, file }) => {
 		if (fileList.length > 0) {
-
 			setFileList(fileList)
 		}
 	}
@@ -179,6 +178,7 @@ function AccountPage() {
 		}
 		dispatch(updateUserInfo(body))
 	}
+	console.log(fileList);
 
 	return (
 		<div className="container-account">
