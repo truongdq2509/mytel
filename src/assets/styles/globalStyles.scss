@@ -23,7 +23,7 @@ html {
 }
 
 .container {
-  max-width: 1577px;
+  max-width: 1637px;
   width: 100%;
   margin: auto;
 }
@@ -66,9 +66,9 @@ html {
 }
 
 @media (min-width: 992px) {
-	.hover-page:hover {
-	  box-shadow: 0px 2px 4px 0px #f97a1c !important;
-	  cursor: pointer;
-	  transition: 0.3s ease-in-out;
-	}
+  .hover-page:hover {
+    box-shadow: 0px 2px 4px 0px #f97a1c !important;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
   }
+}
