@@ -31,12 +31,10 @@ function RightWeb({ user }) {
 	const [idCurrentProduct, setIdCurrentProduct] = useState(selectorRightWeb.idCurrentProduct)
 	const dispatch = useDispatch()
 	const aftergetProduct = (data, isLoading) => {
-		console.log(data);
 		if (data) {
 			let currentProduct = data.data.filter(
 				(product) => new Date(product?.start_time).getTime() < currentDate
 			);
-			console.log(currentProduct);
 			if (currentProduct && currentProduct[0]?.cp_id) {
 				let query = {
 					current: page,
@@ -98,12 +96,9 @@ function RightWeb({ user }) {
 		}
 
 	}, [idCurrentProduct, sort, page])
-	console.log(idCurrentProduct);
 
 	useEffect(() => {
-		console.log(idCurrentProduct);
 		if (idCurrentProduct) {
-			console.log(selectorRightWeb?.bidHistory?.data);
 			if (selectorRightWeb?.bidHistory?.data?.length > 0) {
 				setPage(+selectorRightWeb?.bidHistory?.current)
 				setTotal(+selectorRightWeb?.bidHistory?.total)
