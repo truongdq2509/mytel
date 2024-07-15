@@ -21,6 +21,7 @@ function HeaderWeb({ user }) {
 	const selectorAccount = useSelector(curStateAccount);
 	const [bidTotal, setBidTotal] = useState(0)
 	const [openModalLogin, setOpenModalLogin] = useState(false)
+	const [urlAvarta, setUrlAvarta] = useState(avatarDefault)
 	useEffect(() => {
 		if (selectorAccount.remainTurn) {
 			const bidTotal = selectorAccount.remainTurn?.reduce((acc, pack) => {
@@ -75,10 +76,16 @@ function HeaderWeb({ user }) {
 
 		return activeClass
 	}
-	let urlImage = avatarDefault
 	if (user && user?.image) {
 		if (checkImage(user?.image)) {
-			urlImage = user?.image
+			const myPromise = new Promise((resolve, reject) => {
+				resolve(checkImage(user?.image))
+			});
+			myPromise.then((res) => {
+				if (res) {
+					setUrlAvarta(user?.image)
+				}
+			})
 		}
 	}
 
@@ -112,7 +119,7 @@ function HeaderWeb({ user }) {
 									<span>{bidTotal}</span>
 								</div>
 							</div>
-							<div onClick={() => navigate(PATH.ACCOUNT)} style={{ backgroundImage: `url(${urlImage})` }} className='box-user-action-avt' />
+							<div onClick={() => navigate(PATH.ACCOUNT)} style={{ backgroundImage: `url(${urlAvarta})` }} className='box-user-action-avt' />
 						</div>) : (
 							<div className='box-user-btn-login' onClick={() => setOpenModalLogin(true)}>{t("header.login")}</div>
 						)}

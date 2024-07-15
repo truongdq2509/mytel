@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { curStateAccount } from "../Redux/selector";
 import { getCurrentUser, getTurnRemain, logoutUser, updateUserInfo, uploadFile } from "../Redux/futures/account/actions";
@@ -9,7 +9,6 @@ import iconPackageHistory from "../assets/images/iconPackageHistory.svg";
 import iconAuctionRecord from "../assets/images/iconAuctionRecord.svg";
 import iconChangePassword from "../assets/images/iconChangePassword.svg";
 import iconLogout from "../assets/images/iconLogout.svg";
-import { getItemCookie } from "../utils/cookie";
 import { Link } from "react-router-dom";
 import ModalNotifycation from '../component/ModalNotifycation';
 import { mediaQueryPoint, useMediaQuery } from '../utils/hooks';
@@ -40,6 +39,7 @@ function AccountPage() {
 		title: t('error'),
 		message: ''
 	})
+
 	const [fileList, setFileList] = useState([
 		{
 			uid: '-1',
@@ -89,11 +89,17 @@ function AccountPage() {
 
 		let urlAvatar = avatarDefault
 		if (userInfo && userInfo?.image) {
-			if (checkImage(userInfo?.image)) {
-				urlAvatar = userInfo?.image
-			}
+			const myPromise = new Promise((resolve, reject) => {
+				resolve(checkImage(userInfo?.image))
+			});
+			myPromise.then((res) => {
+				if (res) {
+					urlAvatar = userInfo?.image
+				}
+				setFileList([{ ...fileList[0], url: urlAvatar }])
+			})
 		}
-		setFileList([{ ...fileList[0], url: urlAvatar }])
+
 	}, [userInfo])
 	const getUserInfo = () => {
 		dispatch(getCurrentUser({ callback: afterGetUserInfo }));
@@ -178,7 +184,6 @@ function AccountPage() {
 		}
 		dispatch(updateUserInfo(body))
 	}
-	console.log(fileList);
 
 	return (
 		<div className="container-account">

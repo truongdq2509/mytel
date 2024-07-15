@@ -1,6 +1,6 @@
 import moment from "moment";
 import { useEffect, useState } from "react";
-import "moment/locale/vi";
+// import "moment/locale/vi";
 import { mediaQueryPoint, useMediaQuery } from "../utils/hooks";
 
 function CurrentTime() {

@@ -145,7 +145,8 @@ function RightWeb({ user }) {
 						{listBidHistory.length > 0 ? listBidHistory.map((it, index) => {
 							let dateFomat = moment(it.auction_time).format('MMM D, YYYY, h:mm A')
 							let url = avatarDefault
-							if (it?.image) {
+							if (it?.image && !it.image.includes("/static")) {
+								console.log(checkImage(it.image));
 								if (checkImage(it.image)) {
 									url = it?.image
 								}

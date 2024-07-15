@@ -92,7 +92,7 @@ function HomePage() {
 				) : (
 					<Carousel autoplaySpeed={5000} autoplay={true} infinite={true}>
 						{banner.map((it, index) => {
-							return <div><div onClick={() => handleClickBanner(it)} key={`banner_item_${it.id}_${index}`} className="container-home-banner-item" style={{ backgroundImage: `url(${it.path})` }} /></div>
+							return <div key={`banner_item_${it.id}_${index}`}><div onClick={() => handleClickBanner(it)} className="container-home-banner-item" style={{ backgroundImage: `url(${it.path})` }} /></div>
 						})}
 					</Carousel>
 				)}
