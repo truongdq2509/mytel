@@ -45,9 +45,9 @@ export default function Result() {
   }, []);
 
   useEffect(() => {
-    if (idResult) {
-      dispatch(getResultDetailProduct({}, idResult));
-    }
+    // if (idResult) {
+    //   dispatch(getResultDetailProduct({}, idResult));
+    // }
   }, [idResult]);
 
   const handleChangeTabs = (tabId) => {
@@ -55,7 +55,7 @@ export default function Result() {
   };
 
   const handleTab = useMemo(() => {
-    return <Tab tabs={tabResult} handleChangeTabs={handleChangeTabs} id={id}/>
+    return <Tab tabs={tabResult} handleChangeTabs={handleChangeTabs} id={id} />;
   }, [id]);
 
   const formatDataResult = useMemo(() => {
@@ -77,12 +77,21 @@ export default function Result() {
       {!idResult ? (
         <div className="header-tab__container">{handleTab}</div>
       ) : null}
-      <ResultComponent
-        currentProduct={formatDataResult || []}
-        dataDetailResult={selectorDetailResult || null}
-        idTab={id}
-        idResult={idResult}
-      />
+      {!_.isEmpty(formatDataResult) ? (
+        <ResultComponent
+          currentProduct={formatDataResult || []}
+          // dataDetailResult={selectorDetailResult || null}
+          idTab={id}
+          // idResult={idResult}
+        />
+      ) : (
+        <div className="d-flex bg-white no-data">
+          <div className="content-no-data">
+            <div>{t("result_page.No data available")}</div>
+            <div>{t("result_page.All previous auctions have had winners")}</div>
+          </div>
+        </div>
+      )}
       <div style={{ height: "20px" }} />
     </div>
   );

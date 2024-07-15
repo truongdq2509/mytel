@@ -7,7 +7,31 @@
     line-height: 30.26px;
   }
 
-   .product-money{
+  .no-data {
+    min-height: 404px;
+    position: relative;
+
+    .content-no-data {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      line-height: 24.2px;
+      font-size: 20px;
+      width: max-content;
+    }
+    @media (max-width: 768px) {
+      // width: max-content;
+
+      .content-no-data {
+        font-size: 14px;
+        width: max-content;
+      }
+    }
+  }
+
+  .product-money {
     color: #ff2222;
   }
 
@@ -330,7 +354,7 @@
       margin-top: 18px;
     }
 
-    .mt-10__bid{
+    .mt-10__bid {
       margin-top: 10px;
     }
 

@@ -12,19 +12,25 @@ import { useNavigate } from "react-router";
 import PATH from "../../../config/PATH";
 import { useLocation } from "react-router";
 import { urlPageResult } from "../../../helper/const";
+import ModalDescriptionBid from "../../../component/ModalDescriptionBid";
+import { getResultDetailProduct } from "../../../Redux/futures/result/action";
+import { useDispatch, useSelector } from "react-redux";
+import { curStateResult } from "../../../Redux/selector";
+import avatarDefault from "../../../assets/images/avatarDefault.svg"
 
 const ResultComponent = ({
   currentProduct = [],
-  dataDetailResult = {},
   idTab,
-  idResult,
 }) => {
+  const dataDetailResult = useSelector(curStateResult).detail;
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const location = useLocation();
+  const dispatch = useDispatch();
+  const [openModalDetail, setOpenModalDetail] = useState(false);
 
-  const handleGetDetail = (id) => {
-    navigate(`${location.pathname}/${id}`);
+  const handleGetDetail = async (id, item) => {
+    await dispatch(getResultDetailProduct({}, id));
+    setOpenModalDetail(true);
   };
 
   const handleGoback = () => {
@@ -32,51 +38,58 @@ const ResultComponent = ({
   };
 
   const handleError = (event) => {
-    event.target.src = errorImage;
+    event.target.src = avatarDefault;
   };
 
-  if (idResult || idResult == 0) {
-    const { product_name = "", description = "" } = dataDetailResult;
-    let descriptionFormat = description;
-    if (description && description.includes("\n")) {
-      descriptionFormat = description.split("\n");
-    }
+  // if (idResult || idResult == 0) {
+  //   const { product_name = "", description = "" } = dataDetailResult;
+  //   let descriptionFormat = description;
+  //   if (description && description.includes("\n")) {
+  //     descriptionFormat = description.split("\n");
+  //   }
 
-    return (
-      <div className="result-detail__main">
-        <div className="result-title__header">
-          <i
-            class="fa fa-angle-left"
-            aria-hidden="true"
-            onClick={() => handleGoback()}
-          />
-          <div className="result-title__detail">{product_name}</div>
-        </div>
-        <div className="result-title__body">
-          <div className="detail-title__name">{product_name}</div>
-          <div className="detail-content__main">
-            <div className="content-main__head">
-              {t("bid_page.title_description")}
-            </div>
-            {typeof descriptionFormat === "string" ? (
-              <div className="result-des">{descriptionFormat}</div>
-            ) : (
-              <>
-                {descriptionFormat?.map((des = "") => (
-                  <div className="result-des" key={des}>
-                    {des}
-                  </div>
-                ))}
-              </>
-            )}
-          </div>
-        </div>
-      </div>
-    );
-  }
-
+  //   return (
+  //     <div className="result-detail__main">
+  //       <div className="result-title__header">
+  //         <i
+  //           class="fa fa-angle-left"
+  //           aria-hidden="true"
+  //           onClick={() => handleGoback()}
+  //         />
+  //         <div className="result-title__detail">{product_name}</div>
+  //       </div>
+  //       <div className="result-title__body">
+  //         <div className="detail-title__name">{product_name}</div>
+  //         <div className="detail-content__main">
+  //           <div className="content-main__head">
+  //             {t("bid_page.title_description")}
+  //           </div>
+  //           {typeof descriptionFormat === "string" ? (
+  //             <div className="result-des">{descriptionFormat}</div>
+  //           ) : (
+  //             <>
+  //               {descriptionFormat?.map((des = "") => (
+  //                 <div className="result-des" key={des}>
+  //                   {des}
+  //                 </div>
+  //               ))}
+  //             </>
+  //           )}
+  //         </div>
+  //       </div>
+  //     </div>
+  //   );
+  // }
   return (
     <div className="header-main">
+      {!_.isEmpty(dataDetailResult) ? (
+        <ModalDescriptionBid
+          openModal={openModalDetail}
+          setOpenModal={setOpenModalDetail}
+          data={dataDetailResult}
+        />
+      ) : null}
+
       <div className="main-container">
         {currentProduct.length > 0 ? (
           currentProduct.map((item, index) => {
@@ -96,6 +109,8 @@ const ResultComponent = ({
             if (index !== 0) {
               classFlex = "first-flex";
             }
+
+            
 
             return (
               <Fragment key={`curren_product_${item.product_id}_${index}`}>
@@ -165,7 +180,7 @@ const ResultComponent = ({
                               {t("result_page.win_price")}
                             </div>
                             <div className="product-money">
-                              {+auction_price == 0 || +status === 5? (
+                              {+auction_price == 0 || +status === 5 ? (
                                 `N/A`
                               ) : (
                                 <>{`${formatDataNumberToen(

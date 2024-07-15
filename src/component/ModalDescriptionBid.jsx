@@ -7,6 +7,7 @@ const ModalDescriptionBid = ({ setOpenModal, openModal, data = {} }) => {
   const { t } = useTranslation();
   if (!data) return null;
   const { product_name = "", product_code = "", description = "" } = data;
+  
   return (
     <Container
       title="Detail Description"
