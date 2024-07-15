@@ -30,7 +30,7 @@
   }
 
   .rule-body {
-    margin-bottom: 100px;
+    // margin-bottom: 100px;
   }
 
   .body-title,
@@ -99,6 +99,7 @@
       top: -4px;
     }
   }
+
   @media (max-width: 992px) {
     .container-faq {
       margin-bottom: 50px;
@@ -155,7 +156,7 @@
     border-bottom: 0.3px solid #c0bdcb !important;
   }
 
-  .ant-collapse-item > .ant-collapse-header {
+  .ant-collapse-item>.ant-collapse-header {
     padding: 20px 0px !important;
   }
 
@@ -169,10 +170,7 @@
     color: #000000;
   }
 
-  .ant-collapse
-    > .ant-collapse-item
-    > .ant-collapse-header
-    .ant-collapse-expand-icon {
+  .ant-collapse>.ant-collapse-item>.ant-collapse-header .ant-collapse-expand-icon {
     padding-inline-end: 0px;
   }
 
@@ -192,6 +190,7 @@
     .rule-tab__detail {
       font-size: 14px;
     }
+
     // .rule-tab__detail{
     //     width: 100% !important;
     // }
@@ -209,7 +208,7 @@
       font-size: 12px;
     }
 
-    .tc_container{
+    .tc_container {
       padding-top: 3px !important;
     }
 
@@ -254,7 +253,7 @@
       font-style: italic;
     }
 
-    .ant-collapse-item > .ant-collapse-header {
+    .ant-collapse-item>.ant-collapse-header {
       padding: 13px 0 !important;
     }
 
@@ -278,8 +277,8 @@
       line-height: 22px;
       margin-bottom: 0.75rem;
     }
-    .ant-collapse .ant-collapse-content > .ant-collapse-content-box {
-    }
+
+    .ant-collapse .ant-collapse-content>.ant-collapse-content-box {}
 
     .ant-table-wrapper {
       min-width: 100%;

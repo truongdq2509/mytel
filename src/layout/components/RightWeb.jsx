@@ -1,18 +1,22 @@
 import { useTranslation } from "react-i18next";
 import { Pagination, Select } from "antd";
 import { useDispatch, useSelector } from 'react-redux';
-import { curStateHome, curStateRightWeb, curStateAccount } from '../../Redux/selector';
+import { curStateHome, curStateRightWeb } from '../../Redux/selector';
 import { useEffect, useState } from 'react';
 import { getHistoryBid, getHistoryBidAll } from '../../Redux/futures/rightWeb/actions';
 import moment from 'moment';
 import avatarDefault from "../../assets/images/avatarDefault.svg"
 import { currentDate } from '../../helper/const';
 import { checkImage } from '../../helper/helper';
+import { useLocation } from 'react-router';
+import { mediaQueryPoint, useMediaQuery } from '../../utils/hooks';
 function RightWeb({ user }) {
 	const { t } = useTranslation();
 	const [sort, setSort] = useState('desc')
 	const [page, setPage] = useState(1)
+	const listRouteNoHeigth = ["/bid/upcoming", "/result"]
 	const [total, setTotal] = useState(0)
+	const location = useLocation()
 	const [listBidHistory, setListBidHistory] = useState([])
 	const [currentProduct, setCurrentProduct] = useState([])
 	const [objTextHeader, setObjectTextHeader] = useState({
@@ -20,6 +24,7 @@ function RightWeb({ user }) {
 		text2: t("right_page.text_foot2"),
 		text3: null
 	})
+	const isMiniPc = useMediaQuery(`(max-width: ${mediaQueryPoint.xl}px)`)
 	const selectorRightWeb = useSelector(curStateRightWeb)
 	const selectorHome = useSelector(curStateHome);
 	const dispatch = useDispatch()
@@ -105,6 +110,7 @@ function RightWeb({ user }) {
 		}
 
 	}, [selectorHome.bidProduct]);
+	const checkPage = listRouteNoHeigth.find(it => location.pathname.includes(it))
 	return (
 		<div className="right-page">
 			<div className="right-page-head">
@@ -124,7 +130,10 @@ function RightWeb({ user }) {
 					</div>
 				</div>
 			</div>
-			<div className="right-page-content">
+			<div style={{
+				minHeight: checkPage ? isMiniPc ? 926 : 840 : "",
+				height: checkPage ? isMiniPc ? 926 : 840 : "",
+			}} className="right-page-content">
 				<div>
 					<div className="right-page-content-head">
 						<div className="right-page-content-head-title">

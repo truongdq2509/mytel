@@ -1,5 +1,5 @@
 .bid-container {
-  margin-bottom: 20px;
+  // margin-bottom: 20px;
 
   .disable-bid {
     &:hover {
@@ -401,7 +401,7 @@
     }
 
     .header-main__content.mt-13 {
-      min-height: 635px;
+      // min-height: calc(100% - 515px);
     }
 
     .tab-hover:hover {
@@ -542,8 +542,8 @@
       width: 135px;
     }
 
-    .container-count__down.d-block{
-      .container__coundown{
+    .container-count__down.d-block {
+      .container__coundown {
         width: auto;
         display: flex;
         gap: 24px;
@@ -852,7 +852,7 @@
       line-height: 20px !important;
     }
 
-    .count-down__date-upcoming{
+    .count-down__date-upcoming {
       font-size: 12px !important;
       line-height: 14.52px !important;
       padding-bottom: 5px !important;
