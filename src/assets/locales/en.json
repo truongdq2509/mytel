@@ -37,6 +37,7 @@
     "quantity": "Quantity",
     "start_time": "Start time",
     "end_time": "End time",
+    "the_auction_will_end_after": "The auction will end after",
     "tip_to_win": "Tips to win",
     "confirm_bid": "Confirm to place the price _PRICE_ MMK for the _NAME_ ?",
     "code_number": "Code Number: _CODE_",
