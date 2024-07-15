@@ -10,7 +10,7 @@ export const getBidProduct = data => {
 			method: 'GET',
 			url: API_PATH.bidProduct,
 			query: data.query || {},
-
+			callback: data.callback || null
 		},
 	}
 }

@@ -53,8 +53,14 @@ function HomePage() {
 			let currentProduct = selectorHome.bidProduct.filter(
 				(product) => new Date(product?.start_time).getTime() < currentDate
 			);
-			dispatch(setIdCurrentProduct(currentProduct[0]?.cp_id))
-			setCurrentProduct(currentProduct)
+			if (currentProduct) {
+				dispatch(setIdCurrentProduct(currentProduct[0]?.cp_id))
+				setCurrentProduct(currentProduct)
+			} else {
+				dispatch(setIdCurrentProduct(null))
+				setCurrentProduct([])
+			}
+
 		} else {
 			dispatch(setIdCurrentProduct(null))
 			setCurrentProduct([])

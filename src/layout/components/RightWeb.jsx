@@ -10,6 +10,7 @@ import { currentDate } from '../../helper/const';
 import { checkImage } from '../../helper/helper';
 import { useLocation } from 'react-router';
 import { mediaQueryPoint, useMediaQuery } from '../../utils/hooks';
+import { getBidProduct } from '../../Redux/futures/home/actions';
 function RightWeb({ user }) {
 	const { t } = useTranslation();
 	const [sort, setSort] = useState('desc')
@@ -27,7 +28,27 @@ function RightWeb({ user }) {
 	const isMiniPc = useMediaQuery(`(max-width: ${mediaQueryPoint.xl}px)`)
 	const selectorRightWeb = useSelector(curStateRightWeb)
 	const selectorHome = useSelector(curStateHome);
+	const [idCurrentProduct, setIdCurrentProduct] = useState(selectorRightWeb.idCurrentProduct)
 	const dispatch = useDispatch()
+	const aftergetProduct = (data, isLoading) => {
+		console.log(data);
+		if (data) {
+			let currentProduct = data.data.filter(
+				(product) => new Date(product?.start_time).getTime() < currentDate
+			);
+			console.log(currentProduct);
+			if (currentProduct && currentProduct[0]?.cp_id) {
+				let query = {
+					current: page,
+					pageSize: 7,
+					sort: sort
+				}
+
+				setIdCurrentProduct(currentProduct[0]?.cp_id)
+				dispatch(getHistoryBidAll({ query }))
+			}
+		}
+	}
 	useEffect(() => {
 		if (user) {
 			if (user.isAdvantage) {
@@ -60,22 +81,29 @@ function RightWeb({ user }) {
 		}
 	}, [user]);
 	useEffect(() => {
+		if (selectorRightWeb.idCurrentProduct)
+			setIdCurrentProduct(selectorRightWeb.idCurrentProduct);
+	}, [selectorRightWeb.idCurrentProduct])
+	useEffect(() => {
 		let query = {
 			current: page,
 			pageSize: 7,
-			sort: sort
+			sort: sort,
+			cp_ids: idCurrentProduct
 		}
-		if (selectorRightWeb.idCurrentProduct) {
-			query.cp_ids = selectorRightWeb.idCurrentProduct
+		if (idCurrentProduct) {
 			dispatch(getHistoryBid({ query }))
 		} else {
-			delete query.cp_ids
-			dispatch(getHistoryBidAll({ query }))
+			dispatch(getBidProduct({ callback: aftergetProduct }))
 		}
 
-	}, [selectorRightWeb.idCurrentProduct, sort, page])
+	}, [idCurrentProduct, sort, page])
+	console.log(idCurrentProduct);
+
 	useEffect(() => {
-		if (selectorRightWeb.idCurrentProduct) {
+		console.log(idCurrentProduct);
+		if (idCurrentProduct) {
+			console.log(selectorRightWeb?.bidHistory?.data);
 			if (selectorRightWeb?.bidHistory?.data?.length > 0) {
 				setPage(+selectorRightWeb?.bidHistory?.current)
 				setTotal(+selectorRightWeb?.bidHistory?.total)
@@ -98,7 +126,7 @@ function RightWeb({ user }) {
 		}
 
 
-	}, [selectorRightWeb.bidHistory, selectorRightWeb.bidHistoryAll, selectorRightWeb.idCurrentProduct])
+	}, [selectorRightWeb.bidHistory, selectorRightWeb.bidHistoryAll, idCurrentProduct])
 	useEffect(() => {
 		if (selectorHome?.bidProduct?.length > 0) {
 			let currentProduct = selectorHome.bidProduct.filter(
