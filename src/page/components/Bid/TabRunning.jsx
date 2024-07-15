@@ -140,8 +140,8 @@ const TabRunning = ({ currentProduct = [], setOpenModalLogin }) => {
                         <div className="auction-code pb-12">{`${t(
                           "bid_page.quantity"
                         )}: 01`}</div>
-                        <div className="container-count__down">
-                          <div className="time-countdownt">
+                        <div className="container-count__down d-block">
+                          {/* <div className="time-countdownt">
                             <div className="auction-code pb-5">{`${t(
                               "bid_page.start_time"
                             )}:`}</div>
@@ -151,14 +151,15 @@ const TabRunning = ({ currentProduct = [], setOpenModalLogin }) => {
                               />
                             </div>
                           </div>
-                          <div className="light-top" />
+                          <div className="light-top" /> */}
                           <div className="time-countdownt">
                             <div className="auction-code pb-5">{`${t(
-                              "bid_page.end_time"
+                              "bid_page.the_auction_will_end_after"
                             )}:`}</div>
                             <div className="start-time__detail">
                               <CountdownComponents
                                 targetDate={new Date(end_time)}
+                                isTabRunning
                               />
                             </div>
                           </div>

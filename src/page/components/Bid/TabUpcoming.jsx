@@ -7,6 +7,8 @@ import TabRunning from "./TabRunning";
 import { format, parseISO } from "date-fns";
 import { useTranslation } from "react-i18next";
 import { formatDataNumberToen } from "../../../utils/helper";
+import CountdownComponents from "../../../component/CountdownComponents";
+import styled from "styled-components";
 
 const TabUpcoming = ({ upNextProduct = [] }) => {
   const { t } = useTranslation();
@@ -35,6 +37,7 @@ const TabUpcoming = ({ upNextProduct = [] }) => {
       product_price = 0,
       start_time = "",
       product_image,
+      end_time = "",
     } = data || {};
     const dateObj = parseISO(start_time);
     const formattedDate = format(dateObj, "dd-MM-yyyy");
@@ -57,6 +60,35 @@ const TabUpcoming = ({ upNextProduct = [] }) => {
             <div className="product-price color-black">
               {formatDataNumberToen(product_price)} MMK
             </div>
+
+            <div>
+              <div className="container-count__down">
+                <div className="time-countdownt">
+                  <div className="auction-code pb-5">{`${t(
+                    "bid_page.start_time"
+                  )}:`}</div>
+                  <div className="start-time__detail">
+                    <CountdownComponents
+                      targetDate={new Date(start_time)}
+                      isTabUpcoming
+                    />
+                  </div>
+                </div>
+                <div className="light-top" />
+                <div className="time-countdownt">
+                  <div className="auction-code pb-5">{`${t(
+                    "bid_page.end_time"
+                  )}:`}</div>
+                  <div className="start-time__detail">
+                    <CountdownComponents
+                      targetDate={new Date(end_time)}
+                      isTabUpcoming
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <div className="product-timer">
               <img src={iconCalendar} alt="icon-calendar" />
               <span className="timer-detail">
@@ -89,7 +121,11 @@ const TabUpcoming = ({ upNextProduct = [] }) => {
       {!isShowProduct ? (
         <div id="bid-upcoming">
           {upNextProduct.map((item, index) => {
-            return <div key={`upcoming_${index}`}>{getItemProduct(item)}</div>;
+            return (
+              <Container key={`upcoming_${index}`}>
+                {getItemProduct(item)}
+              </Container>
+            );
           })}
           <ModalDescriptionBid
             openModal={openModal}
@@ -105,3 +141,43 @@ const TabUpcoming = ({ upNextProduct = [] }) => {
 };
 
 export default TabUpcoming;
+
+const Container = styled.div`
+  .auction-code.pb-5 {
+    font-size: 14px;
+    line-height: 16.94px;
+    color: #ff2222;
+  }
+
+  .container-count__down {
+    gap: 100px;
+  }
+
+  @media (max-width: 1200px) {
+    .container-count__down {
+      gap: 45px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .container-count__down {
+      gap: 45px;
+    }
+
+    .auction-code.pb-5 {
+      font-size: 10px;
+      line-height: 12.1px;
+      padding-bottom: 5px;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .container-count__down {
+      gap: 10px;
+    }
+
+    .container-count__down{
+      width: max-content;
+    }
+  }
+`;

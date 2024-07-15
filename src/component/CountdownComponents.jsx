@@ -2,8 +2,11 @@ import React from "react";
 import moment from "moment";
 import Countdown from "react-countdown";
 import styled from "styled-components";
+import { useTranslation } from "react-i18next";
 
-const CountdownComponents = ({ targetDate }) => {
+const CountdownComponents = ({ targetDate, isTabRunning, isTabUpcoming }) => {
+  const { t } = useTranslation();
+
   const renderer = ({ days, hours, minutes, seconds, completed }) => {
     const formatTime = moment(targetDate).format("DD-MM-YYYY");
     const formatValue = (value) => {
@@ -18,15 +21,45 @@ const CountdownComponents = ({ targetDate }) => {
         </div>
       );
     } else {
-      const formattedTime = moment
-        .utc(targetDate - Date.now())
-        .format("DD-MM-YYYY HH:mm:ss");
+      let textDay = t("home_page.day").toUpperCase();
+      if (days > 1) {
+        textDay = t("home_page.days").toUpperCase();
+      }
+
       return (
-        <div className="container__coundown">
-          <span className="count-down__date">{formatTime}</span>
-          <span className="count-down__minutes">
-            {formatValue(+days)}:{formatValue(+hours)}:{formatValue(+minutes)}:
-            {formatValue(+seconds)}
+        <div
+          className={`container__coundown ${
+            days > 1 ? "coundown_green" : "coundown_red"
+          }`}
+        >
+          {isTabRunning ? (
+            <></>
+          ) : (
+            <span className="count-down__date  count-down__date-upcoming">{formatTime}</span>
+          )}
+          <span
+            className={`${isTabUpcoming ? "" : "count-down__minutes"}  ${
+              isTabRunning ? "d-flex__countDown" : ""
+            } `}
+          >
+            {isTabRunning ? (
+              <>
+                {days ? formatValue(+days) : null} {days ? textDay : null}{" "}
+                {formatValue(+hours)}:{formatValue(+minutes)}:
+                {formatValue(+seconds)}
+              </>
+            ) : (
+              <>
+                {isTabUpcoming ? (
+                  <></>
+                ) : (
+                  <>
+                    {formatValue(+days)}:{formatValue(+hours)}:
+                    {formatValue(+minutes)}:{formatValue(+seconds)}
+                  </>
+                )}
+              </>
+            )}
           </span>
         </div>
       );
@@ -59,11 +92,20 @@ const Container = styled.div`
     display: inline-block;
   }
 
-  @media screen and (max-width: 1450px) and (min-width: 992px){
-    .count-down__minutes {
-   
-    display: block;
+  .d-flex__countDown {
+    display: flex;
+    width: max-content;
+    padding-left: 0px;
   }
+
+  .coundown_green .count-down__minutes {
+    color: #2ba001;
+  }
+
+  @media screen and (max-width: 1450px) and (min-width: 992px) {
+    .count-down__minutes {
+      display: block;
+    }
   }
 `;
 

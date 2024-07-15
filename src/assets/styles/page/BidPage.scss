@@ -187,6 +187,10 @@
     gap: 42px;
   }
 
+  .container-count__down.d-block {
+    display: block !important;
+  }
+
   .header-content,
   .main-container {
     position: relative;
@@ -358,7 +362,7 @@
       font-size: 30px;
       line-height: 36.31px;
       color: #ff2222;
-      padding-bottom: 40px;
+      padding-bottom: 5px;
     }
 
     .color-black {
@@ -536,6 +540,14 @@
     .container__coundown {
       margin-bottom: 20px;
       width: 135px;
+    }
+
+    .container-count__down.d-block{
+      .container__coundown{
+        width: auto;
+        display: flex;
+        gap: 24px;
+      }
     }
 
     .light-top {
@@ -748,13 +760,14 @@
       }
 
       .product-price {
-        padding-bottom: 41px;
+        padding-bottom: 5px;
       }
 
       .link-detail {
         font-size: 12px;
         font-weight: 300;
         line-height: 14.52px;
+        margin-right: 10px;
       }
 
       .upcoming-container {
@@ -837,6 +850,12 @@
       font-size: 16px !important;
       font-weight: 500 !important;
       line-height: 20px !important;
+    }
+
+    .count-down__date-upcoming{
+      font-size: 12px !important;
+      line-height: 14.52px !important;
+      padding-bottom: 5px !important;
     }
 
     .start-time__detail {
