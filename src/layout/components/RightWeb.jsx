@@ -57,7 +57,7 @@ function RightWeb({ user }) {
 	useEffect(() => {
 		let query = {
 			current: page,
-			pageSize: 6,
+			pageSize: 7,
 			sort: sort
 		}
 		if (selectorRightWeb.idCurrentProduct) {
@@ -146,7 +146,6 @@ function RightWeb({ user }) {
 							let dateFomat = moment(it.auction_time).format('MMM D, YYYY, h:mm A')
 							let url = avatarDefault
 							if (it?.image && !it.image.includes("/static")) {
-								console.log(checkImage(it.image));
 								if (checkImage(it.image)) {
 									url = it?.image
 								}
@@ -182,7 +181,7 @@ function RightWeb({ user }) {
 						style={{ maxWidth: '100%' }}
 						onChange={(page, pageSize) => { setPage(page) }}
 						current={page}
-						pageSize={6}
+						pageSize={7}
 						defaultCurrent={1}
 						showLessItems
 						total={total}
