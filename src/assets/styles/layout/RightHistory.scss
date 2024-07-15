@@ -87,7 +87,7 @@
     // margin-bottom: 20px;
 
     @media (min-width: 992px) {
-      min-height: calc(100% - 318px);
+      min-height: 840px;
     }
 
     &-head {
@@ -225,7 +225,7 @@
 
     .right-page-content {
       min-height: calc(100% - 336px);
-      height: calc(100% - 336px);
+      height: 920px;
     }
   }
 }
