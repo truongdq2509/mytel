@@ -139,7 +139,7 @@ function RightWebMobile() {
                 "MMM D, YYYY, h:mm A"
               );
               let url = avatarDefault
-              if (it?.image) {
+              if (it?.image && !it.image.includes("/static")) {
                 if (checkImage(it.image)) {
                   url = it?.image
                 }
