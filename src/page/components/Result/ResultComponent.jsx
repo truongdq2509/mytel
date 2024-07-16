@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { Col, Row } from "antd";
 import { useTranslation } from "react-i18next";
 import CountdownComponents from "../../../component/CountdownComponents";
@@ -16,13 +16,12 @@ import ModalDescriptionBid from "../../../component/ModalDescriptionBid";
 import { getResultDetailProduct } from "../../../Redux/futures/result/action";
 import { useDispatch, useSelector } from "react-redux";
 import { curStateResult } from "../../../Redux/selector";
-import avatarDefault from "../../../assets/images/avatarDefault.svg"
+import avatarDefault from "../../../assets/images/avatarDefault.svg";
+import styled from "styled-components";
 
-const ResultComponent = ({
-  currentProduct = [],
-  idTab,
-}) => {
+const ResultComponent = ({ currentProduct = [], idTab }) => {
   const dataDetailResult = useSelector(curStateResult).detail;
+  const selectorResult = useSelector(curStateResult).data;
   const { t } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -81,7 +80,7 @@ const ResultComponent = ({
   //   );
   // }
   return (
-    <div className="header-main">
+    <Div className="header-main">
       {!_.isEmpty(dataDetailResult) ? (
         <ModalDescriptionBid
           openModal={openModalDetail}
@@ -109,8 +108,6 @@ const ResultComponent = ({
             if (index !== 0) {
               classFlex = "first-flex";
             }
-
-            
 
             return (
               <Fragment key={`curren_product_${item.product_id}_${index}`}>
@@ -231,8 +228,14 @@ const ResultComponent = ({
           <></>
         )}
       </div>
-    </div>
+    </Div>
   );
 };
 
 export default ResultComponent;
+
+const Div = styled.div`
+  .count-down__minutes {
+    color: #000000 !important;
+  }
+`;

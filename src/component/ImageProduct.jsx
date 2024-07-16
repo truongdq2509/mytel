@@ -40,6 +40,11 @@ function ImageProduct({ product, data }) {
 			el.style.border = '2px solid #F97A1C';
 		});
 	}, [activeImage, id, prevAutoImageActive]);
+
+	const handleClick = (index) => {
+		sliderTop.current.goTo(index);
+	  };
+
 	return (
 		<div className="container-image-product">
 			<div className="container-image-product-slide">
@@ -70,12 +75,12 @@ function ImageProduct({ product, data }) {
 					asNavFor={slider}
 					slidesToShow={data.length}
 					dots={false}
-					focusOnSelect
+					focusOnSelect={false}
 					infinite={false}
 					ref={sliderBottom}
 				>
 					{data.map((item, index) => (
-						<div className="container-image-product-slide-item item-btn-slide" key={`${item}_${index}`}>
+						<div onClick={() => handleClick(index)} className="container-image-product-slide-item item-btn-slide" key={`${item}_${index}`}>
 							<div
 								className="image"
 								onClick={(event) => handleActiveImage(event, index)}
