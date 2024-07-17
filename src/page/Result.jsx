@@ -17,6 +17,7 @@ import Tab from "../layout/components/Tab";
 
 export default function Result() {
   const { t } = useTranslation();
+  // a
   const { id, idResult = null } = useParams();
 
   const dispatch = useDispatch();
