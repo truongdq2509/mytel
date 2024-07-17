@@ -62,8 +62,8 @@ function ItemPackage({ data, type, isRegister = false, handelSelectItem }) {
 
 					{type === "SUB" && isCheckPackRegister && dataSub && <div className="text">{moment(dataSub.next_charge_time).format("DD/MM/YYYY    HH:mm:ss")}</div>}
 				</div>
-				<Button onClick={() => handelSelectItem(data, isCheckPackRegister ? true : false)} disabled={isRegister && !isCheckPackRegister} className={`box-item-package-content-button ${isCheckPackRegister ? "btn-cancel" : ""}`}>
-					{isCheckPackRegister ? t("account_page.package.cancel") : t("account_page.package.buy")}
+				<Button onClick={() => handelSelectItem(data, isCheckPackRegister ? true : false)} disabled={isRegister && !isCheckPackRegister} className={`box-item-package-content-button ${type === "SUB" && isCheckPackRegister ? "btn-cancel" : ""}`}>
+					{type === "SUB" && isCheckPackRegister ? t("account_page.package.cancel") : t("account_page.package.buy")}
 				</Button>
 			</div>
 			{data.best_seller ? <div className='icon-best-sale' /> : null}
