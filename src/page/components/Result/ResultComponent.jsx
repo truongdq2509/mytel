@@ -141,6 +141,7 @@ const ResultComponent = ({ currentProduct = [], idTab }) => {
                           <div className="start-time__detail">
                             <CountdownComponents
                               targetDate={new Date(start_time)}
+                              isResult
                             />
                           </div>
                         </Col>
@@ -154,6 +155,7 @@ const ResultComponent = ({ currentProduct = [], idTab }) => {
                           <div className="start-time__detail">
                             <CountdownComponents
                               targetDate={new Date(end_time)}
+                              isResult
                             />
                           </div>
                         </Col>

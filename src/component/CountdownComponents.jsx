@@ -4,11 +4,16 @@ import Countdown from "react-countdown";
 import styled from "styled-components";
 import { useTranslation } from "react-i18next";
 
-const CountdownComponents = ({ targetDate, isTabRunning, isTabUpcoming }) => {
+const CountdownComponents = ({
+  targetDate,
+  isTabRunning,
+  isTabUpcoming,
+  isResult,
+}) => {
   const { t } = useTranslation();
-
   const renderer = ({ days, hours, minutes, seconds, completed }) => {
     const formatTime = moment(targetDate).format("DD-MM-YYYY");
+    const formatHouse = moment(targetDate).format("HH:mm:ss");
     const formatValue = (value) => {
       return value < 10 ? "0" + value : value;
     };
@@ -17,7 +22,9 @@ const CountdownComponents = ({ targetDate, isTabRunning, isTabUpcoming }) => {
       return (
         <div className="count-down__date">
           <span className="count-down__date">{formatTime}</span>
-          <span className="count-down__minutes">00:00:00</span>
+          <span className="count-down__minutes">
+            {isResult ? formatHouse : "00:00:00"}
+          </span>
         </div>
       );
     } else {
@@ -35,7 +42,9 @@ const CountdownComponents = ({ targetDate, isTabRunning, isTabUpcoming }) => {
           {isTabRunning ? (
             <></>
           ) : (
-            <span className="count-down__date  count-down__date-upcoming">{formatTime}</span>
+            <span className="count-down__date  count-down__date-upcoming">
+              {formatTime}
+            </span>
           )}
           <span
             className={`${isTabUpcoming ? "" : "count-down__minutes"}  ${
