@@ -14,6 +14,8 @@ import { setIdCurrentProduct } from '../Redux/futures/rightWeb/actions';
 import ModalDescriptionBid from '../component/ModalDescriptionBid';
 import { useNavigate } from 'react-router';
 import PATH from '../config/PATH';
+import ModalWinner from '../component/ModalWinner';
+import { getResultProduct } from '../Redux/futures/result/action';
 
 function HomePage() {
 	const { t } = useTranslation();
@@ -30,6 +32,8 @@ function HomePage() {
 	const [banner, setBanner] = useState([])
 	const [openModalDetail, setOpenModalDetail] = useState(false)
 	const [selectedProduct, setSelectedProduct] = useState(null)
+	const [results, setResults] = useState([])
+
 
 	const renderer = ({ days, hours, minutes, seconds, completed }) => {
 		let textDay = t("home_page.day")
@@ -42,11 +46,17 @@ function HomePage() {
 			return <span >{`${zeroPad(hours)}:${zeroPad(minutes)}:${zeroPad(seconds)}`}</span>
 		}
 	};
+	const afterGetResult = (data, isLoading) => {
+		if (data) {
+			setResults(data.data)
+		}
+	}
 
 	useEffect(() => {
 		dispatch(getBidProduct({}))
 		dispatch(getUpNextProduct({}))
 		dispatch(getBannerHome({}))
+		dispatch(getResultProduct({ callback: afterGetResult }))
 	}, [])
 	useEffect(() => {
 		if (selectorHome?.bidProduct?.length > 0) {
@@ -204,6 +214,14 @@ function HomePage() {
 				setOpenModal={setOpenModalDetail}
 				data={selectedProduct}
 			/>
+			{results?.length > 0 &&
+				results != null &&
+				results?.[0]?.status !== 5 ? (
+				<ModalWinner
+					result={results?.[0]}
+					isWinner={results?.[0]?.status !== 5}
+				/>
+			) : null}
 		</div>
 	);
 }

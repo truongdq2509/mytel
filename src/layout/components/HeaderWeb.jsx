@@ -77,16 +77,14 @@ function HeaderWeb({ user }) {
 		return activeClass
 	}
 	if (user && user?.image) {
-		if (checkImage(user?.image)) {
-			const myPromise = new Promise((resolve, reject) => {
-				resolve(checkImage(user?.image))
-			});
-			myPromise.then((res) => {
-				if (res) {
-					setUrlAvarta(user?.image)
-				}
-			})
-		}
+		const myPromise = new Promise((resolve, reject) => {
+			resolve(checkImage(user?.image))
+		});
+		myPromise.then((res) => {
+			if (res) {
+				setUrlAvarta(user?.image)
+			}
+		})
 	}
 
 	return (
