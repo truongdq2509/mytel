@@ -212,8 +212,8 @@ const ResultComponent = ({ currentProduct = [], idTab }) => {
                       </div>
                       {+status !== 5 ? (
                         <div>
-                          {name ? (
-                            <div className="result-contact__name">{name}</div>
+                          {isdn ? (
+                            <div className="result-contact__name">{isdn}</div>
                           ) : null}
                           {isdn ? (
                             <div className="result-contact__isdn">{isdn}</div>

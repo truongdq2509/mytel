@@ -605,6 +605,62 @@
 	}
 }
 
+.modal-update-password {
+	.ant-modal-content {
+		padding: 35px 30px 50px;
+	}
+
+	&-title {
+		display: flex;
+		align-items: center;
+		gap: 20px;
+		margin-bottom: 50px;
+
+		.icon {
+			width: 208px;
+			height: 208px;
+			background-image: url("../../images/iconUpdatePassword.png");
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: cover;
+		}
+
+		.title {
+			flex: 1;
+			text-align: center;
+			font-size: 40px;
+			font-weight: 700;
+			line-height: 60px;
+		}
+	}
+
+	&-body {
+		font-size: 26px;
+		font-weight: 400;
+		line-height: 48.38px;
+	}
+
+	.ant-modal-footer {
+		margin-top: 50px;
+
+		.modal-btn-update-pass {
+			padding: 8px 18px;
+			background-color: $background-color-title;
+			border-radius: 18px;
+			font-size: 30px;
+			font-weight: 600;
+			height: 94px;
+			width: 375px;
+			line-height: 40px;
+			color: #fff;
+
+			&:hover {
+				background-color: $color-title-hover;
+			}
+		}
+	}
+}
+
 @media (max-width: 768px) {
 	.ant-image-preview-wrap {
 		.ant-image-preview-img-wrapper {
@@ -701,6 +757,51 @@
 				line-height: 14.52px;
 				height: 34px;
 				width: 143px;
+
+				&:hover {
+					background-color: $background-color-title;
+				}
+			}
+		}
+	}
+}
+
+@media (max-width: 800px) {
+	.modal-update-password {
+		.ant-modal-content {
+			padding: 20px 10px 17px;
+		}
+
+		&-title {
+			gap: 10px;
+			margin-bottom: 10px;
+
+			.icon {
+				width: 125px;
+				height: 125px;
+			}
+
+			.title {
+				font-size: 20px;
+				line-height: 40px;
+			}
+		}
+
+		&-body {
+			font-size: 16px;
+			line-height: 25px;
+		}
+
+		.ant-modal-footer {
+			margin-top: 30px;
+
+			.modal-btn-update-pass {
+				padding: 8px 10px;
+				border-radius: 10px;
+				font-size: 16px;
+				height: 43px;
+				width: 196px;
+				line-height: 20px;
 
 				&:hover {
 					background-color: $background-color-title;

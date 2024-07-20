@@ -1,4 +1,4 @@
-import { GET_CURRENT_USER, GET_LIST_PACKAGE, GET_TURN_REMAIN, LOGIN_OTP, LOGIN_PASSWORD, LOGOUT_USER } from './contants'
+import { GET_CURRENT_USER, GET_LIST_PACKAGE, GET_TURN_REMAIN, LOGIN_OTP, LOGIN_PASSWORD, LOGOUT_USER, UPDATE_PASSWORD } from './contants'
 
 const initState = {
 	userInfo: null,
@@ -38,6 +38,11 @@ const reducerAccount = (state = initState, actions) => {
 			return {
 				...state,
 				listPackage: actions.payload.data
+			}
+		case UPDATE_PASSWORD:
+			return {
+				...state,
+				userInfo: actions.payload.data
 			}
 		default:
 			return state

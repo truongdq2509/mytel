@@ -8,6 +8,7 @@ import { getCurrentUser } from '../Redux/futures/account/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { curStateAccount } from '../Redux/selector';
 import { useLocation, useParams } from "react-router";
+import ModalChangePassword from '../component/ModalChangePassword';
 
 function LayoutApp({ children }) {
 	const dispatch = useDispatch();
@@ -16,6 +17,7 @@ function LayoutApp({ children }) {
 	const location = useLocation()
 	const heightWeb = window.innerHeight
 	const isMobile = useMediaQuery(`(max-width: ${mediaQueryPoint.lg}px)`)
+	const [changePage, setChangePage] = useState(0)
 	const afterGetUserBid = (data, isLoading) => {
 		if (data) {
 			setUserInfo(data.data);
@@ -33,6 +35,7 @@ function LayoutApp({ children }) {
 	}, [selectorAccount.userInfo, selectorAccount.token]);
 	useEffect(() => {
 		window.scrollTo(0, 0);
+		setChangePage(new Date() * 1)
 	}, [location.pathname])
 
 	const { id = null, idResult = null } = useParams();
@@ -45,7 +48,7 @@ function LayoutApp({ children }) {
 				{!isMobile && <RightWeb user={userInfo} />}
 			</div>
 			{isMobile && (<FooterMobile user={userInfo} />)}
-
+			{selectorAccount && selectorAccount.userInfo && !selectorAccount.userInfo.is_updated_password ? <ModalChangePassword changePage={changePage} /> : null}
 		</div>
 	);
 }
