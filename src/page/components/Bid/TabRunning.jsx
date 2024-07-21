@@ -64,7 +64,7 @@ const TabRunning = ({ currentProduct = [], setOpenModalLogin }) => {
   const onChange = (currentSlide) => {
     // console.log(currentSlide);
   };
-
+  
   return (
     <>
       <ModalGirfBid
@@ -223,7 +223,7 @@ const TabRunning = ({ currentProduct = [], setOpenModalLogin }) => {
         </div>
       </div>
 
-      <div className="header-main header-main__content mt-13">
+      <div className={`header-main header-main__content  ${currentProduct.length > 0 ? "mt-13" : ""}`}>
         <div className="tips-container">
           <div className="tips">{`${t("bid_page.tip_to_win")}:`}</div>
           <div className="content-container">

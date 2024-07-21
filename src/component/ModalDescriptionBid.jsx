@@ -93,6 +93,17 @@ const Container = styled(Modal)`
   }
 
   @media (max-width: 768px) {
+    .ant-modal-header{
+      margin-top: 5px;
+    }
+    
+    .ant-modal-close{
+      width: max-content;
+      height: max-content;
+      right: 5px;
+      top: 5px;
+    }
+
     .product-title__modal,
     .body-title__content {
       font-size: 12px;

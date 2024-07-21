@@ -9,6 +9,7 @@ import { useTranslation } from "react-i18next";
 import { formatDataNumberToen } from "../../../utils/helper";
 import CountdownComponents from "../../../component/CountdownComponents";
 import styled from "styled-components";
+import { Carousel } from "antd";
 
 const TabUpcoming = ({ upNextProduct = [] }) => {
   const { t } = useTranslation();
@@ -45,71 +46,88 @@ const TabUpcoming = ({ upNextProduct = [] }) => {
     let listImageProduct = product_image?.split(",");
 
     return (
-      <div
-        className="upcoming-container hover-page"
-        // onClick={() => handleViewProduct(data)}
-        onClick={(e) => handleShowDetail(e, data)}
-      >
-        <div className="product-main">
-          <img src={listImageProduct[0]} alt="" className="img-product" />
-          <div className="product-detail">
-            <div className="product-title">{product_name}</div>
-            <div className="product-code">
-              {t("home_page.product_code").replace("_CODE_", product_code)}
-            </div>
-            <div className="product-price color-black">
-              {formatDataNumberToen(product_price)} MMK
-            </div>
+      <div className="container-item-bid">
+        <div
+          className="upcoming-container hover-page"
+          // onClick={() => handleViewProduct(data)}
+        >
+          <div className="product-main">
+            {/* <img src={listImageProduct[0]} alt="" className="img-product" /> */}
+            <ContainerSlider className="container-slider__item">
+              <Carousel
+                autoplaySpeed={5000}
+                autoplay={true}
+                infinite={true}
+                dots={listImageProduct?.length > 1}
+                draggable
+              >
+                {listImageProduct.map((item) => {
+                  return <img src={item} alt="" key={item} />;
+                })}
+              </Carousel>
+            </ContainerSlider>
+            <div
+              className="product-detail"
+              onClick={(e) => handleShowDetail(e, data)}
+            >
+              <div className="product-title">{product_name}</div>
+              <div className="product-code">
+                {t("home_page.product_code").replace("_CODE_", product_code)}
+              </div>
+              <div className="product-price color-black">
+                {formatDataNumberToen(product_price)} MMK
+              </div>
 
-            <div>
-              <div className="container-count__down">
-                <div className="time-countdownt">
-                  <div className="auction-code pb-5">{`${t(
-                    "bid_page.start_time"
-                  )}:`}</div>
-                  <div className="start-time__detail">
-                    <CountdownComponents
-                      targetDate={new Date(start_time)}
-                      isTabUpcoming
-                    />
+              <div>
+                <div className="container-count__down">
+                  <div className="time-countdownt">
+                    <div className="auction-code pb-5">{`${t(
+                      "bid_page.start_time"
+                    )}:`}</div>
+                    <div className="start-time__detail">
+                      <CountdownComponents
+                        targetDate={new Date(start_time)}
+                        isTabUpcoming
+                      />
+                    </div>
                   </div>
-                </div>
-                <div className="light-top" />
-                <div className="time-countdownt">
-                  <div className="auction-code pb-5">{`${t(
-                    "bid_page.end_time"
-                  )}:`}</div>
-                  <div className="start-time__detail">
-                    <CountdownComponents
-                      targetDate={new Date(end_time)}
-                      isTabUpcoming
-                    />
+                  <div className="light-top" />
+                  <div className="time-countdownt">
+                    <div className="auction-code pb-5">{`${t(
+                      "bid_page.end_time"
+                    )}:`}</div>
+                    <div className="start-time__detail">
+                      <CountdownComponents
+                        targetDate={new Date(end_time)}
+                        isTabUpcoming
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            <div className="product-timer">
-              <img src={iconCalendar} alt="icon-calendar" />
-              <span className="timer-detail">
-                {formattedDate}&nbsp;&nbsp;{formatHours}
-              </span>
-              <img
-                src={iconBid}
-                alt="icon-iconBid"
-                className="icon-bid__upcoming"
-              />
+              <div className="product-timer">
+                <img src={iconCalendar} alt="icon-calendar" />
+                <span className="timer-detail">
+                  {formattedDate}&nbsp;&nbsp;{formatHours}
+                </span>
+                <img
+                  src={iconBid}
+                  alt="icon-iconBid"
+                  className="icon-bid__upcoming"
+                />
+              </div>
             </div>
           </div>
-        </div>
-        <div>
-          <div
-            href=""
-            target="_blank"
-            className="link-detail"
-            onClick={(e) => handleShowDetail(e, data)}
-          >
-            {t("home_page.detail")}
+          <div>
+            <div
+              href=""
+              target="_blank"
+              className="link-detail link-detail__up"
+              onClick={(e) => handleShowDetail(e, data)}
+            >
+              {t("home_page.detail")}
+            </div>
           </div>
         </div>
       </div>
@@ -176,8 +194,70 @@ const Container = styled.div`
       gap: 10px;
     }
 
-    .container-count__down{
+    .container-count__down {
       width: max-content;
     }
   }
+`;
+
+const ContainerSlider = styled.div`
+  padding-bottom: 6.5px;
+
+  .slick-dots.slick-dots-bottom {
+    position: absolute;
+    bottom: 0px;
+
+    li button {
+      width: 8px;
+      height: 8px;
+      background: white;
+      position: relative;
+      border-radius: 50%;
+      border: 0.5px solid gray;
+
+      &::after {
+        width: 8px;
+        height: 8px;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+    }
+
+    .slick-active button{
+      background: #F97A1C;
+      border-color: #F97A1C;
+    }
+
+    li {
+      width: auto !important;
+    }
+  }
+  @media(max-width: 768px){
+    padding-bottom: 4px;
+    .slick-dots.slick-dots-bottom {
+    li button {
+      width: 6px;
+      height: 6px;
+      background: white;
+      position: relative;
+      border-radius: 50%;
+      border: 0.5px solid gray;
+
+      &::after {
+        width: 6px;
+        height: 6px;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+    }
+
+    .slick-active button{
+      background: #F97A1C;
+      border-color: #F97A1C;
+    }
+  }
+  }
+
 `;
