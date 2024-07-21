@@ -133,10 +133,10 @@ const TabRunning = ({ currentProduct = [], setOpenModalLogin }) => {
                           +product_price
                         )} MMK`}</div>
                         <div className="line" />
-                        <div className="auction-code pb-12">
+                        {/* <div className="auction-code pb-12">
                           {" "}
                           {t("bid_page.auction_code")}
-                        </div>
+                        </div> */}
                         <div className="auction-code pb-12">{`${t(
                           "bid_page.quantity"
                         )}: 01`}</div>

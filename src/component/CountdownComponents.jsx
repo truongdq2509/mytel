@@ -23,7 +23,7 @@ const CountdownComponents = ({
         <div className="count-down__date">
           <span className="count-down__date">{formatTime}</span>
           <span className="count-down__minutes">
-            {isResult ? formatHouse : "00:00:00"}
+            {isResult ? "" : "00:00:00"}
           </span>
         </div>
       );

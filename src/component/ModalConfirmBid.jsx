@@ -28,8 +28,7 @@ const ModalConfirmBid = ({
   const afterbid = (data, isLoading, dataError) => {
     if (data) {
       dispatch(getCurrentUser({}))
-
-      setDataTitle(t("success"));
+      +data?.data.errorCode === 7 ? setDataTitle(t("Failure")) : setDataTitle(t("success"));
       setDataApi(data);
       setValueInput("");
     } else if (dataError) {

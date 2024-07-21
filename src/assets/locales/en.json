@@ -269,5 +269,6 @@
   },
   "error":"Fail",
   "success":"Successful",
-  "confirmation":"Confirmation"
+  "confirmation":"Confirmation",
+  "Failure": "Failure"
 }

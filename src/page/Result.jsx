@@ -75,7 +75,7 @@ export default function Result() {
   return (
     <div className="bid-container" id="page-result">
       {!idResult ? (
-        <div className="header-tab__container">{handleTab}</div>
+        <div className="header-tab__container header-result">{handleTab}</div>
       ) : null}
       {!_.isEmpty(formatDataResult) ? (
         <ResultComponent
