@@ -34,6 +34,7 @@ function ModalWinner({ result, isWinner }) {
 			}
 		})
 	}
+	let listImageProduct = result?.product_image?.split(',')
 	return (
 		<Modal
 			centered
@@ -66,7 +67,7 @@ function ModalWinner({ result, isWinner }) {
 						</div>
 					</div>
 					<div className="box-modal-winner-content-gift">
-						<div className="img-gift" style={{ backgroundImage: `url(${result?.product_image})` }} />
+						<div className="img-gift" style={{ backgroundImage: `url(${listImageProduct[0]})` }} />
 						<div className="name-gift one-line">{result?.product_name}</div>
 					</div>
 				</div>

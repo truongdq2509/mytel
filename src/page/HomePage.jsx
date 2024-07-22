@@ -7,7 +7,7 @@ import { mediaQueryPoint, useMediaQuery } from "../utils/hooks";
 import BannerHomeMobile from "../component/BannerHomeMobile";
 import { useDispatch, useSelector } from 'react-redux';
 import { getBannerHome, getBidProduct, getUpNextProduct } from '../Redux/futures/home/actions';
-import { curStateHome } from '../Redux/selector';
+import { curStateAccount, curStateHome } from '../Redux/selector';
 import { currentDate } from '../helper/const';
 import moment from 'moment';
 import { setIdCurrentProduct } from '../Redux/futures/rightWeb/actions';
@@ -22,6 +22,7 @@ function HomePage() {
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
 	const selectorHome = useSelector(curStateHome)
+	const selectorAccount = useSelector(curStateAccount)
 	const isPcMin = useMediaQuery(`(max-width: ${mediaQueryPoint.xxl}px)`);
 	const isTablet = useMediaQuery(`(max-width: ${mediaQueryPoint.lg}px)`);
 	const isMobile = useMediaQuery(`(max-width: ${mediaQueryPoint.md}px)`);
@@ -33,6 +34,42 @@ function HomePage() {
 	const [openModalDetail, setOpenModalDetail] = useState(false)
 	const [selectedProduct, setSelectedProduct] = useState(null)
 	const [results, setResults] = useState([])
+	const [objTextHeader, setObjectTextHeader] = useState({
+		text1: t("right_page.text_foot1"),
+		text2: t("right_page.text_foot2"),
+		text3: null
+	})
+	useEffect(() => {
+		if (selectorAccount.userInfo) {
+			if (selectorAccount.userInfo.isAdvantage) {
+				setObjectTextHeader({
+					text1: t("right_page.text_foot1"),
+					text2: t("right_page.text_foot2"),
+					text3: null
+				})
+			} else {
+				if (selectorAccount.userInfo.minPriceOfCurrentUser > 0) {
+					setObjectTextHeader({
+						text1: t("right_page.text_foot5"),
+						text2: t("right_page.text_foot6").replace("_NUMBER_", selectorAccount.userInfo.countSamePrice),
+						text3: t("right_page.text_foot7").replace("_NUMBER_", selectorAccount.userInfo.countLowerPrice)
+					})
+				} else {
+					setObjectTextHeader({
+						text1: t("right_page.text_foot3"),
+						text2: t("right_page.text_foot4"),
+						text3: null
+					})
+				}
+			}
+		} else {
+			setObjectTextHeader({
+				text1: t("right_page.text_foot3"),
+				text2: t("right_page.text_foot4"),
+				text3: null
+			})
+		}
+	}, [selectorAccount.userInfo]);
 
 
 	const renderer = ({ days, hours, minutes, seconds, completed }) => {
@@ -207,6 +244,20 @@ function HomePage() {
 							})}
 						</Carousel>
 					</div>
+				</div>
+			</div> : null}
+			{isMobile ? <div className="right-page-head">
+				<div className="number-people">
+					<span>{currentProduct[0]?.count_user || 0}</span>
+					<span>{t("right_page.number_people")}</span>
+				</div>
+				<div className="hr-mobile" />
+
+				<div className={`icon-head ${objTextHeader.text3 ? 'icon-lose' : ''}`} />
+				<div className="box-text">
+					<div>{objTextHeader.text1}</div>
+					<div>{objTextHeader.text2}</div>
+					{objTextHeader.text3 ? <div>{objTextHeader.text3}</div> : null}
 				</div>
 			</div> : null}
 			<ModalDescriptionBid
