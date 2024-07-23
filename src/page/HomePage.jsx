@@ -253,7 +253,7 @@ function HomePage() {
 				</div>
 				<div className="hr-mobile" />
 
-				<div className={`icon-head ${objTextHeader.text3 ? 'icon-lose' : ''}`} />
+				<div className={`icon-head ${selectorAccount.userInfo && !selectorAccount.userInfo.isAdvantage && selectorAccount.userInfo.minPriceOfCurrentUser > 0 ? 'icon-lose' : ''}`} />
 				<div className="box-text">
 					<div>{objTextHeader.text1}</div>
 					<div>{objTextHeader.text2}</div>

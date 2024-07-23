@@ -145,7 +145,7 @@ function RightWeb({ user }) {
 					</div>
 				</div>
 				<div className='right-page-head-content'>
-					<div className={`icon-head ${!user.isAdvantage && user.minPriceOfCurrentUser > 0 ? 'icon-lose' : ''}`} />
+					<div className={`icon-head ${user && !user.isAdvantage && user.minPriceOfCurrentUser > 0 ? 'icon-lose' : ''}`} />
 					<div className="box-text">
 						<div>{objTextHeader.text1}</div>
 						<div>{objTextHeader.text2}</div>
