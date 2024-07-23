@@ -27,9 +27,10 @@ const ModalConfirmBid = ({
 
   const afterbid = (data, isLoading, dataError) => {
     if (data) {
+      let titlePopup = t("success");
+      +data?.data.errorCode === 7 &&  (titlePopup = t("Failure"))
+      setDataTitle(titlePopup)
       dispatch(getCurrentUser({}))
-
-      setDataTitle(t("success"));
       setDataApi(data);
       setValueInput("");
     } else if (dataError) {
@@ -55,6 +56,7 @@ const ModalConfirmBid = ({
     setOpenModal(false);
     setDataTitle(t("confirmation"))
   };
+
   return (
     <Container
       title={dataTitle}

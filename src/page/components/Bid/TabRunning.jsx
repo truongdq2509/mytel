@@ -133,10 +133,10 @@ const TabRunning = ({ currentProduct = [], setOpenModalLogin }) => {
                           +product_price
                         )} MMK`}</div>
                         <div className="line" />
-                        <div className="auction-code pb-12">
+                        {/* <div className="auction-code pb-12">
                           {" "}
                           {t("bid_page.auction_code")}
-                        </div>
+                        </div> */}
                         <div className="auction-code pb-12">{`${t(
                           "bid_page.quantity"
                         )}: 01`}</div>
@@ -223,7 +223,7 @@ const TabRunning = ({ currentProduct = [], setOpenModalLogin }) => {
         </div>
       </div>
 
-      <div className="header-main header-main__content mt-13">
+      <div className={`header-main header-main__content  ${currentProduct.length > 0 ? "mt-13" : ""}`}>
         <div className="tips-container">
           <div className="tips">{`${t("bid_page.tip_to_win")}:`}</div>
           <div className="content-container">
