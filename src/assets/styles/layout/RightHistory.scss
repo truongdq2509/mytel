@@ -42,7 +42,7 @@
 
 
     &-content {
-      padding: 16px 23px;
+      padding: 5px;
       background-color: $background-color-title;
       display: flex;
       flex-direction: column;
@@ -63,7 +63,7 @@
       }
 
       .box-text {
-        min-height: 58px;
+        min-height: 81px;
 
         div {
           font-size: 16px;

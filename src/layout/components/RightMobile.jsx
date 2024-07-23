@@ -60,7 +60,7 @@ function RightWebMobile() {
         setObjectTextHeader({
           text1: t("right_page.text_foot1"),
           text2: t("right_page.text_foot2"),
-          text3: null
+          text3: t("right_page.text_foot8")
         })
       } else {
         if (selectorAccount.userInfo.minPriceOfCurrentUser > 0) {
