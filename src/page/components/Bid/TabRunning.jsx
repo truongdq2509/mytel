@@ -64,7 +64,7 @@ const TabRunning = ({ currentProduct = [], setOpenModalLogin }) => {
   const onChange = (currentSlide) => {
     // console.log(currentSlide);
   };
-  
+
   return (
     <>
       <ModalGirfBid
