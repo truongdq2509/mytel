@@ -153,7 +153,7 @@ function HomePage() {
 
 			{currentProduct.length > 0 ? currentProduct.map((item, index) => {
 				let listImageProduct = item?.product_image?.split(',')
-				return <div key={`curren_product_${item.product_id}_${index}`} className="container-home-current-product">
+				return <div key={`curren_product_${item.product_id}_${index}`} className={`container-home-current-product ${upNextProduct.length > 0 ? '' : 'full-height'}`}>
 					<div className="container-home-current-product-head">
 						<div className="title">{t("home_page.current_action")}</div>
 						<div className="detail" onClick={() => { handleCurrentProduct(item) }}>{t("home_page.detail")}</div>
@@ -183,7 +183,7 @@ function HomePage() {
 					</div>
 				</div>
 			}) : null}
-			{upNextProduct.length > 0 ? <div className="container-home-current-product">
+			{upNextProduct.length > 0 ? <div className={`container-home-current-product ${!currentProduct.length > 0 ? '' : 'full-height'}`}>
 				<div className="container-home-current-product-head">
 					<div className="title">{t("home_page.upcoming_action")}</div>
 					<div onClick={() => navigate(`${PATH.BID}/upcoming`)} className="detail">{t("home_page.detail")}</div>
