@@ -1,6 +1,11 @@
 @import "./BidPage.scss";
 
 #page-result {
+  .content-error__mywin{
+    padding-top: 30px;
+    line-height: 24px;
+  }
+
   .result-title__detail {
     font-size: 25px;
     font-weight: 500;
@@ -20,6 +25,12 @@
       line-height: 24.2px;
       font-size: 20px;
       width: max-content;
+    }
+
+    .content-no-data__mywin{
+      top: 20px;
+      transform: translate(-50%, 0);
+      width: 95%;
     }
     @media (max-width: 768px) {
       // width: max-content;

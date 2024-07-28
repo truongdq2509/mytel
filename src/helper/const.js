@@ -13,7 +13,7 @@ export const urlPageBid = {
 }
 
 export const urlPageResult = {
-    all: "all",
-    the_winner: "the-winner",
+    all: "previous-winners",
+    the_winner: "my-win",
     no_winner: "no-winer"
 }

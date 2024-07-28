@@ -85,7 +85,11 @@
     "market_price": "Market Price",
     "win_price": "Win Price",
     "No data available": "No data available",
-    "All previous auctions have had winners": "All previous auctions have had winners"
+    "All previous auctions have had winners": "All previous auctions have had winners",
+    "Previous Winners": "Previous Winners",
+    "My Win": "My Win",
+    "You still have not won any auction yet.": "You still have not won any auction yet.",
+    "Let’s bid more to get more winning chance, many attractive awards are watiing you!": "Let’s bid more to get more winning chance, many attractive awards are watiing you!"
   },
   "rule_page": {
     "rules": "RULES",

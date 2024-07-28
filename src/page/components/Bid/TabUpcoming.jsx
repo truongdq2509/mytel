@@ -10,6 +10,8 @@ import { formatDataNumberToen } from "../../../utils/helper";
 import CountdownComponents from "../../../component/CountdownComponents";
 import styled from "styled-components";
 import { Carousel } from "antd";
+import iconGirf from "../../../assets/images/icon-girf.svg";
+import ModalGirfBid from "../../../component/ModalGirfBid";
 
 const TabUpcoming = ({ upNextProduct = [] }) => {
   const { t } = useTranslation();
@@ -17,11 +19,18 @@ const TabUpcoming = ({ upNextProduct = [] }) => {
   const [isShowProduct, setIsShowProduct] = useState(false);
   const [dataPopup, setDataPopup] = useState([]);
   const [data, setData] = useState([]);
+  const [dataDetailActive, setDataDetailActive] = useState([]);
+  const [isShowDetail, setIsShowDetail] = useState(false);
 
   const handleShowDetail = (event, data) => {
     event.stopPropagation();
     setOpenModal(true);
     setDataPopup(data);
+  };
+
+  const handleClickGirf = (data) => {
+    setDataDetailActive([data]);
+    setIsShowDetail(true);
   };
 
   // const handleViewProduct = (data) => {
@@ -118,6 +127,14 @@ const TabUpcoming = ({ upNextProduct = [] }) => {
                 />
               </div>
             </div>
+            {data?.gift_name ? (
+              <img
+                src={iconGirf}
+                alt="icon-girf"
+                className="icon-girf icon-girf__upcoming"
+                onClick={() => handleClickGirf(data)}
+              />
+            ) : null}
           </div>
           <div>
             <div
@@ -141,6 +158,11 @@ const TabUpcoming = ({ upNextProduct = [] }) => {
           {upNextProduct.map((item, index) => {
             return (
               <Container key={`upcoming_${index}`}>
+                <ModalGirfBid
+                  isShowDetail={isShowDetail}
+                  setIsShowDetail={setIsShowDetail}
+                  data={dataDetailActive}
+                />
                 {getItemProduct(item)}
               </Container>
             );
@@ -224,40 +246,39 @@ const ContainerSlider = styled.div`
       }
     }
 
-    .slick-active button{
-      background: #F97A1C;
-      border-color: #F97A1C;
+    .slick-active button {
+      background: #f97a1c;
+      border-color: #f97a1c;
     }
 
     li {
       width: auto !important;
     }
   }
-  @media(max-width: 768px){
+  @media (max-width: 768px) {
     padding-bottom: 4px;
     .slick-dots.slick-dots-bottom {
-    li button {
-      width: 6px;
-      height: 6px;
-      background: white;
-      position: relative;
-      border-radius: 50%;
-      border: 0.5px solid gray;
-
-      &::after {
+      li button {
         width: 6px;
         height: 6px;
-        position: absolute;
-        top: 0;
-        left: 0;
+        background: white;
+        position: relative;
+        border-radius: 50%;
+        border: 0.5px solid gray;
+
+        &::after {
+          width: 6px;
+          height: 6px;
+          position: absolute;
+          top: 0;
+          left: 0;
+        }
+      }
+
+      .slick-active button {
+        background: #f97a1c;
+        border-color: #f97a1c;
       }
     }
-
-    .slick-active button{
-      background: #F97A1C;
-      border-color: #F97A1C;
-    }
   }
-  }
-
 `;

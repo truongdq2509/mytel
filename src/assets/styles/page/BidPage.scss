@@ -732,6 +732,12 @@
     }
   }
 
+  .icon-girf__upcoming{
+    position: absolute;
+    right: 20px;
+    bottom: 10px;
+  }
+
   @media screen and (max-width: 767px) {
     .header-tab {
       padding: 8px 18px 8px 18px;
@@ -810,6 +816,12 @@
     .icon-girf {
       width: 21px;
       height: 21px;
+    }
+
+    .icon-girf__upcoming{
+      position: absolute;
+      right: 10px;
+      bottom: 10px;
     }
 
     .girf-container {
