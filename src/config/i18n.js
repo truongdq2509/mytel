@@ -8,15 +8,16 @@ i18n.use(LanguageDetector)
 	.use(initReactI18next)
 	.init({
 		resources: {
-			en: {
-				translation: enText,
-			},
 			my: {
 				translation: myText,
 			},
+			en: {
+				translation: enText,
+			},
+
 		},
-		lng: localStorage.getItem('i18nextLng') || 'en',
-		fallbackLng: 'en',
+		lng: localStorage.getItem('i18nextLng') || 'my',
+		fallbackLng: 'my',
 	})
 
 export default i18n

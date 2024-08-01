@@ -124,11 +124,17 @@ function HomePage() {
 			let banner = selectorHome.banner?.sort(
 				(a, b) => a?.position - b?.position
 			)
-			setBanner(banner)
+			let bannerMobile = []
+			if (isMobile) {
+				bannerMobile = banner.filter(it => it.is_mobile)
+			} else {
+				bannerMobile = banner.filter(it => !it.is_mobile)
+			}
+			setBanner(bannerMobile)
 		} else {
 			setBanner([])
 		}
-	}, [selectorHome])
+	}, [selectorHome, isMobile])
 	const handleClickBanner = (data) => {
 		if (data.href) window.location.href = data.href;
 		return;
