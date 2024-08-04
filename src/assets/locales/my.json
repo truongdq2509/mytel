@@ -12,8 +12,8 @@
     "text_foot1": "သင်သည်အခွင့်ရေးရရှိထားပါသည်။",
     "text_foot2": "သင်လေလံဆွဲထားသော ပမာဏသည် အနည်းဆုံးနှင့် အရှားဆုံးပမာဏ ဖြစ်သည်။",
     "text_foot8":"သင်ရဲ့အခွင့်ရေးတွေကို မကြာခင် တခြားသူတွေဆီ အလွယ်တကူ ဆုံးရှုံးသွားစေနိုင်တာကြောင့် ဒီကိန်းဂဏန်းတွေကို အဆက်မပြတ် လိုက်နာကြပါစို့။",
-    "text_foot3": "အခုပဲလေလံဆွဲပြီး ReverseAuction မှ တန်ဖိုးကြီးဆုလက်ဆောင်များ ပိုင်ဆိုင်လိုက်ပါ။",
-    "text_foot4": "to own high - value prizes from Mytelbid.",
+    "text_foot3": "အခုပဲ လေလံပွဲမှာ ပါဝင်ပြီး အခွင့်အရေးကို ရယူလိုက်ကြရအောင်",
+    "text_foot4": "Mytelbid မှ တန်ဖိုးမြင့်ဆုများ ပိုင်ဆိုင်ရန်။",
     "text_foot5": "သင်၏ အခွင့်အရေး ဆုံးရှုံးသွားပါပြီ။",
     "text_foot6": "သင်နှင့် ပမာဏတူလေလံဆွဲသူဦးရေ_Number_ယောက်",
     "text_foot7": "သင့်ထက် ပမာဏနည်းသော လေလံဆွဲသူဦးရေ_Number_ယောက်",
@@ -84,12 +84,12 @@
     "winner": "အနိုင်ရသူ",
     "market_price": "ပေါက်ဈေး",
     "win_price": "အနိုင်ရ ဈေး",
-    "No data available": "No data available",
-    "All previous auctions have had winners": "All previous auctions have had winners",
-    "Previous Winners": "Previous Winners",
-    "My Win": "My Win",
-    "You still have not won any auction yet.": "You still have not won any auction yet.",
-    "Let’s bid more to get more winning chance, many attractive awards are watiing you!": "Let’s bid more to get more winning chance, many attractive awards are watiing you!"
+    "No data available": "ဒေတာမရရှိနိုင်ပါ။",
+    "All previous auctions have had winners": "ယခင်လေလံပွဲများအားလုံးတွင် အောင်နိုင်သူများရှိခဲ့သည်။",
+    "Previous Winners": "ယခင်အနိုင်ရသူများ",
+    "My Win": "အနိုင်ရသူ",
+    "You still have not won any auction yet.": "သင်သည် မည်သည့်လေလံပွဲမှ မအောင်မြင်သေးပါ။",
+    "Let’s bid more to get more winning chance, many attractive awards are watiing you!": "နောက်ထပ်အနိုင်ရတဲ့အခွင့်အရေးတွေရဖို့အတွက် ဆွဲဆောင်မှုရှိတဲ့ဆုများစွာက သင့်ကိုစောင့်ကြိုနေပါတယ်။"
   },
   "rule_page": {
     "rules": "စည်းကမ်းများ",
@@ -212,7 +212,7 @@
     }
   },
   "account_page": {
-    "edit_image":"Edit image",
+    "edit_image":"ပုံကို ပြင်ဆင်ပါ။",
     "buy_more_bid": "လေလံများများဝယ်ပါ။",
     "package_history": "ပက်ကေ့ချ် မှတ်တမ်း",
     "auction_record": "လေလံမှတ်တမ်း",
@@ -275,5 +275,5 @@
   "error":"မအောင်မြင်ပါ။",
   "success":"အောင်မြင်ပါသည်။",
   "confirmation":"အတည်ပြုချက်",
-  "Failure": "Failure"
+  "Failure": "ကျရှုံးပါသည်"
 }
