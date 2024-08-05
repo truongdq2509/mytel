@@ -162,7 +162,8 @@ const Rule = () => {
 
   const getDataTabRules = () => {
     const dataBody = handleGetDataBody(t("rule_page.body_rules.content_rules"));
-
+    const dataNew = dataBody.slice("abcd1234")
+    console.log("dataNew", dataNew);
     return (
       <>
         <div className="body-title">
@@ -174,8 +175,7 @@ const Rule = () => {
         <div className="body-content">
           {dataBody.map((content = "", index) => {
             return (
-              <div key={`getDataTabRules${index}`} className="content-detail">
-                - {content}
+              <div key={`getDataTabRules${index}`} className="content-detail" dangerouslySetInnerHTML={{ __html: content }}>
               </div>
             );
           })}
@@ -212,7 +212,7 @@ const Rule = () => {
           })}
         </div>
 
-        <div className="body-introl body-introl__how-bid">
+        {/* <div className="body-introl body-introl__how-bid">
           {t("rule_page.body_how_to_bid.content_bid_tips")}
         </div>
         <div className="content-introl">
@@ -225,7 +225,7 @@ const Rule = () => {
               />
             );
           })}
-        </div>
+        </div> */}
       </>
     );
   };
@@ -264,6 +264,7 @@ const Rule = () => {
         children: (
           <p>
             <TablePrice />
+            <div style={{paddingTop: "20px"}}>ဤ အထက်ပါတန်ဖိုးများကို သုံးစွဲသူ၏ အခြေခံလက်ကျန် ဖုန်းငွေ မှ နုတ်ယူမည်ဖြစ်သည်။</div>
           </p>
         ),
         style: panelStyle,

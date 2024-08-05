@@ -12,6 +12,12 @@
     cursor: pointer;
   }
 
+  .body-title__condition.pt-34{
+    padding-top: 34px;
+    padding-bottom: 0px !important;
+    line-height: 21px;
+  }
+
   .rule-active {
     background-color: #c7c5cd;
     color: #000000;

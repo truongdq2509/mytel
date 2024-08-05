@@ -64,32 +64,32 @@ const TablePrice = ({ isShowTitle = false }) => {
     {
       key: "1",
       package: "BID",
-      price: "190 Ks",
-      number_of_bids: 1,
+      price: "၁၉၀ Ks",
+      number_of_bids: "၁",
     },
     {
       key: "2",
       package: "BID2",
-      price: "390 Ks",
-      number_of_bids: 2,
+      price: "၃၉၀ Ks",
+      number_of_bids: "၂",
     },
     {
       key: "3",
       package: "BID5",
-      price: "925 Ks",
-      number_of_bids: 5,
+      price: "၉၂၅ Ks",
+      number_of_bids: "၅",
     },
     {
       key: "1",
       package: "BID10",
-      price: "1800 Ks",
-      number_of_bids: 10,
+      price: "၁၈၀၀ Ks",
+      number_of_bids: "၁၀",
     },
     {
       key: "1",
       package: "BID20",
-      price: "3500 Ks",
-      number_of_bids: 20,
+      price: "၃၅၀၀ Ks",
+      number_of_bids: "၂၀",
     },
   ];
 
