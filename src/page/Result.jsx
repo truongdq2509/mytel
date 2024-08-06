@@ -26,7 +26,7 @@ export default function Result() {
   const selectorResult = useSelector(curStateResult).data;
   const selectorDetailResult = useSelector(curStateResult).detail;
   const { userInfo } = useSelector(curStateAccount) || {};
-console.log("userInfo", userInfo);
+  console.log("userInfo", userInfo);
   const navigate = useNavigate();
 
   const tabResult = [
@@ -56,14 +56,14 @@ console.log("userInfo", userInfo);
 
   const handleChangeTabs = (tabId) => {
     if (tabId === urlPageResult.the_winner && !userInfo) {
-    return  setOpenModalLogin(true);
+      return setOpenModalLogin(true);
     }
     navigate(`${PATH.RESULT}/${tabId}`);
   };
 
   const handleTab = useMemo(() => {
     return <Tab tabs={tabResult} handleChangeTabs={handleChangeTabs} id={id} />;
-  }, [id]);
+  }, [id, userInfo]);
 
   const formatDataResult = useMemo(() => {
     if (id === urlPageResult.all) {
