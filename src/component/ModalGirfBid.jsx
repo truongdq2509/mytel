@@ -4,11 +4,8 @@ import styled from "styled-components";
 import SliderBid from "../page/components/Bid/SliderBid";
 import { useTranslation } from "react-i18next";
 
-const ModalGirfBid = ({ data = [], isShowDetail, setIsShowDetail }) => {
+const ModalGirfBid = ({ data = {}, isShowDetail, setIsShowDetail }) => {
   const { t } = useTranslation();
-  const onChange = (currentSlide) => {
-    // console.log(currentSlide);
-  };
   const listImageProduct = data?.gift_image?.split(',')
 
   return (
@@ -18,7 +15,7 @@ const ModalGirfBid = ({ data = [], isShowDetail, setIsShowDetail }) => {
       open={isShowDetail}
       onOk={() => setIsShowDetail(false)}
       onCancel={() => setIsShowDetail(false)}
-      width={"middle"}
+      // width={"middle"}
     >
       <div className="modal-detail__container">
         <div className="detail-bid">{t("bid_page.gift")}</div>

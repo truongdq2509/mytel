@@ -29,7 +29,7 @@ const TabUpcoming = ({ upNextProduct = [] }) => {
   };
 
   const handleClickGirf = (data) => {
-    setDataDetailActive([data]);
+    setDataDetailActive(data);
     setIsShowDetail(true);
   };
 
@@ -127,14 +127,14 @@ const TabUpcoming = ({ upNextProduct = [] }) => {
                 />
               </div>
             </div>
-            {data?.gift_name ? (
+            {/* {data?.gift_name ? ( */}
               <img
                 src={iconGirf}
                 alt="icon-girf"
                 className="icon-girf icon-girf__upcoming"
                 onClick={() => handleClickGirf(data)}
               />
-            ) : null}
+            {/* ) : null} */}
           </div>
           <div>
             <div

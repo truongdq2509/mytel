@@ -14,7 +14,7 @@ function FooterMobile({ user }) {
 		{
 			link: `${PATH.BID}/${urlPageBid.running}`,
 			classItem: "icon-bid",
-			linkActive: [`${PATH.BID}/${urlPageBid.running}`, `${PATH.BID}/${urlPageBid.upcoming}`,],
+			linkActive: [`${PATH.BID}/${urlPageBid.running}`, `${PATH.BID}/${urlPageBid.upcoming}`, `${PATH.BID}/${urlPageBid.purchasing}`],
 			title: t("header.bid")
 		},
 		{

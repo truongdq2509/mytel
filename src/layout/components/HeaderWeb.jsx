@@ -43,7 +43,7 @@ function HeaderWeb({ user }) {
 		{
 			name: t("header.bid"),
 			link: `${PATH.BID}/${urlPageBid.running}`,
-			linkActive: [`${PATH.BID}/${urlPageBid.running}`, `${PATH.BID}/${urlPageBid.upcoming}`,],
+			linkActive: [`${PATH.BID}/${urlPageBid.running}`, `${PATH.BID}/${urlPageBid.upcoming}`, `${PATH.BID}/${urlPageBid.purchasing}`],
 			isUser: true
 		},
 		{
