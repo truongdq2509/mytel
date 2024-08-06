@@ -42,12 +42,11 @@ export default function BidPage() {
     },
     {
       id: urlPageBid.purchasing,
-      content: t("account_page.package.package")
-    }
+      content: t("account_page.package.package"),
+    },
   ];
 
-  if(selectorAccount.userInfo){
-
+  if (selectorAccount.userInfo) {
   }
 
   useEffect(() => {
@@ -78,8 +77,8 @@ export default function BidPage() {
   }, [selectorHome]);
 
   const handleChangeTabs = (tabId) => {
-    if(!selectorAccount.userInfo && tabId === urlPageBid.purchasing){
-      return setOpenModalLogin(true)
+    if (!selectorAccount.userInfo && tabId === urlPageBid.purchasing) {
+      return setOpenModalLogin(true);
     }
     navigate(`${PATH.BID}/${tabId}`);
   };
@@ -98,7 +97,7 @@ export default function BidPage() {
         </div>
       );
     });
-  }, [id]);
+  }, [id, selectorAccount]);
 
   return (
     <div className="bid-container">
@@ -110,7 +109,7 @@ export default function BidPage() {
         />
       ) : id === urlPageBid.purchasing ? (
         <Container>
-          <PackagePage isPageBid/>
+          <PackagePage isPageBid />
         </Container>
       ) : (
         <TabUpcoming upNextProduct={upNextProduct} />
@@ -122,34 +121,35 @@ export default function BidPage() {
 }
 
 const Container = styled.div`
-  .container-child-account-header, .ant-select-item-option-content{
+  .container-child-account-header,
+  .ant-select-item-option-content {
     display: none;
   }
 
-  .select-package{
-    .ant-select-selection-item, .option-package{
+  .select-package {
+    .ant-select-selection-item,
+    .option-package {
       font-size: 12px !important;
     }
   }
 
-  @media(max-width: 768px){
-    .page-bid-action{
+  @media (max-width: 768px) {
+    .page-bid-action {
       display: block !important;
     }
 
-    .box-package-tab{
+    .box-package-tab {
       display: none;
     }
 
-    .container-child-account{
+    .container-child-account {
       background-color: inherit !important;
     }
 
     .box-item-package {
-      box-shadow: 0px 4px 5px 0px #08134A1A;
+      box-shadow: 0px 4px 5px 0px #08134a1a;
       border: 0px !important;
-      background: #FFFFFF;
-
+      background: #ffffff;
     }
   }
-`
+`;
