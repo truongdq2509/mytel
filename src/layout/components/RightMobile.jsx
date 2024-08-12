@@ -58,16 +58,16 @@ function RightWebMobile() {
     if (selectorAccount.userInfo) {
       if (selectorAccount.userInfo.isAdvantage) {
         setObjectTextHeader({
-          text1: t("right_page.text_foot1"),
-          text2: t("right_page.text_foot2"),
-          text3: t("right_page.text_foot8")
+          text1: "သင်၏ထူးခြားသောစျေးနှုန်းတွင် အားသာချက်ရှိသည်",
+          text2: "သင်၏ထူးခြားသောစျေးနှုန်းတွင် အားသာချက်ရှိသည်",
+          text3: ""
         })
       } else {
         if (selectorAccount.userInfo.minPriceOfCurrentUser > 0) {
           setObjectTextHeader({
-            text1: t("right_page.text_foot5"),
-            text2: t("right_page.text_foot6").replace("_NUMBER_", selectorAccount.userInfo.countSamePrice),
-            text3: t("right_page.text_foot7").replace("_NUMBER_", selectorAccount.userInfo.countLowerPrice)
+            text1: "အိုး! မင်းရဲ့အားသာချက်တွေ ဆုံးရှုံးသွားပြီ",
+            text2: "_NUMBER_ မင်းနဲ့တူတဲ့စျေးနှုန်းရှိတယ်။".replace("_NUMBER_", selectorAccount.userInfo.countSamePrice),
+            text3: "_NUMBER_ မင်းထက်နိမ့်တဲ့ဈေးနဲ့ လေလံဆွဲကြတယ်".replace("_NUMBER_", selectorAccount.userInfo.countLowerPrice)
           })
         } else {
           setObjectTextHeader({
@@ -79,8 +79,8 @@ function RightWebMobile() {
       }
     } else {
       setObjectTextHeader({
-        text1: t("right_page.text_foot3"),
-        text2: t("right_page.text_foot4"),
+        text1: "အခုပဲ လေလံမှာပါဝင်ပြီး Mytelbid တန်ဖိုးမြင့်ဆုများကို ပိုင်ဆိုင်ခွင့်ရရှိကြပါစို့။",
+        text2: "",
         text3: null
       })
     }
