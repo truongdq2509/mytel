@@ -11,7 +11,7 @@
 
   .error-input__bid {
     position: absolute;
-    bottom: -17px;
+    bottom: -22px;
     font-size: 13px;
     font-style: italic;
     color: red;
@@ -20,8 +20,16 @@
 
   @media(max-width: 768px) {
     .error-input__bid {
-      font-size: 10px;
+      font-size: 12px;
       bottom: -12px;
+      position: relative;
+      max-width: 100%;
+      line-height: 18px;
+      margin-bottom: 10px;
+    }
+
+    .error-mobile{
+      bottom: -6px;
     }
   }
 
@@ -934,8 +942,16 @@
       bottom: -57px;
     }
 
+    .bit-container-err{
+      bottom: -100px;
+    }
+
     .mt-13 {
       margin-top: 74px;
+    }
+
+    .error-last{
+      margin-top: 105px;
     }
 
     .header-main__content {
@@ -1119,10 +1135,6 @@
 
     .right-page-content .box-pagination .ant-pagination {
       min-width: 180px;
-    }
-
-    .error-input__bid {
-      font-size: 8px;
     }
   }
 }
