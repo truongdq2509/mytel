@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { curStateAccount } from '../Redux/selector';
 import { useLocation, useParams } from "react-router";
 import ModalChangePassword from '../component/ModalChangePassword';
+import "moment/locale/en-gb";
 
 function LayoutApp({ children }) {
 	const dispatch = useDispatch();

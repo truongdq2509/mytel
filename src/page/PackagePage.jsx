@@ -137,7 +137,7 @@ function PackagePage() {
 
 	const handleChange = (value) => {
 		setTabActive(value);
-	  };
+	};
 	return (
 		<div className="container-child-account">
 			{isLoading ? <div className='loading' >
@@ -169,16 +169,17 @@ function PackagePage() {
 							{t("account_page.package.retail_package")}
 						</div>
 					</div>
-					<div className="page-bid-action" style={{display: "none"}}>
-					<Select
-      value={tabActive}
-      style={{ width: 200, fontSize: "10px", marginBottom: "10px" }}
-      onChange={handleChange}
-	  className="select-package"
-    >
-		<Option value="SUB" className="option-package">{t("account_page.package.sub_Package")}</Option>
-		<Option value="RETAIL" className="option-package">{t("account_page.package.retail_package")}</Option>
-	</Select>
+					<div className="page-bid-action" style={{ display: "none" }}>
+						<Select
+							value={tabActive}
+							style={{ width: 200, fontSize: "10px", marginBottom: "10px" }}
+							onChange={handleChange}
+							className="select-package"
+						>
+							<Option value="SUB" className="option-package">{t("account_page.package.sub_Package")}</Option>
+							<Option value="RETAIL" className="option-package">{t("account_page.package.retail_package")}</Option>
+
+						</Select>
 					</div>
 					<div className='box-package-content'>
 						<Row gutter={24}>

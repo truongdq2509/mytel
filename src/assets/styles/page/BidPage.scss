@@ -1046,12 +1046,13 @@
       font-weight: 400;
       font-size: 10px;
       line-height: 12.1px;
-      width: max-content;
+      // width: max-content;
     }
 
     .number-people {
       text-align: center;
       margin: 0 auto;
+      width: 110px;
     }
 
     .right-page-head .icon-head {
@@ -1075,10 +1076,10 @@
     }
 
     .right-page-head .box-text div {
-      font-size: 10px;
+      font-size: 11px;
       font-weight: 400;
-      line-height: 12.1px;
-      text-align: left;
+      line-height: 16.1px;
+      text-align: center;
     }
 
     .right-page {
@@ -1096,19 +1097,19 @@
   }
 
   @media (max-width: 576px) {
-    .right-page-head .box-text {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
+    // .right-page-head .box-text {
+    //   display: flex;
+    //   flex-direction: column;
+    //   justify-content: center;
+    //   align-items: center;
+    // }
 
-    .right-page-head .box-text div {
-      font-size: 8px;
-      font-weight: 400;
-      line-height: 15px;
-      text-align: center;
-    }
+    // .right-page-head .box-text div {
+    //   font-size: 8px;
+    //   font-weight: 400;
+    //   line-height: 15px;
+    //   text-align: center;
+    // }
 
     .header-tab__bid {
       height: 31px;

@@ -66,8 +66,8 @@ function RightWebMobile() {
         if (selectorAccount.userInfo.minPriceOfCurrentUser > 0) {
           setObjectTextHeader({
             text1: "အိုး! မင်းရဲ့အားသာချက်တွေ ဆုံးရှုံးသွားပြီ",
-            text2: "_NUMBER_ မင်းနဲ့တူတဲ့စျေးနှုန်းရှိတယ်။".replace("_NUMBER_", selectorAccount.userInfo.countSamePrice),
-            text3: "_NUMBER_ မင်းထက်နိမ့်တဲ့ဈေးနဲ့ လေလံဆွဲကြတယ်".replace("_NUMBER_", selectorAccount.userInfo.countLowerPrice)
+            text2: "_NUMBER_ ယောက် ယခုအချိန်ထိ ".replace("_NUMBER_", selectorAccount.userInfo.countSamePrice),
+            text3: "_NUMBER_ ပါဝင်လေလံဆွဲသူများ".replace("_NUMBER_", selectorAccount.userInfo.countLowerPrice)
           })
         } else {
           setObjectTextHeader({
