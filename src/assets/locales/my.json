@@ -28,10 +28,10 @@
     "detail": "အသေးစိတ်",
     "code": "ပစ္စည်းကုဒ်နံပါတ်:  _CODE_",
     "time_end": "လေလံအပြီးတွင် ပြီးဆုံးပါမည်-",
-    "product_code": "Product code: _CODE_",
+    "product_code": "ပစ္စည်းကုဒ်နံပါတ်: _CODE_",
     "bid_now": "ခုလေလံဆွဲမည်",
     "day":"Day",
-    "days":"Days"
+    "days":"နေ့ရက်များ"
   },
   "bid_page": {
     "auction_code": "အကောင့်ကုဒ်",
@@ -254,7 +254,7 @@
     "package":{
       "package":"လေလံများဝယ်ယူခြင်း။",
       "sub_Package":"Sub Package",
-      "retail_package":"ပက်ကေ့ တစ်ခုခြင်း",
+      "retail_package":"Retail Package",
       "buy":"ဝယ်မည်",
       "cancel":"ဖျက်သိမ်းမည်",
       "title_bid_retail_1" :"_NUMBER_ လေလံဆွဲချိန်",

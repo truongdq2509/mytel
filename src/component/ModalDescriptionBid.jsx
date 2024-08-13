@@ -10,7 +10,7 @@ const ModalDescriptionBid = ({ setOpenModal, openModal, data = {} }) => {
   
   return (
     <Container
-      title="Detail Description"
+      title="အသေးစိတ်ဖော်ပြချက်"
       centered
       open={openModal}
       onOk={() => setOpenModal(false)}
