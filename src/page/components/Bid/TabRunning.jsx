@@ -165,7 +165,13 @@ const TabRunning = ({ currentProduct = [], setOpenModalLogin }) => {
                           </div>
                         </div>
                       </div>
-                      <div className="bit-container">
+                      <div
+                        className={`bit-container ${
+                          valueInput !== "" && isBidActiveErr
+                            ? "bit-container-err"
+                            : ""
+                        }`}
+                      >
                         <div className="position-relative">
                           <input
                             className="input-bit__now"
@@ -195,7 +201,13 @@ const TabRunning = ({ currentProduct = [], setOpenModalLogin }) => {
                           </div>
                         </div>
                         {valueInput !== "" && isBidActiveErr ? (
-                          <div className="error-input__bid">
+                          <div
+                            className={`error-input__bid ${
+                              valueInput !== "" && isBidActiveErr
+                                ? "error-mobile"
+                                : ""
+                            }`}
+                          >
                             {t("bid_page.warning")}
                           </div>
                         ) : null}
@@ -223,7 +235,11 @@ const TabRunning = ({ currentProduct = [], setOpenModalLogin }) => {
         </div>
       </div>
 
-      <div className={`header-main header-main__content  ${currentProduct.length > 0 ? "mt-13" : ""}`}>
+      <div
+        className={`header-main header-main__content  ${
+          currentProduct.length > 0 ? "mt-13" : ""
+        } ${valueInput !== "" && isBidActiveErr ? "error-last" : ""}`}
+      >
         <div className="tips-container">
           <div className="tips">{`${t("bid_page.tip_to_win")}:`}</div>
           <div className="content-container">
