@@ -40,6 +40,7 @@ const TabUpcoming = ({ upNextProduct = [] }) => {
   // };
 
   const getItemProduct = (data) => {
+    console.log(data);
     const {
       product_name = "",
       product_code = "",
@@ -127,14 +128,14 @@ const TabUpcoming = ({ upNextProduct = [] }) => {
                 />
               </div>
             </div>
-            {/* {data?.gift_name ? ( */}
+            {data?.gift_name || data?.gift_image || data?.gift_desc ? (
               <img
                 src={iconGirf}
                 alt="icon-girf"
                 className="icon-girf icon-girf__upcoming"
                 onClick={() => handleClickGirf(data)}
               />
-            {/* ) : null} */}
+            ) : null}
           </div>
           <div>
             <div
