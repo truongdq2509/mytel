@@ -10,6 +10,7 @@ import { curStateAccount } from '../Redux/selector';
 import { useLocation, useParams } from "react-router";
 import ModalChangePassword from '../component/ModalChangePassword';
 import "moment/locale/en-gb";
+import i18n from 'i18next';
 
 function LayoutApp({ children }) {
 	const dispatch = useDispatch();
@@ -32,12 +33,18 @@ function LayoutApp({ children }) {
 		} else {
 			dispatch(getCurrentUser({ callback: afterGetUserBid }))
 		}
-
 	}, [selectorAccount.userInfo, selectorAccount.token]);
 	useEffect(() => {
 		window.scrollTo(0, 0);
 		setChangePage(new Date() * 1)
 	}, [location.pathname])
+	useEffect(() => {
+		if (localStorage.getItem("i18nextLng") === "en") {
+			localStorage.setItem("i18nextLng", "my")
+			i18n.changeLanguage("my");
+		}
+	}, [])
+
 
 	const { id = null, idResult = null } = useParams();
 
