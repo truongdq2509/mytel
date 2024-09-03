@@ -1,6 +1,6 @@
 
 import API_PATH from '../../../config/API_PATH'
-import { GET_AUCTION_RECORD, GET_CURRENT_USER, GET_LIST_PACKAGE, GET_PACKAGE_HISTORY, GET_TURN_REMAIN, LOGIN_OTP, LOGIN_PASSWORD, LOGOUT_USER, REGISTER_RETAIL_PACKAGE, REGISTER_SUB_PACKAGE, REQUEST_OTP, UPDATE_PASSWORD, UPDATE_USER_INFO, UPLOAD_FILE, VERIFY_OTP, VERIFY_OTP_PASSWORD } from './contants'
+import { GET_AUCTION_RECORD, GET_CURRENT_USER, GET_LIST_PACKAGE, GET_PACKAGE_HISTORY, GET_TURN_REMAIN, GET_WINNER_MONTH, LOGIN_OTP, LOGIN_PASSWORD, LOGOUT_USER, REGISTER_RETAIL_PACKAGE, REGISTER_SUB_PACKAGE, REQUEST_OTP, UPDATE_PASSWORD, UPDATE_USER_INFO, UPLOAD_FILE, VERIFY_OTP, VERIFY_OTP_PASSWORD } from './contants'
 
 
 export const getCurrentUser = data => {
@@ -191,6 +191,19 @@ export const updateUserInfo = (data) => {
 		meta: {
 			method: 'POST',
 			url: API_PATH.updateInformation,
+			query: data.query || {},
+			callback: data.callback || null
+		},
+	}
+}
+
+export const getWinnerMonth = data => {
+	return {
+		type: GET_WINNER_MONTH,
+		data,
+		meta: {
+			method: 'GET',
+			url: API_PATH.getMonthWinner,
 			query: data.query || {},
 			callback: data.callback || null
 		},
