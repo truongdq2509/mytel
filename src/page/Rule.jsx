@@ -162,8 +162,7 @@ const Rule = () => {
 
   const getDataTabRules = () => {
     const dataBody = handleGetDataBody(t("rule_page.body_rules.content_rules"));
-    const dataNew = dataBody.slice("abcd1234")
-    console.log("dataNew", dataNew);
+
     return (
       <>
         <div className="body-title">
