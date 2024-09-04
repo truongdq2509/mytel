@@ -26,7 +26,6 @@ export default function Result() {
   const selectorResult = useSelector(curStateResult).data;
   const selectorDetailResult = useSelector(curStateResult).detail;
   const { userInfo } = useSelector(curStateAccount) || {};
-  console.log("userInfo", userInfo);
   const navigate = useNavigate();
 
   const tabResult = [
