@@ -38,6 +38,7 @@ const API_PATH = {
 	upload: `${API_BASE_PATH}upload`,
 
 	getGameInfo: `${API_ADMIN_PATH}game/lucky-spin/info`,
+	getMonthWinner: `${API_ADMIN_PATH}product/month-winner`,
 }
 
 

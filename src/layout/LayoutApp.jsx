@@ -4,13 +4,14 @@ import RightWeb from './components/RightWeb';
 import { mediaQueryPoint, useMediaQuery } from '../utils/hooks';
 import HeaderMobile from './components/HeaderMobile';
 import FooterMobile from './components/FooterMobile';
-import { getCurrentUser } from '../Redux/futures/account/actions';
+import { getCurrentUser, getWinnerMonth } from '../Redux/futures/account/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { curStateAccount } from '../Redux/selector';
 import { useLocation, useParams } from "react-router";
 import ModalChangePassword from '../component/ModalChangePassword';
 import "moment/locale/en-gb";
 import i18n from 'i18next';
+import ModalWinnerMonth from '../component/ModalWinnerMonth';
 
 function LayoutApp({ children }) {
 	const dispatch = useDispatch();
@@ -20,6 +21,7 @@ function LayoutApp({ children }) {
 	const heightWeb = window.innerHeight
 	const isMobile = useMediaQuery(`(max-width: ${mediaQueryPoint.lg}px)`)
 	const [changePage, setChangePage] = useState(0)
+	const [monthWinner, setMonthWinner] = useState(null)
 	const afterGetUserBid = (data, isLoading) => {
 		if (data) {
 			setUserInfo(data.data);
@@ -34,6 +36,16 @@ function LayoutApp({ children }) {
 			dispatch(getCurrentUser({ callback: afterGetUserBid }))
 		}
 	}, [selectorAccount.userInfo, selectorAccount.token]);
+	const afterGetWinner = (data, isLoading) => {
+		if (data) {
+			setMonthWinner(data.data)
+		} else {
+			setMonthWinner(null)
+		}
+	}
+	useEffect(() => {
+		dispatch(getWinnerMonth({ callback: afterGetWinner }))
+	}, [changePage])
 	useEffect(() => {
 		window.scrollTo(0, 0);
 		setChangePage(new Date() * 1)
@@ -57,6 +69,7 @@ function LayoutApp({ children }) {
 			</div>
 			{isMobile && (<FooterMobile user={userInfo} />)}
 			{selectorAccount && selectorAccount.userInfo && !selectorAccount.userInfo.is_updated_password ? <ModalChangePassword changePage={changePage} /> : null}
+			{monthWinner ? <ModalWinnerMonth monthWinner={monthWinner} /> : null}
 		</div>
 	);
 }

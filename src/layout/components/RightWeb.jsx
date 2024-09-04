@@ -36,13 +36,13 @@ function RightWeb({ user }) {
 				(product) => new Date(product?.start_time).getTime() < currentDate
 			);
 			if (currentProduct && currentProduct[0]?.cp_id) {
+				setIdCurrentProduct(currentProduct[0]?.cp_id)
+			} else {
 				let query = {
 					current: page,
 					pageSize: 7,
 					sort: sort
 				}
-
-				setIdCurrentProduct(currentProduct[0]?.cp_id)
 				dispatch(getHistoryBidAll({ query }))
 			}
 		}
