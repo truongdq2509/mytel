@@ -28,7 +28,7 @@ const ModalWinnerMonth = ({ monthWinner }) => {
 	}, [cookies])
 	useEffect(() => {
 		const handleGetHeight = () => {
-			const height = document.getElementById("modal-winner-week").offsetWidth * 1.26
+			const height = document.getElementById("modal-winner-week")?.offsetWidth * 1.26
 			setHeightImg(height)
 		}
 		window.addEventListener("resize", handleGetHeight)

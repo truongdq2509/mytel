@@ -36,6 +36,11 @@ function LayoutApp({ children }) {
 			dispatch(getCurrentUser({ callback: afterGetUserBid }))
 		}
 	}, [selectorAccount.userInfo, selectorAccount.token]);
+	useEffect(() => {
+		if(selectorAccount.token){
+		localStorage.setItem("token", selectorAccount.token )
+	}
+	}, [selectorAccount.token])
 	const afterGetWinner = (data, isLoading) => {
 		if (data) {
 			setMonthWinner(data.data)
@@ -52,8 +57,8 @@ function LayoutApp({ children }) {
 	}, [location.pathname])
 	useEffect(() => {
 		if (localStorage.getItem("i18nextLng") === "en") {
-			localStorage.setItem("i18nextLng", "my")
-			i18n.changeLanguage("my");
+			localStorage.setItem("i18nextLng", "en")
+			i18n.changeLanguage("en");
 		}
 	}, [])
 

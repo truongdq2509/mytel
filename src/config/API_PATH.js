@@ -39,6 +39,12 @@ const API_PATH = {
 
 	getGameInfo: `${API_ADMIN_PATH}game/lucky-spin/info`,
 	getMonthWinner: `${API_ADMIN_PATH}product/month-winner`,
+
+	// event
+	configEvent: `${API_ADMIN_PATH}lighting/check-status`,
+	lanternCollection: `${API_ADMIN_PATH}lighting/get-statistic`,
+	spinLuckyMoon: `${API_ADMIN_PATH}lucky-moon/lucky-moon-spin/start-spin`,
+	getRankLighting: `${API_ADMIN_PATH}lighting/get-rank-lighting`
 }
 
 

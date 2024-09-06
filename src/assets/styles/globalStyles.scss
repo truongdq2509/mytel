@@ -72,4 +72,11 @@ html {
     cursor: pointer;
     transition: 0.3s ease-in-out;
   }
+
+  .hover-item-head:hover {
+    background-color: #f5b78a !important;
+    transition: 0.3s ease-in-out;
+    color: white !important;
+    cursor: pointer;
+  }
 }

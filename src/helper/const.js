@@ -18,3 +18,29 @@ export const urlPageResult = {
   the_winner: "my-win",
   no_winner: "no-winer",
 };
+
+export const ID_EVENT = {
+  lantern_collection: "lantern-collection",
+  lucky_moon: "lucky-moon",
+  rank_table: "rank-table",
+  instruction: "instruction",
+};
+
+export const TAB_EVENT = [
+  {
+    title: "lantern collection",
+    id: ID_EVENT.lantern_collection,
+  },
+  {
+    title: "lucky moon",
+    id: ID_EVENT.lucky_moon,
+  },
+  {
+    title: "rank table",
+    id: ID_EVENT.rank_table,
+  },
+  {
+    title: "instruction",
+    id: ID_EVENT.instruction,
+  },
+];
