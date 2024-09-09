@@ -1,16 +1,19 @@
 import axios from "axios";
 import { getUrlParamsFromJson } from '../helper/helper';
 
-axios.interceptors.request.use(
-  function (config) {
-    const token = localStorage.getItem("token");
-   if(token) {config.headers.authorization = token};
-    return config;
-  },
-  function (error) {
-    return Promise.reject(error);
-  }
-);
+// axios.interceptors.request.use(
+//   function (config) {
+//     const token = getToken();
+//     getUserinfo()
+//     const language = getLanguage();
+//     config.headers.Authorization = token;
+//     config.headers.language = language;
+//     return config;
+//   },
+//   function (error) {
+//     return Promise.reject(error);
+//   }
+// );
 
 export const getDataApi = async (url = "", query = {}) => {
   const queryString = getUrlParamsFromJson(query);
