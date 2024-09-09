@@ -12,8 +12,9 @@ import { getTurnRemain } from '../../Redux/futures/account/actions';
 import { curStateAccount } from '../../Redux/selector';
 import avatarDefault from "../../assets/images/avatarDefault.svg"
 import { checkImage } from '../../helper/helper';
+import iconBtnBack from "../../assets/images/iconBtnBack.svg"
 
-function HeaderWeb({ user }) {
+function HeaderWeb({ user, checkShowBack }) {
 	const { t } = useTranslation();
 	const location = useLocation()
 	const dispatch = useDispatch()
@@ -91,10 +92,16 @@ function HeaderWeb({ user }) {
 		<div className="header-page">
 			<div className="container">
 				<div className="header-page-container">
+
 					<div className="box-logo">
-						<a className='logo' href={PATH.HOME}>
-							<img src={logo} alt="logo" />
-						</a>
+						<div className='box-logo-logo'>
+							{checkShowBack ? <div className={`box-back `}>
+								<a href='mytel://back'> <img src={iconBtnBack} alt='icon-back' /> </a>
+							</div> : null}
+							<a className='logo' href={PATH.HOME}>
+								<img src={logo} alt="logo" />
+							</a>
+						</div>
 
 						<div className="box-menu">
 							{listTab.map((item, index) => {
