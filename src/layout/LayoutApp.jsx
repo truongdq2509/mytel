@@ -45,25 +45,42 @@ function LayoutApp({ children }) {
 
 	}
 	useEffect(() => {
+		let timout
+		let countLogin = 0
+		console.log("run nẻ");
 
-		const msisdn = document.getElementById('msisdn_myid').value;
-		const tokenEncoded = document.getElementById("token_myid").value;
+		let checkAutoLogin = () => {
+			const msisdn = document.getElementById('msisdn_myid').value;
+			const tokenEncoded = document.getElementById("token_myid").value;
+			console.log("tokenEncoded", msisdn, tokenEncoded);
 
-		if ((msisdn && !msisdn.includes("<!--#")) || (tokenEncoded && !tokenEncoded.includes("<!--#"))) {
-			if (!getData("login_with_app") || getData("login_with_app") != 1) {
-				localStorage.removeItem("login_with_app")
-				setData("login_with_app", 1)
+
+			if ((msisdn && !msisdn.includes("<!--#")) || (tokenEncoded && !tokenEncoded.includes("<!--#"))) {
+				if (!getData("login_with_app") || getData("login_with_app") != 1) {
+					localStorage.removeItem("login_with_app")
+					setData("login_with_app", 1)
+				}
+			}
+
+			if (msisdn && tokenEncoded && !(cookies.get('isLoggedIn') !== undefined && cookies.get('isLoggedIn'))) {
+				const body = {
+					isdn: msisdn,
+					tokenEncoded,
+					callback: afterAutoLogin
+				}
+				dispatch(loginWithPassword(body))
+			} else {
+				if (countLogin < 5) {
+					timout = setTimeout(() => {
+						countLogin++
+						checkAutoLogin()
+					}, 200)
+				}
 			}
 		}
-
-		if (msisdn && tokenEncoded && !(cookies.get('isLoggedIn') !== undefined && cookies.get('isLoggedIn'))) {
-
-			const body = {
-				isdn: msisdn,
-				tokenEncoded,
-				callback: afterAutoLogin
-			}
-			dispatch(loginWithPassword(body))
+		checkAutoLogin()
+		return () => {
+			clearTimeout(timout)
 		}
 	}, [])
 	useEffect(() => {
