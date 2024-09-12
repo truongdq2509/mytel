@@ -17,17 +17,20 @@ import {
   getDataLanternCollection,
   postApiPairing,
 } from "../../../../Redux/futures/event/action";
-import { curStateEvent } from "../../../../Redux/selector";
+import { curStateAccount, curStateEvent } from "../../../../Redux/selector";
 import iconHadingyut from "../../../../assets/images/hadingyut-festival.svg";
 import PopupErrorLantern from "./PopupErrorLantern";
 import PopupSuccessLantern from "./PopupSuccess";
+import ModalLogin from "../../../../component/ModalLogin";
 
 export default function LanternCollection({ tabActive }) {
   const navigate = useNavigate();
   const totalFly = useRef(0);
+  const selectorAccount = useSelector(curStateAccount);
   const dispatch = useDispatch();
   const [isModalError, setIsModalError] = useState(false);
   const [isModalSuccess, setIsModalSuccess] = useState(false);
+  const [openModalLogin, setOpenModalLogin] = useState(false);
   const { dataLanternCollection, configEventLuckyMoon } =
     useSelector(curStateEvent) || {};
 
@@ -50,10 +53,19 @@ export default function LanternCollection({ tabActive }) {
           ? dataLanternCollection.candle
           : dataLanternCollection.lantern;
       setIsModalSuccess(true);
+    } else if (dataError) {
+      console.log(dataError);
     }
   };
 
   const handlePairing = async () => {
+    const isCheckLogin = selectorAccount.userInfo;
+
+    // check user dang nhap
+    if (!isCheckLogin) {
+      return setOpenModalLogin(true);
+    }
+
     if (!dataLanternCollection.candle || !dataLanternCollection.lantern) {
       return setIsModalError(true);
     }
@@ -72,7 +84,7 @@ export default function LanternCollection({ tabActive }) {
         setIsModalError={setIsModalError}
         dataLanternCollection={dataLanternCollection}
       />
-
+      <ModalLogin open={openModalLogin} setOpenModalLogin={setOpenModalLogin} />
       <PopupSuccessLantern
         isModalSuccess={isModalSuccess}
         setIsModalSuccess={setIsModalSuccess}
@@ -282,6 +294,8 @@ const Container = styled.div`
     display: flex;
     justify-content: center;
     padding-top: 60px;
+    margin-left: 10px;
+    margin-right: 10px;
   }
 
   .icon-pairing-container {
@@ -512,6 +526,7 @@ const Container = styled.div`
 
     .envent-place-btn-bit {
       width: 140px;
+      max-width: 100%;
       font-size: 14px;
       margin: 0 auto;
       margin-top: 3px;
@@ -624,6 +639,8 @@ const Container = styled.div`
 
       .event-warning {
         padding-left: 100px;
+        font-size: 13px;
+        height: 80px;
       }
     }
   }

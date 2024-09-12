@@ -161,8 +161,8 @@ export default function LuckyMoon({ tabActive }) {
     });
 
     return {
-      dataSpen: formatData(resultSpeHis),
-      dataResult: formatData(resultHistory),
+      dataSpen: formatData(resultSpeHis)?.slice(0, 5),
+      dataResult: formatData(resultHistory)?.slice(0, 5),
       dataNoti: dataHis,
     };
   }, [dataHistoryLuckMoon]);
@@ -374,9 +374,13 @@ export default function LuckyMoon({ tabActive }) {
 const Div = styled.div`
   position: relative;
   min-height: 100%;
-  background-color: rgba(255, 255, 255, 1);
-  border-radius: 12px;
-  box-shadow: 0px 4px 10px 0px rgba(8, 19, 74, 0.1);
+  width: 100%;
+  height: 100%;
+  /* background-color: rgba(255, 255, 255, 1); */
+  /* box-shadow: 0px 4px 10px 0px rgba(8, 19, 74, 0.1); */
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  overflow: hidden;
 
   .event-lm-spin {
     margin-top: 26px;
@@ -544,6 +548,14 @@ const Div = styled.div`
 
   .bg-event {
     min-height: 1079px;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+
+  .position-relative{
+    width: 100%;
+    height: 100%;
   }
 
   .spin-left {
@@ -659,7 +671,6 @@ const Div = styled.div`
   }
 
   @media (max-width: 1400px) {
-    border-radius: 12px;
 
     div .event-lm-noti-content {
       font-size: 16px;

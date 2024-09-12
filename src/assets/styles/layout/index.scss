@@ -11,9 +11,13 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		left: calc((100vw - 1637px) / 2 - 300px);
+		left: calc((100vw - 1637px) / 2 - 150px);
 		gap: 80px;
-		cursor: alias;
+
+		@media (min-width: 992px){
+			top: 50%;
+			transform: translate(0px, -50%) !important;
+		}
 
 	&-item{
 		position: relative;
@@ -41,13 +45,17 @@
 		}
 
 		.icon-close-event-thading{
-			right: 30px;
-   			top: 15px;
+			right: 18px;
+    		top: 0px;
 		}
 	}
 
 	.router-event-lucky-spin , .router-event-thading{
 		cursor: pointer;
+	}
+
+	.router-event-thading{
+		width: 150px;
 	}
 
 	@keyframes spin {
@@ -63,17 +71,17 @@
 		animation: spin 4s linear infinite;
 	  }
 
-		@media (max-width: 2300px){
+		@media (max-width: 1960px){
 			left: 20px;
 		}
 
 		@media (max-width: 1400px){
-			right: 10px;
-			left: inherit;
-			bottom: 110px;
-			top: auto;
-			right: 10px;
-			gap: 50px;
+			// right: 10px;
+			// left: inherit;
+			// bottom: 110px;
+			// top: auto;
+			// right: 10px;
+			// gap: 50px;
 
 			.icon-router-event-lucky-moon-item:last-child{
 				max-width: 180px;
@@ -92,6 +100,10 @@
 
 		@media (max-width: 768px){
 			gap: 30px;
+			left: inherit;
+			bottom: 110px;
+			top: auto;
+			right: 10px;
 
 			.icon-router-event-lucky-moon-item{
 				max-width: 60px;
@@ -106,7 +118,14 @@
 			}
 
 			.icon-close-event-thading{
-				right: 20px !important;
+				right: 12px !important;
+				top: -4px;
+			}
+
+			.router-event-thading{
+				width: 90px;
+				right: 12px;
+				top: -4px;
 			}
 		}
 	}

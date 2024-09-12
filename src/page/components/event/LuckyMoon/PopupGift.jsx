@@ -194,6 +194,18 @@ const StyleModal = styled(Modal)`
     }
   }
 
+  @media (max-width: 768px){
+    .noti{
+      font-size: 13px;
+      padding: 20px 0;
+    }
+
+    .btn-bid-now{
+      font-size: 13px;
+      width: 160px;
+    }
+  }
+
   @media (max-width: 576px) {
     .ant-modal-close {
       right: 10px !important;

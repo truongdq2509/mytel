@@ -27,10 +27,11 @@ const HeaderEvent = ({ tabActive }) => {
     infinite: true,
     speed: 500,
     slidesToShow: isMobileXs ? 1 : 2,
-    slidesToScroll: 1,
+    slidesToScroll: isMobileXs ? 1 : 2,
     centerMode: true,
     dots: false,
-    initialSlide
+    initialSlide,
+    arrows: true,
   };
 
   if (isMobile) {
@@ -80,6 +81,7 @@ const MobileHeader = styled.div`
   color: white;
   position: relative;
   z-index: 9;
+  background-color: white;
   .event-item-header {
     text-align: center;
     background: rgba(217, 217, 217, 1);
@@ -89,8 +91,7 @@ const MobileHeader = styled.div`
     padding: 8px 0;
     text-transform: uppercase;
     font-weight: 500;
-    border-left: 0.5px solid white;
-    border-right: 0.5px solid white;
+    width: calc(100% - 6px) !important;
   }
 
   .event-item-active {
@@ -106,6 +107,12 @@ const MobileHeader = styled.div`
   .slick-prev {
     left: 5px;
     z-index: 10;
+  }
+
+  @media (max-width: 500px){
+    .event-item-header {
+      font-size: 11px;
+    }
   }
 
   @media (max-width: 400px) {

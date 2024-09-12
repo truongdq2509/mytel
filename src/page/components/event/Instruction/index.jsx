@@ -60,6 +60,10 @@ const Div = styled.div`
   ::-webkit-scrollbar {
     width: 0px !important;
   }
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  overflow: hidden;
+
   .instruction-main {
     padding: 5%;
     width: 100%;
@@ -75,7 +79,6 @@ const Div = styled.div`
       font-weight: 300;
       padding: 40px 50px;
       border-radius: 16px;
-      overflow-y: auto;
     }
   }
 
@@ -92,12 +95,14 @@ const Div = styled.div`
   position: relative;
   height: 100%;
   /* background-color: rgba(255, 255, 255, 1); */
-  border-radius: 12px;
   /* box-shadow: 0px 4px 10px 0px rgba(8, 19, 74, 0.1); */
 
   .bg-event {
     /* min-height: 1079px; */
     position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   .event-body {
