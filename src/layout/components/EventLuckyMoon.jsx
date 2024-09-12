@@ -47,7 +47,7 @@ const EventLuckyMoon = () => {
             onClick={() =>
               _onPressEvent(`${PATH.EVENT}/${ID_EVENT.lucky_moon}`)
             }
-            className="icon-router-event-lucky-moon-item"
+            className="icon-router-event-lucky-moon-item icon-router-event-lucky-moon-item-spin"
           >
             <i
               className="fa fa-times"
@@ -66,7 +66,7 @@ const EventLuckyMoon = () => {
             onClick={() =>
               _onPressEvent(`${PATH.EVENT}/${ID_EVENT.lantern_collection}`)
             }
-            className="icon-router-event-lucky-moon-item"
+            className="icon-router-event-lucky-moon-item icon-router-event-lucky-moon-item-thading"
           >
             <i
               className="fa fa-times icon-close-event-thading"

@@ -63,9 +63,52 @@
 		animation: spin 4s linear infinite;
 	  }
 
-	@media (max-width: 2300px){
-		left: 20px;
-	}
+		@media (max-width: 2300px){
+			left: 20px;
+		}
+
+		@media (max-width: 1400px){
+			right: 10px;
+			left: inherit;
+			bottom: 110px;
+			top: auto;
+			right: 10px;
+			gap: 50px;
+
+			.icon-router-event-lucky-moon-item:last-child{
+				max-width: 180px;
+			}
+
+			i{
+				right: -6px !important;
+        		top: -14px;
+			}
+
+			.icon-close-event-thading{
+				right: 44px !important;
+				top: 2px;
+			}
+		}
+
+		@media (max-width: 768px){
+			gap: 30px;
+
+			.icon-router-event-lucky-moon-item{
+				max-width: 60px;
+
+				i{
+					font-size: 18px;
+				}
+			}
+
+			.icon-router-event-lucky-moon-item:last-child{
+				max-width: 120px;
+			}
+
+			.icon-close-event-thading{
+				right: 20px !important;
+			}
+		}
 	}
 
 	&-body {
