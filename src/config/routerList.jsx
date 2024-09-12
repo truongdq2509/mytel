@@ -10,6 +10,7 @@ import PackagePage from '../page/PackagePage';
 import PackageHistory from '../page/PackageHistory';
 import AuctionRecord from '../page/AuctionRecord';
 import ChangePassword from '../page/ChangePassword';
+import Event from '../page/Event';
 
 export const routerList = [
 	{
@@ -65,6 +66,11 @@ export const routerList = [
 	{
 		path: PATH.CHANGE_PASSWORD,
 		component: ChangePassword,
+		layout: LayoutApp
+	},
+	{
+		path: `${PATH.EVENT}/:id`,
+		component: Event,
 		layout: LayoutApp
 	},
 ]

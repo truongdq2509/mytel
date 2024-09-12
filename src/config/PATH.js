@@ -9,6 +9,6 @@ const PATH = {
 	PACKAGE: '/account/package',
 	AUCTION_RECORD: '/account/auction-record',
 	CHANGE_PASSWORD: '/account/change-password',
-
+	EVENT: "/event",
 }
 export default PATH

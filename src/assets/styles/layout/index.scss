@@ -4,6 +4,70 @@
 
 
 .main-layout {
+	.icon-router-event-lucky-moon{
+		position: fixed;
+    	z-index: 9999;
+    	top: calc(50% - 226px);
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		left: calc((100vw - 1637px) / 2 - 300px);
+		gap: 80px;
+		cursor: alias;
+
+	&-item{
+		position: relative;
+
+		i{
+			position: absolute;
+			top: -10px;
+			right: 0;
+			font-size: 24px;
+			color: gray;
+			cursor: pointer;
+			// width: 30px;
+			// height: 30px;
+			// display: flex;
+			// justify-content: center;
+			// align-items: center;
+			// background-color: black;
+			// border-radius: 50%;
+		}
+
+		&:first-child{
+			i{
+				right: -20px;
+			}
+		}
+
+		.icon-close-event-thading{
+			right: 30px;
+   			top: 15px;
+		}
+	}
+
+	.router-event-lucky-spin , .router-event-thading{
+		cursor: pointer;
+	}
+
+	@keyframes spin {
+		0% {
+		  transform: rotate(0deg);
+		}
+		100% {
+		  transform: rotate(360deg);
+		}
+	  }
+
+	  .router-event-lucky-spin{
+		animation: spin 4s linear infinite;
+	  }
+
+	@media (max-width: 2300px){
+		left: 20px;
+	}
+	}
+
 	&-body {
 		padding: 155px 15px 20px;
 		display: flex;
