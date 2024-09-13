@@ -34,11 +34,11 @@ export default function BidPage() {
   let tabBid = [
     {
       id: urlPageBid.running,
-      content: t("bid_page.running"),
+      content: t("home_page.current_action"),
     },
     {
       id: urlPageBid.upcoming,
-      content: t("bid_page.upcoming"),
+      content: t("home_page.upcoming_action"),
     },
     {
       id: urlPageBid.purchasing,
@@ -89,9 +89,8 @@ export default function BidPage() {
         <div
           key={tab.id}
           onClick={() => handleChangeTabs(tab.id)}
-          className={`header-tab header-tab__bid ${
-            id === tab.id ? "active-tab" : "tab-hover"
-          }`}
+          className={`header-tab header-tab__bid ${id === tab.id ? "active-tab" : "tab-hover"
+            }`}
         >
           {tab.content}
         </div>

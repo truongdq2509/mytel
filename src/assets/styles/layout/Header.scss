@@ -8,6 +8,8 @@
 	z-index: 100;
 	overflow: hidden;
 
+
+
 	&-container {
 		display: flex;
 		justify-content: space-between;
@@ -18,11 +20,19 @@
 			flex-direction: column;
 			gap: 10px;
 
-			.logo {
-				width: 229px;
-				height: 73px;
-				display: block;
+			&-logo {
+				display: flex;
+				align-items: center;
+				gap: 10px;
+
+				.logo {
+					width: 229px;
+					height: 73px;
+					display: block;
+				}
 			}
+
+
 
 			.box-menu {
 				display: flex;
@@ -194,6 +204,12 @@
 	background-color: $background-color-title;
 	z-index: 100;
 
+	&-logo {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+	}
+
 	.logo-mobile {
 		display: block;
 		width: 144px;
@@ -226,6 +242,12 @@
 		display: flex;
 		align-items: center;
 		gap: 10px;
+
+		&-logo {
+			display: flex;
+			align-items: center;
+			gap: 10px;
+		}
 
 		&-info {
 			display: flex;
@@ -297,6 +319,29 @@
 		}
 	}
 
+}
+
+.box-back {
+	background: #ff5100;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 30px;
+	width: 30px;
+	// position: fixed;
+	// z-index: 9999;
+	// top: 17px;
+	// left: 10px;
+	border-radius: 50%;
+
+
+	a {
+		height: 30px;
+		width: 30px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
 }
 
 @media (max-width: 1400px) {

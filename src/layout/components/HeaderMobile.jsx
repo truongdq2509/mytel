@@ -6,8 +6,9 @@ import { useEffect, useState } from "react";
 import { getTurnRemain } from "../../Redux/futures/account/actions";
 import CurrentTime from '../../component/CurrentTime';
 import { curStateAccount } from '../../Redux/selector';
+import iconBtnBack from "../../assets/images/iconBtnBack.svg"
 
-function HeaderMobile({ user }) {
+function HeaderMobile({ user, checkShowBack }) {
 	const { t } = useTranslation();
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
@@ -24,12 +25,20 @@ function HeaderMobile({ user }) {
 	useEffect(() => {
 		dispatch(getTurnRemain({}));
 	}, [user]);
+	console.log(checkShowBack);
+
 	return (
 		<>
 			{user ? (
 				<div className="header-mobile-page">
 					<div className='box-logo'>
-						<a href={PATH.HOME} className="logo-mobile is-login" />
+						<div className='box-logo-logo'>
+							{checkShowBack ? <div className={`box-back `}>
+								<a href='mytel://back'> <img src={iconBtnBack} alt='icon-back' /> </a>
+							</div> : null}
+							<a href={PATH.HOME} className="logo-mobile is-login" />
+						</div>
+
 						<div className='box-logo-info'>
 							<div className='box-logo-info-name'>{user.msisdn}</div>
 							<div className='box-logo-info-number-bid'>
@@ -46,7 +55,12 @@ function HeaderMobile({ user }) {
 				</div>
 			) : (
 				<div className="header-mobile-page">
-					<a href={PATH.HOME} className="logo-mobile" />
+					<div className='header-mobile-page-logo'>
+						{checkShowBack ? <div className={`box-back `}>
+							<a href='mytel://back'> <img src={iconBtnBack} alt='icon-back' /> </a>
+						</div> : null}
+						<a href={PATH.HOME} className="logo-mobile" />
+					</div>
 					<button onClick={() => { navigate(PATH.LOGIN) }} className="button-login">{t("header.login")}</button>
 				</div>
 			)}
